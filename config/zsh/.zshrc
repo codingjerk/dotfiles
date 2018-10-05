@@ -220,7 +220,7 @@ in-git-repo() {
 }
 
 git-path() {
-  if ! git diff-index --quiet HEAD --; then
+  if ! git diff-index --quiet HEAD -- > /dev/null 2>&1; then
     print -n "%{$fg[magenta]%}"
   elif { git status --porcelain | grep '^?? ' } > /dev/null 2>&1; then
     print -n "%{$fg[yellow]%}"
@@ -233,7 +233,7 @@ git-path() {
   local git_path="$(print -n "$git_root/$git_prefix" | sed 's/.$//g')"
   print -n "$git_path"
 
-  local git_branch="$(git rev-parse --abbrev-ref HEAD)"
+  local git_branch="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
   case "$git_branch" in
     master) ;;
     HEAD) print -n " %{$fg[red]%}($git_branch)" ;;
