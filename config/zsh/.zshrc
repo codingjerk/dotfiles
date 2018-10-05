@@ -182,8 +182,16 @@ bindkey '^O' fzf-open
 # === Prompt ===
 setopt prompt_subst
 
-PROMPT_SEPARATOR=' » '
-RPROMPT_SEPARATOR=' « '
+autoload -U colors
+colors
+
+if tty | grep tty > /dev/null; then
+  PROMPT_SEPARATOR=' > '
+  RPROMPT_SEPARATOR=' < '
+else
+  PROMPT_SEPARATOR=' » '
+  RPROMPT_SEPARATOR=' « '
+fi
 
 in-git-repo() {
   [[ -d .git ]] || git rev-parse --git-dir > /dev/null 2>&1
@@ -191,11 +199,11 @@ in-git-repo() {
 
 git-path() {
   if ! git diff-index --quiet HEAD --; then
-    print -n '%F{5}'
+    print -n "%{$fg[magenta]%}"
   elif { git status --porcelain | grep '^?? ' } > /dev/null 2>&1; then
-    print -n '%F{3}'
+    print -n "%{$fg[yellow]%}"
   else
-    print -n '%F{2}'
+    print -n "%{$fg[green]%}"
   fi
 
   local git_root="$(basename "$(git rev-parse --show-toplevel 2> /dev/null)")"
@@ -206,8 +214,8 @@ git-path() {
   local git_branch="$(git rev-parse --abbrev-ref HEAD)"
   case "$git_branch" in
     master) ;;
-    HEAD) print -n " %F{1}($git_branch)" ;;
-    *)    print -n " %F{6}($git_branch)" ;;
+    HEAD) print -n " %{$fg[red]%}($git_branch)" ;;
+    *)    print -n " %{$fg[cyan]%}($git_branch)" ;;
   esac
 
   print -n "${PROMPT_SEPARATOR}"
@@ -221,41 +229,44 @@ prompt() {
     git-path
   else
     case "${PWD}" in
-      /home/*) print -n '%F{4}%~' ;;
-      *) print -n '%F{5}%/' ;;
+      /home/*) print -n "%{$fg[blue]%}%~" ;;
+      *) print -n "%{$fg[magenta]%}%/" ;;
     esac
     print -n "${PROMPT_SEPARATOR}"
   fi
 
   local job_count="$(jobs -l | wc -l)"
   if [[ "$job_count" != 0 ]]; then
-    print -n "%F{3}$job_count"
+    print -n "%{$fg[yellow]}%}$job_count"
     print -n "${PROMPT_SEPARATOR}"
   fi
 
   if   [[ "${EXIT_CODE}" != 0 ]]; then
-    print -n "%F{1}${EXIT_CODE}"
+    print -n "%{$fg[red]%}${EXIT_CODE}"
     print -n "${PROMPT_SEPARATOR}"
   elif [[ "${UID}" == 0 ]]; then
-    print -n '%F{3}!'
+    print -n "%{$fg[yellow]%}!"
     print -n "${PROMPT_SEPARATOR}"
   fi
 
-  print -n '%f'
+  print -n "%{$reset_color%}"
 }
 
 PROMPT='$(prompt)'
 
 prompt2() {
   local ORIG="$(prompt)"
-  print -n '%F{3}'
-  print -n "${ORIG}" | sed 's/%F{.}//g;s/%f//g;s/./\./g;s/.....$/\./g'
-  print -n "${PROMPT_SEPARATOR}%f"
+  print -n "%{$fg[yellow]%}"
+  print -Pn "$(print -n "${ORIG}" | sed 's/%{[^%]*%}//g')" \
+    | sed 's/./\./g' \
+    | sed 's/....$/\./'
+
+  print -n "${PROMPT_SEPARATOR}%{$reset_color%}"
 }
 
 PROMPT2='$(prompt2)'
 
-RPROMPT="%F{4}${RPROMPT_SEPARATOR}%n%F{6}${RPROMPT_SEPARATOR}%m"
+RPROMPT="%{$fg[blue]%}${RPROMPT_SEPARATOR}%n%{$fg[cyan]%}${RPROMPT_SEPARATOR}%m%{$reset_color%}"
 
 # === Command time report ===
 zmodload zsh/datetime
