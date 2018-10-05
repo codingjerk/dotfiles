@@ -8,7 +8,7 @@ export PAGER='less'
 # === Options ===
 export PATH='/bin'
 
-export FZF_DEFAULT_OPTS="--color=16 --height=20 --layout=reverse --inline-info --no-mouse --preview-window='left:50%'"
+export FZF_DEFAULT_OPTS="--color='16,hl:6,fg+:1,bg+:0,hl+:6,info:2,prompt:2,pointer:1,marker:5' --height=20 --layout=reverse --inline-info --no-mouse --preview-window='right:50%'"
 
 export GREP_COLORS='sl=0:cx=1;30:fn=0;33:ln=0;35'
 

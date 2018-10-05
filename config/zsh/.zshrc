@@ -9,6 +9,8 @@ alias cal='cal -m'
 
 alias diff='diff --color=auto'
 
+alias dmesg='sudo dmesg -H'
+
 alias df='df -h -x devtmpfs'
 alias du='du -h -d 1 -c'
 
@@ -164,20 +166,40 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^S' edit-command-line
 
+__fzf-sized() {
+  local size=$(( $LINES * 2 / 3 ))
+  fzf --height="$size" "$@"
+}
+
 fzf-history() {
-  LBUFFER="$(fc -ln 0 | fzf --tac --no-sort -q "${LBUFFER}")"
+  LBUFFER="$(fc -ln 0 | __fzf-sized --tac --no-sort -q "${LBUFFER}")"
   zle redisplay
 }
 zle -N fzf-history
 bindkey '^R' fzf-history
 
 fzf-open() {
-  local files="$(fd -H --color=always -E '.git/' | fzf --multi --ansi --preview='pygmentize -g {}')"
+  local files=$( \
+      fd -H --color=always -E '.git/' -t f -t l \
+    | __fzf-sized --multi --ansi --preview='pygmentize -g {}' \
+  )
   [[ -z "$files" ]] || "${=EDITOR}" $(echo "$files" | tr '\0' ' ')
   zle redisplay
 }
 zle -N fzf-open
 bindkey '^O' fzf-open
+
+fzf-go() {
+  local dir=$( \
+      fd -H --color=never -E '.git/' -E -t d \
+    | __fzf-sized --ansi --preview='ls -A --color=always {}' \
+  )
+
+  [[ -z "$dir" ]] || cd "$dir"
+  zle reset-prompt
+}
+zle -N fzf-go
+bindkey '^G' fzf-go
 
 # === Prompt ===
 setopt prompt_subst
