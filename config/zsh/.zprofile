@@ -15,6 +15,28 @@ export GREP_COLORS='sl=0:cx=1;30:fn=0;33:ln=0;35'
 export LESS='-iMRS -x4 -z-4'
 export LESSOPEN=$'|pygmentize -g "%s" | awk \'{printf "\e[1;30m%%5s \e[0m", NR; print $0}\''
 
+# === LS_COLORS ===
+LS_COLORS="no=0:fi=0:di=34"
+
+LS_COLORS+=":*.c=31:*.rs=31:*.lock=31"
+LS_COLORS+=":ex=32:ln=32:*.exe=32:*.cmd=32:*.com=32"
+
+LS_COLORS+=":*.mp3=33:*.wav=33"
+LS_COLORS+=":*.png=33:*.jpg=33:*.jpeg=33"
+LS_COLORS+=":*.mp4=33:*.mkv=33"
+
+LS_COLORS+=":*.md=35:*.tex=35:*.txt=35:*.json=35:*.xml=35:*.yml=35:*.toml=35:*.html=35:*.css=35:*LICENSE=35:*README=35:*VERSION=35:*DESCRIPTION=35:*URL=35:*AUTHORS=35"
+LS_COLORS+=":*.py=36:*.rb=36:*.sh=36:*.zsh=36:*.bash=36:*.zshrc=36:*.zprofile=36:*.zshenv=36:*.js=36:*.ts=36:*Makefile=36:*Gemfile=36"
+
+LS_COLORS+=":*.gitignore=1;30:*.git=1;30:*.editorconfig=1;30"
+
+LS_COLORS+=":or=30;41:mi=30;41"
+LS_COLORS+=":do=30;43:bd=30;43:cd=30;43:ca=30;43:tw=30;43:ow=30;43:st=30;43"
+LS_COLORS+=":su=30;45:sg=30;45"
+LS_COLORS+=":pi=30;46:so=30;46"
+
+export LS_COLORS
+
 # === XDG Base Directory Specification ===
 export XDG_CONFIG_HOME="${DOTFILES_DIR}/config"
 export XDG_DATA_HOME="${DOTFILES_DIR}/share"
