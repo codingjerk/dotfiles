@@ -201,13 +201,21 @@ fzf-go() {
 zle -N fzf-go
 bindkey '^G' fzf-go
 
+sudo-buffer-or-last() {
+  [[ -z "${LBUFFER}" ]] \
+  && LBUFFER='sudo !!' \
+  || LBUFFER="sudo ${LBUFFER}"
+}
+zle -N sudo-buffer-or-last
+bindkey '^[^[' sudo-buffer-or-last
+
 # === Prompt ===
 setopt prompt_subst
 
 autoload -U colors
 colors
 
-if tty | grep tty > /dev/null; then
+if uname -m | grep i686 > /dev/null; then
   PROMPT_SEPARATOR=' > '
   RPROMPT_SEPARATOR=' < '
 else
