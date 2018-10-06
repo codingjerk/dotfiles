@@ -193,7 +193,7 @@ setopt prompt_subst
 autoload -U colors
 colors
 
-if tty | grep tty > /dev/null; then
+if uname -m | grep i686 > /dev/null; then
   PROMPT_SEPARATOR=' > '
   RPROMPT_SEPARATOR=' < '
 else
