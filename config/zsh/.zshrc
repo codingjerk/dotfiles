@@ -179,6 +179,14 @@ fzf-open() {
 zle -N fzf-open
 bindkey '^O' fzf-open
 
+sudo-buffer-or-last() {
+  [[ -z "${LBUFFER}" ]] \
+  && LBUFFER='sudo !!' \
+  || LBUFFER="sudo ${LBUFFER}"
+}
+zle -N sudo-buffer-or-last
+bindkey '^[^[' sudo-buffer-or-last
+
 # === Prompt ===
 setopt prompt_subst
 
