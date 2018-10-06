@@ -39,8 +39,8 @@ alias ls='ls -Ah --color=auto --group-directories-first --file-type'
 alias l='ls -lo --time-style=iso'
 
 alias ta='tmux attach'
-alias tl='tmux ls'
-alias tn='tmux new-session -s'
+alias tl='tmux list-sessions'
+alias tn='tmux new-session'
 
 alias sudo='sudo '
 
