@@ -1,5 +1,3 @@
-python "${DOTFILES_DIR}/tools/motd.py"
-
 # === Tools ===
 export EDITOR='vim -p'
 export VISUAL="${EDITOR}"
@@ -23,3 +21,11 @@ export XDG_CACHE_HOME="${DOTFILES_DIR}/cache"
 # === XDG Fixes ===
 export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zsh"
 export HISTFILE="${XDG_DATA_HOME}/zsh/history"
+
+# === Autolaod ===
+if tty | grep tty > /dev/null; then
+  sh "${DOTFILES_DIR}/tools/tty-colors.sh"
+  clear
+fi
+
+python "${DOTFILES_DIR}/tools/motd.py"
