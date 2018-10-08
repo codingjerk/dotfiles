@@ -1,0 +1,52 @@
+# === Better prefix ===
+unbind C-b
+set -g prefix `
+bind ` send-prefix
+
+# === Options ===
+set -g escape-time 0
+set -g base-index 1
+set -g pane-base-index 1
+set -g renumber-windows on
+
+set -g clock-mode-colour cyan
+set -g clock-mode-style 24
+
+# === Status ===
+set -g status-bg black
+set -g status-fg white
+
+set -g window-status-current-fg blue
+set -g window-status-current-format '*'
+set -g window-status-fg black
+set -g window-status-attr bold
+set -g window-status-format '-'
+
+set -g status-interval 60
+
+set -g status-left '#[fg=cyan]#S'
+set -g status-left-length 15
+
+set -g status-right "#[fg=blue]%d/%m #[fg=cyan]%H:%M"
+set -g status-right-length 15
+
+set -g status-justify centre
+
+# === Keybindings ===
+bind w select-pane -U
+bind a select-pane -L
+bind s select-pane -D
+bind d select-pane -R
+
+bind C-w resize-pane -U
+bind C-a resize-pane -L
+bind C-s resize-pane -D
+bind C-d resize-pane -R
+
+bind f resize-pane -Z
+
+bind q detach-client
+bind e choose-session
+
+bind h split-window -h
+bind v split-window -v
