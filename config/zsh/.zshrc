@@ -38,6 +38,7 @@ alias grep="grep --color=auto --binary-files=without-match --exclude-dir={.bzr,.
 alias ls='ls -Ah --color=auto --group-directories-first --file-type'
 alias l='ls -lo --time-style=iso'
 
+alias tmux='tmux -f "${XDG_CONFIG_HOME}/tmux/config"'
 alias ta='tmux attach'
 alias tl='tmux list-sessions'
 alias tn='tmux new-session'
@@ -45,6 +46,9 @@ alias tn='tmux new-session'
 alias sudo='sudo '
 
 alias rf='rm -rf'
+
+alias cp='cp -i'
+alias mv='mv -i'
 
 # === Colors ===
 man() {
@@ -159,6 +163,9 @@ bindkey '^[[6~' down-line-or-history
 
 bindkey '^[^[[D' backward-word
 bindkey '^[^[[C' forward-word
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+
 
 bindkey -M menuselect '^^' accept-and-menu-complete
 
@@ -333,7 +340,7 @@ add-zsh-hook precmd  ctr-update-total
 source "${DOTFILES_DIR}/third-party/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=0,bold'
 
-source "${DOTFILES_DIR}/third-party/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+source "${DOTFILES_DIR}/third-party/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 
 # === Void linux ===
 if (( $+commands[xbps-install] )); then

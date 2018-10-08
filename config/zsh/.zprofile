@@ -39,10 +39,13 @@ export LS_COLORS
 export XDG_CONFIG_HOME="${DOTFILES_DIR}/config"
 export XDG_DATA_HOME="${DOTFILES_DIR}/share"
 export XDG_CACHE_HOME="${DOTFILES_DIR}/cache"
+export XDG_RUNTIME_DIR="${DOTFILES_DIR}/runtime"
 
 # === XDG Fixes ===
 export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zsh"
 export HISTFILE="${XDG_DATA_HOME}/zsh/history"
+
+export TMUX_TMPDIR="${XDG_RUNTIME_DIR}"
 
 # === Autolaod ===
 if tty | grep tty > /dev/null; then
@@ -50,4 +53,6 @@ if tty | grep tty > /dev/null; then
   clear
 fi
 
-python "${DOTFILES_DIR}/tools/motd.py"
+if [[ -z "$TMUX" ]]; then
+  python "${DOTFILES_DIR}/tools/motd.py"
+fi
