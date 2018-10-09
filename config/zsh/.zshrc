@@ -35,7 +35,7 @@ alias gco='git checkout'
 
 alias grep="grep --color=auto --binary-files=without-match --exclude-dir={.bzr,.git,.hg,.svn}"
 
-alias ls='ls -Ah --color=auto --group-directories-first --file-type'
+alias ls='ls -Ah --color=auto --group-directories-first --file-type --quoting-style=literal'
 alias l='ls -lo --time-style=iso'
 
 alias tmux='tmux -f "${XDG_CONFIG_HOME}/tmux/config"'
@@ -43,9 +43,11 @@ alias ta='tmux attach'
 alias tl='tmux list-sessions'
 alias tn='tmux new-session'
 
-alias sudo='sudo '
-
 alias rf='rm -rf'
+
+alias ping='ping -AUO'
+
+alias sudo='sudo '
 
 alias cp='cp -i'
 alias mv='mv -i'
@@ -78,7 +80,7 @@ pp() {
 }
 
 # === Functions ===
-m3sort() {
+m3u-sort() {
   local m3u="$(cat)"
   local exts="$(echo "$m3u" | grep -ie '^#extinf')"
   local http="$(echo "$m3u" | grep -ie '^http')"
@@ -90,12 +92,27 @@ m3sort() {
   echo "#EXTM3U\n$result"
 }
 
-peerwatch() {
-  local addr=$(echo "$1" | grep -oP '(localhost)|(\d+\.\d+\.\d+\.\d+)')
-  local port=$(echo "$1" | grep -oP '((?<=:)\d+)|((?<=[^\.:])\d{4,5})')
+peerflix-watch() {
+  local addr=$(echo "$@" | grep -oP '(localhost)|(\d+\.\d+\.\d+\.\d+)')
+  local port=$(echo "$@" | grep -oP '((?<=:)\d+)|((?<=[^\.:])\d{4,5})')
+  local tmppl="/tmp/peerwatch-${USER}.m3u"
 
-  curl -s "http://${addr:=localhost}:${port:=8888}/.m3u" | m3sort > '/tmp/peerwatch.m3u'
-  mpv '/tmp/peerwatch.m3u'
+  curl -s "http://${addr:=localhost}:${port:=8888}/.m3u" | m3u-sort > "$tmppl"
+  DISPLAY=${DISPLAY:-:0} mpv "$tmppl"
+}
+
+peerflix-download() {
+  local magnet="$1"
+  local port="${2:-8888}"
+  local store="${CJ_PEERFLIX_STORE}"
+
+  peerflix "$magnet" --all --port "$port" --path "$store"
+}
+
+peerflix-all() {
+  # TODO: parallel
+  peerflix-download "$1"
+  peerflix-watch
 }
 
 # === Completion ===
