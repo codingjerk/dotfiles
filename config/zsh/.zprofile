@@ -42,12 +42,15 @@ export XDG_CACHE_HOME="${DOTFILES_DIR}/cache"
 export XDG_RUNTIME_DIR="${DOTFILES_DIR}/runtime"
 
 # === XDG Fixes ===
-export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zsh"
-export HISTFILE="${XDG_DATA_HOME}/zsh/history"
+export LESSHISTFILE="${XDG_DATA_HOME}/less/history"
+export LESSKEY="${XDG_CONFIG_HOME}/less/lesskey"
 
 export TMUX_TMPDIR="${XDG_RUNTIME_DIR}"
 
 export VIMINIT=":source ${XDG_CONFIG_HOME}/nvim/init.vim"
+
+export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zsh"
+export HISTFILE="${XDG_DATA_HOME}/zsh/history"
 
 # === Autolaod ===
 if tty | grep tty > /dev/null; then

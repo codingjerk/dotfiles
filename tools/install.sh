@@ -4,3 +4,5 @@ cat <<EOF > "${HOME}/.zshenv"
 export DOTFILES_DIR='${DOTFILES_DIR}'
 export ZDOTDIR='${DOTFILES_DIR}/config/zsh'
 EOF
+
+lesskey -o "${LESSKEY}" "${LESSKEY}.in"
