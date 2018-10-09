@@ -47,6 +47,8 @@ export HISTFILE="${XDG_DATA_HOME}/zsh/history"
 
 export TMUX_TMPDIR="${XDG_RUNTIME_DIR}"
 
+export VIMINIT=":source ${XDG_CONFIG_HOME}/nvim/init.vim"
+
 # === Autolaod ===
 if tty | grep tty > /dev/null; then
   sh "${DOTFILES_DIR}/tools/tty-colors.sh"

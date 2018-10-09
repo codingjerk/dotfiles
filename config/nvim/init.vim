@@ -97,10 +97,12 @@ imap <up> <nop>
 imap <down> <nop>
 
 " === Highlighting ===
+set t_Co=16
 set background=dark
 hi clear Normal
 hi clear
 syntax reset
+syntax enable
 
 " = UI =
 hi LineNr ctermfg=0 cterm=bold
