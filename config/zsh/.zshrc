@@ -47,6 +47,7 @@ alias rf='rm -rf'
 
 alias ping='ping -AUO'
 
+alias ss='ss -raopuwt'
 alias sudo='sudo '
 
 alias cp='cp -i'
@@ -204,8 +205,8 @@ bindkey '^R' fzf-history
 
 fzf-open() {
   local files=$( \
-      fd -H --color=always -E '.git/' -t f -t l \
-    | __fzf-sized --multi --ansi --preview='pygmentize -g {}' \
+      ${=FZF_DEFAULT_COMMAND} \
+    | __fzf-sized --multi \
   )
   [[ -z "$files" ]] || "${=EDITOR}" $(echo "$files" | tr '\0' ' ')
   zle redisplay
@@ -215,8 +216,8 @@ bindkey '^O' fzf-open
 
 fzf-go() {
   local dir=$( \
-      fd -H --color=never -E '.git/' -E -t d \
-    | __fzf-sized --ansi --preview='ls -A --color=always {}' \
+      ${=FZF_DEFAULT_COMMAND//-t f -t l -S-10M/-t d} \
+    | __fzf-sized \
   )
 
   [[ -z "$dir" ]] || cd "$dir"
