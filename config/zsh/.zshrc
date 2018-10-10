@@ -383,16 +383,16 @@ if (( $+commands[xbps-install] )); then
   command_not_found_handler() {
     print "\033[31mzsh: command not found: \033[34m'$1'\033[0m"
 
-		if ! [[ -d "${XLOCATE_GIT}" ]] && (( $+commands[xlocate] )); then
+    if ! [[ -d "${XLOCATE_GIT}" ]] && (( $+commands[xlocate] )); then
       print "\033[31mTo get command-not-found feature install xtools and sync xbps database (xlocate -S)\033[0m"
       return 127
     fi
 
-		local pkgs=$(xlocate "$1" | grep --color=never -P "/bin/$1\$")
+    local pkgs=$(xlocate "$1" | grep --color=never -P "/bin/$1\$")
     [[ -z "$pkgs" ]] && return 127
 
-		print "\033[34m$1 \033[32mmay be found in the following packages:\033[0m"
-		echo "$pkgs" | awk '{print $1}'
+    print "\033[34m$1 \033[32mmay be found in the following packages:\033[0m"
+    echo "$pkgs" | awk '{print $1}'
 
     return 127
   }
