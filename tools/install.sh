@@ -6,3 +6,4 @@ export ZDOTDIR='${DOTFILES_DIR}/config/zsh'
 EOF
 
 lesskey -o "${LESSKEY}" "${LESSKEY}.in"
+chmod -w "${XDG_CONFIG_HOME}/htop/htoprc"
