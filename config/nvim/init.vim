@@ -8,6 +8,8 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
+set list " show whitespace
+
 " === Gutter ===
 set number
 set numberwidth=1
