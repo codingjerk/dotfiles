@@ -227,9 +227,11 @@ zle -N fzf-go
 bindkey '^G' fzf-go
 
 sudo-buffer-or-last() {
-  [[ -z "${LBUFFER}" ]] \
-  && LBUFFER='sudo !!' \
-  || LBUFFER="sudo ${LBUFFER}"
+  if [[ -z "${LBUFFER}" ]]; then
+    LBUFFER="sudo $history[$(($HISTCMD - 1))]"
+  else
+    LBUFFER="sudo ${LBUFFER}"
+  fi
 }
 zle -N sudo-buffer-or-last
 bindkey '^[^[' sudo-buffer-or-last
@@ -360,6 +362,9 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=0,bold'
 
 source "${DOTFILES_DIR}/third-party/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 
+source "${DOTFILES_DIR}/third-party/zsh/alias-tips/alias-tips.plugin.zsh"
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT="$(print -n '\033[31mAlias tip: ')"
+
 # === Void linux ===
 if (( $+commands[xbps-install] )); then
   f() {
@@ -372,6 +377,23 @@ if (( $+commands[xbps-install] )); then
 
   u() {
     sudo xbps-install -Su
+  }
+
+  command_not_found_handler() {
+    print "\033[31mzsh: command not found: \033[34m'$1'\033[0m"
+
+		if ! [[ -d "${XLOCATE_GIT}" ]] && (( $+commands[xlocate] )); then
+      print "\033[31mTo get command-not-found feature install xtools and sync xbps database (xlocate -S)\033[0m"
+      return 127
+    fi
+
+		local pkgs=$(xlocate "$1" | grep --color=never -P "/bin/$1\$")
+    [[ -z "$pkgs" ]] && return 127
+
+		print "\033[34m$1 \033[32mmay be found in the following packages:\033[0m"
+		echo "$pkgs" | awk '{print $1}'
+
+    return 127
   }
 fi
 

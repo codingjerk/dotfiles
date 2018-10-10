@@ -4,3 +4,6 @@
 [submodule "third-party/zsh/fast-syntax-highlighting"]
 	path = third-party/zsh/fast-syntax-highlighting
 	url = https://github.com/zdharma/fast-syntax-highlighting.git
+[submodule "third-party/zsh/alias-tips"]
+	path = third-party/zsh/alias-tips
+	url = https://github.com/djui/alias-tips
