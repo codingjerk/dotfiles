@@ -42,6 +42,7 @@ alias tmux='tmux -f "${XDG_CONFIG_HOME}/tmux/config"'
 alias ta='tmux attach'
 alias tl='tmux list-sessions'
 alias tn='tmux new-session'
+alias tmw='tmux move-window'
 
 alias rf='rm -rf'
 
