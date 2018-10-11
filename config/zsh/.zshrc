@@ -48,7 +48,7 @@ alias rf='rm -rf'
 
 alias ping='ping -AUO'
 
-alias ss='ss -raopuwt'
+alias ss='ss -raopuwtn'
 alias sudo='sudo '
 
 alias cp='cp -i'
@@ -56,18 +56,17 @@ alias mv='mv -i'
 
 # === Colors ===
 man() {
-  LESSOPEN='' \
   LESS_TERMCAP_mb=$'\E[31m' \
   LESS_TERMCAP_md=$'\E[34m' \
   LESS_TERMCAP_me=$'\E[0m' \
   LESS_TERMCAP_se=$'\E[0m' \
-  LESS_TERMCAP_so=$'\E[32m' \
+  LESS_TERMCAP_so=$'\E[1;30m' \
   LESS_TERMCAP_ue=$'\E[0m' \
   LESS_TERMCAP_us=$'\E[36m' \
   command man "$@"
 }
 
-pty() {
+__pty() {
   zpty "pty-${UID}" "${1+$@}"
   if [[ ! -t 1 ]]; then
     setopt local_traps
@@ -78,44 +77,10 @@ pty() {
 }
 
 pp() {
-  pty $@ | "${PAGER}"
+  __pty $@ | "${=PAGER}"
 }
 
 # === Functions ===
-m3u-sort() {
-  local m3u="$(cat)"
-  local exts="$(echo "$m3u" | grep -ie '^#extinf')"
-  local http="$(echo "$m3u" | grep -ie '^http')"
-
-  local merged="$(paste -d '\t' <(echo "$exts") <(echo "$http"))"
-  local sorted="$(echo "$merged" | sort -n)"
-  local result="$(echo "$sorted" | tr '\t' '\n')"
-
-  echo "#EXTM3U\n$result"
-}
-
-peerflix-watch() {
-  local addr=$(echo "$@" | grep -oP '(localhost)|(\d+\.\d+\.\d+\.\d+)')
-  local port=$(echo "$@" | grep -oP '((?<=:)\d+)|((?<=[^\.:])\d{4,5})')
-  local tmppl="/tmp/peerwatch-${USER}.m3u"
-
-  curl -s "http://${addr:=localhost}:${port:=8888}/.m3u" | m3u-sort > "$tmppl"
-  DISPLAY=${DISPLAY:-:0} mpv "$tmppl"
-}
-
-peerflix-download() {
-  local magnet="$1"
-  local port="${2:-8888}"
-  local store="${CJ_PEERFLIX_STORE}"
-
-  peerflix "$magnet" --all --port "$port" --path "$store"
-}
-
-peerflix-all() {
-  # TODO: parallel
-  peerflix-download "$1"
-  peerflix-watch
-}
 
 # === Completion ===
 LISTMAX=1000
@@ -193,49 +158,40 @@ zle -N edit-command-line
 bindkey '^S' edit-command-line
 
 __fzf-sized() {
-  local size=$(( $LINES * 2 / 3 ))
-  fzf --height="$size" "$@"
+  fzf --height="$(( ${LINES} * 2 / 3 ))" "$@"
 }
 
-fzf-history() {
+__fzf-history() {
   LBUFFER="$(fc -ln 0 | __fzf-sized --tac --no-sort -q "${LBUFFER}")"
   zle redisplay
 }
-zle -N fzf-history
-bindkey '^R' fzf-history
+zle -N __fzf-history
+bindkey '^R' __fzf-history
 
-fzf-open() {
-  local files=$( \
-      ${=FZF_DEFAULT_COMMAND} \
-    | __fzf-sized --multi \
-  )
-  [[ -z "$files" ]] || "${=EDITOR}" $(echo "$files" | tr '\0' ' ')
+__fzf-open() {
+  ${=FZF_DEFAULT_COMMAND} | __fzf-sized --multi | xargs -r "${=EDITOR}"
   zle redisplay
 }
-zle -N fzf-open
-bindkey '^O' fzf-open
+zle -N __fzf-open
+bindkey '^O' __fzf-open
 
-fzf-go() {
-  local dir=$( \
-      ${=FZF_DEFAULT_COMMAND//-t f -t l -S-10M/-t d} \
-    | __fzf-sized \
-  )
-
-  [[ -z "$dir" ]] || cd "$dir"
+__fzf-go() {
+  local dir="$( ${=FZF_DEFAULT_COMMAND//-t f -t l -S-10M/-t d} | __fzf-sized )"
+  [[ "$dir" = '' ]] || cd "$dir"
   zle reset-prompt
 }
-zle -N fzf-go
-bindkey '^G' fzf-go
+zle -N __fzf-go
+bindkey '^G' __fzf-go
 
-sudo-buffer-or-last() {
-  if [[ -z "${LBUFFER}" ]]; then
-    LBUFFER="sudo $history[$(($HISTCMD - 1))]"
+__sudo-buffer-or-last() {
+  if [[ "${LBUFFER}" = '' ]]; then
+    LBUFFER="sudo $history[$((${HISTCMD} - 1))]"
   else
     LBUFFER="sudo ${LBUFFER}"
   fi
 }
-zle -N sudo-buffer-or-last
-bindkey '^[^[' sudo-buffer-or-last
+zle -N __sudo-buffer-or-last
+bindkey '^[^[' __sudo-buffer-or-last
 
 # === Prompt ===
 setopt prompt_subst
@@ -251,111 +207,111 @@ else
   RPROMPT_SEPARATOR=' « '
 fi
 
-in-git-repo() {
-  [[ -d .git ]] || git rev-parse --git-dir > /dev/null 2>&1
+__in-git-repo() {
+  [[ -e .git ]] || git rev-parse --git-dir > /dev/null 2>&1
 }
 
-git-path() {
+__git-path() {
   if ! git diff-index --quiet HEAD -- > /dev/null 2>&1; then
-    print -n "%{$fg[magenta]%}"
+    print -rn "%{$fg[magenta]%}"
   elif { git status --porcelain | grep '^?? ' } > /dev/null 2>&1; then
-    print -n "%{$fg[yellow]%}"
+    print -rn "%{$fg[yellow]%}"
   else
-    print -n "%{$fg[green]%}"
+    print -rn "%{$fg[green]%}"
   fi
 
   local git_root="$(basename "$(git rev-parse --show-toplevel 2> /dev/null)")"
   local git_prefix="$(git rev-parse --show-prefix 2> /dev/null)"
-  local git_path="$(print -n "$git_root/$git_prefix" | sed 's/.$//g')"
-  print -n "$git_path"
+  local git_path="$(print -rn "$git_root/$git_prefix" | sed 's/.$//g')"
+  print -rn "$git_path"
 
   local git_branch="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
   case "$git_branch" in
     master) ;;
-    HEAD) print -n " %{$fg[red]%}($git_branch)" ;;
-    *)    print -n " %{$fg[cyan]%}($git_branch)" ;;
+    HEAD) print -rn " %{$fg[red]%}($git_branch)" ;;
+    *)    print -rn " %{$fg[cyan]%}($git_branch)" ;;
   esac
 
-  print -n "${PROMPT_SEPARATOR}"
+  print -rn "${PROMPT_SEPARATOR}"
 }
 
-prompt() {
-  local EXIT_CODE="$?"
+__prompt() {
+  local exit_code="$?"
 
-  print -n ' '
-  if in-git-repo; then
-    git-path
+  print -rn ' '
+  if __in-git-repo; then
+    __git-path
   else
     case "${PWD}" in
-      /home/*) print -n "%{$fg[blue]%}%~" ;;
-      *) print -n "%{$fg[magenta]%}%/" ;;
+      /home/*) print -rn "%{$fg[blue]%}%~" ;;
+      *) print -rn "%{$fg[magenta]%}%/" ;;
     esac
-    print -n "${PROMPT_SEPARATOR}"
+    print -rn "${PROMPT_SEPARATOR}"
   fi
 
   local job_count="$(jobs -l | wc -l)"
   if [[ "$job_count" != 0 ]]; then
-    print -n "%{$fg[yellow]}%}$job_count"
-    print -n "${PROMPT_SEPARATOR}"
+    print -rn "%{$fg[yellow]}%}$job_count"
+    print -rn "${PROMPT_SEPARATOR}"
   fi
 
-  if   [[ "${EXIT_CODE}" != 0 ]]; then
-    print -n "%{$fg[red]%}${EXIT_CODE}"
-    print -n "${PROMPT_SEPARATOR}"
+  if   [[ "$exit_code" != 0 ]]; then
+    print -rn "%{$fg[red]%}$exit_code"
+    print -rn "${PROMPT_SEPARATOR}"
   elif [[ "${UID}" == 0 ]]; then
-    print -n "%{$fg[yellow]%}!"
-    print -n "${PROMPT_SEPARATOR}"
+    print -rn "%{$fg[yellow]%}!"
+    print -rn "${PROMPT_SEPARATOR}"
   fi
 
-  print -n "%{$reset_color%}"
+  print -rn "%{$reset_color%}"
 }
 
-PROMPT='$(prompt)'
+PROMPT='$(__prompt)'
 
-prompt2() {
-  local ORIG="$(prompt)"
-  print -n "%{$fg[yellow]%}"
-  print -Pn "$(print -n "${ORIG}" | sed 's/%{[^%]*%}//g')" \
+__prompt2() {
+  local orig_prompt="$(prompt)"
+  print -rn "%{$fg[yellow]%}"
+  print -Pn "$(print -rn "$orig_prompt" | sed 's/%{[^%]*%}//g')" \
     | sed 's/./\./g' \
     | sed 's/....$/\./'
 
-  print -n "${PROMPT_SEPARATOR}%{$reset_color%}"
+  print -rn "${PROMPT_SEPARATOR}%{$reset_color%}"
 }
 
-PROMPT2='$(prompt2)'
+PROMPT2='$(__prompt2)'
 
 RPROMPT="%{$fg[blue]%}${RPROMPT_SEPARATOR}%n%{$fg[cyan]%}${RPROMPT_SEPARATOR}%m%{$reset_color%}"
 
 # === Command time report ===
 zmodload zsh/datetime
 
-ctr-show() {
+__ctr-show() {
   local text=$(printf "${RPROMPT_SEPARATOR}%.2f${PROMPT_SEPARATOR}" "${CTR_TOTAL_TIME}")
-  local tlen=$(echo "$text" | wc -m)
-  local llen=$(( ($COLUMNS - $tlen) / 2 ))
+  local tlen=$(wc -m <<< "$text")
+  local llen=$(( (${COLUMNS} - $tlen) / 2 ))
   local lind=$(printf ' %.0s' {1..$llen})
 
   print "$lind\e[36m$text\e[0m"
 }
 
-ctr-update-start() {
-  CTR_START_TIME=$EPOCHREALTIME
+__ctr-update-start() {
+  CTR_START_TIME=${EPOCHREALTIME}
 }
 
-ctr-update-total() {
-  [[ -z $CTR_START_TIME ]] && return 0
-  [[ $CTR_START_TIME == NONE ]] && return 0
-  CTR_TOTAL_TIME=$(( $EPOCHREALTIME - $CTR_START_TIME ))
+__ctr-update-total() {
+  [[ -z ${CTR_START_TIME} ]] && return 0
+  [[ ${CTR_START_TIME} == NONE ]] && return 0
+  CTR_TOTAL_TIME=$(( ${EPOCHREALTIME} - ${CTR_START_TIME} ))
   CTR_START_TIME=NONE
 
-  (( $CTR_TOTAL_TIME >= 1 )) || return 0
+  (( ${CTR_TOTAL_TIME} >= 1 )) || return 0
 
-  ctr-show
+  __ctr-show
 }
 
 autoload -Uz add-zsh-hook
-add-zsh-hook preexec ctr-update-start
-add-zsh-hook precmd  ctr-update-total
+add-zsh-hook preexec __ctr-update-start
+add-zsh-hook precmd  __ctr-update-total
 
 # === Third-party additions ===
 source "${DOTFILES_DIR}/third-party/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
@@ -364,7 +320,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=0,bold'
 source "${DOTFILES_DIR}/third-party/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 
 source "${DOTFILES_DIR}/third-party/zsh/alias-tips/alias-tips.plugin.zsh"
-export ZSH_PLUGINS_ALIAS_TIPS_TEXT="$(print -n '\033[31mAlias tip: ')"
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT=$'\E[31mAlias tip: '
 
 # === Void linux ===
 if (( $+commands[xbps-install] )); then
@@ -392,7 +348,7 @@ if (( $+commands[xbps-install] )); then
     [[ -z "$pkgs" ]] && return 127
 
     print "\033[34m$1 \033[32mmay be found in the following packages:\033[0m" 1>&2
-    echo "$pkgs" | awk '{print $1}' 1>&2
+    awk '{print $1}' <<< "$pkgs" 1>&2
 
     return 127
   }
