@@ -3,3 +3,6 @@ config/less/lesskey
 
 cache
 share
+runtime
+
+services/runit/*/supervise
