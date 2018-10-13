@@ -1,0 +1,7 @@
+#!/bin/zsh -l
+
+LOGPATH="${XDG_RUNTIME_DIR}/python.http/http.log"
+mkdir -p "${LOGPATH}"
+
+cd "${HOME}/@storage"
+exec python -u -m http.server 4000 2>&1 >> "${LOGPATH}"

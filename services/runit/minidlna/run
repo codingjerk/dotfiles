@@ -1,0 +1,6 @@
+#!/bin/zsh -l
+
+LOGPATH="${XDG_RUNTIME_DIR}/minidlna/minidlna.log"
+mkdir -p "${LOGPATH}"
+
+exec minidlnad -R -d -f "${XDG_DATA_HOME}/minidlna/minidlna.conf" -P "${XDG_RUNTIME_DIR}/minidlna/minidlna.pid" 2>&1 >> "${LOGPATH}"

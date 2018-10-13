@@ -1,0 +1,6 @@
+#!/bin/zsh -l
+
+LOGPATH="${XDG_RUNTIME_DIR}/transmission/transmission.log"
+mkdir -p "${LOGPATH}"
+
+exec transmission-daemon -f --log-info -e "${LOGPATH}"
