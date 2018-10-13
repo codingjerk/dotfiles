@@ -49,7 +49,9 @@ alias rf='rm -rf'
 alias ping='ping -AUO'
 
 alias ss='ss -raopuwtn'
+
 alias sudo='sudo '
+alias watch='watch '
 
 alias cp='cp -i'
 alias mv='mv -i'
@@ -251,7 +253,7 @@ __prompt() {
 
   local job_count="$(jobs -l | wc -l)"
   if [[ "$job_count" != 0 ]]; then
-    print -rn "%{$fg[yellow]}%}$job_count"
+    print -rn "%{$fg[yellow]%}{$job_count}"
     print -rn "${PROMPT_SEPARATOR}"
   fi
 

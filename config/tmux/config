@@ -38,10 +38,10 @@ bind a select-pane -L
 bind s select-pane -D
 bind d select-pane -R
 
-bind C-w resize-pane -U
-bind C-a resize-pane -L
-bind C-s resize-pane -D
-bind C-d resize-pane -R
+bind -r C-w resize-pane -U
+bind -r C-a resize-pane -L
+bind -r C-s resize-pane -D
+bind -r C-d resize-pane -R
 
 bind f resize-pane -Z
 
@@ -50,3 +50,22 @@ bind e choose-session
 
 bind h split-window -h
 bind v split-window -v
+
+# === Keybindings (copy mode) ===
+bind -T copy-mode w send-keys -X cursor-up
+bind -T copy-mode a send-keys -X cursor-left
+bind -T copy-mode s send-keys -X cursor-down
+bind -T copy-mode d send-keys -X cursor-right
+
+bind -T copy-mode-vi w send-keys -X cursor-up
+bind -T copy-mode-vi a send-keys -X cursor-left
+bind -T copy-mode-vi s send-keys -X cursor-down
+bind -T copy-mode-vi d send-keys -X cursor-right
+
+bind -T copy-mode-vi q send-keys -X cursor-down
+bind -T copy-mode-vi e send-keys -X cursor-right
+
+bind -T copy-mode-vi W send-keys -X -N5 cursor-up
+bind -T copy-mode-vi A send-keys -X previous-word
+bind -T copy-mode-vi S send-keys -X -N5 cursor-down
+bind -T copy-mode-vi D send-keys -X next-word

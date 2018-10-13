@@ -178,6 +178,7 @@ def draw_bar(factor, color, length):
     gray  = '\u001B[1;30m'
     reset = '\u001B[0m'
 
+    factor = max(0.0, min(1.0, factor))
     active = round(length * factor)
     inactive = length - active
 

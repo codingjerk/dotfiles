@@ -98,6 +98,9 @@ imap <right> <nop>
 imap <up> <nop>
 imap <down> <nop>
 
+" = Marks are very annoying when ` is tmux prefix =
+map ` <nop>
+
 " === Highlighting ===
 set t_Co=16
 set background=dark
@@ -116,6 +119,7 @@ augroup highlighting
   au VimEnter *.* hi Comment ctermfg=0 cterm=bold
 
   au VimEnter *.* hi Title ctermfg=1
+  au VimEnter *.* hi Special ctermfg=1
   au VimEnter *.* hi Todo ctermfg=0 ctermbg=1
 
   au VimEnter *.* hi Type ctermfg=3
