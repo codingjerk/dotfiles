@@ -1,0 +1,19 @@
+cat <<EOF
+port=3000
+friendly_name=CJ DLNA Server ($(uname -n))
+
+user=${USER}
+
+media_dir=V,${HOME}/@storage/@public
+merge_media_dirs=yes
+root_container=B
+
+db_dir=${XDG_CACHE_HOME}/minidlna
+log_dir=${XDG_RUNTIME_DIR}/minidlna
+
+inotify=yes
+notify_interval=900
+
+serial=12345678
+model_number=1
+EOF
