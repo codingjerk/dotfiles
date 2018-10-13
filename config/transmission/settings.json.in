@@ -1,0 +1,60 @@
+cat <<EOF | grep -v "  //"
+{
+  // === Directories ===
+  "download-dir": "${HOME}/@storage/@unsorted",
+
+  "incomplete-dir-enabled": true,
+  "incomplete-dir": "${HOME}/@storage/@incomplete",
+
+  "watch-dir": "${HOME}/@storage/@watch",
+  "trash-original-torrent-files": true,
+
+  // === RPC ===
+  "rpc-enabled": true,
+
+  "rpc-authentication-required": false,
+  "rpc-host-whitelist-enabled": false,
+
+  "rpc-port": 2000,
+
+  "rpc-whitelist-enabled": true,
+  "rpc-whitelist": "127.0.0.*,192.168.*.*",
+
+  // === Speed limits ===
+  "alt-speed-down": 4096,
+
+  // === Other limits ===
+  "download-queue-enabled": false,
+  "queue-stalled-enabled": false,
+
+  "peer-limit-global": 200,
+  "peer-limit-per-torrent": 50,
+
+  // === No upload ===
+  "seed-queue-enabled": true,
+  "seed-queue-size": 0,
+
+  "idle-seeding-limit": 0,
+  "idle-seeding-limit-enabled": true,
+
+  "ratio-limit": 0,
+  "ratio-limit-enabled": true,
+
+  "upload-slots-per-torrent": 0,
+
+  // === Performance ===
+  "cache-size-mb": 0,
+  "preallocation": 2,
+  "prefetch-enabled": false,
+  "peer-socket-tos": "lowcost",
+
+  "dht-enabled": true,
+  "lpd-enabled": true,
+  "utp-enabled": true,
+  "pex-enabled": true,
+
+  // === Misc ===
+  "peer-id-ttl-hours": 1,
+  "rename-partial-files": true
+}
+EOF

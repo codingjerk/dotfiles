@@ -50,6 +50,8 @@ export PYTHON_EGG_CACHE="${XDG_CACHE_HOME}/python-eggs"
 
 export TMUX_TMPDIR="${XDG_RUNTIME_DIR}"
 
+export TRANSMISSION_HOME="${XDG_DATA_HOME}/transmission"
+
 export VIMINIT=":source ${XDG_CONFIG_HOME}/nvim/init.vim"
 
 export XLOCATE_GIT="${XDG_CACHE_HOME}/xlocate"
