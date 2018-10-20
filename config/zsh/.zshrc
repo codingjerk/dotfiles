@@ -336,6 +336,7 @@ if (( $+commands[xbps-install] )); then
 
   u() {
     sudo xbps-install -Su
+    # TODO: update rustup
   }
 
   command_not_found_handler() {

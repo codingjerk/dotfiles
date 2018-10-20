@@ -6,7 +6,7 @@ export PAGER='less'
 # === Options ===
 export PATH='/bin'
 
-export FZF_DEFAULT_COMMAND='fd -t f -t l -S-10M -H --color=always -E .git/ -E /etc/ssl -E /sys -E /dev -E /proc -E /opt -E /usr/bin -E /usr/lib -E /usr/lib32 -E /usr/libexec -E /var/cache -E /var/db -E /var/lib -E /usr/src -E /usr/share . /'
+export FZF_DEFAULT_COMMAND='fd -t f -t l -S-10M -H --color=always -E .git/ -E /etc/ssl -E /sys -E /dev -E /proc -E /opt -E /usr/bin -E /usr/lib -E /usr/lib32 -E /usr/libexec -E /var/cache -E /var/db -E /var/lib -E /usr/src -E /usr/share'
 export FZF_DEFAULT_OPTS="--ansi --color='16,hl:6,fg+:1,bg+:0,hl+:6,info:2,prompt:2,pointer:1,marker:5' --height=20 --layout=reverse --inline-info --no-mouse"
 
 export GREP_COLORS='sl=0:cx=1;30:fn=0;33:ln=0;35'
@@ -47,6 +47,8 @@ export LESSKEY="${XDG_CONFIG_HOME}/less/lesskey"
 
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/startup"
 export PYTHON_EGG_CACHE="${XDG_CACHE_HOME}/python-eggs"
+
+export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
 
 export TMUX_TMPDIR="${XDG_RUNTIME_DIR}"
 
