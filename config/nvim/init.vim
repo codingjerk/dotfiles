@@ -1,19 +1,26 @@
+" === Plugins ===
+set runtimepath^=${DOTFILES_DIR}/third-party/vim/vim-toml
+set runtimepath^=${DOTFILES_DIR}/third-party/vim/ale
+
+packloadall
+
 " === Timeouts ===
 set ttimeoutlen=10
 set timeoutlen=200
 
 " === Whitespace ===
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab
+augroup whitespace
+  au VimEnter *.* set tabstop=2
+  au VimEnter *.* set softtabstop=2
+  au VimEnter *.* set shiftwidth=2
+  au VimEnter *.* set expandtab
+augroup END
 
 set list " show whitespace
 
 " === Gutter ===
 set number
 set numberwidth=1
-set nowrap
 
 " === Search ===
 set hlsearch
@@ -31,6 +38,8 @@ set lazyredraw
 set showmatch
 set backspace=indent,eol,start
 set laststatus=0
+set encoding=utf8
+set nowrap
 
 " === Keybindings ===
 " = WASD =
@@ -111,6 +120,7 @@ syntax enable
 
 " = UI =
 hi LineNr ctermfg=0 cterm=bold
+hi MatchParen ctermfg=0 ctermbg=0 cterm=reverse,bold
 hi TabLine ctermfg=0 ctermbg=0 cterm=bold
 hi TabLineFill ctermfg=0 ctermbg=0 cterm=bold
 
@@ -138,6 +148,18 @@ augroup highlighting
   au VimEnter *.* hi shSingleQuote ctermfg=2
   au VimEnter *.* hi shDoubleQuote ctermfg=2
   au VimEnter *.* hi zshString ctermfg=2
+
+  " = Toml =
+  au VimEnter *.* hi tomlTable ctermfg=1
+  au VimEnter *.* hi tomlString ctermfg=2
+
+  " = Rust =
+  au VimEnter *.* hi rustKeyword ctermfg=1
+  au VimEnter *.* hi rustMacro ctermfg=1
+  au VimEnter *.* hi rustString ctermfg=2
+
+  " = ALE =
+  au VimEnter *.* hi SignColumn ctermbg=0
 augroup END
 
 " = Misc =
