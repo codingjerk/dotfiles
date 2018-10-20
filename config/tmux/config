@@ -17,7 +17,7 @@ set -g status-bg black
 set -g status-fg white
 
 set -g window-status-current-fg blue
-set -g window-status-current-format '*'
+set -g window-status-current-format '#{?window_zoomed_flag,#[fg=red],}*'
 set -g window-status-fg black
 set -g window-status-attr bold
 set -g window-status-format '-'
@@ -31,6 +31,10 @@ set -g status-right "#[fg=blue]%d/%m #[fg=cyan]%H:%M"
 set -g status-right-length 15
 
 set -g status-justify centre
+
+# === Colors ===
+set -g pane-border-fg colour8
+set -g pane-active-border-fg colour6
 
 # === Keybindings ===
 bind w select-pane -U

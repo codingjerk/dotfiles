@@ -7,3 +7,9 @@
 [submodule "third-party/zsh/alias-tips"]
 	path = third-party/zsh/alias-tips
 	url = https://github.com/djui/alias-tips
+[submodule "third-party/vim/vim-toml"]
+	path = third-party/vim/vim-toml
+	url = https://github.com/cespare/vim-toml.git
+[submodule "third-party/vim/ale"]
+	path = third-party/vim/ale
+	url = https://github.com/w0rp/ale.git
