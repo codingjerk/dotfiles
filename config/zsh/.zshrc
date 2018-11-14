@@ -33,6 +33,7 @@ alias gs='git status -s'
 alias gu='git pull'
 
 alias gbi='git bisect'
+alias gca='git commit --amend --no-edit'
 alias gcl='git clone'
 alias gco='git checkout'
 
