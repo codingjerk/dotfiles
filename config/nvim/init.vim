@@ -106,60 +106,8 @@ map ` <nop>
 
 " === Highlighting ===
 set t_Co=16
-set background=dark
-hi clear Normal
-hi clear
-syntax reset
+colorscheme cj
 syntax enable
-
-" = UI =
-hi LineNr ctermfg=0 cterm=bold
-hi MatchParen ctermfg=0 ctermbg=0 cterm=reverse,bold
-hi TabLine ctermfg=0 ctermbg=0 cterm=bold
-hi TabLineFill ctermfg=0 ctermbg=0 cterm=bold
-
-hi Pmenu ctermbg=0 ctermfg=0 cterm=bold
-hi PmenuSel ctermfg=7
-hi PmenuSbar ctermfg=0 cterm=bold,reverse
-hi PmenuThumb ctermbg=7
-
-" = General =
-augroup highlighting
-  au VimEnter *.* hi Comment ctermfg=0 cterm=bold
-
-  au VimEnter *.* hi Title ctermfg=1
-  au VimEnter *.* hi Special ctermfg=1
-  au VimEnter *.* hi Todo ctermfg=0 ctermbg=1
-
-  au VimEnter *.* hi Type ctermfg=3
-
-  au VimEnter *.* hi PreProc ctermfg=4
-  au VimEnter *.* hi Underlined ctermfg=4
-
-  au VimEnter *.* hi Constant ctermfg=5
-
-  au VimEnter *.* hi Statement ctermfg=6
-
-  " = Vim =
-  au VimEnter *.* hi vimString ctermfg=2
-
-  " = Shell =
-  au VimEnter *.* hi shSingleQuote ctermfg=2
-  au VimEnter *.* hi shDoubleQuote ctermfg=2
-  au VimEnter *.* hi zshString ctermfg=2
-
-  " = Toml =
-  au VimEnter *.* hi tomlTable ctermfg=1
-  au VimEnter *.* hi tomlString ctermfg=2
-
-  " = Rust =
-  au VimEnter *.* hi rustKeyword ctermfg=1
-  au VimEnter *.* hi rustMacro ctermfg=1
-  au VimEnter *.* hi rustString ctermfg=2
-
-  " = ALE =
-  au VimEnter *.* hi SignColumn ctermbg=0
-augroup END
 
 " = Misc =
 map <F1> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
