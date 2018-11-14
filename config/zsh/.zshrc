@@ -17,6 +17,9 @@ alias du='du -h -d 1 -c'
 alias e='${=EDITOR}'
 alias E='sudo ${=EDITOR}'
 
+alias exa='exa -ab --group-directories-first --git-ignore --git'
+alias exal='exa -l'
+
 alias free='free -h'
 
 alias ga='git add'
@@ -36,7 +39,13 @@ alias gco='git checkout'
 alias grep="grep --color=auto --binary-files=without-match --exclude-dir={.bzr,.git,.hg,.svn}"
 
 alias ls='ls -vAh --color=auto --group-directories-first --file-type --quoting-style=literal'
-alias l='ls -lo --time-style=iso'
+alias ll='ls -lo --time-style=iso'
+
+if (( $+commands[exa] )); then
+  alias l='exal'
+else
+  alias l='ll'
+fi
 
 alias tmux='tmux -f "${XDG_CONFIG_HOME}/tmux/config"'
 alias ta='tmux attach'
