@@ -280,7 +280,7 @@ __prompt() {
 PROMPT='$(__prompt)'
 
 __prompt2() {
-  local orig_prompt="$(prompt)"
+  local orig_prompt="$(__prompt)"
   print -rn "%{$fg[yellow]%}"
   print -Pn "$(print -rn "$orig_prompt" | sed 's/%{[^%]*%}//g')" \
     | sed 's/./\./g' \
