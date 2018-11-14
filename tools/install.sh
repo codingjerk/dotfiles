@@ -19,25 +19,43 @@ sh "${XDG_CONFIG_HOME}/minidlna/minidlna.conf.in" > "${XDG_DATA_HOME}/minidlna/m
 
 # === Git submodules
 cd ${DOTFILES_DIR}
-git submodule init
-git submodule update
+git submodule update --init --recursive
 
 # === Dependencies ===
-test -x '/bin/zsh' || echo $'\E[31m[warning]: zsh is required\E[0m'
-test -x '/bin/python3' || echo $'\E[31m[warning]: python (3.x) is required\E[0m'
-test -x '/bin/fzf' || echo $'\E[31m[warning]: fzf is required\E[0m'
-test -x '/bin/fd' || echo $'\E[31m[warning]: fd is required\E[0m'
+require_message() {
+  echo $'\E[31m' "[warning]: $1 is required" $'\E[0m'
+}
 
-if test -x '/bin/python3'; then
-  python3 -c 'import psutil' 2> /dev/null || echo $'\E[31m[warning]: psutil (python library) is required\E[0m'
-fi
+require() {
+  test -x "/bin/$1" || require_message "$1"
+}
+
+require_python() {
+  test -x '/bin/python3' || return
+  python3 -c "import $1" 2> /dev/null || require_message "$1 (python library)"
+}
+
+recommend() {
+  test -x "/bin/$1" || echo $'\E[33m' "[warning]: $1 is recommended" $'\E[0m'
+}
+
+require zsh
+require nvim
+require python3
+  require_python psutil
+require fzf
+require fd
+
+fc-list | grep -i "fira mono" > /dev/null 2> /dev/null || require_message "Fira Mono (font)"
 
 # === Optionalies ===
-test -x '/bin/less' || echo $'\E[33m[warning]: less is recommended\E[0m'
-test -x '/bin/tmux' || echo $'\E[33m[warning]: tmux is recommended\E[0m'
-test -x '/bin/htop' || echo $'\E[33m[warning]: htop is recommended\E[0m'
-test -x '/bin/transmission-daemon' || echo $'\E[33m[warning]: transmission (daemon) is recommended\E[0m'
-test -x '/bin/minidlnad' || echo $'\E[33m[warning]: minidlna is recommended\E[0m'
+recommend less
+recommend tmux
+recommend htop
+recommend exa
+recommend hexyl
+recommend transmission-daemon
+recommend minidlnad
 
 # === Void linux ===
 test -x '/bin/xlocate' && xlocate -S
