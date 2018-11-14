@@ -1,0 +1,9 @@
+Host *
+  Compression yes
+
+  ControlMaster auto
+  ControlPersist yes
+
+  TCPKeepAlive yes
+  ServerAliveInterval 30
+  ServerAliveCountMax 4
