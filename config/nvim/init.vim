@@ -34,6 +34,7 @@ set backspace=indent,eol,start
 set laststatus=0
 set encoding=utf8
 set nowrap
+let g:netrw_home=$XDG_CACHE_HOME.'/nvim'
 
 " === Keybindings ===
 " = WASD =
