@@ -48,6 +48,7 @@ export LESSKEY="${XDG_CONFIG_HOME}/less/lesskey"
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/startup"
 export PYTHON_EGG_CACHE="${XDG_CACHE_HOME}/python-eggs"
 
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
 
 export TMUX_TMPDIR="${XDG_RUNTIME_DIR}"
