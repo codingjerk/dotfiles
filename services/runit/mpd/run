@@ -1,0 +1,15 @@
+#!/bin/zsh -l
+
+LOGPATH="${XDG_RUNTIME_DIR}/mpd"
+mkdir -p "${LOGPATH}"
+
+{
+  sleep 1.0
+  cd "${HOME}/@storage/@music"
+  mpc add *
+  mpc repeat
+  mpc shuffle
+  mpc play
+} &
+
+exec mpd --no-daemon --verbose --stderr 2>&1 >> "${LOGPATH}/mpd.log"
