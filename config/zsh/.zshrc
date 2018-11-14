@@ -35,7 +35,7 @@ alias gco='git checkout'
 
 alias grep="grep --color=auto --binary-files=without-match --exclude-dir={.bzr,.git,.hg,.svn}"
 
-alias ls='ls -Ah --color=auto --group-directories-first --file-type --quoting-style=literal'
+alias ls='ls -vAh --color=auto --group-directories-first --file-type --quoting-style=literal'
 alias l='ls -lo --time-style=iso'
 
 alias tmux='tmux -f "${XDG_CONFIG_HOME}/tmux/config"'
