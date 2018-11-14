@@ -41,7 +41,7 @@ export XDG_RUNTIME_DIR="${DOTFILES_DIR}/runtime"
 
 # === XDG Fixes ===
 export LESSHISTFILE="${XDG_DATA_HOME}/less/history"
-export LESSKEY="${XDG_CONFIG_HOME}/less/lesskey"
+export LESSKEY="${XDG_DATA_HOME}/less/lesskey"
 
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/startup"
 export PYTHON_EGG_CACHE="${XDG_CACHE_HOME}/python-eggs"

@@ -10,7 +10,8 @@ export ZDOTDIR='${DOTFILES_DIR}/config/zsh'
 EOF
 
 # === Dynamic (.in) configs ===
-lesskey -o "${LESSKEY}" "${LESSKEY}.in"
+mkdir -p "$(dirname "${LESSKEY}")"
+lesskey -o "${LESSKEY}" "${XDG_CONFIG_HOME}/less/lesskey.in"
 chmod -w "${XDG_CONFIG_HOME}/htop/htoprc"
 
 sh "${XDG_CONFIG_HOME}/transmission/settings.json.in" > "${TRANSMISSION_HOME}/settings.json"
