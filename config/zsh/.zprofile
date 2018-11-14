@@ -40,6 +40,8 @@ export XDG_CACHE_HOME="${DOTFILES_DIR}/cache"
 export XDG_RUNTIME_DIR="${DOTFILES_DIR}/runtime"
 
 # === XDG Fixes ===
+export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
+
 export LESSHISTFILE="${XDG_DATA_HOME}/less/history"
 export LESSKEY="${XDG_DATA_HOME}/less/lesskey"
 
