@@ -1,0 +1,90 @@
+[user]
+  name = Coding Jerk
+  email = codingjerk@gmail.com
+  signingkey = E3DFEC736900FDE2
+
+[core]
+  compression = 9
+
+[blame]
+  blankBoundary = true
+  date = relative
+
+[branch]
+  autoSetupRebase = always
+
+[commit]
+  gpgSign = true
+
+[diff]
+  context = 1
+
+[format]
+  pretty = format:%C(bold red)%G?%C(reset) %C(bold)%s%C(reset) %C(yellow)@ %ar%C(reset) %C(blue bold)<%an>%C(reset)
+
+[gc]
+  aggressiveDepth  = 100
+  aggressiveWindow = 500
+
+[grep]
+  lineNumber     = true
+  extendedRegexp = true
+
+[log]
+  date = relative
+
+[push]
+  default = current
+
+[status]
+  branch    = true
+  short     = true
+  showStash = true
+
+[tag]
+  forceSignAnnotated = true
+
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
+  insteadOf = http://github.com/
+  insteadOf = git://github.com/
+
+[url "ssh://git@gitlab.com/"]
+  insteadOf = https://gitlab.com/
+  insteadOf = http://gitlab.com/
+  insteadOf = git://gitlab.com/
+
+[color "branch"]
+  current  = blue bold
+  local    = green bold
+  remote   = red
+  upstream = magenta
+  plain    = magenta
+
+[color "diff"]
+  context = normal
+
+  meta = yellow
+  frag = yellow
+  func = yellow
+
+  old        = red reverse
+  new        = green reverse
+  whitespace = red reverse
+  commit     = normal bold
+
+  oldMoved                  = magenta
+  newMoved                  = magenta
+  oldMovedDimmed            = magenta
+  oldMovedAlternative       = magenta
+  oldMovedAlternativeDimmed = magenta
+  newMovedDimmed            = magenta
+  newMovedAlternative       = magenta
+  newMovedAlternativeDimmed = magenta
+
+[color "decorate"]
+  branch       = green
+  remoteBranch = red
+  tag          = yellow
+  stash        = yellow
+  HEAD         = blue
