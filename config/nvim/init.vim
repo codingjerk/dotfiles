@@ -1,9 +1,3 @@
-" === Plugins ===
-set runtimepath^=${DOTFILES_DIR}/third-party/vim/vim-toml
-set runtimepath^=${DOTFILES_DIR}/third-party/vim/ale
-
-packloadall
-
 " === Timeouts ===
 set ttimeoutlen=10
 set timeoutlen=200
@@ -123,6 +117,11 @@ hi LineNr ctermfg=0 cterm=bold
 hi MatchParen ctermfg=0 ctermbg=0 cterm=reverse,bold
 hi TabLine ctermfg=0 ctermbg=0 cterm=bold
 hi TabLineFill ctermfg=0 ctermbg=0 cterm=bold
+
+hi Pmenu ctermbg=0 ctermfg=0 cterm=bold
+hi PmenuSel ctermfg=7
+hi PmenuSbar ctermfg=0 cterm=bold,reverse
+hi PmenuThumb ctermbg=7
 
 " = General =
 augroup highlighting
