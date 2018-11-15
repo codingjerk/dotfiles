@@ -87,7 +87,7 @@ recommend minidlnad
 
 # === GUI dependencies ===
 fc-list | grep -i "fira mono" > /dev/null 2> /dev/null || require_message "Fira Mono (font)"
-fc-list | grep -i "font awesome" > /dev/null 2> /dev/null || require_message "Font Awesome (font)"
+fc-list | grep -i "awesome" > /dev/null 2> /dev/null || require_message "Font Awesome (font)"
 
 require xinit
 require feh
