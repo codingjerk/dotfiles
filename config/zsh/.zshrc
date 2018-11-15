@@ -308,7 +308,7 @@ __ctr-show() {
   local llen=$(( (${COLUMNS} - $tlen) / 2 ))
   local lind=$(printf ' %.0s' {1..$llen})
 
-  print "$lind\e[36m$text\e[0m"
+  print "$lind\e[36m$text\a\e[0m"
 }
 
 __ctr-update-start() {
