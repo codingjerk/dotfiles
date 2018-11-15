@@ -1,8 +1,14 @@
 #!/usr/bin/env sh
 
+DATA_DIR="${XDG_DATA_HOME}/ssh"
+SOCKETS_DIR="${XDG_RUNTIME_DIR}/ssh/sockets"
+
+mkdir -p "${DATA_DIR}"
+mkdir -p "${SOCKETS_DIR}"
+
 exec /usr/bin/ssh \
   -F "${XDG_CONFIG_HOME}/ssh/config" \
-  -o "IdentityFile=${XDG_DATA_HOME}/ssh/id_rsa" \
-  -o "UserKnownHostsFile=${XDG_DATA_HOME}/ssh/known_hosts" \
-  -o "ControlPath=${XDG_RUNTIME_DIR}/ssh/sockets/socket-%r@%h:%p" \
+  -o "IdentityFile=${DATA_DIR}/id_rsa" \
+  -o "UserKnownHostsFile=${DATA_DIR}/known_hosts" \
+  -o "ControlPath=${SOCKETS_DIR}/socket-%r@%h:%p" \
   "$@"
