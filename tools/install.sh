@@ -1,5 +1,5 @@
 # === Basics ===
-DOTFILES_DIR="${PWD}/$(dirname "$(dirname "$0")")"
+export DOTFILES_DIR="${PWD}/$(dirname "$(dirname "$0")")"
 
 . "${DOTFILES_DIR}/config/zsh/.zprofile"
 
@@ -17,8 +17,11 @@ mkdir -p "$(dirname "${LESSKEY}")"
 lesskey -o "${LESSKEY}" "${XDG_CONFIG_HOME}/less/lesskey.in"
 chmod -w "${XDG_CONFIG_HOME}/htop/htoprc"
 
+mkdir -p "${TRANSMISSION_HOME}"
 sh "${XDG_CONFIG_HOME}/transmission/settings.json.in" > "${TRANSMISSION_HOME}/settings.json"
+mkdir -p "${XDG_DATA_HOME}/minidlna"
 sh "${XDG_CONFIG_HOME}/minidlna/minidlna.conf.in" > "${XDG_DATA_HOME}/minidlna/minidlna.conf"
+mkdir -p "${XDG_DATA_HOME}/i3"
 sh "${XDG_CONFIG_HOME}/i3/config.in" > "${XDG_DATA_HOME}/i3/config"
 
 # === Git submodules
