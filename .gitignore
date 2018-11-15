@@ -1,4 +1,5 @@
 bin/dmenu
+bin/st
 
 config/discord
 config/neofetch
@@ -16,4 +17,9 @@ services/runit/*/supervise
 
 third-party/dmenu/dmenu
 third-party/dmenu/stest
+third-party/dmenu/config.h
 third-party/dmenu/*.o
+
+third-party/st/st
+third-party/st/config.h
+third-party/st/*.o
