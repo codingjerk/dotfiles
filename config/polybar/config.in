@@ -1,0 +1,73 @@
+. "${DOTFILES_DIR}/assets/colors.sh"
+
+cat <<EOF
+[bar/main]
+  monitor = \${env:MONITOR}
+  height = ${PANEL_SIZE}
+  padding = 2
+  module-margin = 1
+  line-size = 2
+
+  background = ${CJ_COLOR_BG_HEX}
+  foreground = ${CJ_COLOR_FG_HEX}
+
+  font-0 = ${FONT}:size=${FONT_SIZE};3
+  font-1 = FontAwesome:size=${FONT_SIZE};2
+
+  modules-left =
+  modules-center = wm
+  modules-right = keyboard clock
+
+[module/wm]
+  type = internal/i3
+
+  pin-workspaces = true
+  index-sort = true
+
+  enable-click = false
+  enable-scroll = false
+
+  label-focused   = %icon%
+  label-unfocused = %icon%
+  label-visible   = %icon%
+  label-urgent    = %icon%
+
+  label-focused-padding   = 1
+  label-unfocused-padding = 1
+  label-visible-padding   = 1
+  label-urgent-padding    = 1
+
+  label-unfocused-foreground = ${CJ_COLOR_8_HEX}
+  label-visible-foreground   = ${CJ_COLOR_8_HEX}
+  label-urgent-foreground    = ${CJ_COLOR_8_HEX}
+
+  label-focused-underline = ${CJ_COLOR_4_HEX}
+  label-visible-underline = ${CJ_COLOR_4_HEX}
+  label-urgent-underline  = ${CJ_COLOR_1_HEX}
+
+  label-mode-padding   = 1
+  label-mode-underline = ${CJ_COLOR_1_HEX}
+
+  ws-icon-0 = 1;
+  ws-icon-1 = 2;
+  ws-icon-2 = 3;
+  ws-icon-3 = 4;
+  ws-icon-4 = 5;
+  ws-icon-5 = 6;.
+  ws-icon-6 = 7;.
+  ws-icon-7 = 8;
+  ws-icon-8 = 9;
+  ws-icon-9 = 10;
+
+[module/keyboard]
+  type = internal/xkeyboard
+  format = <label-layout>
+  label-layout =  %layout%
+
+[module/clock]
+  type = custom/script
+
+  exec = date +%H:%M
+  label =  %output%
+  interval = 60
+EOF

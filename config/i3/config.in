@@ -15,6 +15,17 @@ set \$ws8 "8"
 set \$ws9 "9"
 set \$ws10 "10"
 
+workspace \$ws1  output ${X_PRIMARY_MONITOR}
+workspace \$ws2  output ${X_PRIMARY_MONITOR}
+workspace \$ws3  output ${X_PRIMARY_MONITOR}
+workspace \$ws4  output ${X_PRIMARY_MONITOR}
+workspace \$ws5  output ${X_PRIMARY_MONITOR}
+workspace \$ws6  output ${X_PRIMARY_MONITOR}
+workspace \$ws7  output ${X_PRIMARY_MONITOR}
+workspace \$ws8  output ${X_SECONDARY_MONITOR}
+workspace \$ws9  output ${X_SECONDARY_MONITOR}
+workspace \$ws10 output ${X_SECONDARY_MONITOR}
+
 floating_modifier \$mod
 
 # === Look & Feel ===
@@ -28,6 +39,7 @@ popup_during_fullscreen ignore
 force_display_urgency_hint 100 ms
 
 gaps inner 24
+smart_gaps on
 
 # === Colors ===
 set \$CL_BG #${CJ_COLOR_BG_HEX}
@@ -85,9 +97,9 @@ bindsym \$mod+Shift+8 move container to workspace \$ws8
 bindsym \$mod+Shift+9 move container to workspace \$ws9
 bindsym \$mod+Shift+0 move container to workspace \$ws10
 
-bindsym \$mod+r exec run_menu
-bindsym \$mod+j exec st
-bindsym \$mod+l exec lock
+bindsym \$mod+r exec --no-startup-id run_menu
+bindsym \$mod+j exec --no-startup-id /usr/local/bin/st
+bindsym \$mod+l exec --no-startup-id lock
 
 bindsym Print         exec --no-startup-id "screenshot monitor"
 bindsym Control+Print exec --no-startup-id "screenshot selection"

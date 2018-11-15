@@ -1,5 +1,13 @@
+config/discord
+config/neofetch
+config/pavucontrol.ini
+config/pulse
+config/vivaldi
+
 cache
 share
 runtime
+
+settings.sh
 
 services/runit/*/supervise

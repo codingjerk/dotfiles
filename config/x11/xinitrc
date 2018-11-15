@@ -1,3 +1,8 @@
+MONITOR="${X_PRIMARY_MONITOR}" polybar main -c "${XDG_DATA_HOME}/polybar/config" &
+[ "${X_SECONDARY_MONITOR}" != "${X_PRIMARY_MONITOR}" ] && MONITOR="${X_SECONDARY_MONITOR}" polybar main -c "${XDG_DATA_HOME}/polybar/config" &
+
+(sleep 0.5; pkill -USR1 polybar) &
+
 feh --no-fehbg --bg-tile "${X_WALLPAPER}"
 
 exec i3 -c "${XDG_DATA_HOME}/i3/config"
