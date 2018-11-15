@@ -1,3 +1,5 @@
+bin/dmenu
+
 config/discord
 config/neofetch
 config/pavucontrol.ini
@@ -11,3 +13,7 @@ runtime
 settings.sh
 
 services/runit/*/supervise
+
+third-party/dmenu/dmenu
+third-party/dmenu/stest
+third-party/dmenu/*.o
