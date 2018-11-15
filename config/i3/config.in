@@ -98,7 +98,7 @@ bindsym \$mod+Shift+9 move container to workspace \$ws9
 bindsym \$mod+Shift+0 move container to workspace \$ws10
 
 bindsym \$mod+r exec --no-startup-id run_menu
-bindsym \$mod+j exec --no-startup-id /usr/local/bin/st
+bindsym \$mod+j exec --no-startup-id st
 bindsym \$mod+l exec --no-startup-id lock
 
 bindsym Print         exec --no-startup-id "screenshot monitor"
