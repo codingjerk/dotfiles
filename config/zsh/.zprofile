@@ -62,6 +62,8 @@ export XLOCATE_GIT="${XDG_CACHE_HOME}/xlocate"
 export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zsh"
 export HISTFILE="${XDG_DATA_HOME}/zsh/history"
 
+export XINITRC="${XDG_CONFIG_HOME}/x11/xinitrc"
+
 # === Autolaod ===
 if [[ "${TERM}" = 'linux' ]]; then
   sh "${DOTFILES_DIR}/tools/tty-colors.sh"

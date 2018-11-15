@@ -7,6 +7,9 @@ DOTFILES_DIR="${PWD}/$(dirname "$(dirname "$0")")"
 cat <<EOF > "${HOME}/.zshenv"
 export DOTFILES_DIR='${DOTFILES_DIR}'
 export ZDOTDIR='${DOTFILES_DIR}/config/zsh'
+
+export X_AUTOSTART='yes'
+export X_WALLPAPER='${DOTFILES_DIR}/assets/wallpaper-RES.png'
 EOF
 
 # === Dynamic (.in) configs ===
@@ -15,8 +18,8 @@ lesskey -o "${LESSKEY}" "${XDG_CONFIG_HOME}/less/lesskey.in"
 chmod -w "${XDG_CONFIG_HOME}/htop/htoprc"
 
 sh "${XDG_CONFIG_HOME}/transmission/settings.json.in" > "${TRANSMISSION_HOME}/settings.json"
-
 sh "${XDG_CONFIG_HOME}/minidlna/minidlna.conf.in" > "${XDG_DATA_HOME}/minidlna/minidlna.conf"
+sh "${XDG_CONFIG_HOME}/i3/config.in" > "${XDG_DATA_HOME}/i3/config"
 
 # === Git submodules
 cd ${DOTFILES_DIR}
@@ -53,6 +56,8 @@ fc-list | grep -i "fira mono" > /dev/null 2> /dev/null || require_message "Fira 
 recommend less
 recommend tmux
 recommend htop
+recommend ssh
+recommend gpg2
 recommend exa
 recommend hexyl
 recommend transmission-daemon

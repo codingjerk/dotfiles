@@ -1,0 +1,3 @@
+feh --no-fehbg --bg-tile "${X_WALLPAPER}"
+
+exec i3 -c "${XDG_DATA_HOME}/i3/config"
