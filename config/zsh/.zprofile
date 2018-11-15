@@ -1,5 +1,5 @@
 # === Tools ===
-export EDITOR='vim -p'
+export EDITOR='nvim -p'
 export VISUAL="${EDITOR}"
 export PAGER='less'
 
