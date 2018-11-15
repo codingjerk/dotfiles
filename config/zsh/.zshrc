@@ -1,6 +1,6 @@
 # === X autostart ===
 if [[ "$X_AUTOSTART" == "yes" ]] && tty | grep tty1 > /dev/null; then
-  exec xinit
+  exec xinit -- vt1 :0
 fi
 
 # === Misc options ===
