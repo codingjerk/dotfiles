@@ -1,6 +1,6 @@
 # === X autostart ===
 if [[ "$X_AUTOSTART" == "yes" ]] && tty | grep tty1 > /dev/null; then
-  exec xinit -- vt1 :0
+  exec xinit -- vt1 :0 -allowMouseOpenFail -nolisten tcp -disableVidMode -ignoreABI -nosilk -novtswitch
 fi
 
 # === Misc options ===
