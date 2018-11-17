@@ -133,6 +133,9 @@ require xinit
 require feh
 require polybar
 require i3
+require maim
+require slop
+require convert
 
 # === Void linux ===
 test -x '/bin/xlocate' && xlocate -S
