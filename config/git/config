@@ -36,6 +36,9 @@
 [push]
   default = current
 
+[pull]
+  rebase = true
+
 [status]
   branch    = true
   short     = true
