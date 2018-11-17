@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+. "${DOTFILES_DIR}/assets/colors.sh"
+
+exec i3lock \
+  --image "${X_WALLPAPER}" \
+  --no-unlock-indicator \
+  --force-clock \
+  --screen=1 \
+  \
+  --timecolor="${CJ_COLOR_BG_HEX}CC" \
+  --datecolor="${CJ_COLOR_BG_HEX}CC" \
+  \
+  --timesize=90 \
+  --datesize=30 \
+  --datepos="tx:ty + 50" \
+  \
+  --timestr="%H:%M"
