@@ -63,6 +63,12 @@ export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zsh"
 export HISTFILE="${XDG_DATA_HOME}/zsh/history"
 
 export XINITRC="${XDG_CONFIG_HOME}/x11/xinitrc"
+export XCOMPOSEFILE="${XDG_CONFIG_HOME}/x11/xcompose"
+export XCOMPOSECACHE="${XDG_CACHE_HOME}/x11/xcompose"
+export XAUTHORITY="${XDG_RUNTIME_DIR}/x11/xauthority"
+
+# Makes GTK applications respect user's xcompose file
+export GTK_IM_MODULE='xim'
 
 # === Autolaod ===
 if [[ "${TERM}" = 'linux' ]]; then
