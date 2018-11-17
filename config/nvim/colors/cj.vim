@@ -4,6 +4,8 @@ hi clear
 syntax reset
 
 " = UI =
+hi Visual ctermbg=7 ctermfg=0 cterm=reverse,bold
+
 hi LineNr ctermfg=0 cterm=bold
 hi MatchParen ctermfg=0 ctermbg=0 cterm=reverse,bold
 hi TabLine ctermfg=0 ctermbg=0 cterm=bold
