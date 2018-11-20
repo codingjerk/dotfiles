@@ -1,0 +1,61 @@
+include "/usr/share/X11/locale/en_US.UTF-8/Compose"
+
+# === Math ===
+<Multi_key> <plus> <minus> : "±"
+<Multi_key> <minus> <plus> : "∓"
+
+<Multi_key> <x> <x>     : "×"
+<Multi_key> <m> <u> <l> : "⋅"
+
+<Multi_key> <slash> <equal> : "≠"
+<Multi_key> <equal> <slash> : "≠"
+
+<Multi_key> <asciitilde> <asciitilde> : "≈"
+<Multi_key> <asciitilde> <equal>      : "≈"
+
+<Multi_key> <slash> <asciitilde> : "≉"
+<Multi_key> <asciitilde> <slash> : "≉"
+
+<Multi_key> <less> <equal> : "≤"
+<Multi_key> <equal> <less> : "≤"
+
+<Multi_key> <greater> <equal> : "≥"
+<Multi_key> <equal> <greater> : "≥"
+
+<Multi_key> <0> <0> : "∞"
+<Multi_key> <o> <o> : "∞"
+
+<Multi_key> <asciicircum> <o> : "°"
+<Multi_key> <asciicircum> <0> : "°"
+<Multi_key> <o> <asciicircum> : "°"
+<Multi_key> <0> <asciicircum> : "°"
+
+<Multi_key> <p> <r> <o> <d> : "∏"
+
+<Multi_key> <s> <u> <m> : "∑"
+
+# === Arrows ===
+<Multi_key> <asciicircum> <bar> : "↑"
+<Multi_key> <bar> <asciicircum> : "↑"
+
+<Multi_key> <bar> <v> : "↓"
+<Multi_key> <v> <bar> : "↓"
+
+# === Greek ===
+<Multi_key> <a> <l> <p> <h> <a> : "α"
+<Multi_key> <b> <e> <t> <a>     : "β"
+<Multi_key> <d> <e> <l> <t> <a> : "Δ"
+<Multi_key> <p> <i>             : "π"
+<Multi_key> <m> <u>             : "μ"
+
+# === Bullets ===
+<Multi_key> <V> : "✓"
+<Multi_key> <X> : "✗"
+<Multi_key> <O> : "•"
+
+# === Misc ===
+<Multi_key> <s> <k> <u> <l> <l> : "☠"
+<Multi_key> <r> <a> <d> <i> <o> : "☢"
+<Multi_key> <b> <i> <o> : "☣"
+<Multi_key> <p> <e> <a> <c> <e> : "☮"
+<Multi_key> <d> <a> <o> : "☯"
