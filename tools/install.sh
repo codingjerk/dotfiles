@@ -124,6 +124,7 @@ recommend exa
 recommend hexyl
 recommend transmission-daemon
 recommend minidlnad
+test -x '/bin/pacman' && recommend pkgfile
 
 # === GUI dependencies ===
 fc-list | grep -i "fira mono" > /dev/null 2> /dev/null || require_message "Fira Mono (font)"
@@ -139,3 +140,6 @@ require convert
 
 # === Void linux ===
 test -x '/bin/xlocate' && xlocate -S
+
+# === Arch linux ===
+test -x '/bin/pacman' && echo '[note]: update pkgfile database'
