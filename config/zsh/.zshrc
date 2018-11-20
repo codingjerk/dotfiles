@@ -375,7 +375,22 @@ if (( $+commands[xbps-install] )); then
 fi
 
 # === Arch linux ===
-# TODO
+if (( $+commands[pacman] )); then
+  f() {
+    pacman -Ss "$@"
+  }
+
+  i() {
+    sudo pacman -S "$@"
+  }
+
+  u() {
+    sudo pacman -Syyuu
+    # TODO: update rustup
+  }
+
+  . '/usr/share/doc/pkgfile/command-not-found.zsh'
+fi
 
 # === Windows (cygwin) ===
 # TODO
