@@ -14,17 +14,19 @@ set \$ws7 "7"
 set \$ws8 "8"
 set \$ws9 "9"
 set \$ws10 "10"
+set \$ws11 "11"
 
-workspace \$ws1  output ${X_PRIMARY_MONITOR}
-workspace \$ws2  output ${X_PRIMARY_MONITOR}
+workspace \$ws1  output ${X_SECONDARY_MONITOR}
+workspace \$ws2  output ${X_SECONDARY_MONITOR}
 workspace \$ws3  output ${X_PRIMARY_MONITOR}
 workspace \$ws4  output ${X_PRIMARY_MONITOR}
 workspace \$ws5  output ${X_PRIMARY_MONITOR}
 workspace \$ws6  output ${X_PRIMARY_MONITOR}
 workspace \$ws7  output ${X_PRIMARY_MONITOR}
-workspace \$ws8  output ${X_SECONDARY_MONITOR}
-workspace \$ws9  output ${X_SECONDARY_MONITOR}
-workspace \$ws10 output ${X_SECONDARY_MONITOR}
+workspace \$ws8  output ${X_PRIMARY_MONITOR}
+workspace \$ws9  output ${X_PRIMARY_MONITOR}
+workspace \$ws10 output ${X_PRIMARY_MONITOR}
+workspace \$ws11 output ${X_PRIMARY_MONITOR}
 
 floating_modifier \$mod
 
@@ -75,27 +77,29 @@ bindsym \$mod+Shift+e move scratchpad
 
 bindsym \$mod+Escape kill
 
-bindsym \$mod+1 workspace \$ws1
-bindsym \$mod+2 workspace \$ws2
-bindsym \$mod+3 workspace \$ws3
-bindsym \$mod+4 workspace \$ws4
-bindsym \$mod+5 workspace \$ws5
-bindsym \$mod+6 workspace \$ws6
-bindsym \$mod+7 workspace \$ws7
-bindsym \$mod+8 workspace \$ws8
-bindsym \$mod+9 workspace \$ws9
-bindsym \$mod+0 workspace \$ws10
+bindsym \$mod+grave workspace \$ws1
+bindsym \$mod+1 workspace \$ws2
+bindsym \$mod+2 workspace \$ws3
+bindsym \$mod+3 workspace \$ws4
+bindsym \$mod+4 workspace \$ws5
+bindsym \$mod+5 workspace \$ws6
+bindsym \$mod+6 workspace \$ws7
+bindsym \$mod+7 workspace \$ws8
+bindsym \$mod+8 workspace \$ws9
+bindsym \$mod+9 workspace \$ws10
+bindsym \$mod+0 workspace \$ws11
 
-bindsym \$mod+Shift+1 move container to workspace \$ws1
-bindsym \$mod+Shift+2 move container to workspace \$ws2
-bindsym \$mod+Shift+3 move container to workspace \$ws3
-bindsym \$mod+Shift+4 move container to workspace \$ws4
-bindsym \$mod+Shift+5 move container to workspace \$ws5
-bindsym \$mod+Shift+6 move container to workspace \$ws6
-bindsym \$mod+Shift+7 move container to workspace \$ws7
-bindsym \$mod+Shift+8 move container to workspace \$ws8
-bindsym \$mod+Shift+9 move container to workspace \$ws9
-bindsym \$mod+Shift+0 move container to workspace \$ws10
+bindsym \$mod+Shift+grave move container to workspace \$ws1
+bindsym \$mod+Shift+1 move container to workspace \$ws2
+bindsym \$mod+Shift+2 move container to workspace \$ws3
+bindsym \$mod+Shift+3 move container to workspace \$ws4
+bindsym \$mod+Shift+4 move container to workspace \$ws5
+bindsym \$mod+Shift+5 move container to workspace \$ws6
+bindsym \$mod+Shift+6 move container to workspace \$ws7
+bindsym \$mod+Shift+7 move container to workspace \$ws8
+bindsym \$mod+Shift+8 move container to workspace \$ws9
+bindsym \$mod+Shift+9 move container to workspace \$ws10
+bindsym \$mod+Shift+0 move container to workspace \$ws11
 
 bindsym \$mod+r exec --no-startup-id run_menu
 bindsym \$mod+j exec --no-startup-id st
