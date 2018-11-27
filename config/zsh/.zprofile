@@ -67,6 +67,9 @@ export XCOMPOSEFILE="${XDG_CONFIG_HOME}/x11/xcompose"
 export XCOMPOSECACHE="${XDG_CACHE_HOME}/x11/xcompose"
 export XAUTHORITY="${XDG_RUNTIME_DIR}/x11/xauthority"
 
+export __GL_SHADER_DISK_CACHE_PATH="${XDG_CACHE_HOME}/nv"
+export CUDA_CACHE_PATH="${XDG_CACHE_HOME}/nv"
+
 # Makes GTK applications respect user's xcompose file
 export GTK_IM_MODULE='xim'
 
