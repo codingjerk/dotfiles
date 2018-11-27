@@ -18,6 +18,9 @@ cat <<EOF
   modules-center = wm
   modules-right = keyboard clock
 
+  tray-position = left
+  tray-padding = 10
+
 [module/wm]
   type = internal/i3
 
