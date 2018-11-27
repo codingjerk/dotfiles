@@ -48,10 +48,24 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <p> <i>             : "π"
 <Multi_key> <m> <u>             : "μ"
 
+# === Esperanto ===
+<Multi_key> <c> <asciicircum> : "ĉ"
+<Multi_key> <g> <asciicircum> : "ĝ"
+<Multi_key> <j> <asciicircum> : "ĵ"
+<Multi_key> <s> <asciicircum> : "ŝ"
+<Multi_key> <u> <asciicircum> : "û"
+
+<Multi_key> <C> <asciicircum> : "Ĉ"
+<Multi_key> <G> <asciicircum> : "Ĝ"
+<Multi_key> <J> <asciicircum> : "Ĵ"
+<Multi_key> <S> <asciicircum> : "Ŝ"
+<Multi_key> <U> <asciicircum> : "Û"
+
 # === Bullets ===
-<Multi_key> <V> : "✓"
-<Multi_key> <X> : "✗"
-<Multi_key> <O> : "•"
+<Multi_key> <minus> <v> : "✓"
+<Multi_key> <minus> <x> : "✗"
+<Multi_key> <minus> <o> : "•"
+<Multi_key> <minus> <bracketleft> <bracketright> : "□"
 
 # === Misc ===
 <Multi_key> <s> <k> <u> <l> <l> : "☠"
