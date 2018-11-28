@@ -1,0 +1,24 @@
+# === Keybindings ===
+map w scroll up
+map a scroll left
+map s scroll down
+map d scroll right
+
+map W scroll half-up
+map A scroll left
+map S scroll half-down
+map D scroll right
+
+map r reload
+map f adjust_window width
+
+# === Options ===
+set guioptions ""
+set font "Fira Mono 10"
+set adjust-open width
+set database plain
+set dbus-service false
+set page-cache-size 32
+set show-recent false
+set selection-clipboard secondary
+set synctex false
