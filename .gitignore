@@ -1,11 +1,30 @@
 bin/dmenu
 bin/st
 
+config/Electron
+config/GIMP
+config/chromium
+config/configstore
+config/darktable
+config/dconf
 config/discord
+config/enchant
+config/fontconfig
+config/gtk-2.0
+config/mimeapps.list
 config/neofetch
+config/obs-studio
 config/pavucontrol.ini
 config/pulse
+config/transmission-remote-gtk
 config/vivaldi
+config/vlc
+
+config/KeeWeb/OfflineFiles
+config/KeeWeb/file-info.json
+config/KeeWeb/runtime-data.json
+config/KeeWeb/temp
+config/KeeWeb/window-position.json
 
 cache
 share
