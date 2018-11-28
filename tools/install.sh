@@ -34,7 +34,9 @@ EOF
 # === Dynamic (.in) configs ===
 mkdir -p "$(dirname "${LESSKEY}")"
 lesskey -o "${LESSKEY}" "${XDG_CONFIG_HOME}/less/lesskey.in"
+
 chmod -w "${XDG_CONFIG_HOME}/htop/htoprc"
+chmod -w "${XDG_CONFIG_HOME}/KeeWeb/app-settings.json"
 
 mkdir -p "${TRANSMISSION_HOME}"
 sh "${XDG_CONFIG_HOME}/transmission/settings.json.in" > "${TRANSMISSION_HOME}/settings.json"
