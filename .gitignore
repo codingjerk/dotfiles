@@ -10,7 +10,7 @@ config/dconf
 config/discord
 config/enchant
 config/fontconfig
-config/gtk-2.0
+config/inkscape
 config/mimeapps.list
 config/neofetch
 config/obs-studio
@@ -19,6 +19,8 @@ config/pulse
 config/transmission-remote-gtk
 config/vivaldi
 config/vlc
+
+config/gtk-2.0/gtkfilechooser.ini
 
 config/KeeWeb/OfflineFiles
 config/KeeWeb/file-info.json
