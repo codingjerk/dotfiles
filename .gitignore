@@ -28,6 +28,8 @@ config/KeeWeb/runtime-data.json
 config/KeeWeb/temp
 config/KeeWeb/window-position.json
 
+config/mpv/watch_later
+
 cache
 share
 runtime
