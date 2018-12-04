@@ -15,4 +15,5 @@ exec i3lock \
   --datesize=30 \
   --datepos="tx:ty + 50" \
   \
-  --timestr="%H:%M"
+  --timestr="%H:%M" \
+  --datestr="%e, %A"
