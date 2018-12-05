@@ -61,6 +61,87 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <S> <asciicircum> : "Ŝ"
 <Multi_key> <U> <asciicircum> : "Û"
 
+# === Japanese (hiragana) ===
+<Multi_key> <j> <a> <period> : "あ"
+<Multi_key> <j> <i> <period> : "い"
+<Multi_key> <j> <u> <period> : "う"
+<Multi_key> <j> <e> <period> : "え"
+<Multi_key> <j> <o> <period> : "お"
+
+<Multi_key> <j> <k> <a> <period> : "か"
+<Multi_key> <j> <k> <i> <period> : "き"
+<Multi_key> <j> <k> <u> <period> : "く"
+<Multi_key> <j> <k> <e> <period> : "け"
+<Multi_key> <j> <k> <o> <period> : "こ"
+
+<Multi_key> <j> <s> <a> <period> : "さ"
+<Multi_key> <j> <s> <h> <i> <period> : "し"
+<Multi_key> <j> <s> <u> <period> : "す"
+<Multi_key> <j> <s> <e> <period> : "せ"
+<Multi_key> <j> <s> <o> <period> : "そ"
+
+<Multi_key> <j> <t> <a> <period> : "た"
+<Multi_key> <j> <c> <h> <i> <period> : "ち"
+<Multi_key> <j> <t> <s> <u> <period> : "つ"
+<Multi_key> <j> <t> <e> <period> : "て"
+<Multi_key> <j> <t> <o> <period> : "と"
+
+<Multi_key> <j> <n> <a> <period> : "な"
+<Multi_key> <j> <n> <i> <period> : "に"
+<Multi_key> <j> <n> <u> <period> : "ぬ"
+<Multi_key> <j> <n> <e> <period> : "ね"
+<Multi_key> <j> <n> <o> <period> : "の"
+
+<Multi_key> <j> <h> <a> <period> : "は"
+<Multi_key> <j> <h> <i> <period> : "ひ"
+<Multi_key> <j> <f> <u> <period> : "ふ"
+<Multi_key> <j> <h> <e> <period> : "へ"
+<Multi_key> <j> <h> <o> <period> : "ほ"
+
+<Multi_key> <j> <m> <a> <period> : "ま"
+<Multi_key> <j> <m> <i> <period> : "み"
+<Multi_key> <j> <m> <u> <period> : "む"
+<Multi_key> <j> <m> <e> <period> : "め"
+<Multi_key> <j> <m> <o> <period> : "も"
+
+<Multi_key> <j> <y> <a> <period> : "や"
+<Multi_key> <j> <y> <u> <period> : "ゆ"
+<Multi_key> <j> <y> <o> <period> : "よ"
+
+<Multi_key> <j> <r> <a> <period> : "ら"
+<Multi_key> <j> <r> <i> <period> : "り"
+<Multi_key> <j> <r> <u> <period> : "る"
+<Multi_key> <j> <r> <e> <period> : "れ"
+<Multi_key> <j> <r> <o> <period> : "ろ"
+
+<Multi_key> <j> <w> <a> <period> : "わ"
+<Multi_key> <j> <w> <i> <period> : "ゐ"
+<Multi_key> <j> <w> <e> <period> : "ゑ"
+<Multi_key> <j> <w> <o> <period> : "を"
+
+<Multi_key> <j> <n> <period> : "ん"
+
+<Multi_key> <j> <g> <a> <period> : "が"
+<Multi_key> <j> <g> <i> <period> : "ぎ"
+<Multi_key> <j> <g> <u> <period> : "ぐ"
+<Multi_key> <j> <g> <e> <period> : "げ"
+<Multi_key> <j> <g> <o> <period> : "ご"
+
+<Multi_key> <j> <p> <a> <period> : "ぱ"
+
+# === Japanese (katakana) ===
+<Multi_key> <t> <b> <a> <period> : "バ"
+<Multi_key> <t> <i> <period> : "イ"
+<Multi_key> <t> <n> <period> : "ン"
+<Multi_key> <t> <p> <a> <period> : "パ"
+<Multi_key> <t> <t> <o> <period> : "ト"
+<Multi_key> <t> <t> <s> <u> <period> : "ツ"
+<Multi_key> <t> <minus> : "ー"
+
+# === Japanese (kanji) ===
+<Multi_key> <n> <j> <u> <t> <s> <u> <period> : "術"
+<Multi_key> <n> <s> <h> <i> <m> <a> <period> : "縞"
+
 # === Bullets ===
 <Multi_key> <minus> <v> : "✓"
 <Multi_key> <minus> <x> : "✗"
