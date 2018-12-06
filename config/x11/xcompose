@@ -127,6 +127,18 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <j> <g> <e> <period> : "げ"
 <Multi_key> <j> <g> <o> <period> : "ご"
 
+<Multi_key> <j> <z> <a> <period> : "ざ"
+<Multi_key> <j> <j> <i> <period> : "じ"
+<Multi_key> <j> <z> <u> <period> : "ず"
+<Multi_key> <j> <z> <e> <period> : "ぜ"
+<Multi_key> <j> <z> <o> <period> : "ぞ"
+
+<Multi_key> <j> <d> <a> <period> : "だ"
+<Multi_key> <j> <d> <j> <i> <period> : "ぢ"
+<Multi_key> <j> <d> <z> <u> <period> : "づ"
+<Multi_key> <j> <d> <e> <period> : "で"
+<Multi_key> <j> <d> <o> <period> : "ど"
+
 <Multi_key> <j> <p> <a> <period> : "ぱ"
 
 # === Japanese (katakana) ===
