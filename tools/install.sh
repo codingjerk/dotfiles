@@ -134,7 +134,7 @@ fc-list | grep -i "awesome" > /dev/null 2> /dev/null || require_message "Font Aw
 
 test -d '/usr/share/themes/Adapta' || require_message "Adapta (GTK theme)"
 test -d '/usr/share/icons/breeze' || require_message "Breeze (icons)"
-test -d '/usr/share/icons/capitaine-cursors' || require_message "Capitaine Cursors"
+test -d '/usr/share/icons/breeze_cursors' || require_message "Breeze (cursors)"
 
 require xinit
 require feh
