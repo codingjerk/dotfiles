@@ -1,4 +1,4 @@
-include "/usr/share/X11/locale/en_US.UTF-8/Compose"
+include "%L"
 
 # === Math ===
 <Multi_key> <plus> <minus> : "±"
@@ -139,18 +139,56 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <j> <d> <e> <period> : "で"
 <Multi_key> <j> <d> <o> <period> : "ど"
 
+<Multi_key> <j> <b> <a> <period> : "ば"
+<Multi_key> <j> <b> <i> <period> : "び"
+<Multi_key> <j> <b> <u> <period> : "ぶ"
+<Multi_key> <j> <b> <e> <period> : "べ"
+<Multi_key> <j> <b> <o> <period> : "ぼ"
+
 <Multi_key> <j> <p> <a> <period> : "ぱ"
+<Multi_key> <j> <p> <i> <period> : "ぴ"
+<Multi_key> <j> <p> <u> <period> : "ぷ"
+<Multi_key> <j> <p> <e> <period> : "ぺ"
+<Multi_key> <j> <p> <o> <period> : "ぽ"
+
+<Multi_key> <j> <y> <a> <underscore> : "ゃ"
+<Multi_key> <j> <y> <u> <underscore> : "ゅ"
+<Multi_key> <j> <y> <o> <underscore> : "ょ"
+
+<Multi_key> <j> <t> <s> <u> <underscore> : "っ"
 
 # === Japanese (katakana) ===
+<Multi_key> <t> <a> <period> : "ア"
+
+<Multi_key> <t> <k> <a> <period> : "カ"
+
+<Multi_key> <t> <s> <h> <i> <period> : "シ"
+
+<Multi_key> <t> <m> <a> <period> : "マ"
+<Multi_key> <t> <m> <e> <period> : "メ"
+
+<Multi_key> <t> <y> <o> <period> : "ヨ"
+
+<Multi_key> <t> <r> <i> <period> : "リ"
+
+<Multi_key> <t> <n> <period> : "ン"
+
+<Multi_key> <t> <y> <o> <underscore> : "ョ"
+
 <Multi_key> <t> <b> <a> <period> : "バ"
 <Multi_key> <t> <i> <period> : "イ"
 <Multi_key> <t> <n> <period> : "ン"
 <Multi_key> <t> <p> <a> <period> : "パ"
 <Multi_key> <t> <t> <o> <period> : "ト"
 <Multi_key> <t> <t> <s> <u> <period> : "ツ"
-<Multi_key> <t> <minus> : "ー"
 
-# === Japanese (kanji) ===
+<Multi_key> <t> <minus> : "ー"
+# <Multi_key> <t> <period> : "。"
+# 、
+
+# === Kanji (kunyomi) ===
+
+# === Kanji (oniomi) ===
 <Multi_key> <n> <j> <u> <t> <s> <u> <period> : "術"
 <Multi_key> <n> <s> <h> <i> <m> <a> <period> : "縞"
 
