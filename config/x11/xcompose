@@ -42,11 +42,12 @@ include "%L"
 <Multi_key> <v> <bar> : "↓"
 
 # === Greek ===
-<Multi_key> <a> <l> <p> <h> <a> : "α"
-<Multi_key> <b> <e> <t> <a>     : "β"
-<Multi_key> <d> <e> <l> <t> <a> : "Δ"
-<Multi_key> <p> <i>             : "π"
-<Multi_key> <m> <u>             : "μ"
+<Multi_key> <a> <l> <p> <h> <a>     : "α"
+<Multi_key> <b> <e> <t> <a>         : "β"
+<Multi_key> <d> <e> <l> <t> <a>     : "Δ"
+<Multi_key> <m> <u>                 : "μ"
+<Multi_key> <l> <a> <m> <b> <d> <a> : "λ"
+<Multi_key> <p> <i>                 : "π"
 
 # === Esperanto ===
 <Multi_key> <c> <asciicircum> : "ĉ"
