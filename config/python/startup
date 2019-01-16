@@ -1,6 +1,9 @@
 import atexit
 import os
+import sys
 import readline
+
+sys.ps1 = '\u001b[34m python » \u001b[0m'
 
 data_dir = os.path.join(os.environ['XDG_DATA_HOME'], 'python')
 histfile = os.path.join(data_dir, 'history')

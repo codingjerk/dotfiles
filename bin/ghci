@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+exec /usr/bin/ghci \
+  -ghci-script "${XDG_CONFIG_HOME}/ghc/ghci.conf" \
+  -fno-ghci-history \
+  -ignore-dot-ghci \
+  "$@"
