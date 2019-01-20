@@ -24,8 +24,10 @@ config/gtk-2.0/gtkfilechooser.ini
 
 config/KeeWeb/OfflineFiles
 config/KeeWeb/file-info.json
+config/KeeWeb/profile.json
 config/KeeWeb/runtime-data.json
 config/KeeWeb/temp
+config/KeeWeb/update-info.json
 config/KeeWeb/window-position.json
 
 config/mpv/watch_later
