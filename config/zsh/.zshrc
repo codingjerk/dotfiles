@@ -3,6 +3,8 @@ if [[ "$X_AUTOSTART" == "yes" ]] && tty | grep tty1 > /dev/null; then
   exec xinit -- vt1 :0 -allowMouseOpenFail -nolisten tcp -disableVidMode -ignoreABI -nosilk -novtswitch
 fi
 
+python "${DOTFILES_DIR}/tools/motd.py"
+
 # === Misc options ===
 KEYTIMEOUT=1
 WORDCHARS='-'
@@ -20,7 +22,7 @@ alias df='df -h -x devtmpfs'
 alias du='du -h -d 1 -c'
 
 alias e='${=EDITOR}'
-alias E='sudo ${=EDITOR}'
+alias E='sudo --login ${=EDITOR}'
 
 alias exa='exa -ab --group-directories-first --git-ignore --git'
 alias exal='exa -l'

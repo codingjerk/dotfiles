@@ -77,11 +77,8 @@ export GTK_IM_MODULE='xim'
 # === Autolaod ===
 if [[ "${TERM}" = 'linux' ]]; then
   sh "${DOTFILES_DIR}/tools/tty-colors.sh"
+  setfont '/usr/share/kbd/consolefonts/ter-i20n.psf.gz'
   clear
-fi
-
-if [[ "${TMUX}" = '' ]]; then
-  python "${DOTFILES_DIR}/tools/motd.py"
 fi
 
 # === Path ===
