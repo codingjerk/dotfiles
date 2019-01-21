@@ -205,3 +205,10 @@ include "%L"
 <Multi_key> <b> <i> <o> : "☣"
 <Multi_key> <p> <e> <a> <c> <e> : "☮"
 <Multi_key> <d> <a> <o> : "☯"
+
+# === Emoji ===
+<Multi_key> <e> <f> <i> <r> <e>     : "🔥"
+<Multi_key> <e> <p> <o> <o> <p>     : "💩"
+<Multi_key> <e> <p> <a> <r> <t> <y> : "🎉"
+<Multi_key> <e> <d> <o> <g>         : "🐶"
+<Multi_key> <e> <b> <e> <e>         : "🐝"
