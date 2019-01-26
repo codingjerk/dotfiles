@@ -20,7 +20,11 @@ set -g window-status-current-fg blue
 set -g window-status-current-format '#{?window_zoomed_flag,#[fg=red],}*'
 set -g window-status-fg black
 set -g window-status-attr bold
-set -g window-status-format '-'
+set -g window-status-format '#{?window_bell_flag,!,-}'
+
+set -g window-status-bell-fg magenta
+set -g window-status-bell-bg default
+set -g window-status-bell-attr default
 
 set -g status-interval 60
 
