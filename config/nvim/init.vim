@@ -16,6 +16,7 @@ set splitright
 set signcolumn=no
 let g:LanguageClient_serverCommands = {
   \ 'rust': ['$CARGO_HOME/bin/rls'],
+  \ 'python': ['pyls'],
   \ }
 let g:LanguageClient_diagnosticsEnable = 1
 autocmd CompleteDone * silent! pclose!
