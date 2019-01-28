@@ -7,6 +7,7 @@ let g:deoplete#enable_at_startup = 1
 " Tab cycle completion
 inoremap <expr><Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <C-Space> <C-n>
 
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 set hidden
