@@ -24,8 +24,9 @@ alias du='du -h -d 1 -c'
 alias e='${=EDITOR}'
 alias E='sudo --login ${=EDITOR}'
 
-alias exa='exa -ab --group-directories-first --git-ignore --git'
-alias exal='exa -l'
+alias exa='exa --all --binary --group-directories-first'
+alias exa-all='exa'
+alias exa-ignore='exa --git-ignore --git --ignore-glob .git'
 
 alias free='free -h'
 
@@ -50,9 +51,11 @@ alias ls='ls -vAh --color=auto --group-directories-first --file-type --quoting-s
 alias ll='ls -lo --time-style=iso'
 
 if (( $+commands[exa] )); then
-  alias l='exal'
+  alias l='exa-ignore --long'
+  alias la='exa-all --long'
 else
   alias l='ll'
+  alias la='ll -a'
 fi
 
 alias tmux='tmux -f "${XDG_CONFIG_HOME}/tmux/config"'
@@ -60,6 +63,11 @@ alias ta='tmux attach'
 alias tl='tmux list-sessions'
 alias tn='tmux new-session'
 alias tmw='tmux move-window'
+
+if (( $+commands[exa] )); then
+  alias tree='exa-ignore --tree'
+  alias tree-all='exa-all --tree'
+fi
 
 alias rf='rm -rf'
 
