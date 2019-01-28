@@ -114,6 +114,8 @@ map ` <nop>
 " = Identation =
 vnoremap < <gv
 vnoremap > >gv
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 " = Traditional save hotkey =
 nnoremap <C-S> <Esc>:w<CR>
