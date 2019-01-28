@@ -12,7 +12,9 @@ config/enchant
 config/fontconfig
 config/inkscape
 config/mimeapps.list
+config/mpd/bakoga.conf
 config/neofetch
+config/nginx
 config/obs-studio
 config/pavucontrol.ini
 config/pulse
@@ -39,6 +41,8 @@ runtime
 settings.sh
 
 services/runit/*/supervise
+services/runit/bakoga
+services/runit/nginx
 
 third-party/dmenu/dmenu
 third-party/dmenu/stest
