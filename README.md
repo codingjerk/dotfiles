@@ -75,27 +75,6 @@ A well-documented, well-structured dotfiles.
 
 ## TODOz
 
-- Motd
-  - Educational stuff on motd / moth
-    - Word of the day
-      - Paragrath of the day ?
-      - Different languages + translations
-    - Food recipe of the day
-    - Calendar (day)
-    - Cites
-    - TILs
-    - Music
-    - Physical exersizes
-    - Code
-      - Piece of code
-      - Coding task
-      - Searchcode.com
-    - Math
-      - Piece of math
-      - Math task
-      - Number of the day
-    - Weather
-    - Moar
 - CLI
   - Youtube-dl
     - Config
