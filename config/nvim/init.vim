@@ -115,6 +115,16 @@ map ` <nop>
 vnoremap < <gv
 vnoremap > >gv
 
+" = Traditional save hotkey =
+nnoremap <C-S> <Esc>:w<CR>
+inoremap <C-S> <C-o>:w<CR>
+vnoremap <C-S> <Esc>:w<CR>
+
+" = Reseting search highlighting (until next search) =
+nnoremap <C-N> <Esc>:noh<CR>
+inoremap <C-N> <C-o>:noh<CR>
+vnoremap <C-N> <Esc>:noh<CR>
+
 " === Highlighting ===
 set t_Co=16
 colorscheme cj
