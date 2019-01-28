@@ -173,6 +173,7 @@ include "%L"
 <Multi_key> <t> <r> <i> <period> : "リ"
 
 <Multi_key> <t> <n> <period> : "ン"
+<Multi_key> <t> <n> <o> <period> : "ノ"
 
 <Multi_key> <t> <y> <o> <underscore> : "ョ"
 
@@ -184,7 +185,7 @@ include "%L"
 <Multi_key> <t> <t> <s> <u> <period> : "ツ"
 
 <Multi_key> <t> <minus> : "ー"
-# <Multi_key> <t> <period> : "。"
+<Multi_key> <t> <period> : "。"
 # 、
 
 # === Kanji (kunyomi) ===
@@ -192,6 +193,9 @@ include "%L"
 # === Kanji (oniomi) ===
 <Multi_key> <n> <j> <u> <t> <s> <u> <period> : "術"
 <Multi_key> <n> <s> <h> <i> <m> <a> <period> : "縞"
+<Multi_key> <n> <w> <a> <r> <u>     <period> : "惡"
+<Multi_key> <n> <a> <k> <u>         <period> : "悪"
+<Multi_key> <n> <h> <i>             <period> : "火"
 
 # === Bullets ===
 <Multi_key> <minus> <v> : "✓"
