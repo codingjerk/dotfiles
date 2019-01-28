@@ -27,6 +27,11 @@ set autoindent
 set smartindent
 set smarttab
 
+" === Backup ===
+set nobackup
+set nowritebackup
+set noswapfile
+
 " === Misc ===
 set lazyredraw
 set showmatch
@@ -76,13 +81,14 @@ nnoremap Q O
 nnoremap E o
 
 " = Tabs =
-nnoremap <C-Q> :tabp<CR>
-inoremap <C-Q> :tabp<CR>
-vnoremap <C-Q> :tabp<CR>
-nnoremap <C-E> :tabn<CR>
-inoremap <C-E> :tabn<CR>
-vnoremap <C-E> :tabn<CR>
+nnoremap <C-Q> <Esc>:tabp<CR>
+inoremap <C-Q> <Esc>:tabp<CR>
+vnoremap <C-Q> <Esc>:tabp<CR>
+nnoremap <C-E> <Esc>:tabn<CR>
+inoremap <C-E> <Esc>:tabn<CR>
+vnoremap <C-E> <Esc>:tabn<CR>
 
+" = Fzf =
 if filereadable("/usr/share/vim/vimfiles/plugin/fzf.vim")
   source /usr/share/vim/vimfiles/plugin/fzf.vim
   nnoremap <C-O> :call fzf#run({'sink': 'tabedit'})<CR>
