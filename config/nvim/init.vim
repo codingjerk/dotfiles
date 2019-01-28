@@ -82,10 +82,10 @@ nnoremap E o
 
 " = Tabs =
 nnoremap <C-Q> <Esc>:tabp<CR>
-inoremap <C-Q> <Esc>:tabp<CR>
+inoremap <C-Q> <C-o>:tabp<CR>
 vnoremap <C-Q> <Esc>:tabp<CR>
 nnoremap <C-E> <Esc>:tabn<CR>
-inoremap <C-E> <Esc>:tabn<CR>
+inoremap <C-E> <C-o>:tabn<CR>
 vnoremap <C-E> <Esc>:tabn<CR>
 
 " = Fzf =
