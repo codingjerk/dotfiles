@@ -105,6 +105,10 @@ imap <down> <nop>
 " = Marks are very annoying when ` is tmux prefix =
 map ` <nop>
 
+" = Identation =
+vnoremap < <gv
+vnoremap > >gv
+
 " === Highlighting ===
 set t_Co=16
 colorscheme cj
