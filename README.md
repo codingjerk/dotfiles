@@ -121,6 +121,7 @@ A well-documented, well-structured dotfiles.
     - runit user services
   - Use `XDG_DATA_DIRS/icons` to store icons (cursor default theme index file)
   - Vim, st, dmenu and gone hard-included
+  - Installation script is bad
 - Fixes (easy solution)
   - /services/runit → /config/runit
   - Rename environment variables
