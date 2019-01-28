@@ -47,6 +47,12 @@ sh "${XDG_CONFIG_HOME}/i3/config.in" > "${XDG_DATA_HOME}/i3/config"
 mkdir -p "${XDG_DATA_HOME}/polybar"
 sh "${XDG_CONFIG_HOME}/polybar/config.in" > "${XDG_DATA_HOME}/polybar/config"
 
+# === Dirs needed to exist ===
+mkdir -p "${XDG_DATA_HOME}/gnupg"
+mkdir -p "${XDG_DATA_HOME}/zsh"
+mkdir -p "${XDG_DATA_HOME}/python"
+touch "${XDG_DATA_HOME}/python/history"
+
 # === Git submodules ===
 cd ${DOTFILES_DIR}
 git submodule update --init --recursive
@@ -127,6 +133,7 @@ recommend hexyl
 recommend transmission-daemon
 recommend minidlnad
 test -x '/bin/pacman' && recommend pkgfile
+test -x '/bin/xbps-query' && recommend xtools
 
 # === GUI dependencies ===
 fc-list | grep -i "fira mono" > /dev/null 2> /dev/null || require_message "Fira Mono (font)"
