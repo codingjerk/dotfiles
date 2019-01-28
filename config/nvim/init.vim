@@ -1,3 +1,26 @@
+" === Plugins ===
+call plug#begin('$XDG_DATA_HOME/nvim/plug')
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
+
+" Tab cycle completion
+inoremap <expr><Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+set hidden
+set splitbelow
+set splitright
+set signcolumn=no
+let g:LanguageClient_serverCommands = {
+  \ 'rust': ['$CARGO_HOME/bin/rls'],
+  \ }
+let g:LanguageClient_diagnosticsEnable = 1
+autocmd CompleteDone * silent! pclose!
+
+call plug#end()
+
 " === Timeouts ===
 set ttimeoutlen=10
 set timeoutlen=200
