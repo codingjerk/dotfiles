@@ -76,8 +76,6 @@ A well-documented, well-structured dotfiles.
 ## TODOz
 
 - CLI
-  - Youtube-dl
-    - Config
   - Transmission
     - Remote cli aliases (for magnets, list and other)
 - X11
