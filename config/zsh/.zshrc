@@ -64,6 +64,15 @@ alias tl='tmux list-sessions'
 alias tn='tmux new-session'
 alias tmw='tmux move-window'
 
+alias t-meta='transmission-remote tv.m:2000'
+alias t-add='t-meta --add'
+alias t-active='t-meta -t active --list'
+alias t-alt='t-meta --alt-speed'
+alias t-no-alt='t-meta --no-alt-speed'
+alias t-list='t-meta --list'
+t-remove() { t-meta -t "$1" --remove }
+t-magnet() { t-add "magnet:?xt=urn:btih:$1" }
+
 if (( $+commands[exa] )); then
   alias tree='exa-ignore --tree'
   alias tree-all='exa-all --tree'
@@ -106,8 +115,6 @@ __pty() {
 pp() {
   __pty $@ | "${=PAGER}"
 }
-
-# === Functions ===
 
 # === Completion ===
 LISTMAX=1000
@@ -401,6 +408,3 @@ if (( $+commands[pacman] )); then
 
   . '/usr/share/doc/pkgfile/command-not-found.zsh'
 fi
-
-# === Windows (cygwin) ===
-# TODO
