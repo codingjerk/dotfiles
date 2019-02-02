@@ -17,6 +17,8 @@ set signcolumn=no
 let g:LanguageClient_serverCommands = {
   \ 'rust': ['$CARGO_HOME/bin/rls'],
   \ 'python': ['pyls'],
+  \ 'javascript': ['javascript-typescript-stdio'],
+  \ 'typescript': ['javascript-typescript-stdio'],
   \ }
 let g:LanguageClient_diagnosticsEnable = 1
 autocmd CompleteDone * silent! pclose!
@@ -47,7 +49,7 @@ set incsearch
 set smartcase
 set ignorecase
 
-" === Identation ===
+" === Indentation ===
 set autoindent
 set smartindent
 set smarttab
@@ -106,12 +108,12 @@ nnoremap Q O
 nnoremap E o
 
 " = Tabs =
-nnoremap <C-Q> <Esc>:tabp<CR>
-inoremap <C-Q> <C-o>:tabp<CR>
-vnoremap <C-Q> <Esc>:tabp<CR>
-nnoremap <C-E> <Esc>:tabn<CR>
-inoremap <C-E> <C-o>:tabn<CR>
-vnoremap <C-E> <Esc>:tabn<CR>
+nnoremap <silent> <C-Q> <Esc>:tabp<CR>
+inoremap <silent> <C-Q> <C-o>:tabp<CR>
+vnoremap <silent> <C-Q> <Esc>:tabp<CR>
+nnoremap <silent> <C-E> <Esc>:tabn<CR>
+inoremap <silent> <C-E> <C-o>:tabn<CR>
+vnoremap <silent> <C-E> <Esc>:tabn<CR>
 
 " = Fzf =
 if filereadable("/usr/share/vim/vimfiles/plugin/fzf.vim")
@@ -136,7 +138,7 @@ imap <down> <nop>
 " = Marks are very annoying when ` is tmux prefix =
 map ` <nop>
 
-" = Identation =
+" = Indentation =
 vnoremap < <gv
 vnoremap > >gv
 vnoremap <Tab> >gv
@@ -148,9 +150,9 @@ inoremap <C-S> <C-o>:w<CR>
 vnoremap <C-S> <Esc>:w<CR>
 
 " = Reseting search highlighting (until next search) =
-nnoremap <C-N> <Esc>:noh<CR>
-inoremap <C-N> <C-o>:noh<CR>
-vnoremap <C-N> <Esc>:noh<CR>
+nnoremap <silent> <C-N> <Esc>:noh<CR>
+inoremap <silent> <C-N> <C-o>:noh<CR>
+vnoremap <silent> <C-N> <Esc>:noh<CR>
 
 " === Highlighting ===
 set t_Co=16
