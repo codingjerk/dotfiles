@@ -6,6 +6,7 @@ syntax reset
 " = UI =
 hi Visual ctermbg=7 ctermfg=0 cterm=reverse,bold
 
+hi VertSplit ctermbg=0 ctermfg=0 cterm=bold
 hi LineNr ctermfg=0 cterm=bold
 hi MatchParen ctermfg=0 ctermbg=0 cterm=reverse,bold
 hi TabLine ctermfg=0 ctermbg=0 cterm=bold
@@ -15,6 +16,12 @@ hi Pmenu ctermbg=0 ctermfg=0 cterm=bold
 hi PmenuSel ctermfg=7
 hi PmenuSbar ctermfg=0 cterm=bold,reverse
 hi PmenuThumb ctermbg=7
+
+" = Diff =
+hi DiffAdd ctermbg=2 ctermfg=0
+hi DiffDelete ctermbg=1 ctermfg=0
+hi DiffChange ctermbg=3 ctermfg=0
+hi DiffText ctermbg=5 ctermfg=0 cterm=none
 
 " = General =
 hi Comment ctermfg=0 cterm=bold
