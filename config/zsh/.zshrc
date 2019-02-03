@@ -36,6 +36,8 @@ alias ga='git add'
 alias gb='git branch'
 alias gc='git commit'
 alias gd='git diff'
+alias gds='git diff --stat'
+alias gdt='git difftool'
 alias gi='git init'
 alias gl='git log --graph'
 alias gp='git push'
@@ -187,7 +189,6 @@ bindkey '^[^[[D' backward-word
 bindkey '^[^[[C' forward-word
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
-
 
 bindkey -M menuselect '^^' accept-and-menu-complete
 
