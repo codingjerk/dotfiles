@@ -77,6 +77,11 @@ A well-documented, well-structured dotfiles.
 
 - X11
   - Font config
+  - XCompose
+    - Greek
+    - Japanese
+    - Math
+    - Emoji
 - System
   - Custom minimal kernel config (with per-machine corrections)
     - Disable IPv6
