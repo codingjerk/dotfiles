@@ -7,3 +7,6 @@
 [submodule "third-party/zsh/alias-tips"]
 	path = third-party/zsh/alias-tips
 	url = https://github.com/djui/alias-tips
+[submodule "third-party/nvm"]
+	path = third-party/nvm
+	url = https://github.com/creationix/nvm

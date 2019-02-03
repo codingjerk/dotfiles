@@ -75,6 +75,10 @@ export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0/gtkrc"
 # Makes GTK applications respect user's xcompose file
 export GTK_IM_MODULE='xim'
 
+export NODE_REPL_HISTORY="${XDG_DATA_HOME}/node/history"
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
+export NVM_DIR="${DOTFILES_DIR}/third-party/nvm"
+
 # === Autolaod ===
 if [[ "${TERM}" = 'linux' ]]; then
   sh "${DOTFILES_DIR}/tools/tty-colors.sh"
