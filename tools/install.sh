@@ -52,6 +52,7 @@ mkdir -p "${XDG_DATA_HOME}/gnupg"
 mkdir -p "${XDG_DATA_HOME}/zsh"
 mkdir -p "${XDG_DATA_HOME}/python"
 touch "${XDG_DATA_HOME}/python/history"
+mkdir -p "${XDG_DATA_HOME}/node"
 
 # === Git submodules ===
 cd ${DOTFILES_DIR}
