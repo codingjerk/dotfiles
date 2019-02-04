@@ -1,0 +1,35 @@
+let repl = require("repl");
+let fs = require("fs");
+
+let getHistoryFilePath = () => {
+  let dataDir = process.env.XDG_DATA_HOME || `${process.env.HOME}/.local/share`;
+  return `${dataDir}/node/history`;
+};
+
+let loadHistory = (server, path) => {
+  fs.statSync(path);
+  fs.readFileSync(path).toString()
+    .split("\n")
+    .reverse()
+    .filter(line => line.trim())
+    .map(line => server.history.push(line));
+};
+
+let saveHistory = (server, path) => {
+  let history = server.history
+    .reverse()
+    .filter(line => line.trim())
+    .join("\n");
+
+  fs.writeFileSync(path, history);
+};
+
+let server = repl.start({
+  prompt: "\u001B[36mnode » \u001B[0m",
+  replMode: repl.REPL_MODE_STRICT,
+});
+
+loadHistory(server, getHistoryFilePath());
+server.on("exit", () => {
+  saveHistory(server, getHistoryFilePath());
+});

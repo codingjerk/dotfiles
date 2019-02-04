@@ -62,6 +62,9 @@ else
   alias la='ll -a'
 fi
 
+node() { if [[ -z ${1} ]]; then command node "${DOTFILES_DIR}/bin/node-repl"; else command node "$@"; fi }
+nvm() { source "${NVM_DIR}/nvm.sh" }
+
 alias tmux='tmux -f "${XDG_CONFIG_HOME}/tmux/config"'
 alias ta='tmux attach'
 alias tl='tmux list-sessions'
