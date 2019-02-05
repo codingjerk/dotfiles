@@ -70,6 +70,9 @@ set nowrap
 let g:netrw_home=$XDG_CACHE_HOME.'/nvim'
 
 " === Keybindings ===
+" = Colon =
+nnoremap ; :
+
 " = WASD =
 nnoremap w k
 nnoremap s j
