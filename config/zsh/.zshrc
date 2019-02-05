@@ -81,7 +81,7 @@ alias t-alt='t-meta --alt-speed'
 alias t-no-alt='t-meta --no-alt-speed'
 alias t-list='t-meta --list'
 t-remove() { t-meta -t "$1" --remove }
-t-magnet() { t-add "magnet:?xt=urn:btih:$1" }
+t-magnet() { t-add "magnet:?xt=urn:btih:$1" "${@:2}" }
 
 if (( $+commands[exa] )); then
   alias tree='exa-ignore --tree'
