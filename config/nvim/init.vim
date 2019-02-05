@@ -97,11 +97,6 @@ vnoremap S 5j
 noremap xx dd
 vnoremap x d
 
-" = Ctrl+D for word selection =
-inoremap <C-D> <Esc>viw
-nnoremap <C-D> viw
-vnoremap <C-D> iw
-
 " = Q/E for insertion =
 nnoremap q I
 nnoremap e A
@@ -125,20 +120,6 @@ if filereadable("/usr/share/vim/vimfiles/plugin/fzf.vim")
   nnoremap <C-O> :call fzf#run({'sink': 'tabedit'})<CR>
 endif
 
-" = Unmapping arrows =
-nmap <left> <nop>
-nmap <right> <nop>
-nmap <up> <nop>
-nmap <down> <nop>
-vmap <left> <nop>
-vmap <right> <nop>
-vmap <up> <nop>
-vmap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
-imap <up> <nop>
-imap <down> <nop>
-
 " = Marks are very annoying when ` is tmux prefix =
 map ` <nop>
 
@@ -147,16 +128,6 @@ vnoremap < <gv
 vnoremap > >gv
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
-
-" = Traditional save hotkey =
-nnoremap <C-S> <Esc>:w<CR>
-inoremap <C-S> <C-o>:w<CR>
-vnoremap <C-S> <Esc>:w<CR>
-
-" = Reseting search highlighting (until next search) =
-nnoremap <silent> <C-N> <Esc>:noh<CR>
-inoremap <silent> <C-N> <C-o>:noh<CR>
-vnoremap <silent> <C-N> <Esc>:noh<CR>
 
 " === Highlighting ===
 set t_Co=16
