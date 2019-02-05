@@ -14,6 +14,8 @@ WORDCHARS='-'
 setopt interactive_comments
 
 # === Aliases ===
+alias ag='ag --hidden --ignore-dir .git'
+
 alias cal='cal -m'
 
 alias diff='diff --color=auto'
@@ -33,6 +35,7 @@ alias exa-ignore='exa --git-ignore --git --ignore-glob .git'
 alias free='free -h'
 
 alias ga='git add'
+alias gap='git add -p'
 alias gb='git branch'
 alias gc='git commit'
 alias gd='git diff'
@@ -357,6 +360,7 @@ add-zsh-hook precmd  __ctr-update-total
 
 # === Third-party additions ===
 source "${DOTFILES_DIR}/third-party/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+ZSH_AUTOSUGGEST_USE_ASYNC='y'
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=0,bold'
 
 source "${DOTFILES_DIR}/third-party/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
