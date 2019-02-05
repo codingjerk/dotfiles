@@ -6,6 +6,7 @@ syntax reset
 " = UI =
 hi WarningMsg ctermbg=1 ctermfg=0
 hi Visual ctermbg=7 ctermfg=0 cterm=reverse,bold
+hi Search ctermbg=3 ctermfg=0
 
 hi VertSplit ctermbg=0 ctermfg=0 cterm=bold
 hi LineNr ctermfg=0 cterm=bold
