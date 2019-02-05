@@ -9,7 +9,6 @@ config/darktable
 config/dconf
 config/discord
 config/enchant
-config/fontconfig
 config/inkscape
 config/mimeapps.list
 config/mpd/bakoga.conf

@@ -31,6 +31,7 @@ recommend binary "OpenSSH" ssh
 recommend binary "GnuPG" gpg2
 recommend binary "exa" exa
 recommend binary "hexyl" hexyl
+recommend binary "The Silver Searcher" ag
 
 # === Daemons ===
 recommend binary "Transmission (daemon)" transmission-daemon
@@ -40,6 +41,9 @@ recommend binary "MiniDLNA" minidlnad
 require font "Fira Mono (font)" "Fira Mono"
 require font "Font Awesome (font)" "Awesome"
 require font "Noto Sans (font)" "Noto Sans"
+require font "Noto Sans CJK (font)" "Noto Sans CJK"
+require font "Noto Color Emoji (font)" "Noto Color Emoji"
+require font "Twitter Color Emoji (font)" "Twitter Color Emoji"
 
 require theme "Adapta (theme)" "Adapta"
 require icons "Breeze (icons)" "breeze"
