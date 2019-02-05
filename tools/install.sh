@@ -98,65 +98,6 @@ sed -e "s/__COLOR_0__/${CJ_COLOR_0_HEX}/g" \
 make
 cp ./st "${DOTFILES_DIR}/bin"
 
-# === Dependencies ===
-require_message() {
-  echo $'\E[31m' "[warning]: $1 is required" $'\E[0m'
-}
-
-require() {
-  test -x "/bin/$1" || require_message "$1"
-}
-
-require_python() {
-  test -x '/bin/python3' || return
-  python3 -c "import $1" 2> /dev/null || require_message "$1 (python library)"
-}
-
-recommend() {
-  test -x "/bin/$1" || echo $'\E[33m' "[warning]: $1 is recommended" $'\E[0m'
-}
-
-require zsh
-require nvim
-require python3
-  require_python psutil
-require fzf
-require fd
-
-# === Optionalies ===
-recommend less
-recommend tmux
-recommend htop
-recommend ssh
-recommend gpg2
-recommend exa
-recommend hexyl
-recommend transmission-daemon
-recommend minidlnad
-test -x '/bin/pacman' && recommend pkgfile
-test -x '/bin/xbps-query' && recommend xtools
-
-# === GUI dependencies ===
-fc-list | grep -i "fira mono" > /dev/null 2> /dev/null || require_message "Fira Mono (font)"
-fc-list | grep -i "awesome" > /dev/null 2> /dev/null || require_message "Font Awesome (font)"
-
-test -d '/usr/share/themes/Adapta' || require_message "Adapta (GTK theme)"
-test -d '/usr/share/icons/breeze' || require_message "Breeze (icons)"
-test -d '/usr/share/icons/breeze_cursors' || require_message "Breeze (cursors)"
-
-require xinit
-require feh
-require polybar
-require i3
-require maim
-require slop
-require convert
-
-recommend zathura
-recommend KeeWeb
-recommend vivaldi-stable
-recommend mpv
-
 # === Void linux ===
 test -x '/bin/xlocate' && xlocate -S
 

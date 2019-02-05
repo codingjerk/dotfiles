@@ -5,59 +5,14 @@ A well-documented, well-structured dotfiles.
 ## Installation
 
 1. `git clone --recursive-submodules`
-1. `sh dotfiles/tools/check-dependencies.sh`
-1. `sh dotfiles/tools/install.sh`
+1. `zsh dotfiles/tools/check-dependencies.zsh`
+1. `zsh dotfiles/tools/install.zsh`
 1. (optional) enable user services for server (dotfiles/services)
 1. (optional) repeat installation steps for root user
 
 ## Dependencies
 
-- zsh
-- nvim
-- python (3.x)
-  - psutil
-- fzf
-- fd
-
-### Optional / Recomendations
-
-- less
-- tmux
-- htop
-- ssh
-- gpg2
-- exa
-- hexyl
-- xtools (void linux only, for command-not-found feature)
-- pkgfile (arch linux only, for command-not-found feature)
-
-### Services
-
-- transmission (daemon)
-- mpd
-- minidlna
-
-### GUI dependencies
-
-- Fonts
-  - Fira Mono
-  - Font Awesome (4.x)
-  - Noto Fonts
-- Themes
-  - Adapta (GTK + QT Theme)
-  - Breeze (icons)
-  - Breeze Snow (Cursor)
-- X11
-- feh
-- polybar
-- i3wm
-- maim
-- slop
-- imagemagic
-- zathura
-- KeeWeb
-- chromium
-- mpv
+**Dependencies listed in `tools/check-dependencies.zsh` script that also can automate dependency check**
 
 ## Included third-party stuff
 
