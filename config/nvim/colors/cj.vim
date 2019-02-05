@@ -4,6 +4,7 @@ hi clear
 syntax reset
 
 " = UI =
+hi WarningMsg ctermbg=1 ctermfg=0
 hi Visual ctermbg=7 ctermfg=0 cterm=reverse,bold
 
 hi VertSplit ctermbg=0 ctermfg=0 cterm=bold
@@ -25,6 +26,7 @@ hi DiffText ctermbg=5 ctermfg=0 cterm=none
 
 " = General =
 hi Comment ctermfg=0 cterm=bold
+hi Whitespace ctermfg=1 cterm=none
 
 hi Title ctermfg=1
 hi Special ctermfg=1
