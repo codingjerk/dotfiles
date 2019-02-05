@@ -74,45 +74,32 @@ let g:netrw_home=$XDG_CACHE_HOME.'/nvim'
 nnoremap ; :
 
 " = WASD =
-nnoremap w k
-nnoremap s j
-nnoremap a h
-nnoremap d l
+noremap w k
+noremap s j
+noremap a h
+noremap d l
 
-vnoremap w k
-vnoremap s j
-vnoremap a h
-vnoremap d l
+noremap A b
+noremap D w
+vnoremap D e
 
-nnoremap A b
-nnoremap D w
-vnoremap A b
-vnoremap D w
+noremap W 5k
+noremap S 5j
 
-nnoremap W 5k
-nnoremap S 5j
-vnoremap W 5k
-vnoremap S 5j
-
-noremap xx dd
-vnoremap x d
+noremap x d
 
 " = Q/E for insertion =
 nnoremap q I
 nnoremap e A
-vnoremap q I
-vnoremap e A
-
-nnoremap Q O
-nnoremap E o
+vnoremap <expr> q mode()=~'\cv' ? "<C-V>^I" : "I"
+vnoremap <expr> e mode()=~'\cv' ? "<C-V>$A" : "$A"
 
 " = Tabs =
-nnoremap <silent> <C-Q> <Esc>:tabp<CR>
+noremap <silent> <C-Q> <Esc>:tabp<CR>
+noremap <silent> <C-E> <Esc>:tabn<CR>
+
 inoremap <silent> <C-Q> <C-o>:tabp<CR>
-vnoremap <silent> <C-Q> <Esc>:tabp<CR>
-nnoremap <silent> <C-E> <Esc>:tabn<CR>
 inoremap <silent> <C-E> <C-o>:tabn<CR>
-vnoremap <silent> <C-E> <Esc>:tabn<CR>
 
 " = Fzf =
 if filereadable("/usr/share/vim/vimfiles/plugin/fzf.vim")
