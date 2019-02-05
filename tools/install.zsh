@@ -16,7 +16,8 @@ export X_WALLPAPER='${DOTFILES_DIR}/assets/wallpaper-RES.png'
 EOF
 fi
 
-read -p 'Edit settings file and press return...'
+echo 'Edit settings file and press return...'
+read __UNUSED_ANSWER
 . "${DOTFILES_DIR}/settings.sh"
 
 # === .zshenv ===
