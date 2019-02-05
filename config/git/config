@@ -20,6 +20,9 @@
   context = 1
   tool = vimdiff
 
+[interactive]
+  singlekey = true
+
 [format]
   pretty = format:%C(bold red)%G?%C(reset) %C(bold)%s%C(reset) %C(yellow)@ %ar%C(reset) %C(blue bold)<%an>%C(reset)
 
