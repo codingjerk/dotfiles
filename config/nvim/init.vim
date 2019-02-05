@@ -38,6 +38,7 @@ augroup whitespace
 augroup END
 
 set list " show whitespace
+set listchars=tab:»-,trail:•,nbsp:_
 
 " === Gutter ===
 set number
