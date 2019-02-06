@@ -73,31 +73,6 @@ sed -e "s/__COLOR_BG__/${CJ_COLOR_BG_HEX}/g" \
 make
 cp ./dmenu "${DOTFILES_DIR}/bin"
 
-cd "${DOTFILES_DIR}/third-party/st"
-sed -e "s/__COLOR_0__/${CJ_COLOR_0_HEX}/g" \
-    -e "s/__COLOR_1__/${CJ_COLOR_1_HEX}/g" \
-    -e "s/__COLOR_2__/${CJ_COLOR_2_HEX}/g" \
-    -e "s/__COLOR_3__/${CJ_COLOR_3_HEX}/g" \
-    -e "s/__COLOR_4__/${CJ_COLOR_4_HEX}/g" \
-    -e "s/__COLOR_5__/${CJ_COLOR_5_HEX}/g" \
-    -e "s/__COLOR_6__/${CJ_COLOR_6_HEX}/g" \
-    -e "s/__COLOR_7__/${CJ_COLOR_7_HEX}/g" \
-    -e "s/__COLOR_8__/${CJ_COLOR_8_HEX}/g" \
-    -e "s/__COLOR_9__/${CJ_COLOR_9_HEX}/g" \
-    -e "s/__COLOR_A__/${CJ_COLOR_A_HEX}/g" \
-    -e "s/__COLOR_B__/${CJ_COLOR_B_HEX}/g" \
-    -e "s/__COLOR_C__/${CJ_COLOR_C_HEX}/g" \
-    -e "s/__COLOR_D__/${CJ_COLOR_D_HEX}/g" \
-    -e "s/__COLOR_E__/${CJ_COLOR_E_HEX}/g" \
-    -e "s/__COLOR_F__/${CJ_COLOR_F_HEX}/g" \
-    -e "s/__FONT__/${FONT}/g" \
-    -e "s/__FONT_SIZE__/${FONT_SIZE}/g" \
-    -e "s/__BORDER_SIZE__/$((${PANEL_SIZE} * 3 / 4))/g" \
-    config.def.h > config.h
-
-make
-cp ./st "${DOTFILES_DIR}/bin"
-
 # === Dependencies ===
 require_message() {
   echo $'\E[31m' "[warning]: $1 is required" $'\E[0m'
