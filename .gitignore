@@ -25,6 +25,9 @@ config/xfce4/terminal/terminalrc
 
 config/gtk-2.0/gtkfilechooser.ini
 
+config/KeeWeb/app.asar
+config/KeeWeb/helper
+config/KeeWeb/signatures.json
 config/KeeWeb/OfflineFiles
 config/KeeWeb/file-info.json
 config/KeeWeb/profile.json
