@@ -10,3 +10,6 @@
 [submodule "third-party/nvm"]
 	path = third-party/nvm
 	url = https://github.com/creationix/nvm
+[submodule "third-party/vim-plug"]
+	path = third-party/vim-plug
+	url = https://github.com/junegunn/vim-plug

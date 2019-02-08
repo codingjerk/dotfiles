@@ -22,10 +22,9 @@ A well-documented, well-structured dotfiles.
     - Fast syntax highlighting
     - Autosuggestions
     - Alias tip
-- Gone (pomodoro timer)
+  - Vim
+    - Vim-plug
 - dmenu
-- i3lock-color (as a linux x86_64 binary)
-- vim-plug
 
 ## TODOz
 
@@ -38,10 +37,6 @@ A well-documented, well-structured dotfiles.
       - MIT license
       - author (from git)
       - .gitignore
-  - vim
-    - vim-plug as third-party
-  - third-parties
-    - Remove gone, i3lock, vim-plug, st
   - Place [name].in and [file] files
 - X11
   - Replace dmenu ?
@@ -72,7 +67,6 @@ A well-documented, well-structured dotfiles.
     - SSH (xauthority, `authorized_keys`)
     - runit user services
   - Use `XDG_DATA_DIRS/icons` to store icons (cursor default theme index file)
-  - Vim, dmenu and gone hard-included
   - Installation script is bad
 - Fixes (easy solution)
   - /services/runit → /config/runit
