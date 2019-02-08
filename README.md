@@ -30,13 +30,32 @@ A well-documented, well-structured dotfiles.
 
 ## TODOz
 
+- CLI
+  - npm
+    - npm-init.js
+      - editorconfig
+      - package name
+      - package description
+      - MIT license
+      - author (from git)
+      - .gitignore
+  - vim
+    - vim-plug as third-party
+  - third-parties
+    - Remove gone, i3lock, vim-plug, st
+  - Place [name].in and [file] files
 - X11
+  - Replace dmenu ?
   - Font config
   - XCompose
     - Greek
     - Japanese
+      - Prefixes: j from hiragana, J for katakana
+      - Suffixes: remove
     - Math
     - Emoji
+  - Custom GTK theme
+  - Include gtk, cursor and icons as third-party
 - System
   - Custom minimal kernel config (with per-machine corrections)
     - Disable IPv6
