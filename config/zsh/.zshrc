@@ -1,3 +1,5 @@
+export TERM=xterm
+
 # === X autostart ===
 if [[ "$X_AUTOSTART" == "yes" ]] && tty | grep tty1 > /dev/null; then
   exec xinit -- vt1 :0 -allowMouseOpenFail -nolisten tcp -disableVidMode -ignoreABI -nosilk -novtswitch
@@ -181,12 +183,15 @@ setopt share_history
 unsetopt flow_control
 bindkey -e
 
+bindkey '^[[3~' delete-char
+
 bindkey '^[[Z' reverse-menu-complete
 
 bindkey '^[[1~' beginning-of-line
 bindkey '^[[4~' end-of-line
 
 bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
 
 bindkey '^[[5~' up-line-or-history
 bindkey '^[[6~' down-line-or-history

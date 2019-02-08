@@ -23,7 +23,6 @@ A well-documented, well-structured dotfiles.
     - Autosuggestions
     - Alias tip
 - Gone (pomodoro timer)
-- st
 - dmenu
 - i3lock-color (as a linux x86_64 binary)
 - vim-plug
@@ -73,7 +72,7 @@ A well-documented, well-structured dotfiles.
     - SSH (xauthority, `authorized_keys`)
     - runit user services
   - Use `XDG_DATA_DIRS/icons` to store icons (cursor default theme index file)
-  - Vim, st, dmenu and gone hard-included
+  - Vim, dmenu and gone hard-included
   - Installation script is bad
 - Fixes (easy solution)
   - /services/runit → /config/runit

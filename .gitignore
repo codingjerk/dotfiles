@@ -1,5 +1,4 @@
 bin/dmenu
-bin/st
 
 config/Electron
 config/GIMP
@@ -20,9 +19,14 @@ config/pulse
 config/transmission-remote-gtk
 config/vivaldi
 config/vlc
+config/xfce4/terminal/accels.scm
+config/xfce4/terminal/terminalrc
 
 config/gtk-2.0/gtkfilechooser.ini
 
+config/KeeWeb/app.asar
+config/KeeWeb/helper
+config/KeeWeb/signatures.json
 config/KeeWeb/OfflineFiles
 config/KeeWeb/file-info.json
 config/KeeWeb/profile.json
@@ -47,7 +51,3 @@ third-party/dmenu/dmenu
 third-party/dmenu/stest
 third-party/dmenu/config.h
 third-party/dmenu/*.o
-
-third-party/st/st
-third-party/st/config.h
-third-party/st/*.o
