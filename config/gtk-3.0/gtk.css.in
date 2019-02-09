@@ -1,0 +1,11 @@
+. "${DOTFILES_DIR}/assets/colors.sh"
+
+cat <<EOF
+VteTerminal, vte-terminal {
+    padding: 24px;
+}
+
+.chromium > menubar {
+  background-color: #${CJ_COLOR_BG_HEX};
+}
+EOF

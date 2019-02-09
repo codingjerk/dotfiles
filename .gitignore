@@ -8,6 +8,7 @@ config/darktable
 config/dconf
 config/discord
 config/enchant
+config/gtk-3.0/gtk.css
 config/inkscape
 config/insight-nodejs/insight-yo.json
 config/mimeapps.list

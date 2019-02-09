@@ -48,6 +48,7 @@ sh "${XDG_CONFIG_HOME}/i3/config.in" > "${XDG_DATA_HOME}/i3/config"
 mkdir -p "${XDG_DATA_HOME}/polybar"
 sh "${XDG_CONFIG_HOME}/polybar/config.in" > "${XDG_DATA_HOME}/polybar/config"
 sh "${XDG_CONFIG_HOME}/xfce/terminal/terminalrc.in" > "${XDG_CONFIG_HOME}/xfce/terminal/terminalrc"
+sh "${XDG_CONFIG_HOME}/gtk-3.0/gtk.css.in" > "${XDG_CONFIG_HOME}/gtk-3.0/gtk.css"
 
 # === Dirs needed to exist ===
 mkdir -p "${XDG_DATA_HOME}/gnupg"
