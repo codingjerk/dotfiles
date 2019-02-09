@@ -62,9 +62,3 @@ sed -e "s/__COLOR_BG__/${CJ_COLOR_BG_HEX}/g" \
 
 make
 cp ./dmenu "${CJ_DOTFILES}/bin"
-
-# === Void linux ===
-test -x '/bin/xlocate' && xlocate -S
-
-# === Arch linux ===
-test -x '/bin/pacman' && echo '[note]: update pkgfile database'
