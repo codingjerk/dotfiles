@@ -67,6 +67,10 @@ else
   alias la='ll -a'
 fi
 
+alias ni='npm install --save'
+alias nid='npm install --save-dev'
+alias nig='npm -g install'
+
 node() { if [[ -z ${1} ]]; then command node "${DOTFILES_DIR}/bin/node-repl"; else command node "$@"; fi }
 nvm() { source "${NVM_DIR}/nvm.sh" }
 
