@@ -48,10 +48,6 @@ mkdir -p "${XDG_DATA_HOME}/python"
 touch "${XDG_DATA_HOME}/python/history"
 mkdir -p "${XDG_DATA_HOME}/node"
 
-# === Git submodules ===
-cd ${CJ_DOTFILES}
-git submodule update --init --recursive
-
 # === Suckless ===
 . "${CJ_DOTFILES}/assets/colors.sh"
 
