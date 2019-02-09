@@ -23,6 +23,7 @@ config/vivaldi
 config/vlc
 config/xfce4/terminal/accels.scm
 config/xfce4/terminal/terminalrc
+config/zathura/zathurarc
 
 config/gtk-2.0/gtkfilechooser.ini
 

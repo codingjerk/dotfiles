@@ -1,4 +1,5 @@
 . "${CJ_DOTFILES}/assets/colors.sh"
+. "${CJ_DOTFILES}/settings.sh"
 
 cat <<EOF
 [bar/main]
@@ -11,8 +12,8 @@ cat <<EOF
   background = ${CJ_COLOR_BG_HEX}
   foreground = ${CJ_COLOR_FG_HEX}
 
-  font-0 = ${FONT}:size=${FONT_SIZE};3
-  font-1 = FontAwesome:size=${FONT_SIZE};2
+  font-0 = ${CJ_MONOFONT}:size=${CJ_MONOFONT_SIZE};3
+  font-1 = FontAwesome:size=${CJ_MONOFONT_SIZE};2
 
   modules-left =
   modules-center = wm

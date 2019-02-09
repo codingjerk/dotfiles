@@ -62,4 +62,3 @@ A well-documented, well-structured dotfiles.
   - /services/runit → /config/runit
   - Rename environment variables
     - `X_AUTOSTART -> CJ_X_AUTOSTART`
-    - `FONT → CJ_X_MONOFONT`

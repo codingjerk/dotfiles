@@ -1,4 +1,5 @@
 . "${CJ_DOTFILES}/assets/colors.sh"
+. "${CJ_DOTFILES}/settings.sh"
 
 # === Functions ===
 param() {
@@ -24,8 +25,8 @@ param WindowBorder dword:00000010
 param HideMousePtr dword:00000001
 param WarnOnClose dword:00000000
 
-param Font '"Fira Mono"'
-param FontHeight dword:0000000c
+param Font "\"${CJ_MONOFONT}\""
+param FontHeight dword:$(printf '%08x' "${CJ_MONOFONT_SIZE}")
 
 # === Colors ===
 # Foreground / Background

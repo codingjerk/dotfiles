@@ -6,8 +6,8 @@ export CJ_DOTFILES="${PWD}/$(dirname "$(dirname "$0")")"
 # === Settings ===
 if ! [ -e "${CJ_DOTFILES}/settings.sh" ]; then
 cat <<EOF > "${CJ_DOTFILES}/settings.sh"
-export FONT='Fira Mono'
-export FONT_SIZE=12
+export CJ_MONOFONT='Fira Mono'
+export CJ_MONOFONT_SIZE=12
 export PANEL_SIZE=32
 export X_PRIMARY_MONITOR=DRY
 export X_SECONDARY_MONITOR=DIY
@@ -49,6 +49,7 @@ mkdir -p "${XDG_DATA_HOME}/polybar"
 sh "${XDG_CONFIG_HOME}/polybar/config.in" > "${XDG_DATA_HOME}/polybar/config"
 sh "${XDG_CONFIG_HOME}/xfce/terminal/terminalrc.in" > "${XDG_CONFIG_HOME}/xfce/terminal/terminalrc"
 sh "${XDG_CONFIG_HOME}/gtk-3.0/gtk.css.in" > "${XDG_CONFIG_HOME}/gtk-3.0/gtk.css"
+sh "${XDG_CONFIG_HOME}/zathura/zathurarc.in" > "${XDG_CONFIG_HOME}/zathura/zathurarc"
 
 # === Dirs needed to exist ===
 mkdir -p "${XDG_DATA_HOME}/gnupg"
@@ -68,8 +69,8 @@ cd "${CJ_DOTFILES}/third-party/dmenu"
 sed -e "s/__COLOR_BG__/${CJ_COLOR_BG_HEX}/g" \
     -e "s/__COLOR_FG__/${CJ_COLOR_FG_HEX}/g" \
     -e "s/__COLOR_AC__/${CJ_COLOR_4_HEX}/g" \
-    -e "s/__FONT__/${FONT}/g" \
-    -e "s/__FONT_SIZE__/${FONT_SIZE}/g" \
+    -e "s/__FONT__/${CJ_MONOFONT}/g" \
+    -e "s/__FONT_SIZE__/${CJ_MONOFONT_SIZE}/g" \
     -e "s/__LINE_HEIGHT__/$((${PANEL_SIZE} * 3 / 2))/g" \
     config.def.h > config.h
 
