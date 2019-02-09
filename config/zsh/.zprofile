@@ -87,4 +87,4 @@ if [[ "${TERM}" = 'linux' ]]; then
 fi
 
 # === Path ===
-export PATH="${DOTFILES_DIR}/bin:/bin:${CARGO_HOME}/bin:${DOTFILES_DIR}/third-party/gone"
+export PATH="${DOTFILES_DIR}/bin:/bin:${CARGO_HOME}/bin"

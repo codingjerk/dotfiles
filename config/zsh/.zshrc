@@ -72,7 +72,6 @@ alias nid='npm install --save-dev'
 alias nig='npm -g install'
 
 node() { if [[ -z ${1} ]]; then command node "${DOTFILES_DIR}/bin/node-repl"; else command node "$@"; fi }
-nvm() { source "${NVM_DIR}/nvm.sh" }
 
 alias tmux='tmux -f "${XDG_CONFIG_HOME}/tmux/config"'
 alias ta='tmux attach'
@@ -142,7 +141,7 @@ setopt complete_in_word
 setopt always_to_end
 
 zmodload -i zsh/complist
-autoload -U compinit
+autoload -Uz compinit
 compinit -C -i -d "${ZSH_COMPDUMP}"
 
 zstyle ':completion:*' completer _complete _expand
@@ -207,7 +206,7 @@ bindkey '^[[1;5C' forward-word
 
 bindkey -M menuselect '^^' accept-and-menu-complete
 
-autoload -U edit-command-line
+autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^S' edit-command-line
 
@@ -250,7 +249,7 @@ bindkey '^[^[' __sudo-buffer-or-last
 # === Prompt ===
 setopt prompt_subst
 
-autoload -U colors
+autoload -Uz colors
 colors
 
 if uname -m | grep i686 > /dev/null; then
@@ -376,6 +375,8 @@ source "${DOTFILES_DIR}/third-party/zsh/fast-syntax-highlighting/fast-syntax-hig
 
 source "${DOTFILES_DIR}/third-party/zsh/alias-tips/alias-tips.plugin.zsh"
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT=$'\E[31mAlias tip: '
+
+source "${NVM_DIR}/nvm.sh" --no-use
 
 # === Void linux ===
 if (( $+commands[xbps-install] )); then
