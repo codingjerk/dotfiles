@@ -5,11 +5,6 @@ call plug#begin('$XDG_DATA_HOME/nvim/plug')
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
 
-" Tab cycle completion
-inoremap <expr><Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <C-Space> <C-n>
-
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 set hidden
 set splitbelow
@@ -25,6 +20,8 @@ let g:LanguageClient_diagnosticsEnable = 1
 autocmd CompleteDone * silent! pclose!
 
 Plug 'editorconfig/editorconfig-vim'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 
 call plug#end()
 
@@ -114,10 +111,30 @@ endif
 map ` <nop>
 
 " = Indentation =
-vnoremap < <gv
-vnoremap > >gv
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
+
+nnoremap <Tab> v><Esc>
+nnoremap <S-Tab> v<<Esc>
+
+" = Completion =
+imap <expr><Tab> pumvisible()
+  \ ? "\<C-n>"
+  \ : neosnippet#expandable_or_jumpable()
+  \ ? "\<Plug>(neosnippet_expand_or_jump)"
+  \ : "\<Tab>"
+
+smap <expr><Tab> neosnippet#expandable_or_jumpable()
+  \ ? "\<Plug>(neosnippet_expand_or_jump)"
+  \ : "\<Tab>"
+
+imap <expr><S-Tab> pumvisible()
+  \ ? "\<C-p>"
+  \ : "\<C-o>:<<CR>"
+
+imap <expr><CR> neosnippet#expandable_or_jumpable()
+  \ ? "\<Plug>(neosnippet_expand_or_jump)"
+  \ : "\<CR>"
 
 " === Highlighting ===
 set t_Co=16
