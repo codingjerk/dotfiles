@@ -24,6 +24,8 @@ let g:LanguageClient_serverCommands = {
 let g:LanguageClient_diagnosticsEnable = 1
 autocmd CompleteDone * silent! pclose!
 
+Plug 'editorconfig/editorconfig-vim'
+
 call plug#end()
 
 " === Timeouts ===
