@@ -9,6 +9,7 @@ config/dconf
 config/discord
 config/enchant
 config/inkscape
+config/insight-nodejs/insight-yo.json
 config/mimeapps.list
 config/mpd/bakoga.conf
 config/neofetch
