@@ -40,7 +40,6 @@ A well-documented, well-structured dotfiles.
   - Place [name].in and [file] files
 - X11
   - Replace dmenu ?
-  - Font config
   - XCompose
     - Greek
     - Japanese
