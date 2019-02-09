@@ -8,7 +8,6 @@ if ! [ -e "${CJ_DOTFILES}/settings.sh" ]; then
 cat <<EOF > "${CJ_DOTFILES}/settings.sh"
 export CJ_MONOFONT='Fira Mono'
 export CJ_MONOFONT_SIZE=12
-export PANEL_SIZE=32
 export X_PRIMARY_MONITOR=DRY
 export X_SECONDARY_MONITOR=DIY
 export X_AUTOSTART=yes
@@ -71,7 +70,7 @@ sed -e "s/__COLOR_BG__/${CJ_COLOR_BG_HEX}/g" \
     -e "s/__COLOR_AC__/${CJ_COLOR_4_HEX}/g" \
     -e "s/__FONT__/${CJ_MONOFONT}/g" \
     -e "s/__FONT_SIZE__/${CJ_MONOFONT_SIZE}/g" \
-    -e "s/__LINE_HEIGHT__/$((${PANEL_SIZE} * 3 / 2))/g" \
+    -e "s/__LINE_HEIGHT__/$((${CJ_MONOFONT_SIZE} * 4))/g" \
     config.def.h > config.h
 
 make

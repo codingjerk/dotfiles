@@ -4,7 +4,7 @@
 cat <<EOF
 [bar/main]
   monitor = \${env:MONITOR}
-  height = ${PANEL_SIZE}
+  height = $((${CJ_MONOFONT_SIZE} * 8 / 3))
   padding = 2
   module-margin = 1
   line-size = 2
