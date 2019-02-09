@@ -29,14 +29,6 @@ A well-documented, well-structured dotfiles.
 ## TODOz
 
 - CLI
-  - npm
-    - npm-init.js
-      - editorconfig
-      - package name
-      - package description
-      - MIT license
-      - author (from git)
-      - .gitignore
   - Place [name].in and [file] files
 - X11
   - Replace dmenu ?
