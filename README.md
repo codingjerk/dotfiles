@@ -60,5 +60,3 @@ A well-documented, well-structured dotfiles.
   - Installation script is bad
 - Fixes (easy solution)
   - /services/runit → /config/runit
-  - Rename environment variables
-    - `X_AUTOSTART -> CJ_X_AUTOSTART`

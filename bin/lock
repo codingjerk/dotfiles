@@ -1,9 +1,10 @@
 #!/usr/bin/env sh
 
 . "${CJ_DOTFILES}/assets/colors.sh"
+. "${CJ_DOTFILES}/settings.sh"
 
 exec i3lock \
-  --image "${X_WALLPAPER}" \
+  --image "${CJ_WALLPAPER}" \
   --no-unlock-indicator \
   --force-clock \
   --screen=1 \

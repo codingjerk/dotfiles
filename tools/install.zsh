@@ -8,10 +8,11 @@ if ! [ -e "${CJ_DOTFILES}/settings.sh" ]; then
 cat <<EOF > "${CJ_DOTFILES}/settings.sh"
 export CJ_MONOFONT='Fira Mono'
 export CJ_MONOFONT_SIZE=12
-export X_PRIMARY_MONITOR=DRY
-export X_SECONDARY_MONITOR=DIY
-export X_AUTOSTART=yes
-export X_WALLPAPER='${CJ_DOTFILES}/assets/wallpaper-RES.png'
+
+export CJ_PRIMARY_MONITOR=DRY
+export CJ_SECONDARY_MONITOR=DIY
+export CJ_X_AUTOSTART=yes
+export CJ_WALLPAPER='${CJ_DOTFILES}/assets/wallpaper-RES.png'
 EOF
 fi
 
@@ -19,19 +20,9 @@ echo 'Edit settings file and press return...'
 read __UNUSED_ANSWER
 . "${CJ_DOTFILES}/settings.sh"
 
-# === .zshenv ===
-cat <<EOF > "${HOME}/.zshenv"
-export CJ_DOTFILES='${CJ_DOTFILES}'
-export ZDOTDIR='${CJ_DOTFILES}/config/zsh'
-
-export X_AUTOSTART='${X_AUTOSTART}'
-export X_WALLPAPER='${X_WALLPAPER}'
-
-export X_PRIMARY_MONITOR='${X_PRIMARY_MONITOR}'
-export X_SECONDARY_MONITOR='${X_SECONDARY_MONITOR}'
-EOF
-
 # === Dynamic (.in) configs ===
+sh "${XDG_CONFIG_HOME}/zsh/.zshenv.in" > "${HOME}/.zshenv"
+
 mkdir -p "$(dirname "${LESSKEY}")"
 lesskey -o "${LESSKEY}" "${XDG_CONFIG_HOME}/less/lesskey.in"
 
