@@ -23,6 +23,7 @@ require binary "fzf" fzf
 require binary "fd" fd
 
 require python_lib "psutil (Python library)" psutil
+require python_lib "neovim (Python library)" neovim
 
 # === Optional dependencies ===
 recommend consolefont "Terminus (console font)" "ter-i20n"

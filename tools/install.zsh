@@ -1,54 +1,48 @@
-# === Basics ===
-export CJ_DOTFILES="${PWD}/$(dirname "$(dirname "$0")")"
+set -e -o pipefail
+export CJ_DOTFILES="${0:a:h:h}"
 
-. "${CJ_DOTFILES}/config/zsh/.zprofile"
+# === Git submodules ===
+cd "${CJ_DOTFILES}"
+git submodule update --init
 
 # === Settings ===
 if ! [ -e "${CJ_DOTFILES}/settings.sh" ]; then
-cat <<EOF > "${CJ_DOTFILES}/settings.sh"
-export CJ_MONOFONT='Fira Mono'
-export CJ_MONOFONT_SIZE=12
-
-export CJ_PRIMARY_MONITOR=DRY
-export CJ_SECONDARY_MONITOR=DIY
-export CJ_X_AUTOSTART=yes
-export CJ_WALLPAPER='${CJ_DOTFILES}/assets/wallpaper-RES.png'
-EOF
+  "${CJ_DOTFILES}/generate-settings.zsh" > "${CJ_DOTFILES}/settings.sh"
 fi
 
-echo 'Edit settings file and press return...'
-read __UNUSED_ANSWER
-. "${CJ_DOTFILES}/settings.sh"
+# === Ensure directories exist ===
+. "${CJ_DOTFILES}/config/zsh/.zprofile"
 
-# === Dynamic (.in) configs ===
-sh "${XDG_CONFIG_HOME}/zsh/.zshenv.in" > "${HOME}/.zshenv"
-
-mkdir -p "$(dirname "${LESSKEY}")"
-lesskey -o "${LESSKEY}" "${XDG_CONFIG_HOME}/less/lesskey.in"
-
-chmod -w "${XDG_CONFIG_HOME}/htop/htoprc"
-chmod -w "${XDG_CONFIG_HOME}/KeeWeb/app-settings.json"
-
+mkdir -p "${LESSKEY:h}"
 mkdir -p "${TRANSMISSION_HOME}"
-sh "${XDG_CONFIG_HOME}/transmission/settings.json.in" > "${TRANSMISSION_HOME}/settings.json"
 mkdir -p "${XDG_DATA_HOME}/minidlna"
-sh "${XDG_CONFIG_HOME}/minidlna/minidlna.conf.in" > "${XDG_DATA_HOME}/minidlna/minidlna.conf"
 mkdir -p "${XDG_DATA_HOME}/i3"
-sh "${XDG_CONFIG_HOME}/i3/config.in" > "${XDG_DATA_HOME}/i3/config"
 mkdir -p "${XDG_DATA_HOME}/polybar"
-sh "${XDG_CONFIG_HOME}/polybar/config.in" > "${XDG_DATA_HOME}/polybar/config"
-sh "${XDG_CONFIG_HOME}/xfce/terminal/terminalrc.in" > "${XDG_CONFIG_HOME}/xfce/terminal/terminalrc"
-sh "${XDG_CONFIG_HOME}/gtk-3.0/gtk.css.in" > "${XDG_CONFIG_HOME}/gtk-3.0/gtk.css"
-sh "${XDG_CONFIG_HOME}/zathura/zathurarc.in" > "${XDG_CONFIG_HOME}/zathura/zathurarc"
 
-# === Dirs needed to exist ===
 mkdir -p "${XDG_DATA_HOME}/gnupg"
 mkdir -p "${XDG_DATA_HOME}/zsh"
 mkdir -p "${XDG_DATA_HOME}/python"
-touch "${XDG_DATA_HOME}/python/history"
 mkdir -p "${XDG_DATA_HOME}/node"
 
-# === Suckless ===
+touch "${XDG_DATA_HOME}/python/history"
+
+# === Dynamic (.in) configs ===
+lesskey -o "${LESSKEY}" "${XDG_CONFIG_HOME}/less/lesskey.in"
+sh "${XDG_CONFIG_HOME}/zsh/.zshenv.in" > "${HOME}/.zshenv"
+sh "${XDG_CONFIG_HOME}/transmission/settings.json.in" > "${TRANSMISSION_HOME}/settings.json"
+sh "${XDG_CONFIG_HOME}/minidlna/minidlna.conf.in" > "${XDG_DATA_HOME}/minidlna/minidlna.conf"
+sh "${XDG_CONFIG_HOME}/i3/config.in" > "${XDG_DATA_HOME}/i3/config"
+sh "${XDG_CONFIG_HOME}/polybar/config.in" > "${XDG_DATA_HOME}/polybar/config"
+sh "${XDG_CONFIG_HOME}/xfce4/terminal/terminalrc.in" > "${XDG_CONFIG_HOME}/xfce4/terminal/terminalrc"
+sh "${XDG_CONFIG_HOME}/gtk-3.0/gtk.css.in" > "${XDG_CONFIG_HOME}/gtk-3.0/gtk.css"
+sh "${XDG_CONFIG_HOME}/zathura/zathurarc.in" > "${XDG_CONFIG_HOME}/zathura/zathurarc"
+
+# === Set access rights ===
+chmod -w "${XDG_CONFIG_HOME}/htop/htoprc"
+chmod -w "${XDG_CONFIG_HOME}/KeeWeb/app-settings.json"
+
+# === Build suckless ===
+. "${CJ_DOTFILES}/settings.sh"
 . "${CJ_DOTFILES}/assets/colors.sh"
 
 cd "${CJ_DOTFILES}/third-party/dmenu"
@@ -60,5 +54,5 @@ sed -e "s/__COLOR_BG__/${CJ_COLOR_BG_HEX}/g" \
     -e "s/__LINE_HEIGHT__/$((${CJ_MONOFONT_SIZE} * 4))/g" \
     config.def.h > config.h
 
-make
+make dmenu CC='cc -w' > /dev/null
 cp ./dmenu "${CJ_DOTFILES}/bin"

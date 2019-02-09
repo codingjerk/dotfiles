@@ -4,7 +4,7 @@ A well-documented, well-structured dotfiles.
 
 ## Installation
 
-1. `git clone --recursive-submodules`
+1. `git clone`
 1. `zsh dotfiles/tools/check-dependencies.zsh`
 1. `zsh dotfiles/tools/install.zsh`
 1. (optional) enable user services for server (dotfiles/services)
@@ -57,6 +57,5 @@ A well-documented, well-structured dotfiles.
     - SSH (xauthority, `authorized_keys`)
     - runit user services
   - Use `XDG_DATA_DIRS/icons` to store icons (cursor default theme index file)
-  - Installation script is bad
 - Fixes (easy solution)
   - /services/runit → /config/runit
