@@ -81,7 +81,7 @@ export NVM_DIR="${DOTFILES_DIR}/third-party/nvm"
 
 # === Autolaod ===
 if [[ "${TERM}" = 'linux' ]]; then
-  sh "${DOTFILES_DIR}/tools/tty-colors.sh"
+  zsh "${DOTFILES_DIR}/tools/tty-colors.zsh"
   setfont '/usr/share/kbd/consolefonts/ter-i20n.psf.gz'
   clear
 fi
