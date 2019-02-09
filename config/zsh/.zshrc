@@ -67,9 +67,13 @@ else
   alias la='ll -a'
 fi
 
-alias ni='npm install --save'
-alias nid='npm install --save-dev'
-alias nig='npm -g install'
+alias ni='npm install --prefer-offline --save'
+alias nid='npm install --prefer-offline --save-dev'
+alias nig='npm install -g --prefer-offline'
+alias nit='npm init -y'
+alias ns='npm s'
+alias nf='npm s'
+alias nt='npm t -s'
 
 node() { if [[ -z ${1} ]]; then command node "${DOTFILES_DIR}/bin/node-repl"; else command node "$@"; fi }
 
