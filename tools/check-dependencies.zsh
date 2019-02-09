@@ -1,10 +1,10 @@
 # === Text functions ===
 message() { echo "\033[${1}m[$2]: $3 is $4\033[0m" }
-require_message() { message 31 error $1 required }
-recommend_message() { message 33 warning $1 recommended }
+require_message() { message 31 error "$1" required }
+recommend_message() { message 33 warning "$1" recommended }
 
 # === Test functions ===
-binary() { (( $+commands[$1] )) }
+binary() { which "$1" > /dev/null }
 python_lib() { python -c "import $1" 2> /dev/null }
 consolefont() { test -e "/usr/share/kbd/consolefonts/$1.psf.gz" }
 font() { fc-list | grep -i "$1" > /dev/null 2> /dev/null }
