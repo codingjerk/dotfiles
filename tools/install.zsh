@@ -1,29 +1,29 @@
 # === Basics ===
-export DOTFILES_DIR="${PWD}/$(dirname "$(dirname "$0")")"
+export CJ_DOTFILES="${PWD}/$(dirname "$(dirname "$0")")"
 
-. "${DOTFILES_DIR}/config/zsh/.zprofile"
+. "${CJ_DOTFILES}/config/zsh/.zprofile"
 
 # === Settings ===
-if ! [ -e "${DOTFILES_DIR}/settings.sh" ]; then
-cat <<EOF > "${DOTFILES_DIR}/settings.sh"
+if ! [ -e "${CJ_DOTFILES}/settings.sh" ]; then
+cat <<EOF > "${CJ_DOTFILES}/settings.sh"
 export FONT='Fira Mono'
 export FONT_SIZE=12
 export PANEL_SIZE=32
 export X_PRIMARY_MONITOR=DRY
 export X_SECONDARY_MONITOR=DIY
 export X_AUTOSTART=yes
-export X_WALLPAPER='${DOTFILES_DIR}/assets/wallpaper-RES.png'
+export X_WALLPAPER='${CJ_DOTFILES}/assets/wallpaper-RES.png'
 EOF
 fi
 
 echo 'Edit settings file and press return...'
 read __UNUSED_ANSWER
-. "${DOTFILES_DIR}/settings.sh"
+. "${CJ_DOTFILES}/settings.sh"
 
 # === .zshenv ===
 cat <<EOF > "${HOME}/.zshenv"
-export DOTFILES_DIR='${DOTFILES_DIR}'
-export ZDOTDIR='${DOTFILES_DIR}/config/zsh'
+export CJ_DOTFILES='${CJ_DOTFILES}'
+export ZDOTDIR='${CJ_DOTFILES}/config/zsh'
 
 export X_AUTOSTART='${X_AUTOSTART}'
 export X_WALLPAPER='${X_WALLPAPER}'
@@ -58,13 +58,13 @@ touch "${XDG_DATA_HOME}/python/history"
 mkdir -p "${XDG_DATA_HOME}/node"
 
 # === Git submodules ===
-cd ${DOTFILES_DIR}
+cd ${CJ_DOTFILES}
 git submodule update --init --recursive
 
 # === Suckless ===
-. "${DOTFILES_DIR}/assets/colors.sh"
+. "${CJ_DOTFILES}/assets/colors.sh"
 
-cd "${DOTFILES_DIR}/third-party/dmenu"
+cd "${CJ_DOTFILES}/third-party/dmenu"
 sed -e "s/__COLOR_BG__/${CJ_COLOR_BG_HEX}/g" \
     -e "s/__COLOR_FG__/${CJ_COLOR_FG_HEX}/g" \
     -e "s/__COLOR_AC__/${CJ_COLOR_4_HEX}/g" \
@@ -74,7 +74,7 @@ sed -e "s/__COLOR_BG__/${CJ_COLOR_BG_HEX}/g" \
     config.def.h > config.h
 
 make
-cp ./dmenu "${DOTFILES_DIR}/bin"
+cp ./dmenu "${CJ_DOTFILES}/bin"
 
 # === Void linux ===
 test -x '/bin/xlocate' && xlocate -S

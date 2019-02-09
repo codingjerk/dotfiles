@@ -39,7 +39,6 @@ A well-documented, well-structured dotfiles.
       - Suffixes: remove
     - Math
     - Emoji
-  - Custom GTK theme
   - Include gtk, cursor and icons as third-party
 - System
   - Custom minimal kernel config (with per-machine corrections)
@@ -62,6 +61,5 @@ A well-documented, well-structured dotfiles.
 - Fixes (easy solution)
   - /services/runit → /config/runit
   - Rename environment variables
-    - `DOTFILES_DIR -> CJ_DOTFILES_DIR / CJ_DOTFILES / CJ_DOTS`
     - `X_AUTOSTART -> CJ_X_AUTOSTART`
     - `FONT → CJ_X_MONOFONT`

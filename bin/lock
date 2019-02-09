@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-. "${DOTFILES_DIR}/assets/colors.sh"
+. "${CJ_DOTFILES}/assets/colors.sh"
 
 exec i3lock \
   --image "${X_WALLPAPER}" \

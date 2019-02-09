@@ -1,5 +1,5 @@
 " === Plugins ===
-source $DOTFILES_DIR/third-party/vim-plug/plug.vim
+source $CJ_DOTFILES/third-party/vim-plug/plug.vim
 call plug#begin('$XDG_DATA_HOME/nvim/plug')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

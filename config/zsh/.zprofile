@@ -35,10 +35,10 @@ LS_COLORS+=':pi=30;46:so=30;46'
 export LS_COLORS
 
 # === XDG Base Directory Specification ===
-export XDG_CONFIG_HOME="${DOTFILES_DIR}/config"
-export XDG_DATA_HOME="${DOTFILES_DIR}/share"
-export XDG_CACHE_HOME="${DOTFILES_DIR}/cache"
-export XDG_RUNTIME_DIR="${DOTFILES_DIR}/runtime"
+export XDG_CONFIG_HOME="${CJ_DOTFILES}/config"
+export XDG_DATA_HOME="${CJ_DOTFILES}/share"
+export XDG_CACHE_HOME="${CJ_DOTFILES}/cache"
+export XDG_RUNTIME_DIR="${CJ_DOTFILES}/runtime"
 
 # === XDG Fixes ===
 export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
@@ -77,14 +77,14 @@ export GTK_IM_MODULE='xim'
 
 export NODE_REPL_HISTORY="${XDG_DATA_HOME}/node/history"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
-export NVM_DIR="${DOTFILES_DIR}/third-party/nvm"
+export NVM_DIR="${CJ_DOTFILES}/third-party/nvm"
 
 # === Autolaod ===
 if [[ "${TERM}" = 'linux' ]]; then
-  zsh "${DOTFILES_DIR}/tools/tty-colors.zsh"
+  zsh "${CJ_DOTFILES}/tools/tty-colors.zsh"
   setfont '/usr/share/kbd/consolefonts/ter-i20n.psf.gz'
   clear
 fi
 
 # === Path ===
-export PATH="${DOTFILES_DIR}/bin:/bin:${CARGO_HOME}/bin"
+export PATH="${CJ_DOTFILES}/bin:/bin:${CARGO_HOME}/bin"

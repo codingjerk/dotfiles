@@ -1,4 +1,4 @@
-. "${DOTFILES_DIR}/assets/colors.sh"
+. "${CJ_DOTFILES}/assets/colors.sh"
 
 cat <<EOF
 VteTerminal, vte-terminal {

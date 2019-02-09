@@ -1,4 +1,4 @@
-. "${DOTFILES_DIR}/assets/colors.sh"
+. "${CJ_DOTFILES}/assets/colors.sh"
 
 printf '\033]P0%s' "${CJ_COLOR_0_HEX}"
 printf '\033]P1%s' "${CJ_COLOR_1_HEX}"

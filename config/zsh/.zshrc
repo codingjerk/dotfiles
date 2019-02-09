@@ -6,7 +6,7 @@ if [[ "$X_AUTOSTART" == "yes" ]] && tty | grep tty1 > /dev/null; then
 fi
 
 if [[ -z "$SUDO_UID" ]]; then
-  python "${DOTFILES_DIR}/tools/motd.py"
+  python "${CJ_DOTFILES}/tools/motd.py"
 fi
 
 # === Misc options ===
@@ -75,7 +75,7 @@ alias ns='npm s'
 alias nf='npm s'
 alias nt='npm t -s'
 
-node() { if [[ -z ${1} ]]; then command node "${DOTFILES_DIR}/bin/node-repl"; else command node "$@"; fi }
+node() { if [[ -z ${1} ]]; then command node "${CJ_DOTFILES}/bin/node-repl"; else command node "$@"; fi }
 
 alias tmux='tmux -f "${XDG_CONFIG_HOME}/tmux/config"'
 alias ta='tmux attach'
@@ -371,13 +371,13 @@ add-zsh-hook preexec __ctr-update-start
 add-zsh-hook precmd  __ctr-update-total
 
 # === Third-party additions ===
-source "${DOTFILES_DIR}/third-party/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "${CJ_DOTFILES}/third-party/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 ZSH_AUTOSUGGEST_USE_ASYNC='y'
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=0,bold'
 
-source "${DOTFILES_DIR}/third-party/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+source "${CJ_DOTFILES}/third-party/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 
-source "${DOTFILES_DIR}/third-party/zsh/alias-tips/alias-tips.plugin.zsh"
+source "${CJ_DOTFILES}/third-party/zsh/alias-tips/alias-tips.plugin.zsh"
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT=$'\E[31mAlias tip: '
 
 source "${NVM_DIR}/nvm.sh" --no-use
