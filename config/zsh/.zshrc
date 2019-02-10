@@ -15,7 +15,7 @@ if [[ -o login ]]; then
   fi
 
   if [[ -z "$SUDO_UID" ]]; then
-    python "${CJ_DOTFILES}/tools/motd.py"
+    python3 "${CJ_DOTFILES}/tools/motd.py"
   fi
 fi
 
@@ -224,26 +224,22 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^S' edit-command-line
 
-__fzf-sized() {
-  fzf --height="$(( ${LINES} * 2 / 3 ))" "$@"
-}
-
 __fzf-history() {
-  LBUFFER="$(fc -ln 0 | __fzf-sized --tac --no-sort -q "${LBUFFER}")"
+  LBUFFER="$(fc -ln 0 | fzf --tac --no-sort -q "${LBUFFER}")"
   zle redisplay
 }
 zle -N __fzf-history
 bindkey '^R' __fzf-history
 
 __fzf-open() {
-  ${=FZF_DEFAULT_COMMAND} | __fzf-sized --multi | xargs -r "${=EDITOR}"
+  ${=FZF_DEFAULT_COMMAND} | fzf --print0 --multi | xargs -0 -r "${=EDITOR}"
   zle redisplay
 }
 zle -N __fzf-open
 bindkey '^O' __fzf-open
 
 __fzf-go() {
-  local dir="$( ${=FZF_DEFAULT_COMMAND//-t f -t l -S-10M/-t d} | __fzf-sized )"
+  local dir="$( ${=FZF_DEFAULT_COMMAND//-t f -t l -S-10M/-t d} | fzf)"
   [[ "$dir" = '' ]] || cd "$dir"
   zle reset-prompt
 }
