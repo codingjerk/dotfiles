@@ -5,7 +5,7 @@ recommend_message() { message 33 warning "$1" recommended }
 
 # === Test functions ===
 binary() { which "$1" > /dev/null }
-python_lib() { python -c "import $1" 2> /dev/null }
+python3_lib() { python3 -c "import $1" 2> /dev/null }
 consolefont() { test -e "/usr/share/kbd/consolefonts/$1.psf.gz" }
 font() { fc-list | grep -i "$1" > /dev/null 2> /dev/null }
 theme() { false }
@@ -22,8 +22,8 @@ require binary "Python (3.x)" python3
 require binary "fzf" fzf
 require binary "fd" fd
 
-require python_lib "psutil (Python library)" psutil
-require python_lib "neovim (Python library)" neovim
+require python3_lib "psutil (Python library)" psutil
+require python3_lib "neovim (Python library)" neovim
 
 # === Optional dependencies ===
 recommend consolefont "Terminus (console font)" "ter-i20n"
