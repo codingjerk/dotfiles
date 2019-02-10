@@ -18,7 +18,16 @@
 
 [diff]
   context = 1
-  tool = vimdiff
+  tool = neovimdiff
+
+[difftool "neovimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE
+
+[merge]
+  tool = neovimmerge
+
+[mergetool "neovimmerge"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [interactive]
   singlekey = true

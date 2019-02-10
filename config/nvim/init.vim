@@ -44,6 +44,9 @@ set listchars=tab:»-,trail:•,nbsp:_
 set number
 set numberwidth=1
 
+" === Diff ===
+set diffopt=filler,context:4,foldcolumn:0
+
 " === Search ===
 set hlsearch
 set incsearch
