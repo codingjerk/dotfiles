@@ -5,8 +5,17 @@ if [[ "${CJ_X_AUTOSTART}" == "yes" ]] && tty | command grep tty1 > /dev/null; th
   exec xinit -- vt1 :0 -allowMouseOpenFail -nolisten tcp -disableVidMode -ignoreABI -nosilk -novtswitch
 fi
 
-if [[ -z "$SUDO_UID" ]]; then
-  python "${CJ_DOTFILES}/tools/motd.py"
+# === Autoload ===
+if [[ -o login ]]; then
+  if [[ "${TERM}" = 'linux' ]]; then
+    zsh "${CJ_DOTFILES}/tools/tty-colors.zsh"
+    setfont '/usr/share/kbd/consolefonts/ter-i20n.psf.gz'
+    clear
+  fi
+
+  if [[ -z "$SUDO_UID" ]]; then
+    python "${CJ_DOTFILES}/tools/motd.py"
+  fi
 fi
 
 # === Misc options ===

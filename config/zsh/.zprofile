@@ -79,12 +79,5 @@ export NODE_REPL_HISTORY="${XDG_DATA_HOME}/node/history"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 export NVM_DIR="${CJ_DOTFILES}/third-party/nvm"
 
-# === Autolaod ===
-if [[ "${TERM}" = 'linux' ]]; then
-  zsh "${CJ_DOTFILES}/tools/tty-colors.zsh"
-  setfont '/usr/share/kbd/consolefonts/ter-i20n.psf.gz'
-  clear
-fi
-
 # === Path ===
 export PATH="${CJ_DOTFILES}/bin:${CARGO_HOME}/bin:${PATH}"
