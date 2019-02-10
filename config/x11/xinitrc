@@ -1,8 +1,3 @@
-MONITOR="${CJ_PRIMARY_MONITOR}" polybar main &
-[ "${CJ_SECONDARY_MONITOR}" != "${CJ_PRIMARY_MONITOR}" ] && MONITOR="${CJ_SECONDARY_MONITOR}" polybar main &
-
-(sleep 0.5; pkill -USR1 polybar) &
-
 feh --no-fehbg --bg-tile "${CJ_WALLPAPER}"
 
 pulseaudio --start

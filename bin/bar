@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+MONITOR="${CJ_PRIMARY_MONITOR}" polybar main &
+if [ "${CJ_SECONDARY_MONITOR}" != "${CJ_PRIMARY_MONITOR}" ]; then
+  MONITOR="${CJ_SECONDARY_MONITOR}" polybar main &
+fi
+
+disown

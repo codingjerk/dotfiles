@@ -3,6 +3,8 @@
 
 cat <<EOF
 # === Options ===
+exec --no-startup-id bar
+
 set \$mod Mod1
 
 set \$ws1 "1"
