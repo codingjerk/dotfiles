@@ -64,7 +64,6 @@ export VIMINIT=":source ${XDG_CONFIG_HOME}/nvim/init.vim"
 
 export XLOCATE_GIT="${XDG_CACHE_HOME}/xlocate"
 
-export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zsh"
 export HISTFILE="${XDG_DATA_HOME}/zsh/history"
 
 export XINITRC="${XDG_CONFIG_HOME}/x11/xinitrc"

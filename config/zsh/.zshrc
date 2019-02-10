@@ -147,7 +147,6 @@ pp() {
 
 # === Completion ===
 LISTMAX=1000
-ZSH_COMPDUMP="${ZSH_CACHE_DIR}/compdump"
 
 setopt glob_dots
 setopt hist_verify
@@ -156,7 +155,7 @@ setopt always_to_end
 
 zmodload -i zsh/complist
 autoload -Uz compinit
-compinit -C -i -d "${ZSH_COMPDUMP}"
+compinit -C -i -d "${XDG_CACHE_HOME}/zsh/compdump"
 
 zstyle ':completion:*' completer _complete _expand
 zstyle ':completion:*' menu yes select
@@ -166,7 +165,7 @@ zstyle ':completion:*' list-dirs-first true
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache true
-zstyle ':completion:*' cache-path "${ZSH_CACHE_DIR}"
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME}/zsh"
 
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*:processes' command "ps -u '${USER}' -o pid,user,args -w -w"
