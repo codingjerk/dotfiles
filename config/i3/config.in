@@ -109,8 +109,8 @@ bindsym \$mod+Shift+8 move container to workspace \$ws9
 bindsym \$mod+Shift+9 move container to workspace \$ws10
 bindsym \$mod+Shift+0 move container to workspace \$ws11
 
-bindsym \$mod+r exec --no-startup-id run_menu
-bindsym \$mod+j exec --no-startup-id xfce4-terminal
+bindsym \$mod+r mode "\$run_mode"
+bindsym \$mod+j exec --no-startup-id "\$TERMINAL"
 bindsym \$mod+l exec --no-startup-id lock
 
 bindsym Print         exec --no-startup-id "screenshot monitor"
@@ -119,4 +119,15 @@ bindsym Shift+Print   exec --no-startup-id "screenshot selection"
 
 bindsym \$mod+Shift+r restart
 bindsym \$mod+Shift+x exit
+
+set \$run_mode b: Browser | p: Private | k: KeeWeb | z: Zathura
+mode "\$run_mode" {
+  bindsym b exec --no-startup-id "\$BROWSER"; mode "default"
+  bindsym p exec --no-startup-id "\$BROWSER --incognito"; mode "default"
+  bindsym k exec --no-startup-id "KeeWeb"; mode "default"
+  bindsym z exec --no-startup-id "zathura"; mode "default"
+
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+}
 EOF

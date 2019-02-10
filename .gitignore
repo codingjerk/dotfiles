@@ -1,5 +1,3 @@
-bin/dmenu
-
 config/chromium
 config/configstore
 config/darktable
@@ -48,8 +46,3 @@ settings.sh
 services/runit/*/supervise
 services/runit/bakoga
 services/runit/nginx
-
-third-party/dmenu/dmenu
-third-party/dmenu/stest
-third-party/dmenu/config.h
-third-party/dmenu/*.o

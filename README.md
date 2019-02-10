@@ -24,14 +24,12 @@ A well-documented, well-structured dotfiles.
     - Alias tip
   - Vim
     - Vim-plug
-- dmenu
 
 ## TODOz
 
 - CLI
   - Place [name].in and [file] files
 - X11
-  - Replace dmenu ?
   - XCompose
     - Greek
     - Japanese
@@ -55,7 +53,6 @@ A well-documented, well-structured dotfiles.
 - Problems (without easy solution)
   - Environment problem
     - SSH (xauthority, `authorized_keys`)
-    - runit user services
   - Use `XDG_DATA_DIRS/icons` to store icons (cursor default theme index file)
 - Fixes (easy solution)
   - /services/runit → /config/runit

@@ -3,6 +3,10 @@ export EDITOR='nvim -p'
 export VISUAL="${EDITOR}"
 export PAGER='less'
 
+# === GUI Tools ===
+export TERMINAL='xfce4-terminal'
+export BROWSER='chromium'
+
 # === Options ===
 export FZF_DEFAULT_COMMAND='fd -t f -t l -S-10M -H --color=always -E .git/ -E /etc/ssl -E /sys -E /dev -E /proc -E /opt -E /usr/bin -E /usr/lib -E /usr/lib32 -E /usr/libexec -E /var/cache -E /var/db -E /var/lib -E /usr/src -E /usr/share'
 export FZF_DEFAULT_OPTS="--ansi --color='16,hl:6,fg+:1,bg+:0,hl+:6,info:2,prompt:2,pointer:1,marker:5' --height=20 --layout=reverse --inline-info --no-mouse"

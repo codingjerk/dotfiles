@@ -1,4 +1,5 @@
-export TERM=xterm
+# === Removing 256color suffix ===
+export TERM=${TERM:s/-256color/}
 
 # === X autostart ===
 if [[ "${CJ_X_AUTOSTART}" == "yes" ]] && tty | command grep tty1 > /dev/null; then

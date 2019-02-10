@@ -57,6 +57,7 @@ require binary "feh" feh
 require binary "Polybar" polybar
 require binary "i3 (gaps)" i3
 require binary "i3lock (color)" i3lock
+require binary "Xfce Terminal" xfce4-terminal
 require binary "maim" maim
 require binary "slop" slop
 require binary "ImageMagick" convert

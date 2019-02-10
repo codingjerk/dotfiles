@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-exec $(ls /bin | dmenu)
