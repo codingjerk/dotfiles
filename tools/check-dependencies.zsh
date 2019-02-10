@@ -24,6 +24,7 @@ require binary "fd" fd
 
 require python3_lib "psutil (Python library)" psutil
 require python3_lib "neovim (Python library)" neovim
+require python3_lib "uptime (Python library)" uptime
 
 # === Optional dependencies ===
 recommend consolefont "Terminus (console font)" "ter-i20n"

@@ -1,4 +1,5 @@
 import datetime
+import uptime
 import os
 import shutil
 import psutil
@@ -123,12 +124,7 @@ def show_banner():
     print()
 
 def get_uptime():
-    with open('/proc/uptime', 'r') as f:
-        line = f.readline()
-        seconds = float(line.split(' ')[0])
-        result = datetime.timedelta(seconds = seconds)
-
-    return result
+    return datetime.timedelta(seconds = uptime.uptime())
 
 def format_uptime(uptime):
     if uptime.days > 0:
