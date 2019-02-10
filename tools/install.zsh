@@ -7,7 +7,7 @@ git submodule update --init
 
 # === Settings ===
 if ! [ -e "${CJ_DOTFILES}/settings.sh" ]; then
-  "${CJ_DOTFILES}/generate-settings.zsh" > "${CJ_DOTFILES}/settings.sh"
+  zsh "${CJ_DOTFILES}/tools/generate-settings.zsh" > "${CJ_DOTFILES}/settings.sh"
 fi
 
 # === Ensure directories exist ===
@@ -23,6 +23,7 @@ mkdir -p "${XDG_DATA_HOME}/gnupg"
 mkdir -p "${XDG_DATA_HOME}/zsh"
 mkdir -p "${XDG_DATA_HOME}/python"
 mkdir -p "${XDG_DATA_HOME}/node"
+mkdir -p "${XDG_CACHE_HOME}/zsh"
 
 touch "${XDG_DATA_HOME}/python/history"
 

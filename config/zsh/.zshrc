@@ -1,7 +1,7 @@
 export TERM=xterm
 
 # === X autostart ===
-if [[ "${CJ_X_AUTOSTART}" == "yes" ]] && tty | grep tty1 > /dev/null; then
+if [[ "${CJ_X_AUTOSTART}" == "yes" ]] && tty | command grep tty1 > /dev/null; then
   exec xinit -- vt1 :0 -allowMouseOpenFail -nolisten tcp -disableVidMode -ignoreABI -nosilk -novtswitch
 fi
 
@@ -253,15 +253,30 @@ bindkey '^[^[' __sudo-buffer-or-last
 # === Prompt ===
 setopt prompt_subst
 
-autoload -Uz colors
-colors
+typeset -A fg
+fg=( \
+  red     $'\033[31m' \
+  green   $'\033[32m' \
+  yellow  $'\033[33m' \
+  blue    $'\033[34m' \
+  orange  $'\033[35m' \
+  electro $'\033[36m' \
+)
+reset_color=$'\033[0m'
 
-if uname -m | grep i686 > /dev/null; then
-  PROMPT_SEPARATOR=' > '
-  RPROMPT_SEPARATOR=' < '
-else
+__utf-mode() {
+  uname -m | command grep i686 > /dev/null && return 1
+  [[ "${LANG}" =~ "UTF|utf" ]] || return 1
+
+  return 0
+}
+
+if __utf-mode; then
   PROMPT_SEPARATOR=' » '
   RPROMPT_SEPARATOR=' « '
+else
+  PROMPT_SEPARATOR=' > '
+  RPROMPT_SEPARATOR=' < '
 fi
 
 __in-git-repo() {
@@ -270,8 +285,8 @@ __in-git-repo() {
 
 __git-path() {
   if ! git diff-index --quiet HEAD -- > /dev/null 2>&1; then
-    print -rn "%{$fg[magenta]%}"
-  elif { git status --porcelain | grep '^?? ' } > /dev/null 2>&1; then
+    print -rn "%{$fg[orange]%}"
+  elif { git status --porcelain | command grep '^?? ' } > /dev/null 2>&1; then
     print -rn "%{$fg[yellow]%}"
   else
     print -rn "%{$fg[green]%}"
@@ -286,7 +301,7 @@ __git-path() {
   case "$git_branch" in
     master) ;;
     HEAD) print -rn " %{$fg[red]%}($git_branch)" ;;
-    *)    print -rn " %{$fg[cyan]%}($git_branch)" ;;
+    *)    print -rn " %{$fg[electro]%}($git_branch)" ;;
   esac
 
   print -rn "${PROMPT_SEPARATOR}"
@@ -301,12 +316,12 @@ __prompt() {
   else
     case "${PWD}" in
       /home/*) print -rn "%{$fg[blue]%}%~" ;;
-      *) print -rn "%{$fg[magenta]%}%/" ;;
+      *) print -rn "%{$fg[orange]%}%/" ;;
     esac
     print -rn "${PROMPT_SEPARATOR}"
   fi
 
-  local job_count="$(jobs -l | wc -l)"
+  local job_count=$(jobs -l | wc -l | awk '{$1=$1};1')
   if [[ "$job_count" != 0 ]]; then
     print -rn "%{$fg[yellow]%}{$job_count}"
     print -rn "${PROMPT_SEPARATOR}"
@@ -337,7 +352,7 @@ __prompt2() {
 
 PROMPT2='$(__prompt2)'
 
-RPROMPT="%{$fg[blue]%}${RPROMPT_SEPARATOR}%n%{$fg[cyan]%}${RPROMPT_SEPARATOR}%m%{$reset_color%}"
+RPROMPT="%{$fg[blue]%}${RPROMPT_SEPARATOR}%n%{$fg[electro]%}${RPROMPT_SEPARATOR}%m%{$reset_color%}"
 
 # === Command time report ===
 zmodload zsh/datetime
@@ -394,21 +409,20 @@ if (( $+commands[xbps-install] )); then
 
   u() {
     sudo xbps-install -Su
-    # TODO: update rustup
   }
 
   command_not_found_handler() {
-    print "\033[31mzsh: command not found: \033[34m'$1'\033[0m" 1>&2
+    print "$fg[red]zsh: command not found: $fg[blue]'$1'$reset_color" 1>&2
 
     if ! [[ -d "${XLOCATE_GIT}" ]] && (( $+commands[xlocate] )); then
-      print "\033[31mTo get command-not-found feature install xtools and sync xbps database (xlocate -S)\033[0m" 1>&2
+      print "$fg[red]To get command-not-found feature install xtools and sync xbps database (xlocate -S)$reset_color" 1>&2
       return 127
     fi
 
-    local pkgs=$(xlocate "$1" | grep --color=never -P "/bin/$1\$")
+    local pkgs=$(xlocate "$1" | command grep --color=never -P "/bin/$1\$")
     [[ -z "$pkgs" ]] && return 127
 
-    print "\033[34m$1 \033[32mmay be found in the following packages:\033[0m" 1>&2
+    print "$fg[blue]$1 $fg[green]may be found in the following packages:$reset_color" 1>&2
     awk '{print $1}' <<< "$pkgs" 1>&2
 
     return 127
@@ -427,7 +441,6 @@ if (( $+commands[pacman] )); then
 
   u() {
     sudo pacman -Syyuu
-    # TODO: update rustup
   }
 
   . '/usr/share/doc/pkgfile/command-not-found.zsh'

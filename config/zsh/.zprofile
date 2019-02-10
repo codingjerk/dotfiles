@@ -87,4 +87,4 @@ if [[ "${TERM}" = 'linux' ]]; then
 fi
 
 # === Path ===
-export PATH="${CJ_DOTFILES}/bin:/bin:${CARGO_HOME}/bin"
+export PATH="${CJ_DOTFILES}/bin:${CARGO_HOME}/bin:${PATH}"
