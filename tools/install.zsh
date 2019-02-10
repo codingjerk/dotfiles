@@ -3,7 +3,7 @@ export CJ_DOTFILES="${0:a:h:h}"
 
 # === Git submodules ===
 cd "${CJ_DOTFILES}"
-git submodule update --init > /dev/null
+git submodule update --init --quiet
 
 # === Settings ===
 if ! [ -e "${CJ_DOTFILES}/settings.sh" ]; then
