@@ -9,8 +9,8 @@ exec i3lock \
   --force-clock \
   --screen=1 \
   \
-  --timecolor="${CJ_COLOR_BG_HEX}CC" \
-  --datecolor="${CJ_COLOR_BG_HEX}CC" \
+  --timecolor="${CJ_COLOR_4_HEX}AA" \
+  --datecolor="${CJ_COLOR_4_HEX}AA" \
   \
   --timesize=90 \
   --datesize=30 \
