@@ -12,9 +12,10 @@ exec i3lock \
   --timecolor="${CJ_COLOR_4_HEX}AA" \
   --datecolor="${CJ_COLOR_4_HEX}AA" \
   \
-  --timesize=90 \
-  --datesize=30 \
-  --datepos="tx:ty + 50" \
+  --timesize="$((${CJ_MONOFONT_SIZE} * 15 / 2))" \
+  --datesize="$((${CJ_MONOFONT_SIZE} * 5 / 2))" \
+  --datepos="tx:ty + $((${CJ_MONOFONT_SIZE} * 25 / 6))" \
   \
   --timestr="%H:%M" \
-  --datestr="%e, %A"
+  --datestr="%e, %A" \
+  "$@"
