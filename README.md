@@ -27,8 +27,12 @@ A well-documented, well-structured dotfiles.
 
 ## TODOz
 
-- CLI
-  - Place [name].in and [file] files
+- Problems (without easy solution)
+  - Environment problem
+    - SSH (xauthority, `authorized_keys`)
+  - Use `XDG_DATA_DIRS/icons` to store icons (cursor default theme index file)
+- Fixes (easy solution)
+  - /services/runit → /config/runit
 - X11
   - XCompose
     - Greek
@@ -48,11 +52,3 @@ A well-documented, well-structured dotfiles.
   - Pulseaudio
     - Move config to user-space (including daemon config)
     - Networking
-- Other
-  - OpenBSD
-- Problems (without easy solution)
-  - Environment problem
-    - SSH (xauthority, `authorized_keys`)
-  - Use `XDG_DATA_DIRS/icons` to store icons (cursor default theme index file)
-- Fixes (easy solution)
-  - /services/runit → /config/runit

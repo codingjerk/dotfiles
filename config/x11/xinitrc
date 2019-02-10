@@ -1,5 +1,5 @@
-MONITOR="${CJ_PRIMARY_MONITOR}" polybar main -c "${XDG_DATA_HOME}/polybar/config" &
-[ "${CJ_SECONDARY_MONITOR}" != "${CJ_PRIMARY_MONITOR}" ] && MONITOR="${CJ_SECONDARY_MONITOR}" polybar main -c "${XDG_DATA_HOME}/polybar/config" &
+MONITOR="${CJ_PRIMARY_MONITOR}" polybar main &
+[ "${CJ_SECONDARY_MONITOR}" != "${CJ_PRIMARY_MONITOR}" ] && MONITOR="${CJ_SECONDARY_MONITOR}" polybar main &
 
 (sleep 0.5; pkill -USR1 polybar) &
 
@@ -8,4 +8,4 @@ feh --no-fehbg --bg-tile "${CJ_WALLPAPER}"
 pulseaudio --start
 setxkbmap -layout "us,ru" -option "grp:caps_toggle,grp_led:caps,grp_led:scroll,grp_led:num,compose:menu"
 
-exec i3 -c "${XDG_DATA_HOME}/i3/config"
+exec i3

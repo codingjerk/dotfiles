@@ -8,6 +8,7 @@ config/enchant
 config/GIMP
 config/gtk-2.0/gtkfilechooser.ini
 config/gtk-3.0/gtk.css
+config/i3/config
 config/inkscape
 config/insight-nodejs/insight-yo.json
 config/KeeWeb/app.asar
@@ -21,12 +22,14 @@ config/KeeWeb/temp
 config/KeeWeb/update-info.json
 config/KeeWeb/window-position.json
 config/mimeapps.list
+config/minidlna/minidlna.conf
 config/mpd/bakoga.conf
 config/mpv/watch_later
 config/neofetch
 config/nginx
 config/obs-studio
 config/pavucontrol.ini
+config/polybar/config
 config/pulse
 config/QtProject.conf
 config/transmission-remote-gtk
