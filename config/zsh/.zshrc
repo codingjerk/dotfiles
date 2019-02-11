@@ -400,6 +400,17 @@ export ZSH_PLUGINS_ALIAS_TIPS_TEXT=$'\E[31mAlias tip: '
 
 source "${NVM_DIR}/nvm.sh" --no-use
 
+# === Dynamic PATH ===
+__path-add() {
+  [[ "$PATH" =~ "$1" ]] || export PATH="$1:$PATH"
+}
+
+__add-nvm-to-path() {
+  local nvm_bin="$(find "${CJ_DOTFILES}/third-party/nvm/versions/node/" -maxdepth 1 | tail -1)/bin"
+  __path-add "$nvm_bin"
+}
+__add-nvm-to-path
+
 # === Void linux ===
 if (( $+commands[xbps-install] )); then
   f() {
