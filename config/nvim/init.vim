@@ -7,8 +7,7 @@ let g:deoplete#enable_at_startup = 1
 
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 set hidden
-set splitbelow
-set splitright
+set completeopt-=preview
 set signcolumn=no
 let g:LanguageClient_serverCommands = {
   \ 'rust': ['$CARGO_HOME/bin/rls'],
@@ -16,8 +15,20 @@ let g:LanguageClient_serverCommands = {
   \ 'javascript': ['javascript-typescript-stdio'],
   \ 'typescript': ['javascript-typescript-stdio'],
   \ }
-let g:LanguageClient_diagnosticsEnable = 1
+let g:LanguageClient_diagnosticsEnable = 0
 autocmd CompleteDone * silent! pclose!
+
+Plug 'w0rp/ale'
+let g:ale_completion_enabled = 0
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+  \ 'javascript': ['eslint'],
+  \ 'rust': ['cargo'],
+  \ }
+let g:ale_fixers = {
+  \ 'javascript': ['prettier'],
+  \ 'rust': ['rustfmt'],
+  \ }
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Shougo/neosnippet.vim'
@@ -63,11 +74,30 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" === Statusline ===
+set noshowmode
+set shortmess+=c
+
+set laststatus=2
+set statusline=
+set statusline+=%4*%{(mode()=='n')?(&mod==0)?'\ \ NORMAL\ ':'':''}
+set statusline+=%5*%{(mode()=='n')?(&mod==1)?'\ \ NORMAL\ ':'':''}
+set statusline+=%4*%{(mode()=='c')?(&mod==0)?'\ \ NORMAL\ ':'':''}
+set statusline+=%5*%{(mode()=='c')?(&mod==1)?'\ \ NORMAL\ ':'':''}
+set statusline+=%5*%{(mode()=='i')?'\ \ INSERT\ ':''}
+set statusline+=%6*%{(mode()=='v')?'\ \ VISUAL\ ':''}
+set statusline+=%1*%{(&ro==1)?'\ \ RO\ ':''}
+set statusline+=%9*\ %f\ "
+
+set statusline+=%9*%=
+set statusline+=%l/%L\ " Line number
+set statusline+=%4*\ %Y\ "
+set statusline+=%6*\ %{&fenc}\ "
+
 " === Misc ===
 set lazyredraw
 set showmatch
 set backspace=indent,eol,start
-set laststatus=0
 set encoding=utf8
 set nowrap
 let g:netrw_home=$XDG_CACHE_HOME.'/nvim'
@@ -139,11 +169,22 @@ imap <expr><CR> neosnippet#expandable_or_jumpable()
   \ ? "\<Plug>(neosnippet_expand_or_jump)"
   \ : "\<CR>"
 
+" === Linting ===
+nnoremap <silent> <C-f> :ALEFix<CR>
+
 " === Highlighting ===
 set t_Co=16
 colorscheme cj
 syntax enable
 au BufReadPost *.in set syntax=sh
+
+hi User1 ctermbg=1 ctermfg=0
+hi User2 ctermbg=2 ctermfg=0
+hi User3 ctermbg=3 ctermfg=0
+hi User4 ctermbg=4 ctermfg=0
+hi User5 ctermbg=5 ctermfg=0
+hi User6 ctermbg=6 ctermfg=0
+hi User9 none
 
 " = Misc =
 map <F1> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
