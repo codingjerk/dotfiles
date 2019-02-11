@@ -31,7 +31,6 @@ include "%L"
 <Multi_key> <0> <asciicircum> : "°"
 
 <Multi_key> <p> <r> <o> <d> : "∏"
-
 <Multi_key> <s> <u> <m> : "∑"
 
 # === Arrows ===
@@ -40,14 +39,6 @@ include "%L"
 
 <Multi_key> <bar> <v> : "↓"
 <Multi_key> <v> <bar> : "↓"
-
-# === Greek ===
-<Multi_key> <a> <l> <p> <h> <a>     : "α"
-<Multi_key> <b> <e> <t> <a>         : "β"
-<Multi_key> <d> <e> <l> <t> <a>     : "Δ"
-<Multi_key> <m> <u>                 : "μ"
-<Multi_key> <l> <a> <m> <b> <d> <a> : "λ"
-<Multi_key> <p> <i>                 : "π"
 
 # === Esperanto ===
 <Multi_key> <c> <asciicircum> : "ĉ"
@@ -62,157 +53,17 @@ include "%L"
 <Multi_key> <S> <asciicircum> : "Ŝ"
 <Multi_key> <U> <asciicircum> : "Û"
 
-# === Japanese (hiragana) ===
-<Multi_key> <j> <a> <period> : "あ"
-<Multi_key> <j> <i> <period> : "い"
-<Multi_key> <j> <u> <period> : "う"
-<Multi_key> <j> <e> <period> : "え"
-<Multi_key> <j> <o> <period> : "お"
-
-<Multi_key> <j> <k> <a> <period> : "か"
-<Multi_key> <j> <k> <i> <period> : "き"
-<Multi_key> <j> <k> <u> <period> : "く"
-<Multi_key> <j> <k> <e> <period> : "け"
-<Multi_key> <j> <k> <o> <period> : "こ"
-
-<Multi_key> <j> <s> <a> <period> : "さ"
-<Multi_key> <j> <s> <h> <i> <period> : "し"
-<Multi_key> <j> <s> <u> <period> : "す"
-<Multi_key> <j> <s> <e> <period> : "せ"
-<Multi_key> <j> <s> <o> <period> : "そ"
-
-<Multi_key> <j> <t> <a> <period> : "た"
-<Multi_key> <j> <c> <h> <i> <period> : "ち"
-<Multi_key> <j> <t> <s> <u> <period> : "つ"
-<Multi_key> <j> <t> <e> <period> : "て"
-<Multi_key> <j> <t> <o> <period> : "と"
-
-<Multi_key> <j> <n> <a> <period> : "な"
-<Multi_key> <j> <n> <i> <period> : "に"
-<Multi_key> <j> <n> <u> <period> : "ぬ"
-<Multi_key> <j> <n> <e> <period> : "ね"
-<Multi_key> <j> <n> <o> <period> : "の"
-
-<Multi_key> <j> <h> <a> <period> : "は"
-<Multi_key> <j> <h> <i> <period> : "ひ"
-<Multi_key> <j> <f> <u> <period> : "ふ"
-<Multi_key> <j> <h> <e> <period> : "へ"
-<Multi_key> <j> <h> <o> <period> : "ほ"
-
-<Multi_key> <j> <m> <a> <period> : "ま"
-<Multi_key> <j> <m> <i> <period> : "み"
-<Multi_key> <j> <m> <u> <period> : "む"
-<Multi_key> <j> <m> <e> <period> : "め"
-<Multi_key> <j> <m> <o> <period> : "も"
-
-<Multi_key> <j> <y> <a> <period> : "や"
-<Multi_key> <j> <y> <u> <period> : "ゆ"
-<Multi_key> <j> <y> <o> <period> : "よ"
-
-<Multi_key> <j> <r> <a> <period> : "ら"
-<Multi_key> <j> <r> <i> <period> : "り"
-<Multi_key> <j> <r> <u> <period> : "る"
-<Multi_key> <j> <r> <e> <period> : "れ"
-<Multi_key> <j> <r> <o> <period> : "ろ"
-
-<Multi_key> <j> <w> <a> <period> : "わ"
-<Multi_key> <j> <w> <i> <period> : "ゐ"
-<Multi_key> <j> <w> <e> <period> : "ゑ"
-<Multi_key> <j> <w> <o> <period> : "を"
-
-<Multi_key> <j> <n> <period> : "ん"
-
-<Multi_key> <j> <g> <a> <period> : "が"
-<Multi_key> <j> <g> <i> <period> : "ぎ"
-<Multi_key> <j> <g> <u> <period> : "ぐ"
-<Multi_key> <j> <g> <e> <period> : "げ"
-<Multi_key> <j> <g> <o> <period> : "ご"
-
-<Multi_key> <j> <z> <a> <period> : "ざ"
-<Multi_key> <j> <j> <i> <period> : "じ"
-<Multi_key> <j> <z> <u> <period> : "ず"
-<Multi_key> <j> <z> <e> <period> : "ぜ"
-<Multi_key> <j> <z> <o> <period> : "ぞ"
-
-<Multi_key> <j> <d> <a> <period> : "だ"
-<Multi_key> <j> <d> <j> <i> <period> : "ぢ"
-<Multi_key> <j> <d> <z> <u> <period> : "づ"
-<Multi_key> <j> <d> <e> <period> : "で"
-<Multi_key> <j> <d> <o> <period> : "ど"
-
-<Multi_key> <j> <b> <a> <period> : "ば"
-<Multi_key> <j> <b> <i> <period> : "び"
-<Multi_key> <j> <b> <u> <period> : "ぶ"
-<Multi_key> <j> <b> <e> <period> : "べ"
-<Multi_key> <j> <b> <o> <period> : "ぼ"
-
-<Multi_key> <j> <p> <a> <period> : "ぱ"
-<Multi_key> <j> <p> <i> <period> : "ぴ"
-<Multi_key> <j> <p> <u> <period> : "ぷ"
-<Multi_key> <j> <p> <e> <period> : "ぺ"
-<Multi_key> <j> <p> <o> <period> : "ぽ"
-
-<Multi_key> <j> <y> <a> <underscore> : "ゃ"
-<Multi_key> <j> <y> <u> <underscore> : "ゅ"
-<Multi_key> <j> <y> <o> <underscore> : "ょ"
-
-<Multi_key> <j> <t> <s> <u> <underscore> : "っ"
-
-# === Japanese (katakana) ===
-<Multi_key> <t> <a> <period> : "ア"
-
-<Multi_key> <t> <k> <a> <period> : "カ"
-
-<Multi_key> <t> <s> <h> <i> <period> : "シ"
-
-<Multi_key> <t> <m> <a> <period> : "マ"
-<Multi_key> <t> <m> <e> <period> : "メ"
-
-<Multi_key> <t> <y> <o> <period> : "ヨ"
-
-<Multi_key> <t> <r> <i> <period> : "リ"
-
-<Multi_key> <t> <n> <period> : "ン"
-<Multi_key> <t> <n> <o> <period> : "ノ"
-
-<Multi_key> <t> <y> <o> <underscore> : "ョ"
-
-<Multi_key> <t> <b> <a> <period> : "バ"
-<Multi_key> <t> <i> <period> : "イ"
-<Multi_key> <t> <n> <period> : "ン"
-<Multi_key> <t> <p> <a> <period> : "パ"
-<Multi_key> <t> <t> <o> <period> : "ト"
-<Multi_key> <t> <t> <s> <u> <period> : "ツ"
-
-<Multi_key> <t> <minus> : "ー"
-<Multi_key> <t> <period> : "。"
-# 、
-
-# === Kanji (kunyomi) ===
-
-# === Kanji (oniomi) ===
-<Multi_key> <n> <j> <u> <t> <s> <u> <period> : "術"
-<Multi_key> <n> <s> <h> <i> <m> <a> <period> : "縞"
-<Multi_key> <n> <w> <a> <r> <u>     <period> : "惡"
-<Multi_key> <n> <a> <k> <u>         <period> : "悪"
-<Multi_key> <n> <h> <i>             <period> : "火"
-
 # === Bullets ===
 <Multi_key> <minus> <v> : "✓"
 <Multi_key> <minus> <x> : "✗"
 <Multi_key> <minus> <o> : "•"
 <Multi_key> <minus> <bracketleft> <bracketright> : "□"
 
-# === Misc ===
-<Multi_key> <s> <k> <u> <l> <l> : "☠"
-<Multi_key> <r> <a> <d> <i> <o> : "☢"
-<Multi_key> <b> <i> <o> : "☣"
-<Multi_key> <p> <e> <a> <c> <e> : "☮"
-<Multi_key> <d> <a> <o> : "☯"
-
 # === Emoji ===
-<Multi_key> <e> <f> <i> <r> <e>     : "🔥"
-<Multi_key> <e> <p> <o> <o> <p>     : "💩"
-<Multi_key> <e> <p> <a> <r> <t> <y> : "🎉"
-<Multi_key> <e> <d> <o> <g>         : "🐶"
-<Multi_key> <e> <b> <e> <e>         : "🐝"
+<Multi_key> <e> <1> <0> <0>             : "💯"
+<Multi_key> <e> <d> <i> <s>             : "👎"
+<Multi_key> <e> <f> <i> <r> <e>         : "🔥"
+<Multi_key> <e> <h> <e> <a> <r> <t>     : "❤️"
+<Multi_key> <e> <l> <i> <k> <e>         : "👍"
+<Multi_key> <e> <p> <a> <r> <t> <y>     : "🎉"
+<Multi_key> <e> <r> <o> <c> <k> <e> <t> : "🔥"
