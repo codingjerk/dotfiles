@@ -2,7 +2,7 @@
 
 cat <<EOF
 VteTerminal, vte-terminal {
-    padding: 24px;
+  padding: 24px;
 }
 
 .chromium > menubar {
