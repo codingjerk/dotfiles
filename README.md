@@ -14,9 +14,9 @@ A well-documented, well-structured dotfiles.
 
 **Dependencies listed in `tools/check-dependencies.zsh` script that also can automate dependency check**
 
-## Included third-party stuff
+## Third-party files
 
-- Wallpapers
+- Wallpaper (by Ales Krivec @aleskrivec)
 - Plugins
   - Zsh
     - Fast syntax highlighting
@@ -25,30 +25,6 @@ A well-documented, well-structured dotfiles.
   - Vim
     - Vim-plug
 
-## TODOz
+## TODO
 
-- Problems (without easy solution)
-  - Environment problem
-    - SSH (xauthority, `authorized_keys`)
-  - Use `XDG_DATA_DIRS/icons` to store icons (cursor default theme index file)
-- Fixes (easy solution)
-  - /services/runit → /config/runit
-- X11
-  - XCompose
-    - Greek
-    - Japanese
-      - Prefixes: j from hiragana, J for katakana
-      - Suffixes: remove
-    - Math
-    - Emoji
-  - Include gtk, cursor and icons as third-party
-- System
-  - Custom minimal kernel config (with per-machine corrections)
-    - Disable IPv6
-    - Disable watchdogs
-    - System linux colors (in/before init stage) (kernel patch?)
-  - Sysctl
-  - Resolv.conf
-  - Pulseaudio
-    - Move config to user-space (including daemon config)
-    - Networking
+- Add example screenshot
