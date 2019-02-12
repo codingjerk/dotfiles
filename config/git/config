@@ -22,6 +22,7 @@
 
 [difftool]
   prompt = false
+  trustExitCode = true
 
 [difftool "neovimdiff"]
   cmd = nvim -d $REMOTE $LOCAL
