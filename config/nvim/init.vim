@@ -141,10 +141,13 @@ inoremap <silent> <C-Q> <C-o>:tabp<CR>
 inoremap <silent> <C-E> <C-o>:tabn<CR>
 
 " = Fzf =
-if filereadable("/usr/share/vim/vimfiles/plugin/fzf.vim")
-  source /usr/share/vim/vimfiles/plugin/fzf.vim
-  nnoremap <C-O> :call fzf#run({'sink': 'tabedit'})<CR>
+if filereadable('/usr/share/vim/vimfiles/plugin/fzf.vim')
+  source '/usr/share/vim/vimfiles/plugin/fzf.vim'
+elseif glob('$VIMRUNTIME/plugin/fzf.vim')!=#""
+  source $VIMRUNTIME/plugin/fzf.vim
 endif
+
+nnoremap <silent> <C-O> :call fzf#run({'sink': 'tabedit'})<CR>
 
 " = Marks are very annoying when ` is tmux prefix =
 map ` <nop>
