@@ -1,4 +1,4 @@
-fields=106 107 48 39 46 1
+fields=48 39 46 1
 left_meters=AllCPUs2 CPU Tasks
 left_meter_modes=1 1 2
 right_meters=Memory Swap Memory Uptime
