@@ -22,7 +22,6 @@ require binary "Python (3.x)" python3
 require binary "fzf" fzf
 require binary "fd" fd
 
-require python3_lib "psutil (Python library)" psutil
 require python3_lib "neovim (Python library)" neovim
 
 # === Optional dependencies ===

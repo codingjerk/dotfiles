@@ -1,6 +1,6 @@
 import datetime
 import shutil
-import psutil
+import collections
 
 def term_length(line):
     action = 'COUNT'
@@ -123,7 +123,7 @@ def show_banner():
 
 def get_uptime():
     with open('/proc/uptime') as fh:
-        seconds = float(fh.read().split(' ')[0])
+        seconds = float(fh.read().split()[0])
         return datetime.timedelta(seconds = seconds)
 
 def format_uptime(uptime):
@@ -227,8 +227,22 @@ def partitions_to_table(partitions):
 
     return table
 
+def get_mountpoints():
+    rawmounts = []
+    with open('/proc/mounts') as fh:
+      for line in fh.readlines():
+        if line.startswith("/dev/block") or line.startswith("/dev/sd"):
+          rawmounts.append(line)
+
+    Partition = collections.namedtuple("Partition", ['device', 'mountpoint'])
+    result = []
+    for [device, mountpoint, *_] in map(str.split, rawmounts):
+        result.append(Partition(device=device, mountpoint=mountpoint))
+
+    return result
+
 def get_space_lines():
-    partitions = psutil.disk_partitions()
+    partitions = get_mountpoints()
     return partitions_to_table(partitions)
 
 def get_color_by_load(load):
@@ -247,7 +261,7 @@ def get_color_by_load(load):
 
 def get_loadavg():
     with open('/proc/loadavg', 'r') as fh:
-        averages = fh.read().split(' ')
+        averages = fh.read().split()
         return float(averages[0])
 
 def get_cpu_count():
@@ -263,21 +277,43 @@ def get_cpu_line():
 
     return ['cpu:', bar, val]
 
-def get_mem_line():
-    vmem = psutil.virtual_memory()
-    mem_load = vmem.used / vmem.total
+def get_meminfo():
+    total = None
+    free = None
+    cached = None
+    with open('/proc/meminfo') as fh:
+        for [key, value, unit] in map(str.split, fh.readlines()):
+            if key == 'MemTotal:':
+                total = int(value) * 1024
+            elif key == 'MemFree:':
+                free = int(value) * 1024
+            elif key == 'Cached:':
+                cached = int(value) * 1024
+
+    Meminfo = collections.namedtuple('Meminfo', ['total', 'free', 'cached', 'used'])
+    return Meminfo(
+        total=total,
+        free=free,
+        cached=cached,
+        used=total - free - cached
+    )
+
+def get_mem_line(title, key):
+    meminfo = get_meminfo()
+    mem_load = key(meminfo) / meminfo.total
     color = get_color_by_load(mem_load)
 
     bar = draw_resource_bar(mem_load)
-    val = color + bytes_to_human(vmem.used) + '\u001B[0m / ' + bytes_to_human(vmem.total)
+    val = color + bytes_to_human(key(meminfo)) + '\u001B[0m / ' + bytes_to_human(meminfo.total)
 
-    return ['mem:', bar, val]
+    return [title + ':', bar, val]
 
 def show_resources():
     table = get_space_lines()
     table.append(['', '', ''])
     table.append(get_cpu_line())
-    table.append(get_mem_line())
+    table.append(get_mem_line("mem", lambda x: x.used))
+    table.append(get_mem_line("mem+cached", lambda x: x.used + x.cached))
 
     print_table(table, ['RIGHT', 'LEFT', 'LEFT'])
     print()
