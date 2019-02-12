@@ -282,7 +282,7 @@ def get_meminfo():
     free = None
     cached = None
     with open('/proc/meminfo') as fh:
-        for [key, value, unit] in map(str.split, fh.readlines()):
+        for [key, value, *unit] in map(str.split, fh.readlines()):
             if key == 'MemTotal:':
                 total = int(value) * 1024
             elif key == 'MemFree:':
