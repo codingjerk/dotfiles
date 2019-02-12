@@ -195,7 +195,6 @@ setopt inc_append_history_time
 
 # === Keybindings ===
 unsetopt flow_control
-bindkey -e
 
 bindkey '^[[3~' delete-char
 
@@ -318,7 +317,7 @@ __prompt() {
     __git-path
   else
     case "${PWD}" in
-      /home/*) print -rn "%{$fg[blue]%}%~" ;;
+      ${HOME}*) print -rn "%{$fg[blue]%}%~" ;;
       *) print -rn "%{$fg[orange]%}%/" ;;
     esac
     print -rn "${PROMPT_SEPARATOR}"
