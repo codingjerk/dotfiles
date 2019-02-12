@@ -142,7 +142,7 @@ inoremap <silent> <C-E> <C-o>:tabn<CR>
 
 " = Fzf =
 if filereadable('/usr/share/vim/vimfiles/plugin/fzf.vim')
-  source '/usr/share/vim/vimfiles/plugin/fzf.vim'
+  source /usr/share/vim/vimfiles/plugin/fzf.vim
 elseif glob('$VIMRUNTIME/plugin/fzf.vim')!=#""
   source $VIMRUNTIME/plugin/fzf.vim
 endif
