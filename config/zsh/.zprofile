@@ -79,6 +79,3 @@ export GTK_IM_MODULE='xim'
 export NODE_REPL_HISTORY="${XDG_DATA_HOME}/node/history"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 export NVM_DIR="${CJ_DOTFILES}/third-party/nvm"
-
-# === Path ===
-export PATH="${CJ_DOTFILES}/bin:${CARGO_HOME}/bin:${PATH}"
