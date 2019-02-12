@@ -15,16 +15,21 @@ hi MatchParen ctermfg=0 ctermbg=0 cterm=reverse,bold
 hi TabLine ctermfg=0 ctermbg=0 cterm=bold
 hi TabLineFill ctermfg=0 ctermbg=0 cterm=bold
 
+hi EndOfBuffer ctermfg=0
+hi SignColumn ctermbg=0
+
 hi Pmenu ctermbg=0 ctermfg=0 cterm=bold
 hi PmenuSel ctermfg=7
 hi PmenuSbar ctermfg=0 cterm=bold,reverse
 hi PmenuThumb ctermbg=7
 
 " = Diff =
-hi DiffAdd ctermbg=2 ctermfg=0
-hi DiffDelete ctermbg=1 ctermfg=0
-hi DiffChange ctermbg=3 ctermfg=0
-hi DiffText ctermbg=5 ctermfg=0 cterm=none
+hi Folded ctermbg=0 ctermfg=0 cterm=bold
+
+hi DiffAdd    ctermbg=0 ctermfg=2 cterm=reverse
+hi DiffDelete ctermbg=0 ctermfg=1 cterm=reverse
+hi DiffChange ctermbg=0 ctermfg=3 cterm=reverse
+hi DiffText   ctermbg=0 ctermfg=5 cterm=reverse
 
 " = General =
 hi Comment ctermfg=0 cterm=bold
@@ -61,5 +66,7 @@ hi rustKeyword ctermfg=1
 hi rustMacro ctermfg=1
 hi rustString ctermfg=2
 
-" = ALE =
-hi SignColumn ctermbg=0
+" = Speling =
+hi SpellBad  ctermbg=0 ctermfg=1 cterm=reverse
+hi SpellCap  ctermbg=0 ctermfg=1 cterm=reverse
+hi SpellRare ctermbg=0 ctermfg=5 cterm=reverse
