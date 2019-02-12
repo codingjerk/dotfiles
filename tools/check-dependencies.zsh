@@ -1,3 +1,5 @@
+mode="${1:-opt,gui,server,vim}"
+
 # === Text functions ===
 message() { echo "\033[${1}m[$2]: $3 is $4\033[0m" }
 require_message() { message 31 error "$1" required }
@@ -7,7 +9,7 @@ recommend_message() { message 33 warning "$1" recommended }
 binary() { which "$1" > /dev/null }
 python3_lib() { python3 -c "import $1" 2> /dev/null }
 consolefont() { test -e "/usr/share/kbd/consolefonts/$1.psf.gz" }
-font() { fc-list | grep -i "$1" > /dev/null 2> /dev/null }
+font()  { which fc-list > /dev/null && fc-list | grep -i "$1" > /dev/null 2> /dev/null }
 theme() { false }
 icons() { false }
 
@@ -23,50 +25,73 @@ require binary "fzf" fzf
 require binary "fd" fd
 
 require python3_lib "psutil (Python library)" psutil
-require python3_lib "neovim (Python library)" neovim
 require python3_lib "uptime (Python library)" uptime
 
 # === Optional dependencies ===
-recommend consolefont "Terminus (console font)" "ter-i20n"
-recommend binary "less" less
-recommend binary "tmux" tmux
-recommend binary "htop" htop
-recommend binary "OpenSSH" ssh
-recommend binary "GnuPG" gpg2
-recommend binary "exa" exa
-recommend binary "hexyl" hexyl
-recommend binary "The Silver Searcher" ag
+if [[ "$mode" =~ opt ]]; then
+  recommend consolefont "Terminus (console font)" "ter-i20n"
+  recommend binary "less" less
+  recommend binary "tmux" tmux
+  recommend binary "htop" htop
+  recommend binary "OpenSSH" ssh
+  recommend binary "GnuPG" gpg2
+  recommend binary "exa" exa
+  recommend binary "hexyl" hexyl
+  recommend binary "The Silver Searcher" ag
+fi
 
 # === Daemons ===
-recommend binary "Transmission (daemon)" transmission-daemon
-recommend binary "MiniDLNA" minidlnad
+if [[ "$mode" =~ server ]]; then
+  recommend binary "Transmission (daemon)" transmission-daemon
+  recommend binary "MiniDLNA" minidlnad
+fi
 
 # === GUI ===
-require font "Fira Mono (font)" "Fira Mono"
-require font "Font Awesome (font)" "Awesome"
-require font "Noto Sans (font)" "Noto Sans"
-require font "Noto Sans CJK (font)" "Noto Sans CJK"
-require font "Noto Color Emoji (font)" "Noto Color Emoji"
-require font "Twitter Color Emoji (font)" "Twitter Color Emoji"
+if [[ "$mode" =~ gui ]]; then
+  require font "Fira Mono (font)" "Fira Mono"
+  require font "Font Awesome (font)" "Awesome"
+  require font "Noto Sans (font)" "Noto Sans"
+  require font "Noto Sans CJK (font)" "Noto Sans CJK"
+  require font "Noto Color Emoji (font)" "Noto Color Emoji"
+  require font "Twitter Color Emoji (font)" "Twitter Color Emoji"
 
-require theme "Adapta (theme)" "Adapta"
-require icons "Breeze (icons)" "breeze"
-require icons "Breeze (cursors)" "breeze_cursors"
+  require theme "Adapta (theme)" "Adapta"
+  require icons "Breeze (icons)" "breeze"
+  require icons "Breeze (cursors)" "breeze_cursors"
 
-require binary "xinit" xinit
-require binary "feh" feh
-require binary "Polybar" polybar
-require binary "i3 (gaps)" i3
-require binary "i3lock (color)" i3lock
-require binary "Xfce Terminal" xfce4-terminal
-require binary "maim" maim
-require binary "slop" slop
-require binary "ImageMagick" convert
+  require binary "xinit" xinit
+  require binary "feh" feh
+  require binary "Polybar" polybar
+  require binary "i3 (gaps)" i3
+  require binary "i3lock (color)" i3lock
+  require binary "Xfce Terminal" xfce4-terminal
+  require binary "maim" maim
+  require binary "slop" slop
+  require binary "ImageMagick" convert
 
-recommend binary "Zathura" zathura
-recommend binary "KeeWeb" keeweb
-recommend binary "Chromium" chromium
-recommend binary "mpv" mpv
+  recommend binary "Zathura" zathura
+  recommend binary "KeeWeb" keeweb
+  recommend binary "Chromium" chromium
+  recommend binary "mpv" mpv
+fi
+
+# === Vim-plugin dependencies ===
+if [[ "$mode" =~ vim ]]; then
+  require python3_lib "neovim (Python library)" neovim
+
+  recommend binary "Rust Language Server (rls)" rls
+  recommend binary "Python Language Server (pyls)" pyls
+  recommend binary "JavaScript/TypeScript Language Server" javascript-typescript-stdio
+
+  recommend binary "Shellcheck" shellcheck
+  recommend binary "ESLint" eslint
+  recommend binary "Write Good" write-good
+  recommend binary "Cargo" cargo
+
+  recommend binary "shfmt" shfmt
+  recommend binary "Prettier" prettier
+  recommend binary "rustfmt" rustfmt
+fi
 
 # === OS-specfic ===
 # = Archlinux =
