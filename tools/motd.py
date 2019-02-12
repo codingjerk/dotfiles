@@ -1,6 +1,4 @@
 import datetime
-import uptime
-import os
 import shutil
 import psutil
 
@@ -124,7 +122,9 @@ def show_banner():
     print()
 
 def get_uptime():
-    return datetime.timedelta(seconds = uptime.uptime())
+    with open('/proc/uptime') as fh:
+        seconds = float(fh.read().split(' ')[0])
+        return datetime.timedelta(seconds = seconds)
 
 def format_uptime(uptime):
     if uptime.days > 0:
@@ -245,8 +245,17 @@ def get_color_by_load(load):
 
     return '\u001B[32m' # green
 
+def get_loadavg():
+    with open('/proc/loadavg', 'r') as fh:
+        averages = fh.read().split(' ')
+        return float(averages[0])
+
+def get_cpu_count():
+    with open('/proc/cpuinfo') as fh:
+        return fh.read().count("processor")
+
 def get_cpu_line():
-    cpu_load = os.getloadavg()[0] / os.cpu_count()
+    cpu_load = get_loadavg() / get_cpu_count()
     color = get_color_by_load(cpu_load)
 
     bar = draw_resource_bar(cpu_load)
