@@ -10,7 +10,7 @@ set hidden
 set completeopt-=preview
 set signcolumn=no
 let g:LanguageClient_serverCommands = {
-  \ 'rust': ['$CARGO_HOME/bin/rls'],
+  \ 'rust': ['rls'],
   \ 'python': ['pyls'],
   \ 'javascript': ['javascript-typescript-stdio'],
   \ 'typescript': ['javascript-typescript-stdio'],
@@ -22,10 +22,16 @@ Plug 'w0rp/ale'
 let g:ale_completion_enabled = 0
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
+  \ 'bash': ['shellcheck'],
+  \ 'sh': ['shellcheck'],
   \ 'javascript': ['eslint'],
+  \ 'markdown': ['write-good'],
   \ 'rust': ['cargo'],
   \ }
 let g:ale_fixers = {
+  \ 'bash': ['shfmt'],
+  \ 'sh': ['shfmt'],
+  \ 'html': ['prettier'],
   \ 'javascript': ['prettier'],
   \ 'rust': ['rustfmt'],
   \ }
@@ -171,6 +177,7 @@ imap <expr><CR> neosnippet#expandable_or_jumpable()
 
 " === Linting ===
 nnoremap <silent> <C-f> :ALEFix<CR>
+nnoremap <silent> <C-s> :set spell!<CR>
 
 " === Highlighting ===
 set t_Co=16
@@ -178,12 +185,12 @@ colorscheme cj
 syntax enable
 au BufReadPost *.in set syntax=sh
 
-hi User1 ctermbg=1 ctermfg=0
-hi User2 ctermbg=2 ctermfg=0
-hi User3 ctermbg=3 ctermfg=0
-hi User4 ctermbg=4 ctermfg=0
-hi User5 ctermbg=5 ctermfg=0
-hi User6 ctermbg=6 ctermfg=0
+hi User1 ctermbg=0 ctermfg=1 cterm=reverse
+hi User2 ctermbg=0 ctermfg=2 cterm=reverse
+hi User3 ctermbg=0 ctermfg=3 cterm=reverse
+hi User4 ctermbg=0 ctermfg=4 cterm=reverse
+hi User5 ctermbg=0 ctermfg=5 cterm=reverse
+hi User6 ctermbg=0 ctermfg=6 cterm=reverse
 hi User9 none
 
 " = Misc =
