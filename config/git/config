@@ -20,8 +20,11 @@
   context = 1
   tool = neovimdiff
 
+[difftool]
+  prompt = false
+
 [difftool "neovimdiff"]
-  cmd = nvim -d $LOCAL $REMOTE
+  cmd = nvim -d $REMOTE $LOCAL
 
 [merge]
   tool = neovimmerge
