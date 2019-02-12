@@ -418,17 +418,9 @@ __path-prepend "${CARGO_HOME}/bin"
 
 # === Void linux ===
 if (( $+commands[xbps-install] )); then
-  f() {
-    xbps-query -Rs "$@"
-  }
-
-  i() {
-    sudo xbps-install "$@"
-  }
-
-  u() {
-    sudo xbps-install -Su
-  }
+  f() { xbps-query -Rs "$@" }
+  i() { sudo xbps-install "$@" }
+  u() { sudo xbps-install -Su }
 
   command_not_found_handler() {
     print "$fg[red]zsh: command not found: $fg[blue]'$1'$reset_color" 1>&2
@@ -450,17 +442,20 @@ fi
 
 # === Arch linux ===
 if (( $+commands[pacman] )); then
-  f() {
-    pacman -Ss "$@"
-  }
-
-  i() {
-    sudo pacman -S "$@"
-  }
-
-  u() {
-    sudo pacman -Syyuu
-  }
+  f() { pacman -Ss "$@" }
+  i() { sudo pacman -S "$@" }
+  u() { sudo pacman -Syyuu }
 
   . '/usr/share/doc/pkgfile/command-not-found.zsh'
+fi
+
+# === Termux ===
+if (( $+commands[pkg] )) && [[ "_$PREFIX" =~ "_/data/data" ]]; then
+  f() { pkg search "$@" }
+  i() { pkg install "$@" }
+  u() { pkg upgrade }
+
+  command_not_found_handler() {
+    $PREFIX/libexec/termux/command-not-found "$1"
+  }
 fi
