@@ -7,7 +7,7 @@ syntax reset
 hi ErrorMsg ctermbg=1 ctermfg=0
 hi WarningMsg ctermbg=5 ctermfg=0
 hi Visual ctermbg=7 ctermfg=0 cterm=reverse,bold
-hi Search ctermbg=3 ctermfg=0
+hi Search ctermbg=0 ctermfg=3 cterm=reverse
 
 hi VertSplit ctermbg=0 ctermfg=0 cterm=bold
 hi LineNr ctermfg=0 cterm=bold
