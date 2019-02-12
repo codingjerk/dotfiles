@@ -3,6 +3,7 @@ set -e -o pipefail
 # === Ensure directories exist ===
 mkdir -p "${LESSKEY:h}"
 mkdir -p "${TRANSMISSION_HOME}"
+mkdir -p "${XDG_RUNTIME_DR}"
 
 mkdir -p "${XDG_DATA_HOME}/gnupg"
 mkdir -p "${XDG_DATA_HOME}/zsh"
