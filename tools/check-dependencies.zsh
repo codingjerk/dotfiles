@@ -9,7 +9,7 @@ recommend_message() { message 33 warning "$1" recommended }
 binary() { which "$1" > /dev/null }
 python3_lib() { python3 -c "import $1" 2> /dev/null }
 consolefont() { test -e "/usr/share/kbd/consolefonts/$1.psf.gz" }
-font() { which fc-list > /dev/null && fc-list | grep -i "$1" > /dev/null 2> /dev/null }
+font()  { which fc-list > /dev/null && fc-list | grep -i "$1" > /dev/null 2> /dev/null }
 theme() { false }
 icons() { false }
 
