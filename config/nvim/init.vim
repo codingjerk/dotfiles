@@ -141,6 +141,12 @@ noremap <silent> <C-E> <Esc>:tabn<CR>
 inoremap <silent> <C-Q> <C-o>:tabp<CR>
 inoremap <silent> <C-E> <C-o>:tabn<CR>
 
+" = Search =
+nnoremap n nzz
+nnoremap N Nzz
+
+nnoremap <silent> b :noh<CR>
+
 " = Fzf =
 if filereadable('/usr/share/vim/vimfiles/plugin/fzf.vim')
   source /usr/share/vim/vimfiles/plugin/fzf.vim
