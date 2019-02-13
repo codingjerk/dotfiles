@@ -21,7 +21,7 @@ fi
 
 # === Misc options ===
 KEYTIMEOUT=1
-WORDCHARS='-'
+WORDCHARS='-_'
 
 setopt interactive_comments
 
