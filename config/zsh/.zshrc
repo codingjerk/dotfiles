@@ -165,6 +165,7 @@ zstyle ':completion:*' list-dirs-first true
 
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' accept-exact-dirs true
 zstyle ':completion:*' use-cache true
 zstyle ':completion:*' cache-path "${XDG_CACHE_HOME}/zsh"
 
