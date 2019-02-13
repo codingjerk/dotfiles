@@ -154,9 +154,13 @@ setopt hist_verify
 setopt complete_in_word
 setopt always_to_end
 
+ZSH_COMPDUMP="${XDG_CACHE_HOME}/zsh/compdump"
 zmodload -i zsh/complist
 autoload -Uz compinit
-compinit -C -i -d "${XDG_CACHE_HOME}/zsh/compdump"
+compinit -C -i -d "${ZSH_COMPDUMP}"
+
+__recompile() { [[ "${1}.zwc" -nt "${1}" ]] || zcompile "${1}" }
+__recompile "${ZSH_COMPDUMP}"
 
 zstyle ':completion:*' completer _complete _expand
 zstyle ':completion:*' menu yes select
@@ -394,7 +398,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=0,bold'
 source "${CJ_DOTFILES}/third-party/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 
 source "${CJ_DOTFILES}/third-party/zsh/alias-tips/alias-tips.plugin.zsh"
-export ZSH_PLUGINS_ALIAS_TIPS_TEXT=$'\E[31mAlias tip: '
+ZSH_PLUGINS_ALIAS_TIPS_TEXT=$'\E[31mAlias tip: '
 
 (( $+commands[node] )) || source "${NVM_DIR}/nvm.sh" --no-use
 
