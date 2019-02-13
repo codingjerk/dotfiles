@@ -199,76 +199,84 @@ setopt hist_reduce_blanks
 setopt extended_history
 setopt inc_append_history_time
 
-# === Keybindings ===
+# === Keybindings (preparations) ===
 unsetopt flow_control
 
-bindkey '^[[3~' delete-char
+typeset -A key
+key=(
+  BackSpace    "${terminfo[kbs]}"
+  Delete       "${terminfo[kdch1]}"
 
-bindkey '^[[Z' reverse-menu-complete
+  ShiftTab     "${terminfo[kcbt]}"
+  Tab          "${terminfo[ht]}"
 
-bindkey '^[[1~' beginning-of-line
-bindkey '^[[4~' end-of-line
+  Home         "${terminfo[khome]}"
+  End          "${terminfo[kend]}"
 
-bindkey '^[[H' beginning-of-line
-bindkey '^[[F' end-of-line
+  PageUp       "${terminfo[kpp]}"
+  PageDown     "${terminfo[knp]}"
 
-bindkey '^[[5~' up-line-or-history
-bindkey '^[[6~' down-line-or-history
+  Left         "${terminfo[kcub1]}"
+  Right        "${terminfo[kcuf1]}"
 
-bindkey '^[^[[D' backward-word
-bindkey '^[^[[C' forward-word
-bindkey '^[[1;5D' backward-word
-bindkey '^[[1;5C' forward-word
+  ControlLeft  '^[[1;5D'
+  ControlRight '^[[1;5C'
+)
 
-bindkey -M menuselect '^^' accept-and-menu-complete
+__map() {
+  bindkey "${key[$1]}" "$2"
+}
 
 autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey '^S' edit-command-line
 
 __fzf-history() {
   LBUFFER="$(fc -ln 0 | fzf --tac --no-sort -q "${LBUFFER}")"
   zle redisplay
 }
 zle -N __fzf-history
-bindkey '^R' __fzf-history
 
 __fzf-open() {
   ${=FZF_DEFAULT_COMMAND} | fzf --print0 --multi | xargs -0 -r "${=EDITOR}"
   zle redisplay
 }
 zle -N __fzf-open
+
+# === Keybindings (terminfo keys) ===
+__map Delete       delete-char
+__map ShiftTab     reverse-menu-complete
+
+__map Home         beginning-of-line
+__map End          end-of-line
+
+__map PageUp       up-line-or-history
+__map PageDown     down-line-or-history
+
+__map ControlLeft  backward-word
+__map ControlRight forward-word
+
+# === Keybindings (C-L keys) ===
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+bindkey '^Q' push-line
+bindkey '^K' kill-line
+bindkey '^Y' yank
+
+bindkey '^S' edit-command-line
+bindkey '^R' __fzf-history
 bindkey '^O' __fzf-open
-
-__fzf-go() {
-  local dir="$( ${=FZF_DEFAULT_COMMAND//-t f -t l -S-10M/-t d} | fzf)"
-  [[ "$dir" = '' ]] || cd "$dir"
-  zle reset-prompt
-}
-zle -N __fzf-go
-bindkey '^G' __fzf-go
-
-__sudo-buffer-or-last() {
-  if [[ "${LBUFFER}" = '' ]]; then
-    LBUFFER="sudo $history[$((${HISTCMD} - 1))]"
-  else
-    LBUFFER="sudo ${LBUFFER}"
-  fi
-}
-zle -N __sudo-buffer-or-last
-bindkey '^[^[' __sudo-buffer-or-last
 
 # === Prompt ===
 setopt prompt_subst
 
 typeset -A fg
-fg=( \
-  red     $'\033[31m' \
-  green   $'\033[32m' \
-  yellow  $'\033[33m' \
-  blue    $'\033[34m' \
-  orange  $'\033[35m' \
-  electro $'\033[36m' \
+fg=(
+  red     $'\033[31m'
+  green   $'\033[32m'
+  yellow  $'\033[33m'
+  blue    $'\033[34m'
+  orange  $'\033[35m'
+  electro $'\033[36m'
 )
 reset_color=$'\033[0m'
 
