@@ -29,6 +29,7 @@ setopt interactive_comments
 alias ag='ag --hidden --ignore-dir .git'
 
 alias cal='cal -m'
+alias curl='curl -JOL#'
 
 alias diff='diff --color=auto'
 
