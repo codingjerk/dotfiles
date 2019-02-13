@@ -101,6 +101,33 @@ set statusline+=%l/%L\ " Line number
 set statusline+=%4*\ %Y\ "
 set statusline+=%6*\ %{&fenc}\ "
 
+" === Tabline ===
+set tabline=%!MyTabLine()
+
+function! MyTabLine()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    if i + 1 == tabpagenr()
+      let s .= '%#TabLineSel#'
+    else
+      let s .= '%#TabLine#'
+    endif
+
+    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+  endfor
+
+  return s
+endfunction
+
+function! MyTabLabel(n)
+  let buflist = tabpagebuflist(a:n)
+  let winnr = tabpagewinnr(a:n)
+  let path = bufname(buflist[winnr - 1])
+  let filename = fnamemodify(path, ":t")
+
+  return filename
+endfunction
+
 " === Misc ===
 set lazyredraw
 set showmatch
