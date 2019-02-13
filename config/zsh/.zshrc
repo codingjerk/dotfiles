@@ -269,10 +269,7 @@ fg=( \
 reset_color=$'\033[0m'
 
 __utf-mode() {
-  uname -m | command grep i686 > /dev/null && return 1
-  [[ "${LANG}" =~ "UTF|utf" ]] || return 1
-
-  return 0
+  [[ "${LANG}" =~ "UTF|utf" ]]
 }
 
 if __utf-mode; then
@@ -399,7 +396,7 @@ source "${CJ_DOTFILES}/third-party/zsh/fast-syntax-highlighting/fast-syntax-high
 source "${CJ_DOTFILES}/third-party/zsh/alias-tips/alias-tips.plugin.zsh"
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT=$'\E[31mAlias tip: '
 
-source "${NVM_DIR}/nvm.sh" --no-use
+(( $+commands[node] )) || source "${NVM_DIR}/nvm.sh" --no-use
 
 # === PATH ===
 __path-prepend() {
