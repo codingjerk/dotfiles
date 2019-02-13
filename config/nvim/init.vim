@@ -69,6 +69,7 @@ set hlsearch
 set incsearch
 set smartcase
 set ignorecase
+set nowrapscan
 
 " === Indentation ===
 set autoindent
