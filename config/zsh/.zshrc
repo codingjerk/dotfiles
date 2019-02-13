@@ -174,7 +174,7 @@ zstyle ':completion:*' use-cache true
 zstyle ':completion:*' cache-path "${XDG_CACHE_HOME}/zsh"
 
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*:processes' command "ps -u '${USER}' -o pid,user,args -w -w"
+
 zstyle ':completion:*:functions' ignored-patterns '_*'
 zstyle ':completion:*:users' ignored-patterns \
   adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna \
