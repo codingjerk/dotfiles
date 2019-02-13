@@ -423,6 +423,8 @@ if (( $+commands[xbps-install] )); then
   u() { sudo xbps-install -Su }
   r() { sudo xbps-remove -R "$@" }
 
+  o() { xdg-open "$@" }
+
   command_not_found_handler() {
     print "$fg[red]zsh: command not found: $fg[blue]'$1'$reset_color" 1>&2
 
@@ -448,6 +450,8 @@ if (( $+commands[pacman] )); then
   u() { sudo pacman -Syyuu }
   r() { sudo pacman -Rs "$@" }
 
+  o() { xdg-open "$@" }
+
   . '/usr/share/doc/pkgfile/command-not-found.zsh'
 fi
 
@@ -457,6 +461,8 @@ if (( $+commands[pkg] )) && [[ "_$PREFIX" =~ "_/data/data" ]]; then
   i() { pkg install "$@" }
   u() { pkg upgrade }
   r() { pkg uninstall "$@" }
+
+  o() { termux-open "$@" }
 
   command_not_found_handler() {
     $PREFIX/libexec/termux/command-not-found "$1"
