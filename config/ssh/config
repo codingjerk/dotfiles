@@ -1,5 +1,6 @@
 Host *
-  Compression yes
+  Compression delayed
+  AddressFamily inet
 
   ControlMaster auto
   ControlPersist yes
