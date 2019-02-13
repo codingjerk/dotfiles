@@ -31,6 +31,10 @@ hi DiffDelete ctermbg=0 ctermfg=1 cterm=reverse
 hi DiffChange ctermbg=0 ctermfg=3 cterm=reverse
 hi DiffText   ctermbg=0 ctermfg=5 cterm=reverse
 
+hi diffAdded   ctermfg=2
+hi diffChanged ctermfg=3
+hi diffFile    ctermfg=6
+
 " = General =
 hi Comment ctermfg=0 cterm=bold
 hi Whitespace ctermfg=1 cterm=none
