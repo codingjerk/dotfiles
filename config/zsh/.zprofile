@@ -13,7 +13,7 @@ export FZF_DEFAULT_OPTS="--exact --ansi --color='16,hl:6,fg+:1,bg+:0,hl+:6,info:
 
 export GREP_COLORS='sl=0:cx=1;30:fn=0;33:ln=0;35'
 
-export LESS='-imRSFX -x4 -z-4 -#10'
+export LESS='-imRSc -x4 -z-4 -#10 -j8'
 
 # === LS_COLORS ===
 LS_COLORS='no=0:fi=0:di=34'
