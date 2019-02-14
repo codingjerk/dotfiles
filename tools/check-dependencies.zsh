@@ -77,6 +77,7 @@ if [[ "$mode" =~ vim ]]; then
   require python3_lib "neovim (Python library)" neovim
 
   recommend binary "Rust Language Server (rls)" rls
+  recommend binary "Rope" rope
   recommend binary "Python Language Server (pyls)" pyls
   recommend binary "JavaScript/TypeScript Language Server" javascript-typescript-stdio
 
