@@ -122,10 +122,11 @@ bindsym Shift+Print   exec --no-startup-id "screenshot selection"
 bindsym \$mod+Shift+r restart
 bindsym \$mod+Shift+x exit
 
-set \$run_mode b: Browser | p: Private | k: KeeWeb | z: Zathura
+set \$run_mode b: Browser | p: Private | t: Transmission | k: KeeWeb | z: Zathura
 mode "\$run_mode" {
   bindsym b exec --no-startup-id "\$BROWSER"; mode "default"
   bindsym p exec --no-startup-id "\$BROWSER --incognito"; mode "default"
+  bindsym t exec --no-startup-id "transmission-remote-gtk"; mode "default"
   bindsym k exec --no-startup-id "KeeWeb"; mode "default"
   bindsym z exec --no-startup-id "zathura"; mode "default"
 
