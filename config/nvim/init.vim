@@ -27,6 +27,7 @@ let g:ale_linters = {
   \ 'javascript': ['eslint'],
   \ 'markdown': ['write-good'],
   \ 'rust': ['cargo'],
+  \ 'python': ['mypy', 'autopep8'],
   \ }
 let g:ale_fixers = {
   \ 'bash': ['shfmt'],
@@ -34,6 +35,7 @@ let g:ale_fixers = {
   \ 'html': ['prettier'],
   \ 'javascript': ['prettier'],
   \ 'rust': ['rustfmt'],
+  \ 'python': ['autopep8', 'isort'],
   \ }
 
 Plug 'editorconfig/editorconfig-vim'

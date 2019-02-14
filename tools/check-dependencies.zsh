@@ -88,6 +88,11 @@ if [[ "$mode" =~ vim ]]; then
   recommend binary "shfmt" shfmt
   recommend binary "Prettier" prettier
   recommend binary "rustfmt" rustfmt
+
+  recommend binary "mypy" mypy
+  recommend binary "autopep8" autopep8
+
+  recommend binary "isort" isort
 fi
 
 # === OS-specfic ===
