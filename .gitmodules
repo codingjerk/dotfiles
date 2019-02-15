@@ -13,3 +13,6 @@
 [submodule "third-party/vim-plug"]
 	path = third-party/vim-plug
 	url = https://github.com/junegunn/vim-plug
+[submodule "third-party/pyenv"]
+	path = third-party/pyenv
+	url = https://github.com/pyenv/pyenv
