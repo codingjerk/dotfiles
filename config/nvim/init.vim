@@ -24,8 +24,9 @@ let g:ale_linters_explicit = 1
 let g:ale_linters = {
   \ 'bash': ['shellcheck'],
   \ 'sh': ['shellcheck'],
-  \ 'javascript': ['eslint'],
   \ 'markdown': ['write-good'],
+  \ 'javascript': ['tsserver'],
+  \ 'typescript': ['tsserver'],
   \ 'rust': ['cargo'],
   \ 'python': ['mypy', 'autopep8'],
   \ }
@@ -34,10 +35,13 @@ let g:ale_fixers = {
   \ 'sh': ['shfmt'],
   \ 'html': ['prettier'],
   \ 'javascript': ['prettier'],
+  \ 'typescript': ['prettier'],
+  \ 'json': ['prettier'],
   \ 'rust': ['rustfmt'],
   \ 'python': ['autopep8', 'isort'],
   \ }
 
+Plug 'leafgarland/typescript-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
@@ -85,7 +89,7 @@ set noswapfile
 
 " === Statusline ===
 set noshowmode
-set shortmess+=c
+set shortmess+=catI
 
 set laststatus=2
 set statusline=
@@ -100,8 +104,10 @@ set statusline+=%9*\ %f\ "
 
 set statusline+=%9*%=
 set statusline+=%l/%L\ " Line number
-set statusline+=%4*\ %Y\ "
-set statusline+=%6*\ %{&fenc}\ "
+set statusline+=%5*%{(&filetype=='')?'\ NO\ FILETYPE\ ':''}"
+set statusline+=%4*%{(&filetype=='')?'':'\ '.&filetype.'\ '}"
+set statusline+=%3*%{(&fenc=='')?'\ \ NO\ ENCODING\ ':''}"
+set statusline+=%6*%{(&fenc=='')?'':'\ \ '.&fenc.'\ '}"
 
 " === Tabline ===
 set tabline=%!MyTabLine()
@@ -215,6 +221,7 @@ imap <expr><CR> neosnippet#expandable_or_jumpable()
   \ : "\<CR>"
 
 " === Linting ===
+nnoremap <silent> <C-a> :ALENextWrap<CR>
 nnoremap <silent> <C-f> :ALEFix<CR>
 nnoremap <silent> <C-s> :set spell!<CR>
 

@@ -9,6 +9,8 @@ hi WarningMsg ctermbg=5 ctermfg=0
 hi Visual ctermbg=7 ctermfg=0 cterm=reverse,bold
 hi Search ctermbg=0 ctermfg=3 cterm=reverse
 
+hi ALEErrorLine ctermbg=0 ctermfg=5 cterm=reverse
+
 hi VertSplit ctermbg=0 ctermfg=0 cterm=bold
 hi LineNr ctermfg=0 cterm=bold
 hi MatchParen ctermfg=0 ctermbg=0 cterm=reverse,bold
