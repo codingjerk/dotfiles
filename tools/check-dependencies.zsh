@@ -82,7 +82,7 @@ if [[ "$mode" =~ vim ]]; then
   recommend binary "JavaScript/TypeScript Language Server" javascript-typescript-stdio
 
   recommend binary "Shellcheck" shellcheck
-  recommend binary "ESLint" eslint
+  recommend binary "tsserver" tsserver
   recommend binary "Write Good" write-good
   recommend binary "Cargo" cargo
 
