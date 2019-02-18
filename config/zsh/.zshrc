@@ -51,7 +51,7 @@ alias du='du -h -d 1 -c'
 alias e='${=EDITOR}'
 alias E='sudo --login ${=EDITOR}'
 
-alias exa='exa --all --binary --group-directories-first'
+alias exa='exa --all --binary --group-directories-first --color-scale'
 alias exa-all='exa'
 alias exa-ignore='exa --git-ignore --git --ignore-glob .git'
 
@@ -450,12 +450,12 @@ __load-rustup
 
 # === Void linux ===
 if (( $+commands[xbps-install] )); then
-  f() { xbps-query -Rs "$@" }
-  i() { sudo xbps-install "$@" }
-  u() { sudo xbps-install -Su }
-  r() { sudo xbps-remove -R "$@" }
+  alias f='xbps-query -Rs'
+  alias i='sudo xbps-install'
+  alias u='sudo xbps-install -Su'
+  alias r='sudo xbps-remove -R'
 
-  o() { xdg-open "$@" }
+  alias o='xdg-open'
 
   command_not_found_handler() {
     print "$fg[red]zsh: command not found: $fg[blue]'$1'$reset_color" 1>&2
@@ -477,24 +477,24 @@ fi
 
 # === Arch linux ===
 if (( $+commands[pacman] )); then
-  f() { pacman -Ss "$@" }
-  i() { sudo pacman -S "$@" }
-  u() { sudo pacman -Syyuu }
-  r() { sudo pacman -Rs "$@" }
+  alias f='pacman -Ss'
+  alias i='sudo pacman -S'
+  alias u='sudo pacman -Syyuu'
+  alias r='sudo pacman -Rs'
 
-  o() { xdg-open "$@" }
+  alias o='xdg-open'
 
   . '/usr/share/doc/pkgfile/command-not-found.zsh'
 fi
 
 # === Termux ===
 if (( $+commands[pkg] )) && [[ "_$PREFIX" =~ "_/data/data" ]]; then
-  f() { pkg search "$@" }
-  i() { pkg install "$@" }
-  u() { pkg upgrade }
-  r() { pkg uninstall "$@" }
+  alias f='pkg search'
+  alias i='pkg install'
+  alias u='pkg upgrade'
+  alias r='pkg uninstall'
 
-  o() { termux-open "$@" }
+  alias o='termux-open'
 
   command_not_found_handler() {
     $PREFIX/libexec/termux/command-not-found "$1"
