@@ -51,7 +51,7 @@ alias du='du -h -d 1 -c'
 alias e='${=EDITOR}'
 alias E='sudo --login ${=EDITOR}'
 
-alias exa='exa --all --binary --group-directories-first --color-scale'
+alias exa='exa --all --binary --group-directories-first'
 alias exa-all='exa'
 alias exa-ignore='exa --git-ignore --git --ignore-glob .git'
 
