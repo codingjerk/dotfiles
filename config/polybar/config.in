@@ -14,6 +14,7 @@ cat <<EOF
 
   font-0 = ${CJ_MONOFONT}:size=${CJ_MONOFONT_SIZE};3
   font-1 = FontAwesome:size=${CJ_MONOFONT_SIZE};2
+  font-2 = Font Awesome 5:size=${CJ_MONOFONT_SIZE};2
 
   modules-left =
   modules-center = wm
@@ -51,7 +52,7 @@ cat <<EOF
 
   ws-icon-0 = 1;
   ws-icon-1 = 2;
-  ws-icon-2 = 3;
+  ws-icon-2 = 3;
   ws-icon-3 = 4;
   ws-icon-4 = 5;
   ws-icon-5 = 6;

@@ -1,5 +1,10 @@
 mode="${1:-opt,gui,server,vim}"
 
+if [[ "$mode" == "help" ]]; then
+  echo "Mode can be opt, gui, server and/or vim"
+  exit
+fi
+
 # === Text functions ===
 message() { echo "\033[${1}m[$2]: $3 is $4\033[0m" }
 require_message() { message 31 error "$1" required }
@@ -10,8 +15,8 @@ binary() { which "$1" > /dev/null }
 python3_lib() { python3 -c "import $1" 2> /dev/null }
 consolefont() { test -e "/usr/share/kbd/consolefonts/$1.psf.gz" }
 font()  { which fc-list > /dev/null && fc-list | grep -i "$1" > /dev/null 2> /dev/null }
-theme() { false }
-icons() { false }
+theme() { test -e "/usr/share/themes/$1" }
+icons() { test -e "/usr/share/icons/$1" }
 
 # === Dependency declaration functions ===
 require() { "$1" "$3" || require_message "$2" }
@@ -54,7 +59,7 @@ if [[ "$mode" =~ gui ]]; then
 
   require theme "Adapta (theme)" "Adapta"
   require icons "Breeze (icons)" "breeze"
-  require icons "Breeze (cursors)" "breeze_cursors"
+  require icons "Breeze (cursors)" "Breeze_Snow"
 
   require binary "xinit" xinit
   require binary "feh" feh
