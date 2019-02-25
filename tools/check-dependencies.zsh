@@ -71,6 +71,8 @@ if [[ "$mode" =~ gui ]]; then
   require binary "slop" slop
   require binary "ImageMagick" convert
 
+  recommend binary "xclip" xclip
+
   recommend binary "Zathura" zathura
   recommend binary "KeeWeb" keeweb
   recommend binary "Chromium" chromium

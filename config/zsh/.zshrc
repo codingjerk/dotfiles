@@ -49,7 +49,7 @@ alias df='df -h -x devtmpfs'
 alias du='du -h -d 1 -c'
 
 alias e='${=EDITOR}'
-alias E='sudo --login ${=EDITOR}'
+E() { sudo zsh -lc "${EDITOR} $@" }
 
 alias exa='exa --all --binary --group-directories-first'
 alias exa-all='exa'
@@ -129,6 +129,8 @@ alias watch='watch '
 
 alias cp='cp -i'
 alias mv='mv -i'
+
+alias xclip='xclip -selection clipboard'
 
 # === Colors ===
 man() {
