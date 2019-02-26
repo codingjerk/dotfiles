@@ -21,6 +21,7 @@ config/KeeWeb/signatures.json
 config/KeeWeb/temp
 config/KeeWeb/update-info.json
 config/KeeWeb/window-position.json
+config/kernel.org
 config/mimeapps.list
 config/minidlna/minidlna.conf
 config/mpd/bakoga.conf
@@ -32,6 +33,8 @@ config/pavucontrol.ini
 config/polybar/config
 config/pulse
 config/QtProject.conf
+config/ranger/*/__init__.py
+config/ranger/*/__pycache__
 config/transmission-remote-gtk
 config/VirtualBox
 config/vivaldi

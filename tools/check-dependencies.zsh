@@ -40,6 +40,7 @@ if [[ "$mode" =~ opt ]]; then
   recommend binary "exa" exa
   recommend binary "hexyl" hexyl
   recommend binary "The Silver Searcher" ag
+  recommend binary "ranger" ranger
 fi
 
 # === Daemons ===
