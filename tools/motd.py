@@ -264,6 +264,7 @@ def is_block_device_line(mount_line: str) -> bool:
     block_prefixes = [
         "/dev/block/",
         "/dev/sd",
+        "/dev/root",
         "/dev/mapper/",
     ]
 
