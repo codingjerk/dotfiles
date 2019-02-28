@@ -7,7 +7,7 @@ mkdir -p "${LOGPATH}"
   sleep 1.0
   cd "${HOME}/@storage/@music"
   mpc update
-  sleep 1.0
+  sleep 10.0
   mpc add *
   mpc repeat
   mpc random
