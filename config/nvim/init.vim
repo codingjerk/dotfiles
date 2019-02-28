@@ -2,51 +2,45 @@
 source $CJ_DOTFILES/third-party/vim-plug/plug.vim
 call plug#begin('$XDG_DATA_HOME/nvim/plug')
 
+" Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'fszymanski/deoplete-emoji'
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+
+" Snippets
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+
+" Language support
+Plug 'leafgarland/typescript-vim'
+Plug 'editorconfig/editorconfig-vim'
+
+call plug#end()
+
+" === Plugin settings ===
+" deoplete
 let g:deoplete#enable_at_startup = 1
 
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+" deoplete-emoji
+call deoplete#custom#source('emoji', 'filetypes', ['vim', 'rust', 'python', 'javascript', 'typescript', 'zsh'])
+call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
+
+" LanguageClient-neovim
 set hidden
 set completeopt-=preview
 set signcolumn=no
+let g:LanguageClient_diagnosticsEnable = 1
+autocmd CompleteDone * silent! pclose!
+
 let g:LanguageClient_serverCommands = {
   \ 'rust': ['rls'],
   \ 'python': ['pyls'],
   \ 'javascript': ['javascript-typescript-stdio'],
   \ 'typescript': ['javascript-typescript-stdio'],
-  \ }
-let g:LanguageClient_diagnosticsEnable = 0
-autocmd CompleteDone * silent! pclose!
-
-Plug 'w0rp/ale'
-let g:ale_completion_enabled = 0
-let g:ale_linters_explicit = 1
-let g:ale_linters = {
-  \ 'bash': ['shellcheck'],
-  \ 'sh': ['shellcheck'],
-  \ 'markdown': ['write-good'],
-  \ 'javascript': ['tsserver'],
-  \ 'typescript': ['tsserver'],
-  \ 'rust': ['cargo'],
-  \ 'python': ['mypy', 'autopep8'],
-  \ }
-let g:ale_fixers = {
-  \ 'bash': ['shfmt'],
-  \ 'sh': ['shfmt'],
-  \ 'html': ['prettier'],
-  \ 'javascript': ['prettier'],
-  \ 'typescript': ['prettier'],
-  \ 'json': ['prettier'],
-  \ 'rust': ['rustfmt'],
-  \ 'python': ['autopep8', 'isort'],
+  \ 'css': ['css-languageserver', '--stdio'],
   \ }
 
-Plug 'leafgarland/typescript-vim'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-
-call plug#end()
+nnoremap <silent> <C-f> :call LanguageClient#textDocument_formatting_sync()<CR>
 
 " === Timeouts ===
 set ttimeoutlen=10
@@ -220,11 +214,6 @@ imap <expr><CR> neosnippet#expandable_or_jumpable()
   \ ? "\<Plug>(neosnippet_expand_or_jump)"
   \ : "\<CR>"
 
-" === Linting ===
-nnoremap <silent> <C-a> :ALENextWrap<CR>
-nnoremap <silent> <C-f> :ALEFix<CR>
-nnoremap <silent> <C-s> :set spell!<CR>
-
 " === Highlighting ===
 set t_Co=16
 colorscheme cj
@@ -238,8 +227,3 @@ hi User4 ctermbg=0 ctermfg=4 cterm=reverse
 hi User5 ctermbg=0 ctermfg=5 cterm=reverse
 hi User6 ctermbg=0 ctermfg=6 cterm=reverse
 hi User9 none
-
-" = Misc =
-map <F1> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
