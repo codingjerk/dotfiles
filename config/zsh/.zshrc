@@ -239,11 +239,29 @@ __fzf-history() {
 }
 zle -N __fzf-history
 
-__fzf-open() {
-  ${=FZF_DEFAULT_COMMAND} | fzf --print0 --multi | xargs -0 -r "${=EDITOR}"
+__fzf-find-current() {
+  local found=$(${=FZF_DEFAULT_COMMAND} | fzf)
+  [[ -n "$found" ]] && LBUFFER="${LBUFFER}${found}"
+}
+
+__fzf-find-in-dir() {
+  local init="${LBUFFER%% *}"
+  local last="${LBUFFER##* }"
+  local found=$(${=FZF_DEFAULT_COMMAND} . "$last" | fzf)
+  [[ -n "$found" ]] && LBUFFER="${init} ${found}"
+}
+
+__fzf-find() {
+  case "$LBUFFER" in
+    */) __fzf-find-in-dir
+        ;;
+    *)  __fzf-find-current
+        ;;
+  esac
+
   zle redisplay
 }
-zle -N __fzf-open
+zle -N __fzf-find
 
 # === Keybindings (terminfo keys) ===
 __map Delete       delete-char
@@ -267,7 +285,7 @@ bindkey '^Y' yank
 
 bindkey '^S' edit-command-line
 bindkey '^R' __fzf-history
-bindkey '^O' __fzf-open
+bindkey '^F' __fzf-find
 
 # === Prompt ===
 setopt prompt_subst
