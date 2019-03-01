@@ -67,6 +67,7 @@ alias gdt='git difftool'
 alias gi='git init'
 alias gl='git log --graph'
 alias gp='git push'
+alias gr='git rebase'
 alias gs='git status -s'
 alias gu='git pull'
 
@@ -74,6 +75,8 @@ alias gbi='git bisect'
 alias gca='git commit --amend --no-edit'
 alias gcl='git clone'
 alias gco='git checkout'
+alias gss='git stash save'
+alias gsp='git stash pop'
 
 alias grep="grep --color=auto --binary-files=without-match --exclude-dir={.bzr,.git,.hg,.svn}"
 
