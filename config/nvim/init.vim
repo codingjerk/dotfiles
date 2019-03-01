@@ -15,6 +15,9 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'leafgarland/typescript-vim'
 Plug 'editorconfig/editorconfig-vim'
 
+" Other
+Plug 'wakatime/vim-wakatime'
+
 call plug#end()
 
 " === Plugin settings ===
