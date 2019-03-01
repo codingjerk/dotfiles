@@ -46,7 +46,7 @@ bind a select-pane -L
 bind s select-pane -D
 bind d select-pane -R
 
-bind n command-prompt 'new-session -s %1'
+bind n command-prompt -p 'Session name:,Path:' 'new-session -c %2 -s %1'
 
 bind -r C-w resize-pane -U
 bind -r C-a resize-pane -L
