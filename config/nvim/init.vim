@@ -10,6 +10,7 @@ Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.s
 " Snippets
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'mattn/emmet-vim'
 
 " Language support
 Plug 'leafgarland/typescript-vim'
@@ -203,7 +204,7 @@ imap <expr><Tab> pumvisible()
   \ ? "\<C-n>"
   \ : neosnippet#expandable_or_jumpable()
   \ ? "\<Plug>(neosnippet_expand_or_jump)"
-  \ : "\<Tab>"
+  \ : emmet#expandAbbrIntelligent("\<tab>")
 
 smap <expr><Tab> neosnippet#expandable_or_jumpable()
   \ ? "\<Plug>(neosnippet_expand_or_jump)"
