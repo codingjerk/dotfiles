@@ -42,5 +42,4 @@ FontName=${CJ_MONOFONT} ${CJ_MONOFONT_SIZE}
 CellHeightScale=1.050000
 ColorCursorUseDefault=FALSE
 ColorCursorForeground=#${CJ_COLOR_BG_HEX}
-BindingBackspace=TERMINAL_ERASE_BINDING_ASCII_BACKSPACE
 EOF
