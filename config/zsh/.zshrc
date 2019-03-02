@@ -80,6 +80,8 @@ alias gsp='git stash pop'
 
 alias grep="grep --color=auto --binary-files=without-match --exclude-dir={.bzr,.git,.hg,.svn}"
 
+alias ixio="\curl -F 'f:1=<-' ix.io"
+
 alias ls='ls -vAh --color=auto --group-directories-first --file-type --quoting-style=literal'
 alias ll='ls -lo --time-style=iso'
 
