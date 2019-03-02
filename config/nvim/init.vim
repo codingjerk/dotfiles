@@ -25,7 +25,7 @@ call plug#end()
 let g:deoplete#enable_at_startup = 1
 
 " deoplete-emoji
-call deoplete#custom#source('emoji', 'filetypes', ['vim', 'rust', 'python', 'javascript', 'typescript', 'zsh'])
+call deoplete#custom#source('emoji', 'filetypes', ['markdown', 'vim', 'rust', 'python', 'javascript', 'typescript', 'zsh'])
 call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
 
 " LanguageClient-neovim
