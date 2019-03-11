@@ -5,6 +5,7 @@ friendly_name=CJ DLNA Server ($(uname -n))
 user=${USER}
 
 media_dir=V,${HOME}/@storage/@public
+media_dir=A,${HOME}/@storage/@public-music
 merge_media_dirs=yes
 root_container=B
 
