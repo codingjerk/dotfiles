@@ -164,7 +164,10 @@ def format_uptime(uptime: datetime.timedelta) -> str:
 
 
 def show_uptime() -> None:
-    uptime = format_uptime(get_uptime())
+    try:
+        uptime = format_uptime(get_uptime())
+    except PermissionError:
+        uptime = '?'
 
     print_center('\u001B[34mup: \u001B[36m' + uptime)
     print()
@@ -318,11 +321,15 @@ def get_cpu_count() -> int:
 
 
 def get_cpu_line() -> List[str]:
-    cpu_load = get_loadavg() / get_cpu_count()
-    color = get_color_by_load(cpu_load)
+    try:
+        cpu_load = get_loadavg() / get_cpu_count()
+        color = get_color_by_load(cpu_load)
 
-    bar = draw_resource_bar(cpu_load)
-    val = color + '%.0f%%' % (cpu_load * 100) + '\u001B[0m'
+        bar = draw_resource_bar(cpu_load)
+        val = color + '%.0f%%' % (cpu_load * 100) + '\u001B[0m'
+    except PermissionError:
+        bar = '?'
+        val = '?'
 
     return ['cpu:', bar, val]
 
