@@ -14,7 +14,7 @@
   autoSetupRebase = always
 
 [commit]
-  gpgSign = true
+  gpgSign = false
 
 [diff]
   color = auto
