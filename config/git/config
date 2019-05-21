@@ -17,6 +17,7 @@
   gpgSign = true
 
 [diff]
+  color = auto
   context = 1
   tool = neovimdiff
 
@@ -58,6 +59,7 @@
 
 [status]
   branch    = true
+  color     = auto
   short     = true
   showStash = true
 
