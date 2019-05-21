@@ -169,6 +169,10 @@ nnoremap <Tab> v><Esc>
 nnoremap <S-Tab> v<<Esc>
 
 " = Completion =
+imap <expr><Tab> pumvisible()
+  \ ? "\<C-n>"
+  \ : "\<Tab>"
+
 imap <expr><S-Tab> pumvisible()
   \ ? "\<C-p>"
   \ : "\<C-o>:<<CR>"
