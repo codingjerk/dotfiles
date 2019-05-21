@@ -271,6 +271,14 @@ def is_block_device_line(mount_line: str) -> bool:
         "/dev/mapper/",
     ]
 
+    exclude_prefixes = [
+        "/dev/block/bootdevice",
+    ]
+
+    for prefix in exclude_prefixes:
+        if mount_line.startswith(prefix):
+            return False
+
     for prefix in block_prefixes:
         if mount_line.startswith(prefix):
             return True
