@@ -398,12 +398,9 @@ __prompt2() {
 PROMPT2='$(__prompt2)'
 
 __user-host() {
-  local colors=(red yellow orange green blue electro)
-  local ids=( $(shuf -i 1-6 -n 3) )
-
-  local user_color=$colors[$ids[1]]
-  local host_color=$colors[$ids[2]]
-  local remote_color=$colors[$ids[3]]
+  local user_color="blue"
+  local host_color="electro"
+  local remote_color="red"
 
   print -rn "%{$fg[$user_color]%}${RPROMPT_SEPARATOR}$1"
   print -rn "%{$fg[$host_color]%}${RPROMPT_SEPARATOR}$2"
@@ -429,10 +426,10 @@ RPROMPT="$(__rprompt)"
 zmodload zsh/datetime
 
 __ctr-show() {
-  local text=$(printf "${RPROMPT_SEPARATOR}%.2f${PROMPT_SEPARATOR}" "${CTR_TOTAL_TIME}")
-  local tlen=$(wc -m <<< "$text")
-  local llen=$(( (${COLUMNS} - $tlen) / 2 ))
-  local lind=$(printf ' %.0s' {1..$llen})
+  local text="$(printf "${RPROMPT_SEPARATOR}%.2f${PROMPT_SEPARATOR}" "${CTR_TOTAL_TIME}")"
+  local tlen="$(wc -m <<< "$text")"
+  local llen="$(( (${COLUMNS} - $tlen) / 2 ))"
+  local lind="$(printf ' %.0s' {1..$llen})"
 
   print "$lind\e[36m$text\a\e[0m"
 }
