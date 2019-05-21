@@ -8,6 +8,7 @@ A well-documented, well-structured dotfiles.
 1. `zsh dotfiles/tools/check-dependencies.zsh`
 1. `zsh dotfiles/tools/install.zsh`
 1. (optional) enable user services for server (dotfiles/services)
+1. (optional) install rustup (IMPORTANT: with new configs, or correct `CARGO_HOME` variable)
 1. (optional) repeat installation steps for root user
 
 ## Dependencies
