@@ -4,47 +4,16 @@ call plug#begin('$XDG_DATA_HOME/nvim/plug')
 
 " Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'fszymanski/deoplete-emoji'
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-
-" Snippets
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'mattn/emmet-vim'
 
 " Language support
 Plug 'leafgarland/typescript-vim'
 Plug 'editorconfig/editorconfig-vim'
-
-" Other
-Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 
 " === Plugin settings ===
 " deoplete
 let g:deoplete#enable_at_startup = 1
-
-" deoplete-emoji
-call deoplete#custom#source('emoji', 'filetypes', ['markdown', 'vim', 'rust', 'python', 'javascript', 'typescript', 'zsh'])
-call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
-
-" LanguageClient-neovim
-set hidden
-set completeopt-=preview
-set signcolumn=no
-let g:LanguageClient_diagnosticsEnable = 1
-autocmd CompleteDone * silent! pclose!
-
-let g:LanguageClient_serverCommands = {
-  \ 'rust': ['rls'],
-  \ 'python': ['pyls'],
-  \ 'javascript': ['javascript-typescript-stdio'],
-  \ 'typescript': ['javascript-typescript-stdio'],
-  \ 'css': ['css-languageserver', '--stdio'],
-  \ }
-
-nnoremap <silent> <C-f> :call LanguageClient#textDocument_formatting_sync()<CR>
 
 " === Timeouts ===
 set ttimeoutlen=10
@@ -200,23 +169,9 @@ nnoremap <Tab> v><Esc>
 nnoremap <S-Tab> v<<Esc>
 
 " = Completion =
-imap <expr><Tab> pumvisible()
-  \ ? "\<C-n>"
-  \ : neosnippet#expandable_or_jumpable()
-  \ ? "\<Plug>(neosnippet_expand_or_jump)"
-  \ : emmet#expandAbbrIntelligent("\<tab>")
-
-smap <expr><Tab> neosnippet#expandable_or_jumpable()
-  \ ? "\<Plug>(neosnippet_expand_or_jump)"
-  \ : "\<Tab>"
-
 imap <expr><S-Tab> pumvisible()
   \ ? "\<C-p>"
   \ : "\<C-o>:<<CR>"
-
-imap <expr><CR> neosnippet#expandable_or_jumpable()
-  \ ? "\<Plug>(neosnippet_expand_or_jump)"
-  \ : "\<CR>"
 
 " === Highlighting ===
 set t_Co=16
