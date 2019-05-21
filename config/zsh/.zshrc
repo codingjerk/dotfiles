@@ -85,16 +85,6 @@ alias ixio="\curl -F 'f:1=<-' ix.io"
 alias ls='ls -vAh --color=auto --group-directories-first --file-type --quoting-style=literal'
 alias ll='ls -lo --time-style=iso'
 
-if (( $+commands[exa] )); then
-  alias l='exa-ignore --long'
-  alias la='exa-all --long'
-  alias s='exa-all -1'
-else
-  alias l='ll'
-  alias la='ll -a'
-  alias s='ll -1'
-fi
-
 alias ni='npm install --prefer-offline --save'
 alias nid='npm install --prefer-offline --save-dev'
 alias nig='npm install -g --prefer-offline'
@@ -102,8 +92,6 @@ alias nit='npm init -y'
 alias ns='npm s'
 alias nf='npm s'
 alias nt='npm t -s'
-
-node() { if [[ -z ${1} ]]; then command node "${CJ_DOTFILES}/bin/node-repl"; else command node "$@"; fi }
 
 alias tmux='tmux -f "${XDG_CONFIG_HOME}/tmux/config"'
 alias ta='tmux attach'
@@ -119,11 +107,6 @@ alias t-no-alt='t-meta --no-alt-speed'
 alias t-list='t-meta --list'
 t-remove() { t-meta -t "$1" --remove }
 t-magnet() { t-add "magnet:?xt=urn:btih:$1" "${@:2}" }
-
-if (( $+commands[exa] )); then
-  alias tree='exa-ignore --tree'
-  alias tree-all='exa-all --tree'
-fi
 
 alias rf='rm -rf'
 
@@ -474,6 +457,24 @@ __load-rustup() {
   __path-prepend "${CARGO_HOME}/bin"
 }
 __load-rustup
+
+# === Dynamic aliases / alias-like functions ===
+if (( $+commands[exa] )); then
+  alias l='exa-ignore --long'
+  alias la='exa-all --long'
+  alias s='exa-all -1'
+else
+  alias l='ll'
+  alias la='ll -a'
+  alias s='ll -1'
+fi
+
+node() { if [[ -z ${1} ]]; then command node "${CJ_DOTFILES}/bin/node-repl"; else command node "$@"; fi }
+
+if (( $+commands[exa] )); then
+  alias tree='exa-ignore --tree'
+  alias tree-all='exa-all --tree'
+fi
 
 # === Void linux ===
 if (( $+commands[xbps-install] )); then
