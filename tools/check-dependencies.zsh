@@ -2,7 +2,7 @@ mode="${1:-opt,gui,server,vim}"
 
 if [[ "$mode" == "help" ]]; then
   echo "Mode can be opt, gui, server and/or vim"
-  exit
+  exit 1
 fi
 
 # === Text functions ===
@@ -31,8 +31,8 @@ require binary "fd" fd
 
 # === Optional dependencies ===
 if [[ "$mode" =~ opt ]]; then
-  recommend consolefont "Terminus (console font)" "ter-i20n"
   recommend binary "less" less
+  recommend binary "man" man
   recommend binary "tmux" tmux
   recommend binary "htop" htop
   recommend binary "OpenSSH" ssh
@@ -51,6 +51,7 @@ fi
 
 # === GUI ===
 if [[ "$mode" =~ gui ]]; then
+  recommend consolefont "Terminus (console font)" "ter-i20n"
   require font "Fira Mono (font)" "Fira Mono"
   require font "Font Awesome (font)" "Awesome"
   require font "Noto Sans (font)" "Noto Sans"
