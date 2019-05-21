@@ -207,7 +207,11 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt hist_reduce_blanks
 setopt extended_history
-setopt inc_append_history_time
+setopt inc_append_history
+
+if unsetopt | grep incappendhistorytime > /dev/null; then
+  setopt inc_append_history_time
+fi
 
 # === Keybindings (preparations) ===
 unsetopt flow_control
