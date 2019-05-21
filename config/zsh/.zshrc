@@ -88,9 +88,11 @@ alias ll='ls -lo --time-style=iso'
 if (( $+commands[exa] )); then
   alias l='exa-ignore --long'
   alias la='exa-all --long'
+  alias s='exa-all -1'
 else
   alias l='ll'
   alias la='ll -a'
+  alias s='ll -1'
 fi
 
 alias ni='npm install --prefer-offline --save'
