@@ -41,6 +41,10 @@ alias ag='ag --hidden --ignore-dir .git'
 alias cal='cal -m'
 alias curl='curl -JOL#'
 
+alias cb='cargo build'
+alias cr='cargo run'
+alias ct='cargo test'
+
 alias diff='diff --color=auto'
 
 alias dmesg='sudo dmesg -H'
