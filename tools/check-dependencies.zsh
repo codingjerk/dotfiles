@@ -84,11 +84,6 @@ fi
 # === Vim-plugin dependencies ===
 if [[ "$mode" =~ vim ]]; then
   require python3_lib "neovim (Python library)" neovim
-
-  recommend binary "Rust Language Server (rls)" rls
-  recommend binary "Python Language Server (pyls)" pyls
-  recommend binary "JavaScript/TypeScript Language Server" javascript-typescript-stdio
-  recommend binary "CSS Language Server" css-languageserver
 fi
 
 # === OS-specfic ===
