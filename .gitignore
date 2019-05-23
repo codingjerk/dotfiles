@@ -33,8 +33,6 @@ config/pavucontrol.ini
 config/polybar/config
 config/pulse
 config/QtProject.conf
-config/ranger/*/__init__.py
-config/ranger/*/__pycache__
 config/transmission-remote-gtk
 config/VirtualBox
 config/vivaldi
