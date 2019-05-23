@@ -1,3 +1,5 @@
+setopt ERR_EXIT NO_UNSET PIPE_FAIL
+
 bindkey -e
 ask() {
   TEMPVAR="$2"

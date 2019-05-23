@@ -1,3 +1,5 @@
+setopt ERR_EXIT NO_UNSET PIPE_FAIL
+
 . "${CJ_DOTFILES}/assets/colors.sh"
 . "${CJ_DOTFILES}/settings.sh"
 

@@ -1,4 +1,4 @@
-set -e -o pipefail
+setopt ERR_EXIT NO_UNSET PIPE_FAIL
 
 # === Ensure directories exist ===
 mkdir -p "${LESSKEY:h}"

@@ -1,3 +1,5 @@
+setopt ERR_EXIT NO_UNSET PIPE_FAIL
+
 mode="${1:-opt,gui,server,vim}"
 
 if [[ "$mode" == "help" ]]; then
@@ -40,7 +42,6 @@ if [[ "$mode" =~ opt ]]; then
   recommend binary "exa" exa
   recommend binary "hexyl" hexyl
   recommend binary "The Silver Searcher" ag
-  recommend binary "ranger" ranger
 fi
 
 # === Daemons ===
@@ -84,11 +85,6 @@ fi
 # === Vim-plugin dependencies ===
 if [[ "$mode" =~ vim ]]; then
   require python3_lib "neovim (Python library)" neovim
-
-  recommend binary "Rust Language Server (rls)" rls
-  recommend binary "Python Language Server (pyls)" pyls
-  recommend binary "JavaScript/TypeScript Language Server" javascript-typescript-stdio
-  recommend binary "CSS Language Server" css-languageserver
 fi
 
 # === OS-specfic ===
