@@ -1,3 +1,5 @@
+setopt ERR_EXIT NO_UNSET PIPE_FAIL
+
 . "${CJ_DOTFILES}/assets/colors.sh"
 
 printf '\033]P0%s' "${CJ_COLOR_0_HEX}"

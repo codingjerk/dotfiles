@@ -1,3 +1,5 @@
+setopt ERR_EXIT NO_UNSET PIPE_FAIL
+
 mode="${1:-opt,gui,server,vim}"
 
 if [[ "$mode" == "help" ]]; then
