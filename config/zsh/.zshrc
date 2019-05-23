@@ -18,13 +18,13 @@ export TERM=${TERM:s/-256color/}
 
 # === Autoload ===
 if [[ -o login ]]; then
-  if [[ "${TERM}" == 'linux' ]]; then
+  if [[ "${TERM}" = 'linux' ]]; then
     zsh "${CJ_DOTFILES}/tools/tty-colors.zsh"
     setfont '/usr/share/kbd/consolefonts/ter-i20n.psf.gz'
     clear
   fi
 
-  if ! [[ -v SUDO_UID ]]; then
+  if [[ -z "$SUDO_UID" ]]; then
     python3 "${CJ_DOTFILES}/tools/motd.py"
   fi
 fi
@@ -397,7 +397,7 @@ __user-host() {
   print -rn "%{$fg[$user_color]%}${RPROMPT_SEPARATOR}$1"
   print -rn "%{$fg[$host_color]%}${RPROMPT_SEPARATOR}$2"
 
-  if [[ -v SSH_CONNECTION ]]; then
+  if [[ -n "$SSH_CONNECTION" ]]; then
     print -rn "%{$fg[$remote_color]%}${RPROMPT_SEPARATOR}via SSH"
   fi
 
@@ -431,7 +431,7 @@ __ctr-update-start() {
 }
 
 __ctr-update-total() {
-  [[ -v CTR_START_TIME ]] || return 0
+  [[ -z ${CTR_START_TIME} ]] && return 0
   [[ ${CTR_START_TIME} == NONE ]] && return 0
   CTR_TOTAL_TIME=$(( ${EPOCHREALTIME} - ${CTR_START_TIME} ))
   CTR_START_TIME=NONE
