@@ -261,6 +261,14 @@ __fzf-find() {
 }
 zle -N __fzf-find
 
+__fzf-open() {
+  local found=$(${=FZF_DEFAULT_COMMAND} | fzf)
+  [[ -n "$found" ]] && LBUFFER="e ${found}"
+
+  zle accept-line
+}
+zle -N __fzf-open
+
 # === Keybindings (terminfo keys) ===
 __map Delete       delete-char
 __map ShiftTab     reverse-menu-complete
@@ -284,6 +292,7 @@ bindkey '^Y' yank
 bindkey '^S' edit-command-line
 bindkey '^R' __fzf-history
 bindkey '^F' __fzf-find
+bindkey '^O' __fzf-open
 
 # === Unbindings ===
 bindkey -r '^['
