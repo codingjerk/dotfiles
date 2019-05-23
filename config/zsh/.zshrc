@@ -285,6 +285,9 @@ bindkey '^S' edit-command-line
 bindkey '^R' __fzf-history
 bindkey '^F' __fzf-find
 
+# === Unbindings ===
+bindkey -r '^['
+
 # === Prompt ===
 setopt prompt_subst
 
