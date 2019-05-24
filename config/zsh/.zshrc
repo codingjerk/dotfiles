@@ -89,6 +89,8 @@ alias ixio="\curl -F 'f:1=<-' ix.io"
 alias ls='ls -vAh --color=auto --group-directories-first --file-type --quoting-style=literal'
 alias ll='ls -lo --time-style=iso'
 
+alias m='make'
+
 alias ni='npm install --prefer-offline --save'
 alias nid='npm install --prefer-offline --save-dev'
 alias nig='npm install -g --prefer-offline'
@@ -469,11 +471,13 @@ __load-rustup
 if (( $+commands[exa] )); then
   alias l='exa-ignore --long'
   alias la='exa-all --long'
-  alias s='exa-all -1'
+  alias s='exa-ignore -1'
+  alias sa='exa-all -1'
 else
   alias l='ll'
   alias la='ll -a'
   alias s='ll -1'
+  alias sa='ll -a1'
 fi
 
 node() { if [[ -z ${1} ]]; then command node "${CJ_DOTFILES}/bin/node-repl"; else command node "$@"; fi }
@@ -481,6 +485,7 @@ node() { if [[ -z ${1} ]]; then command node "${CJ_DOTFILES}/bin/node-repl"; els
 if (( $+commands[exa] )); then
   alias tree='exa-ignore --tree'
   alias tree-all='exa-all --tree'
+  alias t='tree'
 fi
 
 # === Void linux ===
