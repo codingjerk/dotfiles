@@ -18,13 +18,13 @@ export TERM=${TERM:s/-256color/}
 
 # === Autoload ===
 if [[ -o login ]]; then
-  if [[ "${TERM}" == 'linux' ]]; then
+  if [[ "${TERM}" = 'linux' ]]; then
     zsh "${CJ_DOTFILES}/tools/tty-colors.zsh"
     setfont '/usr/share/kbd/consolefonts/ter-i20n.psf.gz'
     clear
   fi
 
-  if ! [[ -v SUDO_UID ]]; then
+  if [[ -z "$SUDO_UID" ]]; then
     python3 "${CJ_DOTFILES}/tools/motd.py"
   fi
 fi
@@ -88,6 +88,8 @@ alias ixio="\curl -F 'f:1=<-' ix.io"
 
 alias ls='ls -vAh --color=auto --group-directories-first --file-type --quoting-style=literal'
 alias ll='ls -lo --time-style=iso'
+
+alias m='make'
 
 alias ni='npm install --prefer-offline --save'
 alias nid='npm install --prefer-offline --save-dev'
@@ -404,7 +406,7 @@ __user-host() {
   print -rn "%{$fg[$user_color]%}${RPROMPT_SEPARATOR}$1"
   print -rn "%{$fg[$host_color]%}${RPROMPT_SEPARATOR}$2"
 
-  if [[ -v SSH_CONNECTION ]]; then
+  if [[ -n "$SSH_CONNECTION" ]]; then
     print -rn "%{$fg[$remote_color]%}${RPROMPT_SEPARATOR}via SSH"
   fi
 
@@ -438,7 +440,7 @@ __ctr-update-start() {
 }
 
 __ctr-update-total() {
-  [[ -v CTR_START_TIME ]] || return 0
+  [[ -z ${CTR_START_TIME} ]] && return 0
   [[ ${CTR_START_TIME} == NONE ]] && return 0
   CTR_TOTAL_TIME=$(( ${EPOCHREALTIME} - ${CTR_START_TIME} ))
   CTR_START_TIME=NONE
@@ -478,11 +480,13 @@ __load-rustup
 if (( $+commands[exa] )); then
   alias l='exa-ignore --long'
   alias la='exa-all --long'
-  alias s='exa-all -1'
+  alias s='exa-ignore -1'
+  alias sa='exa-all -1'
 else
   alias l='ll'
   alias la='ll -a'
   alias s='ll -1'
+  alias sa='ll -a1'
 fi
 
 node() { if [[ -z ${1} ]]; then command node "${CJ_DOTFILES}/bin/node-repl"; else command node "$@"; fi }
@@ -490,6 +494,7 @@ node() { if [[ -z ${1} ]]; then command node "${CJ_DOTFILES}/bin/node-repl"; els
 if (( $+commands[exa] )); then
   alias tree='exa-ignore --tree'
   alias tree-all='exa-all --tree'
+  alias t='tree'
 fi
 
 # === Void linux ===
