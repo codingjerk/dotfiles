@@ -18,6 +18,8 @@ echo "BoldAsFont=no"
 echo "BoldAsColour=yes"
 echo "Font=${CJ_MONOFONT}"
 echo "FontHeight=${CJ_MONOFONT_SIZE}"
+echo "Scrollbar=none"
+echo "PgUpDnScroll=no"
 
 # === Colors ===
 color "BackgroundColour" "${CJ_COLOR_BG}"
