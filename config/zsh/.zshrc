@@ -151,7 +151,7 @@ __pty() {
   zpty -d "pty-${UID}"
 }
 
-pp() {
+p() {
   __pty $@ | "${=PAGER}"
 }
 
