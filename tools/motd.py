@@ -169,7 +169,7 @@ def show_uptime() -> None:
     except PermissionError:
         uptime = '?'
 
-    print_center('\u001B[34mup: \u001B[36m' + uptime)
+    print_center('\u001B[34mup: \u001B[36m' + uptime + '\u001B[0m')
     print()
 
 
