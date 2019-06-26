@@ -33,13 +33,6 @@ workspace \$ws11 output ${CJ_PRIMARY_MONITOR}
 
 floating_modifier \$mod
 
-# === Window assignments ===
-assign [instance="leagueclientux.exe"] number 6
-assign [instance="league of legends.exe"] number 6
-assign [instance="leagueclient.exe"] number 6
-
-assign [class="discord"] number 2
-
 # === Look & Feel ===
 hide_edge_borders smart
 default_border pixel 2
