@@ -16,10 +16,8 @@ data_dir = os.path.join(os.environ['XDG_DATA_HOME'], 'python')
 histfile = os.path.join(data_dir, 'history')
 histsize = int(os.environ.get('HISTSIZE', 10000))
 
-try:
-  readline.read_history_file(histfile)
-  readline.set_history_length(histsize)
-except FileNotFoundError:
-  pass
+open(histfile, "a").close()
+readline.read_history_file(histfile)
+readline.set_history_length(histsize)
 
 atexit.register(readline.write_history_file, histfile)
