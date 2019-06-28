@@ -38,6 +38,7 @@ ShortcutsNoMnemonics=TRUE
 ShortcutsNoHelpkey=TRUE
 ShortcutsNoMenukey=TRUE
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
+ScrollingLines=1
 FontName=${CJ_MONOFONT} ${CJ_MONOFONT_SIZE}
 CellHeightScale=1.050000
 ColorCursorUseDefault=FALSE
