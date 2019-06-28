@@ -374,10 +374,12 @@ __prompt() {
     print -rn "${PROMPT_SEPARATOR}"
   fi
 
-  if   [[ "$exit_code" != 0 ]]; then
+  if [[ "$exit_code" != 0 ]]; then
     print -rn "%{$fg[red]%}$exit_code"
     print -rn "${PROMPT_SEPARATOR}"
-  elif [[ "${UID}" == 0 ]]; then
+  fi
+
+  if [[ "${UID}" == 0 ]]; then
     print -rn "%{$fg[yellow]%}!"
     print -rn "${PROMPT_SEPARATOR}"
   fi
