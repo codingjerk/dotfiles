@@ -69,6 +69,7 @@ if [[ "$mode" =~ gui ]]; then
   require binary "i3 (gaps)" i3
   require binary "i3lock (color)" i3lock
   require binary "Xfce Terminal" xfce4-terminal
+  require binary "Rofi" rofi
   require binary "maim" maim
   require binary "slop" slop
   require binary "ImageMagick" convert
