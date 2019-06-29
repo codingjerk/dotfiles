@@ -85,6 +85,7 @@ bindsym \$mod+l exec --no-startup-id lock
 bindsym Print         exec --no-startup-id "screenshot monitor"
 bindsym Control+Print exec --no-startup-id "screenshot selection"
 bindsym Shift+Print   exec --no-startup-id "screenshot selection"
+
 bindsym \$mod+1 workspace \$ws1
 bindsym \$mod+2 workspace \$ws2
 bindsym \$mod+3 workspace \$ws3
