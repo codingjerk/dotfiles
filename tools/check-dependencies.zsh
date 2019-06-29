@@ -1,10 +1,15 @@
 setopt ERR_EXIT NO_UNSET PIPE_FAIL
 
-mode="${1:-opt,gui,server,vim}"
-
-if [[ "$mode" == "help" ]]; then
-  echo "Mode can be opt, gui, server and/or vim"
+if ! [[ -v 1 ]]; then
+  echo "Usage: check-dependencies.zsh MODE"
+  echo "MODE can be opt, gui, vim and/or all"
   exit 1
+fi
+
+mode="$1"
+
+if [[ "all" =~ "$mode" ]]; then
+  mode="opt,gui,vim"
 fi
 
 # === Text functions ===
@@ -42,12 +47,6 @@ if [[ "$mode" =~ opt ]]; then
   recommend binary "exa" exa
   recommend binary "hexyl" hexyl
   recommend binary "The Silver Searcher" ag
-fi
-
-# === Daemons ===
-if [[ "$mode" =~ server ]]; then
-  recommend binary "Transmission (daemon)" transmission-daemon
-  recommend binary "MiniDLNA" minidlnad
 fi
 
 # === GUI ===
