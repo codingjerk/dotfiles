@@ -2,7 +2,6 @@ setopt ERR_EXIT NO_UNSET PIPE_FAIL
 
 # === Ensure directories exist ===
 mkdir -p "${LESSKEY:h}"
-mkdir -p "${TRANSMISSION_HOME}"
 mkdir -p "${XDG_RUNTIME_DIR}"
 
 mkdir -p "${XDG_DATA_HOME}/gnupg"
@@ -20,8 +19,6 @@ chmod -w "${XDG_CONFIG_HOME}/KeeWeb/app-settings.json"
 # === Update *.in configs ===
 lesskey -o "${LESSKEY}" "${XDG_CONFIG_HOME}/less/lesskey.in"
 sh "${XDG_CONFIG_HOME}/zsh/.zshenv.in" > "${HOME}/.zshenv"
-sh "${XDG_CONFIG_HOME}/transmission/settings.json.in" > "${TRANSMISSION_HOME}/settings.json"
-sh "${XDG_CONFIG_HOME}/minidlna/minidlna.conf.in" > "${XDG_CONFIG_HOME}/minidlna/minidlna.conf"
 sh "${XDG_CONFIG_HOME}/i3/config.in" > "${XDG_CONFIG_HOME}/i3/config"
 sh "${XDG_CONFIG_HOME}/polybar/config.in" > "${XDG_CONFIG_HOME}/polybar/config"
 sh "${XDG_CONFIG_HOME}/xfce4/terminal/terminalrc.in" > "${XDG_CONFIG_HOME}/xfce4/terminal/terminalrc"

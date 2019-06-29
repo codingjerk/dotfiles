@@ -58,8 +58,6 @@ export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
 
 export TMUX_TMPDIR="${XDG_RUNTIME_DIR}"
 
-export TRANSMISSION_HOME="${XDG_DATA_HOME}/transmission"
-
 export XLOCATE_GIT="${XDG_CACHE_HOME}/xlocate"
 
 export HISTFILE="${XDG_DATA_HOME}/zsh/history"

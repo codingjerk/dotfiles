@@ -23,7 +23,6 @@ config/KeeWeb/update-info.json
 config/KeeWeb/window-position.json
 config/kernel.org
 config/mimeapps.list
-config/minidlna/minidlna.conf
 config/mpd/bakoga.conf
 config/mpv/watch_later
 config/neofetch
