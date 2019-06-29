@@ -27,7 +27,6 @@ config/minidlna/minidlna.conf
 config/mpd/bakoga.conf
 config/mpv/watch_later
 config/neofetch
-config/nginx
 config/obs-studio
 config/pavucontrol.ini
 config/polybar/config
@@ -46,7 +45,3 @@ share
 runtime
 
 settings.sh
-
-services/runit/*/supervise
-services/runit/bakoga
-services/runit/nginx
