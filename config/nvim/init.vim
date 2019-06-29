@@ -119,6 +119,7 @@ function! MyTabLabel(n)
 endfunction
 
 " === Misc ===
+set clipboard=unnamed
 set lazyredraw
 set showmatch
 set backspace=indent,eol,start
