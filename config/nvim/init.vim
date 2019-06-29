@@ -2,6 +2,9 @@
 source $CJ_DOTFILES/third-party/vim-plug/plug.vim
 call plug#begin('$XDG_DATA_HOME/nvim/plug')
 
+" Semantic highlight
+Plug 'jaxbot/semantic-highlight.vim'
+
 " Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
@@ -14,6 +17,11 @@ call plug#end()
 " === Plugin settings ===
 " deoplete
 let g:deoplete#enable_at_startup = 1
+
+" Semantic highlight
+let g:semanticTermColors = [1,2,3,4,5,6]
+let g:semanticPersistCacheLocation = "$XDG_CACHE_HOME/nvim/semantic"
+autocmd VimEnter * SemanticHighlightToggle
 
 " === Timeouts ===
 set ttimeoutlen=10
