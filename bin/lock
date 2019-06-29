@@ -5,12 +5,13 @@
 
 exec i3lock \
   --image "${CJ_WALLPAPER}" \
+  --tiling \
   --no-unlock-indicator \
   --force-clock \
-  --screen=1 \
+  --screen=2 \
   \
-  --timecolor="${CJ_COLOR_4_HEX}AA" \
-  --datecolor="${CJ_COLOR_4_HEX}AA" \
+  --timecolor="${CJ_COLOR_BG_HEX}CC" \
+  --datecolor="${CJ_COLOR_BG_HEX}CC" \
   \
   --timesize="$((${CJ_MONOFONT_SIZE} * 15 / 2))" \
   --datesize="$((${CJ_MONOFONT_SIZE} * 5 / 2))" \
