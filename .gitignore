@@ -1,3 +1,4 @@
+config/cef_user_data
 config/chromium
 config/configstore
 config/darktable
