@@ -3,6 +3,9 @@
   email = codingjerk@gmail.com
   signingkey = E3DFEC736900FDE2
 
+[gpg]
+  program = gpg2
+
 [core]
   compression = 9
 
@@ -14,7 +17,7 @@
   autoSetupRebase = always
 
 [commit]
-  gpgSign = false
+  gpgSign = true
 
 [diff]
   color = auto
