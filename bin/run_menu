@@ -12,7 +12,7 @@ menu() {
   rofi \
     -dmenu -p ' » ' \
     -theme-str ' * { highlight: none; } #textbox-prompt-colon { enabled: false; }' \
-    -bw 2 -padding 16 -hide-scrollbar -lines 7 \
+    -bw 2 -padding 24 -hide-scrollbar -lines 7 \
     -font "${CJ_MONOFONT} ${CJ_MONOFONT_SIZE}" \
     -color-normal "#${CJ_COLOR_BG_HEX}, #${CJ_COLOR_FG_HEX}, #${CJ_COLOR_BG_HEX}, #${CJ_COLOR_BG_HEX}, #${CJ_COLOR_4_HEX}" \
     -color-urgent "#${CJ_COLOR_BG_HEX}, #${CJ_COLOR_FG_HEX}, #${CJ_COLOR_BG_HEX}, #${CJ_COLOR_BG_HEX}, #${CJ_COLOR_4_HEX}" \
