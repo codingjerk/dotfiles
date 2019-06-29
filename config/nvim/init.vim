@@ -21,10 +21,10 @@ set timeoutlen=200
 
 " === Whitespace ===
 augroup whitespace
-  au VimEnter *.* set tabstop=2
-  au VimEnter *.* set softtabstop=2
-  au VimEnter *.* set shiftwidth=2
-  au VimEnter *.* set expandtab
+  au VimEnter * set tabstop=2
+  au VimEnter * set softtabstop=2
+  au VimEnter * set shiftwidth=2
+  au VimEnter * set expandtab
 augroup END
 
 augroup whitespace_python
