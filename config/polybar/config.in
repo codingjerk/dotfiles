@@ -50,7 +50,7 @@ cat <<EOF
   label-mode-padding   = 1
   label-mode-underline = ${CJ_COLOR_1_HEX}
 
-  ws-icon-0 = 1;
+  ws-icon-0 = 1;
   ws-icon-1 = 2;
   ws-icon-2 = 3;
   ws-icon-3 = 4;
