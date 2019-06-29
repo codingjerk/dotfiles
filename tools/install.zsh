@@ -14,3 +14,8 @@ fi
 # === Update configs ===
 . "${CJ_DOTFILES}/config/zsh/.zprofile"
 zsh "${CJ_DOTFILES}/tools/update-configs.zsh"
+
+vared -p "Do you want to install root configs? [y/n]: " -che ANSWER
+if [[ "$ANSWER" = "y" ]]; then
+  sudo zsh "${CJ_DOTFILES}/tools/update-system-configs.zsh"
+fi
