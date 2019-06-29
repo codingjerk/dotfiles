@@ -2,9 +2,14 @@
 
 A well documented, well structured dotfiles.
 
-[Zsh features (last exit status, command line, autosuggestions), neovim and tmux](https://imgur.com/O1l4gay)
-[Lock screen (i3lock)](https://imgur.com/X13LdB9)
-[Motd.py and colors](https://imgur.com/ejtzI25)
+![Zsh features (last exit status, command line, autosuggestions), neovim and tmux](https://i.imgur.com/O1l4gay.png)
+*Zsh features (last exit status, command line, autosuggestions), neovim and tmux*
+
+![Lock screen (i3lock)](https://i.imgur.com/X13LdB9.png)
+*Lock screen (i3lock)*
+
+![Motd.py and colors](https://i.imgur.com/ejtzI25.png)
+*Motd.py and colors*
 
 ## Read first
 
