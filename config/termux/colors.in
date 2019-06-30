@@ -1,23 +1,22 @@
-setopt ERR_EXIT NO_UNSET PIPE_FAIL
-
 . "${CJ_DOTFILES}/assets/colors.sh"
 
-# === Functions ===
-color_name() {
-  echo "$1 : #$2"
-}
-
-color_id() {
-  local hex=$(printf "%X" "$1")
-  eval local color=\${CJ_COLOR_${hex}_HEX}
-
-  color_name "color$1" "$color"
-}
-
-# === Colors ===
-color_name background "${CJ_COLOR_BG_HEX}"
-color_name foreground "${CJ_COLOR_FG_HEX}"
-
-for id in {0..15}; do
-  color_id "$id"
-done
+cat <<EOF
+background : #${CJ_COLOR_BG_HEX}
+foreground : #${CJ_COLOR_FG_HEX}
+color0 :  #${CJ_COLOR_0_HEX}
+color1 :  #${CJ_COLOR_1_HEX}
+color2 :  #${CJ_COLOR_2_HEX}
+color3 :  #${CJ_COLOR_3_HEX}
+color4 :  #${CJ_COLOR_4_HEX}
+color5 :  #${CJ_COLOR_5_HEX}
+color6 :  #${CJ_COLOR_6_HEX}
+color7 :  #${CJ_COLOR_7_HEX}
+color8 :  #${CJ_COLOR_8_HEX}
+color9 :  #${CJ_COLOR_9_HEX}
+color10 : #${CJ_COLOR_A_HEX}
+color11 : #${CJ_COLOR_B_HEX}
+color12 : #${CJ_COLOR_C_HEX}
+color13 : #${CJ_COLOR_D_HEX}
+color14 : #${CJ_COLOR_E_HEX}
+color15 : #${CJ_COLOR_F_HEX}
+EOF
