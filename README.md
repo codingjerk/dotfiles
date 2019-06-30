@@ -1,6 +1,6 @@
 # Coding Jerk's dotfiles
 
-A well documented, well structured dotfiles.
+Personal dotfiles.
 
 ![Zsh features (last exit status, command line, autosuggestions), neovim and tmux](https://i.imgur.com/O1l4gay.png)
 *Zsh features (last exit status, command line, autosuggestions), neovim and tmux*
