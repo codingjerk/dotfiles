@@ -174,7 +174,7 @@ def show_uptime() -> None:
 
 
 def get_device_short_name(long_name: str) -> str:
-    if '/dev/sd' in long_name:
+    if '/dev/sd' in long_name or '/dev/nvme' in long_name:
         return long_name[-4:]
     elif '/dev/mapper' in long_name:
         return long_name.split('-')[-1]
@@ -267,6 +267,7 @@ def is_block_device_line(mount_line: str) -> bool:
     block_prefixes = [
         "/dev/block/",
         "/dev/sd",
+        "/dev/nvme",
         "/dev/root",
         "/dev/mapper/",
     ]
