@@ -5,7 +5,6 @@ setopt ERR_EXIT NO_UNSET PIPE_FAIL
 which termux-reload-settings > /dev/null && termux-reload-settings
 
 if [[ -v DISPLAY ]]; then
-  touch "${XDG_CONFIG_HOME}/xfce4/terminal/terminalrc"
   i3-msg reload
   pkill -USR1 polybar
   feh --no-fehbg --bg-tile "${CJ_WALLPAPER}"

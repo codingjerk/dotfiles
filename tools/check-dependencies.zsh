@@ -68,7 +68,7 @@ if [[ "$mode" =~ gui ]]; then
   require binary "Polybar" polybar
   require binary "i3 (gaps)" i3
   require binary "i3lock (color)" i3lock
-  require binary "Xfce Terminal" xfce4-terminal
+  require binary "Alacritty" alacritty
   require binary "Rofi" rofi
   require binary "maim" maim
   require binary "slop" slop

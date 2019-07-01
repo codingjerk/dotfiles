@@ -1,0 +1,67 @@
+. "${CJ_DOTFILES}/assets/colors.sh"
+
+cat <<EOF
+window:
+  padding:
+    x: 24
+    y: 24
+
+  dynamic_padding: true
+
+scrolling:
+  history: 0
+
+font:
+  normal:
+    family: ${CJ_MONOFONT}
+
+  bold:
+    style: Regular
+
+  size: ${CJ_MONOFONT_SIZE}.0
+
+colors:
+  primary:
+    background: '0x${CJ_COLOR_BG_HEX}'
+    foreground: '0x${CJ_COLOR_FG_HEX}'
+
+  cursor:
+    cursor: '0x${CJ_COLOR_FG_HEX}'
+    text:   '0x${CJ_COLOR_BG_HEX}'
+
+  selection:
+    background: '0x${CJ_COLOR_FG_HEX}'
+    text:       '0x${CJ_COLOR_BG_HEX}'
+
+  normal:
+    black:   '0x${CJ_COLOR_0_HEX}'
+    red:     '0x${CJ_COLOR_1_HEX}'
+    green:   '0x${CJ_COLOR_2_HEX}'
+    yellow:  '0x${CJ_COLOR_3_HEX}'
+    blue:    '0x${CJ_COLOR_4_HEX}'
+    magenta: '0x${CJ_COLOR_5_HEX}'
+    cyan:    '0x${CJ_COLOR_6_HEX}'
+    white:   '0x${CJ_COLOR_7_HEX}'
+
+  bright:
+    black:   '0x${CJ_COLOR_8_HEX}'
+    red:     '0x${CJ_COLOR_9_HEX}'
+    green:   '0x${CJ_COLOR_A_HEX}'
+    yellow:  '0x${CJ_COLOR_B_HEX}'
+    blue:    '0x${CJ_COLOR_C_HEX}'
+    magenta: '0x${CJ_COLOR_D_HEX}'
+    cyan:    '0x${CJ_COLOR_E_HEX}'
+    white:   '0x${CJ_COLOR_F_HEX}'
+
+mouse_bindings:
+  - { mouse: Middle, action: PasteSelection }
+  - { mouse: Right, action: PasteSelection }
+
+mouse:
+  hide_when_typing: true
+
+selection:
+  save_to_clipboard: true
+
+live_config_reload: true
+EOF

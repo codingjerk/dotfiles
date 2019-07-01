@@ -4,7 +4,7 @@ export VISUAL="${EDITOR}"
 export PAGER='less'
 
 # === GUI Tools ===
-export TERMINAL='xfce4-terminal'
+export TERMINAL='alacritty'
 export BROWSER='chromium'
 
 # === Options ===

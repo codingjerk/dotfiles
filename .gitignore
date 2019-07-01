@@ -1,3 +1,4 @@
+config/alacritty/alacritty.yml
 config/cef_user_data
 config/chromium
 config/configstore
@@ -36,8 +37,6 @@ config/transmission-remote-gtk
 config/VirtualBox
 config/vivaldi
 config/vlc
-config/xfce4/terminal/accels.scm
-config/xfce4/terminal/terminalrc
 config/zathura/zathurarc
 
 cache
