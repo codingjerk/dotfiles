@@ -20,7 +20,7 @@ let g:deoplete#enable_at_startup = 1
 
 " Semantic highlight
 let g:semanticTermColors = [1,2,3,4,5,6]
-let g:semanticPersistCacheLocation = "$XDG_CACHE_HOME/nvim/semantic"
+let g:semanticPersistCacheLocation = $XDG_CACHE_HOME . '/nvim/semantic-highlight-cache'
 autocmd VimEnter * SemanticHighlightToggle
 
 " === Timeouts ===
