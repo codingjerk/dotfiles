@@ -3,10 +3,12 @@ import datetime
 import shutil
 from typing import Any, Callable, List
 
+
 Partition = collections.namedtuple("Partition", [
     'device',
     'mountpoint'
 ])
+
 
 Meminfo = collections.namedtuple('Meminfo', [
     'total',
