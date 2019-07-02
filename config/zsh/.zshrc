@@ -36,8 +36,6 @@ WORDCHARS='-_'
 setopt interactive_comments
 
 # === Aliases ===
-alias ag='ag --hidden --ignore-dir .git'
-
 alias cal='cal -m'
 alias curl='curl -JOL#'
 
@@ -99,6 +97,8 @@ alias nit='npm init -y'
 alias ns='npm s'
 alias nf='npm s'
 alias nt='npm t -s'
+
+alias rg='rg --hidden --glob "!.git"'
 
 alias tmux='tmux -f "${XDG_CONFIG_HOME}/tmux/config"'
 alias ta='tmux attach'

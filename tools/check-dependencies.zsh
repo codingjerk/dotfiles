@@ -46,7 +46,7 @@ if [[ "$mode" =~ opt ]]; then
   recommend binary "GnuPG" gpg2
   recommend binary "exa" exa
   recommend binary "hexyl" hexyl
-  recommend binary "The Silver Searcher" ag
+  recommend binary "Ripgrep" rg
 fi
 
 # === GUI ===
