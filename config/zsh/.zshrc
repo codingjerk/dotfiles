@@ -425,6 +425,8 @@ add-zsh-hook precmd  __ctr-update-total
 # === Third-party additions ===
 source "${CJ_DOTFILES}/third-party/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=0,bold'
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=300
+ZSH_AUTOSUGGEST_MANUAL_REBIND=y
 
 source "${CJ_DOTFILES}/third-party/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 
