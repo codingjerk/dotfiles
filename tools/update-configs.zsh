@@ -11,6 +11,7 @@ mkdir -p "${XDG_DATA_HOME}/node"
 mkdir -p "${XDG_CACHE_HOME}/zsh"
 
 touch "${XDG_DATA_HOME}/python/history"
+touch "${XDG_DATA_HOME}/node/history"
 
 # === Set access rights ===
 chmod -w "${XDG_CONFIG_HOME}/htop/htoprc"
