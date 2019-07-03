@@ -387,30 +387,20 @@ __prompt2() {
 
 PROMPT2='$(__prompt2)'
 
-__user-host() {
-  local user_color="blue"
-  local host_color="electro"
-  local remote_color="red"
+RPROMPT=''
 
-  print -rn "%{$fg[$user_color]%}${RPROMPT_SEPARATOR}$1"
-  print -rn "%{$fg[$host_color]%}${RPROMPT_SEPARATOR}$2"
+if [[ "_${PREFIX}" =~ "/data/data/com.termux" ]]; then
+  RPROMPT+="%{$fg[blue]%}${RPROMPT_SEPARATOR}termux"
+else
+  RPROMPT+="%{$fg[blue]%}${RPROMPT_SEPARATOR}%n"
+  RPROMPT+="%{$fg[electro]%}${RPROMPT_SEPARATOR}%m"
+fi
 
-  if [[ -n "$SSH_CONNECTION" ]]; then
-    print -rn "%{$fg[$remote_color]%}${RPROMPT_SEPARATOR}via SSH"
-  fi
+if [[ -n "$SSH_CONNECTION" ]]; then
+  RPROMPT+="%{$fg[red]%}${RPROMPT_SEPARATOR}SSH"
+fi
 
-  print -rn "%{$reset_color%}"
-}
-
-__rprompt() {
-  if [[ "_${PREFIX}" =~ "/data/data/com.termux" ]]; then
-    __user-host 'termux' 'android'
-  else
-    __user-host '%n' '%m'
-  fi
-}
-
-RPROMPT="$(__rprompt)"
+RPROMPT+="%{$reset_color%}"
 
 # === Command time report ===
 zmodload zsh/datetime
