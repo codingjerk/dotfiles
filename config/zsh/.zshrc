@@ -329,7 +329,7 @@ else
 fi
 
 __in-git-repo() {
-  [[ -e .git ]] || git rev-parse --git-dir > /dev/null 2>&1
+  git rev-parse --is-inside-work-tree > /dev/null 2>&1
 }
 
 __git-path() {
@@ -349,7 +349,7 @@ __git-path() {
   local git_branch="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
   case "$git_branch" in
     master) ;;
-    HEAD) print -rn " %{$fg[red]%}($git_branch)" ;;
+    HEAD) print -rn " %{$fg[red]%}(detached)" ;;
     *)    print -rn " %{$fg[electro]%}($git_branch)" ;;
   esac
 
@@ -357,9 +357,6 @@ __git-path() {
 }
 
 __prompt() {
-  local exit_code="$?"
-
-  print -rn ' '
   if __in-git-repo; then
     __git-path
   else
@@ -369,27 +366,14 @@ __prompt() {
     esac
     print -rn "${PROMPT_SEPARATOR}"
   fi
-
-  local job_count=$(jobs -l | wc -l | awk '{$1=$1};1')
-  if [[ "$job_count" != 0 ]]; then
-    print -rn "%{$fg[yellow]%}{$job_count}"
-    print -rn "${PROMPT_SEPARATOR}"
-  fi
-
-  if [[ "$exit_code" != 0 ]]; then
-    print -rn "%{$fg[red]%}$exit_code"
-    print -rn "${PROMPT_SEPARATOR}"
-  fi
-
-  if [[ "${UID}" == 0 ]]; then
-    print -rn "%{$fg[yellow]%}!"
-    print -rn "${PROMPT_SEPARATOR}"
-  fi
-
-  print -rn "%{$reset_color%}"
 }
 
-PROMPT='$(__prompt)'
+PROMPT=' '
+PROMPT+='$(__prompt)'
+PROMPT+="%(1j.%{$fg[yellow]%}%j${PROMPT_SEPARATOR}.)"
+PROMPT+="%(0?..%{$fg[red]%}%?${PROMPT_SEPARATOR})"
+PROMPT+="%(!.%{$fg[yellow]%}!${PROMPT_SEPARATOR}.)"
+PROMPT+="%{$reset_color%}"
 
 __prompt2() {
   local orig_prompt="$(__prompt)"
