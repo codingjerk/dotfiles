@@ -1,29 +1,56 @@
 #!/usr/bin/env sh
 
-maim_opts='
-  --format=png
-  --quality=1
-  --hidecursor
-  --nodecorations=1
-  --padding=2
-  --bordersize=2
-  --select
-'
+# === Geometry ===
+if [ "_$1" = "_selection" ]; then
+  geometry="$(slop --padding=2 --bordersize=2 --nodecorations=1 --noopengl)"
+else
+  geometry="$(xrandr | grep -Po "$CJ_PRIMARY_MONITOR connected \K.[0-9]*x[0-9]*\+[0-9]*\+[0-9]*")"
+fi
 
-convert_opts='
-  -
-  ( +clone -background black -shadow 100x8+0+0 )
-  +swap
-  -background none
-  -layers merge
-  +repage
-  -quality 1
-  -
-'
+width=$(echo "$geometry" | grep -Po '[0-9]*(?=x)')
+height=$(echo "$geometry" | grep -Po '[0-9]*x\K[0-9]*(?=\+)')
 
-xclip_opts='
-  -selection clipboard
+# === Screenshot ===
+original="$(mktemp --suffix .png)"
+maim \
+  --format=png \
+  --quality=10 \
+  --hidecursor \
+  --geometry=$geometry \
+  "$original"
+
+# === Mask ===
+mask="$(mktemp --suffix .png)"
+convert \
+  -size "${width}x${height}" xc:none \
+  -draw "roundrectangle 0,0,${width},${height},15,15" \
+  "$mask"
+
+# === Corners ===
+rounded="$(mktemp --suffix .png)"
+convert \
+  "$original" \
+  -matte "$mask" \
+  -compose DstIn \
+  -composite \
+  "$rounded"
+
+# === Shadows ===
+shadowed="$(mktemp --suffix .png)"
+convert \
+  "$rounded" \
+  \( +clone -background black -shadow 100x8+0+0 \) \
+  +swap \
+  -background none \
+  -layers merge \
+  +repage \
+  -quality 10 \
+  "$shadowed"
+
+# === Clipboard ===
+xclip < "$shadowed" \
+  -selection clipboard \
   -t image/png
-'
 
-exec maim $maim_opts | convert $convert_opts | xclip $xclip_opts
+# === Cleanup ===
+rm "$original" "$mask" "$rounded" "$shadowed"
