@@ -375,17 +375,7 @@ PROMPT+="%(0?..%{$fg[red]%}%?${PROMPT_SEPARATOR})"
 PROMPT+="%(!.%{$fg[yellow]%}!${PROMPT_SEPARATOR}.)"
 PROMPT+="%{$reset_color%}"
 
-__prompt2() {
-  local orig_prompt="$(__prompt)"
-  print -rn "%{$fg[yellow]%}"
-  print -Pn "$(print -rn "$orig_prompt" | sed 's/%{[^%]*%}//g')" \
-    | sed 's/./\./g' \
-    | sed 's/....$/\./'
-
-  print -rn "${PROMPT_SEPARATOR}%{$reset_color%}"
-}
-
-PROMPT2='$(__prompt2)'
+PROMPT2="%{$fg[yellow]%}...${PROMPT_SEPARATOR}"
 
 RPROMPT=''
 
