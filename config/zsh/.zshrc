@@ -420,7 +420,6 @@ __ctr-update-total() {
 }
 
 autoload -Uz add-zsh-hook
-add-zsh-hook preexec __ctr-update-start
 add-zsh-hook precmd  __ctr-update-total
 
 # === Third-party additions ===
@@ -431,6 +430,8 @@ source "${CJ_DOTFILES}/third-party/zsh/fast-syntax-highlighting/fast-syntax-high
 
 source "${CJ_DOTFILES}/third-party/zsh/alias-tips/alias-tips.plugin.zsh"
 ZSH_PLUGINS_ALIAS_TIPS_TEXT=$'\E[31mAlias tip: '
+
+add-zsh-hook preexec __ctr-update-start
 
 # === Version managers ===
 __load-nvm() {
