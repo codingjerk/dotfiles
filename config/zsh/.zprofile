@@ -77,6 +77,5 @@ export GTK_IM_MODULE='xim'
 
 export NODE_REPL_HISTORY="${XDG_DATA_HOME}/node/history"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
-export NVM_DIR="${CJ_DOTFILES}/third-party/nvm"
 
 export WAKATIME_HOME="${XDG_DATA_HOME}/wakatime"

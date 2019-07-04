@@ -437,13 +437,6 @@ ZSH_PLUGINS_ALIAS_TIPS_TEXT=$'\E[31mAlias tip: '
 add-zsh-hook preexec __ctr-update-start
 
 # === Version managers ===
-__load-nvm() {
-  source "${NVM_DIR}/nvm.sh" --no-use
-  local lastnode="$(find "${NVM_DIR}/versions/node/" -maxdepth 1 2> /dev/null | tail -1)"
-  __path-prepend "$lastnode/bin"
-}
-__load-nvm
-
 __load-rustup() {
   __path-prepend "${CARGO_HOME}/bin"
 }
