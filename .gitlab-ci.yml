@@ -1,0 +1,10 @@
+install:
+  image: archlinux/base
+
+  before_script:
+    - pacman -Sy --noconfirm git zsh
+
+  script:
+    - yes '' | zsh tools/install.zsh
+    - "[ -f tools/settings.sh ]"
+    - "[ -f ~/.zshenv ]"
