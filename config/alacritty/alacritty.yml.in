@@ -1,3 +1,4 @@
+. "${CJ_DOTFILES}/settings.sh"
 . "${CJ_DOTFILES}/assets/colors.sh"
 . "${CJ_DOTFILES}/settings.sh"
 
