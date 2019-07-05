@@ -3,6 +3,7 @@ install:
 
   before_script:
     - pacman -Sy --noconfirm git zsh
+    - touch settings.sh
 
   script:
     - zsh tools/install.zsh
