@@ -7,5 +7,4 @@ install:
 
   script:
     - zsh tools/install.zsh
-    - "[ -f tools/settings.sh ]"
     - "[ -f ~/.zshenv ]"
