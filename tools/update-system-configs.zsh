@@ -16,12 +16,11 @@ cat > /etc/ssh/sshd_config <<EOF
 PermitRootLogin no
 MaxAuthTries 1
 MaxSessions 10
-
 AuthorizedKeysFile .ssh/authorized_keys dotfiles/share/ssh/authorized_keys dots/share/ssh/authorized_keys
-
 PasswordAuthentication no
-
 UsePAM yes
+
+Subsystem sftp internal-sftp
 
 PrintMotd no
 PrintLastLog no
