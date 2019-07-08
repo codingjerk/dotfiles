@@ -1,6 +1,6 @@
 feh --no-fehbg --bg-tile "${CJ_WALLPAPER}"
 
 pulseaudio --start
-setxkbmap -layout "us,gr,ru" -option "grp:caps_toggle,grp_led:caps,grp_led:scroll,grp_led:num,compose:ralt"
+setxkbmap -layout "us,ru" -option "grp:caps_toggle,grp_led:caps,grp_led:scroll,grp_led:num,compose:ralt"
 
 exec i3
