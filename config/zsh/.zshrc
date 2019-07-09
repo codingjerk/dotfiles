@@ -152,6 +152,7 @@ __pty() {
 }
 
 p() {
+  zmodload zsh/zpty
   __pty $@ | "${=PAGER}"
 }
 
