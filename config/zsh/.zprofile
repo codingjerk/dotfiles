@@ -46,6 +46,7 @@ export XDG_RUNTIME_DIR="${CJ_DOTFILES}/runtime"
 
 # === XDG Fixes ===
 export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
+export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/pass"
 
 export LESSHISTFILE="${XDG_DATA_HOME}/less/history"
 export LESSKEY="${XDG_DATA_HOME}/less/lesskey"
