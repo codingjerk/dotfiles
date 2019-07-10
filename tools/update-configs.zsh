@@ -14,7 +14,7 @@ touch "${XDG_DATA_HOME}/node/history"
 
 # === Set access rights ===
 chmod ugo-w "${XDG_CONFIG_HOME}/htop/htoprc"
-chmod ugo-w "${XDG_CONFIG_HOME}/KeeWeb/app-settings.json"
+chmod go-rwx "${XDG_DATA_HOME}/gnupg"
 
 # === Update *.in configs ===
 lesskey -o "${LESSKEY}" "${XDG_CONFIG_HOME}/less/lesskey.in"

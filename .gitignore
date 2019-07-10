@@ -13,16 +13,6 @@ config/gtk-3.0/gtk.css
 config/i3/config
 config/inkscape
 config/insight-nodejs/insight-yo.json
-config/KeeWeb/app.asar
-config/KeeWeb/file-info.json
-config/KeeWeb/helper
-config/KeeWeb/OfflineFiles
-config/KeeWeb/profile.json
-config/KeeWeb/runtime-data.json
-config/KeeWeb/signatures.json
-config/KeeWeb/temp
-config/KeeWeb/update-info.json
-config/KeeWeb/window-position.json
 config/kernel.org
 config/mimeapps.list
 config/mpd/bakoga.conf
