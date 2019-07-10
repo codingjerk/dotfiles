@@ -18,7 +18,7 @@ map f adjust_window width
 
 # === Options ===
 set guioptions ""
-set font "${CJ_MONOFONT} ${CJ_MONOFONT_SIZE}"
+set font "${CJ_MONOFONT} $(( ${CJ_MONOFONT_SIZE} - 1 ))"
 set adjust-open width
 set database plain
 set dbus-service false
