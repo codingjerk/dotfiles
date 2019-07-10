@@ -67,7 +67,7 @@ if [[ "$mode" =~ gui ]]; then
   require binary "feh" feh
   require binary "Polybar" polybar
   require binary "i3 (gaps)" i3
-  require binary "i3lock (color)" i3lock
+  require binary "i3lock (color, by PandorasFox)" i3lock
   require binary "Alacritty" alacritty
   require binary "Rofi" rofi
   require binary "maim" maim
