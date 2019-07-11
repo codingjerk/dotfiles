@@ -54,6 +54,8 @@ export LESSKEY="${XDG_DATA_HOME}/less/lesskey"
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/startup"
 export PYTHON_EGG_CACHE="${XDG_CACHE_HOME}/python-eggs"
 
+export PSQL_HISTORY="${XDG_DATA_HOME}/postgres/psql_history"
+
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
 
