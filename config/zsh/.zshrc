@@ -35,6 +35,8 @@ WORDCHARS='-_'
 
 setopt interactive_comments
 
+export GPG_TTY=$(tty)
+
 # === Aliases ===
 alias cal='cal -m'
 alias curl='curl -JOL#'
