@@ -109,7 +109,7 @@ function! MyTabLabel(n)
 endfunction
 
 " === Misc ===
-set clipboard=unnamed
+set clipboard=unnamedplus
 set undofile
 set lazyredraw
 set showmatch
