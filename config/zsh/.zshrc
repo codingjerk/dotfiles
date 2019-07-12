@@ -123,6 +123,9 @@ alias ping='ping -AUO'
 
 alias ss='ss -raopuwtn'
 
+alias sd='sudo systemctl'
+alias sdu='systemctl --user'
+
 alias sudo='sudo '
 alias watch='watch '
 
