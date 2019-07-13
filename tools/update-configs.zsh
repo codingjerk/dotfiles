@@ -1,7 +1,7 @@
 setopt ERR_EXIT NO_UNSET PIPE_FAIL
 
 # === Ensure directories exist ===
-mkdir -p "${LESSKEY:h}"
+mkdir -p "${XDG_CONFIG_HOME}/less"
 mkdir -p "${XDG_RUNTIME_DIR}"
 
 mkdir -p "${XDG_DATA_HOME}/gnupg"
@@ -18,7 +18,7 @@ chmod ugo-w "${XDG_CONFIG_HOME}/htop/htoprc"
 chmod go-rwx "${XDG_DATA_HOME}/gnupg"
 
 # === Update *.in configs ===
-lesskey -o "${LESSKEY}" "${XDG_CONFIG_HOME}/less/lesskey.in"
+lesskey -o "${XDG_CONFIG_HOME}/less/lesskey" "${XDG_CONFIG_HOME}/less/lesskey.in"
 sh "${XDG_CONFIG_HOME}/pam/environment.in" > "${HOME}/.pam_environment"
 sh "${XDG_CONFIG_HOME}/i3/config.in" > "${XDG_CONFIG_HOME}/i3/config"
 sh "${XDG_CONFIG_HOME}/polybar/config.in" > "${XDG_CONFIG_HOME}/polybar/config"
