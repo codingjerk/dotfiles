@@ -21,8 +21,10 @@ config/mpv/watch_later
 config/neofetch
 config/obs-studio
 config/pavucontrol.ini
+config/pulse/*.tdb
+config/pulse/*-default-*
+config/pulse/cookie
 config/polybar/config
-config/pulse
 config/QtProject.conf
 config/transmission-remote-gtk
 config/VirtualBox
