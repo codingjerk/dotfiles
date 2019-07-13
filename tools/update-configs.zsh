@@ -8,6 +8,7 @@ mkdir -p "${XDG_DATA_HOME}/gnupg"
 mkdir -p "${XDG_DATA_HOME}/zsh"
 mkdir -p "${XDG_DATA_HOME}/python"
 mkdir -p "${XDG_DATA_HOME}/node"
+mkdir -p "${XDG_DATA_HOME}/postgres"
 mkdir -p "${XDG_CACHE_HOME}/zsh"
 
 touch "${XDG_DATA_HOME}/node/history"

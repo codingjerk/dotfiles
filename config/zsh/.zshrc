@@ -35,6 +35,8 @@ WORDCHARS='-_'
 
 setopt interactive_comments
 
+export GPG_TTY=$(tty)
+
 # === Aliases ===
 alias cal='cal -m'
 alias curl='curl -JOL#'
@@ -120,6 +122,9 @@ alias rf='rm -rf'
 alias ping='ping -AUO'
 
 alias ss='ss -raopuwtn'
+
+alias sd='sudo systemctl'
+alias sdu='systemctl --user'
 
 alias sudo='sudo '
 alias watch='watch '
@@ -438,13 +443,6 @@ ZSH_PLUGINS_ALIAS_TIPS_TEXT=$'\E[31mAlias tip: '
 add-zsh-hook preexec __ctr-update-start
 
 # === Version managers ===
-__load-nvm() {
-  source "${NVM_DIR}/nvm.sh" --no-use
-  local lastnode="$(find "${NVM_DIR}/versions/node/" -maxdepth 1 2> /dev/null | tail -1)"
-  __path-prepend "$lastnode/bin"
-}
-__load-nvm
-
 __load-rustup() {
   __path-prepend "${CARGO_HOME}/bin"
 }

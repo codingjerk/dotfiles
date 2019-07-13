@@ -44,6 +44,7 @@ if [[ "$mode" =~ opt ]]; then
   recommend binary "htop" htop
   recommend binary "OpenSSH" ssh
   recommend binary "GnuPG" gpg2
+  recommend binary "GnuPG TTY pinentry" pinentry-tty
   recommend binary "exa" exa
   recommend binary "hexyl" hexyl
   recommend binary "Ripgrep" rg
