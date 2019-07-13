@@ -4,6 +4,7 @@
 cat <<EOF
 # === Options ===
 exec --no-startup-id bar
+exec --no-startup-id lock
 
 set \$mod Mod1
 
