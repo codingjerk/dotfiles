@@ -14,7 +14,7 @@ Personal dotfiles.
 ## Read first
 
 1. This dotfiles created for personal use. Install on your machines at your own risk. Better read them to get inspiration.
-1. All files located directly in the repository root due to XDG Base Directory Specification. Where is only single dotfile in home directory: `.zshenv`.
+1. All files located directly in the repository root due to XDG Base Directory Specification. Where is only single dotfile in home directory: `.pam_environment`.
 
 ## Structure
 
