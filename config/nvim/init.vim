@@ -118,6 +118,11 @@ set encoding=utf8
 set nowrap
 let g:netrw_home=$XDG_CACHE_HOME.'/nvim'
 
+autocmd BufReadPost *
+  \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif
+
 " === Keybindings ===
 " = Colon =
 nnoremap ; :
