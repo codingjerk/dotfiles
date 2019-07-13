@@ -2,7 +2,7 @@
 
 # === Geometry ===
 if [ "_$1" = "_selection" ]; then
-  geometry="$(slop --padding=2 --bordersize=2 --nodecorations=1 --noopengl)"
+  geometry="$(slop --padding=0 --bordersize=2 --nodecorations=2)"
 else
   geometry="$(xrandr | grep -Po "$CJ_PRIMARY_MONITOR connected \K.[0-9]*x[0-9]*\+[0-9]*\+[0-9]*")"
 fi
