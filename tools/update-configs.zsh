@@ -1,7 +1,6 @@
 setopt ERR_EXIT NO_UNSET PIPE_FAIL
 
 # === Ensure directories exist ===
-mkdir -p "${XDG_CONFIG_HOME}/less"
 mkdir -p "${XDG_RUNTIME_DIR}"
 
 mkdir -p "${XDG_DATA_HOME}/gnupg"

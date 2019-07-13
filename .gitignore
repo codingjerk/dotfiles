@@ -14,6 +14,7 @@ config/i3/config
 config/inkscape
 config/insight-nodejs/insight-yo.json
 config/kernel.org
+config/less/lesskey
 config/mimeapps.list
 config/mpd/bakoga.conf
 config/mpv/watch_later
