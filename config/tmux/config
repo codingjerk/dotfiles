@@ -59,6 +59,8 @@ bind h split-window -h
 bind v split-window -v
 
 # === Keybindings (copy mode) ===
+bind W copy-mode -u
+
 bind -T copy-mode w send-keys -X cursor-up
 bind -T copy-mode a send-keys -X cursor-left
 bind -T copy-mode s send-keys -X cursor-down
