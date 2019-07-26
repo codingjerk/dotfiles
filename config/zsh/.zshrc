@@ -243,43 +243,43 @@ __map() {
 autoload -Uz edit-command-line
 zle -N edit-command-line
 
-__fzf-history() {
-  LBUFFER="$(fc -ln 0 | fzf --tac --no-sort -q "${LBUFFER}")"
+__interctive-history() {
+  LBUFFER="$(fc -ln 0 | sk --tac --no-sort -q "${LBUFFER}")"
   zle redisplay
 }
-zle -N __fzf-history
+zle -N __interactive-history
 
-__fzf-find-current() {
-  local found=$(${=FZF_DEFAULT_COMMAND} | fzf)
+__interactive-find-current() {
+  local found=$(${=SKIM_DEFAULT_COMMAND} | sk)
   [[ -n "$found" ]] && LBUFFER="${LBUFFER}${found}"
 }
 
-__fzf-find-in-dir() {
+__interactive-find-in-dir() {
   local init="${LBUFFER%% *}"
   local last="${LBUFFER##* }"
-  local found=$(${=FZF_DEFAULT_COMMAND} . "$last" | fzf)
+  local found=$(${=SKIM_DEFAULT_COMMAND} . "$last" | sk)
   [[ -n "$found" ]] && LBUFFER="${init} ${found}"
 }
 
-__fzf-find() {
+__interactive-find() {
   case "$LBUFFER" in
-    */) __fzf-find-in-dir
+    */) __interactive-find-in-dir
         ;;
-    *)  __fzf-find-current
+    *)  __interactive-find-current
         ;;
   esac
 
   zle redisplay
 }
-zle -N __fzf-find
+zle -N __interactive-find
 
-__fzf-open() {
-  local found=$(${=FZF_DEFAULT_COMMAND} | fzf)
+__interactive-open() {
+  local found=$(${=SKIM_DEFAULT_COMMAND} | sk)
   [[ -n "$found" ]] && LBUFFER="e ${found}"
 
   zle accept-line
 }
-zle -N __fzf-open
+zle -N __interactive-open
 
 # === Keybindings (terminfo keys) ===
 __map Delete       delete-char
@@ -302,9 +302,9 @@ bindkey '^K' kill-line
 bindkey '^Y' yank
 
 bindkey '^S' edit-command-line
-bindkey '^R' __fzf-history
-bindkey '^F' __fzf-find
-bindkey '^O' __fzf-open
+bindkey '^R' __interactive-history
+bindkey '^F' __interactive-find
+bindkey '^O' __interactive-open
 
 # === Unbindings ===
 bindkey -r '^['

@@ -162,14 +162,9 @@ nnoremap N Nzz
 
 nnoremap <silent> b :noh<CR>
 
-" = Fzf =
-if filereadable('/usr/share/vim/vimfiles/plugin/fzf.vim')
-  source /usr/share/vim/vimfiles/plugin/fzf.vim
-elseif glob('$VIMRUNTIME/plugin/fzf.vim')!=#""
-  source $VIMRUNTIME/plugin/fzf.vim
-endif
-
-nnoremap <silent> <C-O> :call fzf#run({'sink': 'tabedit'})<CR>
+" = Skim =
+source $CARGO_HOME/registry/src/github.com-*/skim-*/plugin/skim.vim
+nnoremap <silent> <C-O> :call skim#run({'sink': 'tabedit'})<CR>
 
 " = Marks are very annoying when ` is tmux prefix =
 map ` <nop>

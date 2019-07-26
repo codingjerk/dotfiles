@@ -33,7 +33,7 @@ recommend() { "$1" "$3" || recommend_message "$2" }
 require binary "Z shell" zsh
 require binary "NeoVim" nvim
 require binary "Python (3.x)" python3
-require binary "fzf" fzf
+require binary "skim" sk
 require binary "fd" fd
 
 # === Optional dependencies ===

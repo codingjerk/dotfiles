@@ -8,8 +8,8 @@ export TERMINAL='alacritty'
 export BROWSER='chromium'
 
 # === Options ===
-export FZF_DEFAULT_COMMAND='fd -t f -t l -S-10M -H --color=always -E .git/ -E /etc/ssl -E /sys -E /dev -E /proc -E /opt -E /usr/bin -E /usr/lib -E /usr/lib32 -E /usr/libexec -E /var/cache -E /var/db -E /var/lib -E /usr/src -E /usr/share'
-export FZF_DEFAULT_OPTS="--exact --ansi --color='16,hl:6,fg+:1,bg+:0,hl+:6,info:2,prompt:2,pointer:1,marker:5' --layout=reverse --inline-info --no-mouse"
+export SKIM_DEFAULT_COMMAND='fd -t f -t l -S-10M -H --color=always -E .git/ -E /etc/ssl -E /sys -E /dev -E /proc -E /opt -E /usr/bin -E /usr/lib -E /usr/lib32 -E /usr/libexec -E /var/cache -E /var/db -E /var/lib -E /usr/src -E /usr/share'
+export SKIM_DEFAULT_OPTIONS="--exact --ansi --color='16,hl:6,fg+:1,bg+:0,hl+:6,info:2,prompt:2,pointer:1,marker:5' --layout=reverse --inline-info --no-mouse"
 
 export GREP_COLORS='sl=0:cx=1;30:fn=0;33:ln=0;35'
 
