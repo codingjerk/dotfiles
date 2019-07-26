@@ -3,7 +3,7 @@ Host *
   AddressFamily inet
 
   ControlMaster auto
-  ControlPersist yes
+  ControlPersist 5m
 
   TCPKeepAlive yes
   ServerAliveInterval 30

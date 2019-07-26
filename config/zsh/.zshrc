@@ -50,7 +50,7 @@ alias diff='diff --color=auto'
 alias dmesg='sudo dmesg -H'
 
 alias df='df -h -x devtmpfs'
-alias du='du -h -d 1 -c'
+alias du='du -h'
 
 alias e='${=EDITOR}'
 E() { sudo zsh -lc "${EDITOR} $@" }
@@ -527,4 +527,16 @@ if (( $+commands[pkg] )) && [[ "_$PREFIX" =~ "_/data/data" ]]; then
   command_not_found_handler() {
     $PREFIX/libexec/termux/command-not-found "$1"
   }
+fi
+
+# === Ubuntu ===
+if (( $+commands[apt-get] )); then
+  alias f='apt-cache search'
+  alias i='sudo apt-get install'
+  alias u='sudo apt-get update && sudo apt-get upgrade'
+  alias r='sudo apt-get remove'
+
+  alias o='xdg-open'
+
+  . '/etc/zsh_command_not_found'
 fi
