@@ -19,6 +19,7 @@ MaxSessions 10
 AuthorizedKeysFile .ssh/authorized_keys dotfiles/share/ssh/authorized_keys dots/share/ssh/authorized_keys
 PasswordAuthentication no
 UsePAM yes
+UseDSN no
 
 Subsystem sftp internal-sftp
 
