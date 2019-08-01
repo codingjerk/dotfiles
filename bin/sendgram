@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+curl -X GET -G "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" --data-urlencode "chat_id=${CHAT_ID}" --data-urlencode "parse_mode=Markdown" --data-urlencode "text=$*"
