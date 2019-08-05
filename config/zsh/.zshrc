@@ -50,7 +50,7 @@ alias diff='diff --color=auto'
 alias dmesg='sudo dmesg -H'
 
 alias df='df -h -x devtmpfs'
-alias du='du -h'
+alias du='du -h -c'
 
 alias e='${=EDITOR}'
 E() { sudo zsh -lc "${EDITOR} $@" }
