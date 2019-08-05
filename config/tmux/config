@@ -4,6 +4,7 @@ set -g prefix `
 bind ` send-prefix
 
 # === Options ===
+set -g mouse on
 set -g automatic-rename off
 set -g escape-time 0
 set -g base-index 1
