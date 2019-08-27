@@ -250,7 +250,7 @@ __map() {
 autoload -Uz edit-command-line
 zle -N edit-command-line
 
-__interctive-history() {
+__interactive-history() {
   LBUFFER="$(fc -ln 0 | sk --tac --no-sort -q "${LBUFFER}")"
   zle redisplay
 }
@@ -530,7 +530,7 @@ if (( $+commands[pkg] )) && [[ "_$PREFIX" =~ "_/data/data" ]]; then
 fi
 
 # === Ubuntu ===
-if (( $+commands[apt-get] )); then
+if (( $+commands[apt-get] )) && ! [[ "_$PREFIX" =~ "_/data/data" ]]; then
   alias f='apt-cache search'
   alias i='sudo apt-get install'
   alias u='sudo apt-get update && sudo apt-get upgrade'
