@@ -5,6 +5,9 @@ call plug#begin('$XDG_DATA_HOME/nvim/plug')
 " Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
+" Multiple cursors
+Plug 'terryma/vim-multiple-cursors'
+
 " Language support
 Plug 'leafgarland/typescript-vim'
 Plug 'editorconfig/editorconfig-vim'
@@ -110,7 +113,7 @@ function! MyTabLabel(n)
 endfunction
 
 " === Misc ===
-set clipboard=unnamedplus
+set clipboard=unnamed,unnamedplus
 set undofile
 set lazyredraw
 set showmatch
