@@ -185,7 +185,7 @@ __recompile() { [[ "${1}.zwc" -nt "${1}" ]] || zcompile "${1}" }
 __recompile "${ZSH_COMPDUMP}"
 
 zstyle ':completion:*' completer _complete _expand
-zstyle ':completion:*' menu yes select
+zstyle ':completion:*' menu select
 zstyle ':completion:*' verbose true
 zstyle ':completion:*' list-dirs-first true
 
