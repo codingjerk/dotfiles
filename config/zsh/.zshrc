@@ -6,6 +6,7 @@ __path-prepend() {
   export PATH="$1:$PATH"
 }
 
+__path-prepend "${GOPATH}/bin"
 __path-prepend "${CJ_DOTFILES}/bin"
 
 # === X autostart ===
