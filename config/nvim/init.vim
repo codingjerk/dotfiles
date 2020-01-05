@@ -166,7 +166,11 @@ nnoremap N Nzz
 nnoremap <silent> b :noh<CR>
 
 " = Skim =
-source $CARGO_HOME/registry/src/github.com-*/skim-*/plugin/skim.vim
+if filereadable("/usr/share/vim/vimfiles/plugin/skim.vim")
+  source /usr/share/vim/vimfiles/plugin/skim.vim
+else
+  source $CARGO_HOME/registry/src/github.com-*/skim-*/plugin/skim.vim
+endif
 nnoremap <silent> <C-O> :call skim#run({'sink': 'tabedit'})<CR>
 
 " = Marks are very annoying when ` is tmux prefix =
