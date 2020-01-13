@@ -293,9 +293,12 @@ def get_mountpoints() -> List[Partition]:
     with open('/proc/mounts') as fh:
         rawmounts = filter(is_block_device_line, fh.readlines())
 
+    devices = set()
     result = []
     for [device, mountpoint, *_] in map(str.split, rawmounts):
-        result.append(Partition(device=device, mountpoint=mountpoint))
+        if device not in devices:
+            result.append(Partition(device=device, mountpoint=mountpoint))
+            devices.add(device)
 
     return result
 
