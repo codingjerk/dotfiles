@@ -9,6 +9,7 @@
 [core]
   autocrlf = input
   compression = 9
+  quotepath = false
 
 [blame]
   blankBoundary = true
