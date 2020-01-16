@@ -8,7 +8,7 @@ ask() {
 }
 
 cat <<EOF
-export CJ_MONOFONT='$(ask 'GUI monospace font' 'Fira Mono')'
+export CJ_MONOFONT='$(ask 'GUI monospace font' 'Hack')'
 export CJ_MONOFONT_SIZE=$(ask 'Font size' '12')
 
 export CJ_PRIMARY_MONITOR=$(ask 'Primary monitor' 'DRY')

@@ -53,7 +53,7 @@ fi
 # === GUI ===
 if [[ "$mode" =~ gui ]]; then
   recommend consolefont "Terminus (console font)" "ter-i20n"
-  require font "Fira Mono (font)" "Fira Mono"
+  require font "Hack (font)" "Hack"
   require font "Font Awesome (font)" "Awesome"
   require font "Noto Sans (font)" "Noto Sans"
   require font "Noto Sans CJK (font)" "Noto Sans CJK"
