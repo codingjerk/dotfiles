@@ -25,6 +25,9 @@ hi PmenuSel ctermfg=7
 hi PmenuSbar ctermfg=0 cterm=bold,reverse
 hi PmenuThumb ctermbg=7
 
+hi CursorLine ctermbg=none ctermfg=none cterm=none
+hi CursorLineNR ctermfg=3
+
 " = Diff =
 hi Folded ctermbg=0 ctermfg=0 cterm=bold
 

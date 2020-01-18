@@ -120,6 +120,7 @@ set showmatch
 set backspace=indent,eol,start
 set encoding=utf8
 set nowrap
+set cursorline
 let g:netrw_home=$XDG_CACHE_HOME.'/nvim'
 
 autocmd BufReadPost *
