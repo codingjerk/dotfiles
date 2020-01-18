@@ -51,11 +51,13 @@ hi Todo ctermfg=0 ctermbg=1
 hi Type ctermfg=3
 
 hi PreProc ctermfg=4
-hi Underlined ctermfg=4
+hi Underlined ctermfg=6
 
 hi Constant ctermfg=5
 
-hi Statement ctermfg=6
+hi Statement ctermfg=4
+hi Identifier ctermfg=4
+hi String ctermfg=2
 
 " = Vim =
 hi vimString ctermfg=2
