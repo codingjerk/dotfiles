@@ -18,6 +18,7 @@ MaxAuthTries 1
 MaxSessions 10
 AuthorizedKeysFile .ssh/authorized_keys dotfiles/share/ssh/authorized_keys dots/share/ssh/authorized_keys
 PasswordAuthentication no
+ChallengeResponseAuthentication no
 UsePAM yes
 UseDNS no
 
