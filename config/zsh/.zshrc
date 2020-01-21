@@ -127,7 +127,7 @@ t-magnet() { t-add "magnet:?xt=urn:btih:$1" "${@:2}" }
 
 alias rf='rm -rf'
 
-alias ping='ping -AUO'
+alias ping='ping -4AUO'
 
 alias ss='ss -raopuwtn'
 
