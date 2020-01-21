@@ -4,9 +4,7 @@ call plug#begin('$XDG_DATA_HOME/nvim/plug')
 
 " Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-" Multiple cursors
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mattn/emmet-vim'
 
 " Language support
 Plug 'leafgarland/typescript-vim'
@@ -192,6 +190,9 @@ imap <expr><Tab> pumvisible()
 imap <expr><S-Tab> pumvisible()
   \ ? "\<C-p>"
   \ : "\<C-o>:<<CR>"
+
+" = Emmet =
+imap <expr> <C-F> emmet#expandAbbrIntelligent("\<tab>")
 
 " === Highlighting ===
 set t_Co=16
