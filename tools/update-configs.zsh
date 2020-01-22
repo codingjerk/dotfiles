@@ -24,3 +24,10 @@ sh "${XDG_CONFIG_HOME}/polybar/config.in" > "${XDG_CONFIG_HOME}/polybar/config"
 sh "${XDG_CONFIG_HOME}/alacritty/alacritty.yml.in" > "${XDG_CONFIG_HOME}/alacritty/alacritty.yml"
 sh "${XDG_CONFIG_HOME}/gtk-3.0/gtk.css.in" > "${XDG_CONFIG_HOME}/gtk-3.0/gtk.css"
 sh "${XDG_CONFIG_HOME}/zathura/zathurarc.in" > "${XDG_CONFIG_HOME}/zathura/zathurarc"
+
+# === Os-specific steps ===
+
+# == Termux ==
+[ -d ~/.termux ] && sh "${XDG_CONFIG_HOME}/termux/colors.in" > ~/.termux/colors.properties
+[ -d ~/.termux ] && cp "${XDG_CONFIG_HOME}/termux/config" ~/.termux/termux.properties
+[ -d ~/.termux ] && cp "${CJ_DOTFILES}/assets/font-hack.ttf" ~/.termux/font.ttf
