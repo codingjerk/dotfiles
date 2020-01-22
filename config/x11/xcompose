@@ -25,9 +25,7 @@ include "%L"
 <Multi_key> <0> <0> : "∞"
 <Multi_key> <o> <o> : "∞"
 
-<Multi_key> <asciicircum> <o> : "°"
 <Multi_key> <asciicircum> <0> : "°"
-<Multi_key> <o> <asciicircum> : "°"
 <Multi_key> <0> <asciicircum> : "°"
 
 <Multi_key> <p> <r> <o> <d> : "∏"
@@ -52,6 +50,13 @@ include "%L"
 <Multi_key> <J> <asciicircum> : "Ĵ"
 <Multi_key> <S> <asciicircum> : "Ŝ"
 <Multi_key> <U> <asciicircum> : "Û"
+
+# === French ===
+<Multi_key> <asciicircum> <o> : "ô"
+<Multi_key> <o> <asciicircum> : "ô"
+
+<Multi_key> <asciicircum> <O> : "Ô"
+<Multi_key> <O> <asciicircum> : "Ô"
 
 # === Bullets ===
 <Multi_key> <minus> <v> : "✓"
