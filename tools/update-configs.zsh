@@ -28,6 +28,8 @@ sh "${XDG_CONFIG_HOME}/zathura/zathurarc.in" > "${XDG_CONFIG_HOME}/zathura/zathu
 # === Os-specific steps ===
 
 # == Termux ==
-[ -d ~/.termux ] && sh "${XDG_CONFIG_HOME}/termux/colors.in" > ~/.termux/colors.properties
-[ -d ~/.termux ] && cp "${XDG_CONFIG_HOME}/termux/config" ~/.termux/termux.properties
-[ -d ~/.termux ] && cp "${CJ_DOTFILES}/assets/font-hack.ttf" ~/.termux/font.ttf
+if [ -d ~/.termux ]; then
+  sh "${XDG_CONFIG_HOME}/termux/colors.in" > ~/.termux/colors.properties
+  cp "${XDG_CONFIG_HOME}/termux/config" ~/.termux/termux.properties
+  cp "${CJ_DOTFILES}/assets/font-hack.ttf" ~/.termux/font.ttf
+fi
