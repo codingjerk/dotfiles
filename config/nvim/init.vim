@@ -175,6 +175,10 @@ nnoremap <silent> <C-O> :call skim#run({'sink': 'tabedit'})<CR>
 " = Marks are very annoying when ` is tmux prefix =
 map ` <nop>
 
+" = F1 is really close to escape =
+nmap <F1> <Esc>
+imap <F1> <Esc>
+
 " = Indentation =
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
