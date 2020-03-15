@@ -1,4 +1,5 @@
 config/alacritty/alacritty.yml
+config/urxvt/config
 config/cef_user_data
 config/chromium
 config/configstore

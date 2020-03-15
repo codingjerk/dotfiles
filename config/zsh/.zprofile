@@ -4,7 +4,7 @@ export VISUAL="${EDITOR}"
 export PAGER='less'
 
 # === GUI Tools ===
-export TERMINAL='alacritty'
+export TERMINAL='urxvtc'
 export BROWSER='chromium'
 
 # === Options ===
