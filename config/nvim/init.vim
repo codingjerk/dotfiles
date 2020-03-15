@@ -6,6 +6,9 @@ call plug#begin('$XDG_DATA_HOME/nvim/plug')
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'mattn/emmet-vim'
 
+Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+
 " Language support
 Plug 'leafgarland/typescript-vim'
 Plug 'editorconfig/editorconfig-vim'
@@ -164,13 +167,10 @@ nnoremap N Nzz
 
 nnoremap <silent> b :noh<CR>
 
-" = Skim =
-if filereadable("/usr/share/vim/vimfiles/plugin/skim.vim")
-  source /usr/share/vim/vimfiles/plugin/skim.vim
-else
-  source $CARGO_HOME/registry/src/github.com-*/skim-*/plugin/skim.vim
-endif
-nnoremap <silent> <C-O> :call skim#run({'sink': 'tabedit'})<CR>
+" = Fzf =
+nnoremap <silent> <C-O> :call fzf#run({
+  \ 'sink': 'tabe'
+  \ })<CR>
 
 " = Marks are very annoying when ` is tmux prefix =
 map ` <nop>

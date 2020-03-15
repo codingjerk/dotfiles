@@ -274,20 +274,20 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 
 __interactive-history() {
-  LBUFFER="$(fc -ln 0 | sk --tac --no-sort -q "${LBUFFER}")"
+  LBUFFER="$(fc -ln 0 | fzf --tac --no-sort -q "${LBUFFER}")"
   zle redisplay
 }
 zle -N __interactive-history
 
 __interactive-find-current() {
-  local found=$(${=SKIM_DEFAULT_COMMAND} | sk)
+  local found=$(${=FZF_DEFAULT_COMMAND} | fzf)
   [[ -n "$found" ]] && LBUFFER="${LBUFFER}${found}"
 }
 
 __interactive-find-in-dir() {
   local init="${LBUFFER%% *}"
   local last="${LBUFFER##* }"
-  local found=$(${=SKIM_DEFAULT_COMMAND} . "$last" | sk)
+  local found=$(${=FZF_DEFAULT_COMMAND} . "$last" | fzf)
   [[ -n "$found" ]] && LBUFFER="${init} ${found}"
 }
 
@@ -304,7 +304,7 @@ __interactive-find() {
 zle -N __interactive-find
 
 __interactive-open() {
-  local found=$(${=SKIM_DEFAULT_COMMAND} | sk)
+  local found=$(${=FZF_DEFAULT_COMMAND} | fzf)
   [[ -n "$found" ]] && LBUFFER="e ${found}"
 
   zle accept-line
