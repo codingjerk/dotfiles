@@ -62,6 +62,9 @@
 [pull]
   rebase = true
 
+[rebase]
+  autoStash = true
+
 [status]
   branch    = true
   color     = auto
