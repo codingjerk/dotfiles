@@ -186,6 +186,12 @@ function stopwatch(){
    done
 }
 
+function pomo(){
+  countdown $(printf '%.0f' $(( $1 * 60 )))
+  termux-vibrate -f -d 1500
+  termux-notification -c "Pomo is ended" -t Pomo
+}
+
 # === Completion ===
 LISTMAX=1000
 
