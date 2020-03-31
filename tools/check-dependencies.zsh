@@ -67,6 +67,7 @@ if [[ "$mode" =~ gui ]]; then
   require binary "xinit" xinit
   require binary "feh" feh
   require binary "Polybar" polybar
+  require binary "Dunst" dunst
   require binary "i3 (gaps)" i3
   require binary "i3lock (color, by PandorasFox)" i3lock
   require binary "RXVT unicode" urxvt

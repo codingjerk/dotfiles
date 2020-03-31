@@ -5,6 +5,7 @@ cat <<EOF
 # === Options ===
 exec --no-startup-id bar
 exec --no-startup-id lock
+exec --no-startup-id dunst
 
 set \$mod Mod1
 

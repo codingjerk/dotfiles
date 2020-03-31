@@ -1,0 +1,75 @@
+. "${CJ_DOTFILES}/assets/colors.sh"
+. "${CJ_DOTFILES}/settings.sh"
+
+# TODO: move to common file
+BAR_HEIGHT=$((${CJ_MONOFONT_SIZE:=12} * 8 / 3))
+
+cat <<EOF
+[global]
+    geometry = "500x0-$BAR_HEIGHT+$(( $BAR_HEIGHT * 2 ))"
+    frame_width = 2
+    separator_height = 2
+    padding = ${BAR_HEIGHT}
+    horizontal_padding = ${BAR_HEIGHT}
+
+    font = ${CJ_MONOFONT} ${CJ_MONOFONT_SIZE}
+
+    transparency = 0
+    frame_color = "#${CJ_COLOR_4_HEX}"
+    separator_color = frame
+
+    format = "%s\n%b"
+    alignment = left
+    show_age_threshold = 60
+    word_wrap = yes
+    ignore_newline = no
+    stack_duplicates = no
+    notification_height = 0
+    indicate_hidden = yes
+    shrink = no
+    sort = yes
+    idle_threshold = 120
+    line_height = 0
+    markup = full
+    ellipsize = middle
+    hide_duplicate_count = false
+    show_indicators = yes
+
+    follow = keyboard
+
+    icon_position = left
+    max_icon_size = 64
+    icon_path = /usr/share/icons/breeze-dark/status/64:/usr/share/icons/breeze-dark/devices/64
+
+    sticky_history = yes
+    history_length = 20
+    dmenu = rofi -dmenu
+    browser = /usr/bin/chromium
+    verbosity = mesg
+    startup_notification = false
+    corner_radius = 0
+
+    mouse_left_click = close_current
+    mouse_middle_click = do_action
+    mouse_right_click = do_action
+
+[shortcuts]
+    close = mod1+n
+    history = mod1+shift+n
+
+[urgency_low]
+    background = "#${CJ_COLOR_BG_HEX}"
+    foreground = "#${CJ_COLOR_FG_HEX}"
+    timeout = 15
+
+[urgency_normal]
+    background = "#${CJ_COLOR_BG_HEX}"
+    foreground = "#${CJ_COLOR_FG_HEX}"
+    timeout = 30
+
+[urgency_critical]
+    background = "#${CJ_COLOR_BG_HEX}"
+    foreground = "#${CJ_COLOR_FG_HEX}"
+    frame_color = "#${CJ_COLOR_1_HEX}"
+    timeout = 60
+    icon = dialog-error

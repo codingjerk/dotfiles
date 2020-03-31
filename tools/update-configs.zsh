@@ -21,6 +21,7 @@ lesskey -o "${XDG_CONFIG_HOME}/less/lesskey" "${XDG_CONFIG_HOME}/less/lesskey.in
 sh "${XDG_CONFIG_HOME}/pam/environment.in" > "${HOME}/.pam_environment"
 sh "${XDG_CONFIG_HOME}/i3/config.in" > "${XDG_CONFIG_HOME}/i3/config"
 sh "${XDG_CONFIG_HOME}/polybar/config.in" > "${XDG_CONFIG_HOME}/polybar/config"
+sh "${XDG_CONFIG_HOME}/dunst/config.in" > "${XDG_CONFIG_HOME}/dunst/dunstrc"
 sh "${XDG_CONFIG_HOME}/alacritty/alacritty.yml.in" > "${XDG_CONFIG_HOME}/alacritty/alacritty.yml"
 sh "${XDG_CONFIG_HOME}/urxvt/config.in" > "${XDG_CONFIG_HOME}/urxvt/config"
 sh "${XDG_CONFIG_HOME}/gtk-3.0/gtk.css.in" > "${XDG_CONFIG_HOME}/gtk-3.0/gtk.css"

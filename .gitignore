@@ -6,6 +6,7 @@ config/configstore
 config/darktable
 config/dconf
 config/discord
+config/dunst/dunstrc
 config/Electron
 config/enchant
 config/GIMP
