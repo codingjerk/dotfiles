@@ -1,6 +1,9 @@
 . "${CJ_DOTFILES}/settings.sh"
 . "${CJ_DOTFILES}/assets/colors.sh"
 
+# TODO: move to common file
+BAR_HEIGHT=$((${CJ_MONOFONT_SIZE:=12} * 8 / 3))
+
 cat <<EOF
 *.foreground: #${CJ_COLOR_FG_HEX}
 *.background: #${CJ_COLOR_BG_HEX}
@@ -26,7 +29,7 @@ cat <<EOF
 URxvt.font: xft:${CJ_MONOFONT}:size=${CJ_MONOFONT_SIZE}
 URxvt.boldFont:
 URxvt.scrollBar: false
-URxvt.internalBorder: 32
+URxvt.internalBorder: ${BAR_HEIGHT}
 URxvt.urgentOnBell: true
 
 URxvt.keysym.Control-Up:     \033[1;5A
