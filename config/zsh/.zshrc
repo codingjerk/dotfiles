@@ -173,7 +173,7 @@ p() {
 function countdown(){
    date1=$((`date +%s` + $1));
    while [ "$date1" -ge `date +%s` ]; do
-     echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
+     echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r"
      sleep 0.1
    done
 }
@@ -186,10 +186,22 @@ function stopwatch(){
    done
 }
 
+function notify(){
+  if (( $+commands[termux-vibrate] )); then
+    termux-vibrate -f -d 1500
+    termux-notification -c "$2" -t "$1"
+  elif (( $+commands[notify-send] )); then
+    notify-send "$1" "$2"
+  else
+    echo "$1: $2"
+  fi
+
+  echo -e '\a'
+}
+
 function pomo(){
   countdown $(printf '%.0f' $(( $1 * 60 )))
-  termux-vibrate -f -d 1500
-  termux-notification -c "Pomo is ended" -t Pomo
+  notify "Pomo" "current countdown is ended"
 }
 
 # === Completion ===
