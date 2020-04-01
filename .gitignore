@@ -33,6 +33,21 @@ config/VirtualBox
 config/vivaldi
 config/vlc
 config/zathura/zathurarc
+config/3T
+config/Postman
+config/deluge
+config/dleyna-renderer-service.conf
+config/evolution
+config/gtk-3.0/bookmarks
+config/libreoffice
+config/okular_fictionbook_generator_settings
+config/okularpartrc
+config/okularrc
+config/pikaur.conf
+config/remmina
+config/skypeforlinux
+config/sublime-text-3
+config/transmission
 
 cache
 share
