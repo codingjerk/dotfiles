@@ -190,6 +190,8 @@ function notify(){
   if (( $+commands[termux-vibrate] )); then
     termux-vibrate -f -d 1500
     termux-notification -c "$2" -t "$1"
+  elif (( $+commands[powershell.exe] )); then
+    powershell.exe "New-BurntToastNotification -Text \"$1: $2\""
   elif (( $+commands[notify-send] )); then
     notify-send "$1" "$2"
   else
