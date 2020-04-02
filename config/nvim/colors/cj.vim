@@ -13,7 +13,7 @@ hi ALEErrorLine ctermbg=0 ctermfg=5 cterm=reverse
 
 hi VertSplit ctermbg=0 ctermfg=0 cterm=bold
 hi LineNr ctermfg=0 cterm=bold
-hi MatchParen ctermfg=0 ctermbg=0 cterm=reverse,bold
+hi MatchParen ctermfg=0 ctermbg=6 cterm=none
 hi TabLine ctermfg=0 ctermbg=0 cterm=bold
 hi TabLineFill ctermfg=0 ctermbg=0 cterm=bold
 
