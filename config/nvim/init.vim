@@ -39,6 +39,13 @@ augroup whitespace_python
   au VimEnter *.py set expandtab
 augroup END
 
+augroup whitespace_rust
+  au VimEnter *.rs set tabstop=4
+  au VimEnter *.rs set softtabstop=4
+  au VimEnter *.rs set shiftwidth=4
+  au VimEnter *.rs set expandtab
+augroup END
+
 set list " show whitespace
 set listchars=tab:»-,trail:•,nbsp:_
 
