@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+HACK_TEMP_DIR="${HOME}/.ssh"
+
+mkdir "${HACK_TEMP_DIR}"
+/usr/bin/ssh-copy-id -i "${XDG_DATA_HOME}/ssh/id_rsa" "$@"
+rmdir "${HACK_TEMP_DIR}"
