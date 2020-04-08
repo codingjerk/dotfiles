@@ -6,7 +6,7 @@ common_install_pre() {
 
 common_install_post() {
   zsh "${HOME}/dotfiles/tools/install.zsh"
-  zsh "${HOME}/dotfiles/tools/generate-zshenv.zsh > ${HOME}/.zshenv"
+  zsh "${HOME}/dotfiles/tools/generate-zshenv.zsh" > "${HOME}/.zshenv"
 
   cat >> "${HOME}/postinstall.sh" <<EOF
   sudo chsh -s /bin/zsh "$USER"
