@@ -19,7 +19,7 @@ EOF
 
 wsl_packages() {
   sudo apt update
-  sudo apt install -y zsh neovim python3 python3-neovim curl less man-db tmux htop ssh gnupg2 pinentry-tty python3-pip
+  sudo apt install -y zsh neovim python3 python3-neovim curl less man-db tmux htop ssh gnupg2 pinentry-tty python3-pip pass
 
   # Static binaries
   curl "https://gitlab.com/codingjerk/dotfiles/uploads/9b2febf821cd2c722f26b61cb879672a/exa" > "${HOME}/dotfiles/bin/exa"
