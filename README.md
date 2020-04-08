@@ -27,6 +27,12 @@ Personal dotfiles.
 
 ## Installation
 
+### Automatic
+
+`curl 'https://gitlab.com/codingjerk/dotfiles/-/raw/master/tools/one-command-install.sh' | sh`
+
+### Semi-manual
+
 1. `git clone <repo>`
 1. `zsh dotfiles/tools/check-dependencies.zsh all` -- install all listed stuff manually and run check again
 1. `zsh dotfiles/tools/install.zsh`
