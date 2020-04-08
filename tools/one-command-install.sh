@@ -37,7 +37,7 @@ wsl_packages() {
 
   # Rust
   cat >> "${HOME}/postinstall.zsh" <<EOF
-  \curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  \curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- --no-modify-path
   cargo install hexyl
   cargo install ripgrep
 EOF
@@ -59,7 +59,7 @@ ubuntu_packages() {
 
   # Rust
   cat >> "${HOME}/postinstall.zsh" <<EOF
-  \curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  \curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- --no-modify-path
   cargo install hexyl
   cargo install ripgrep
   cargo install exa
