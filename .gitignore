@@ -1,6 +1,7 @@
 bin/exa
 bin/fzf
 bin/fd
+bin/xclip
 
 config/alacritty/alacritty.yml
 config/urxvt/config
