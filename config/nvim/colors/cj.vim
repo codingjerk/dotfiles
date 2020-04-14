@@ -77,6 +77,10 @@ hi rustKeyword ctermfg=1
 hi rustMacro ctermfg=1
 hi rustString ctermfg=2
 
+" = XML =
+hi xmlAttrib ctermfg=6
+hi xmlNamespace ctermfg=6
+
 " = Speling =
 hi SpellBad  ctermbg=0 ctermfg=1 cterm=reverse
 hi SpellCap  ctermbg=0 ctermfg=1 cterm=reverse

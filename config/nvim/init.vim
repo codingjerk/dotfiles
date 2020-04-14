@@ -206,6 +206,13 @@ imap <expr><S-Tab> pumvisible()
 imap <expr> <C-F> emmet#expandAbbrIntelligent("\<tab>")
 
 " === Highlighting ===
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
 set t_Co=16
 colorscheme cj
 syntax enable
