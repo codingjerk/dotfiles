@@ -13,12 +13,27 @@ Plug 'junegunn/fzf.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'editorconfig/editorconfig-vim'
 
+" Multiple cursors
+Plug 'terryma/vim-multiple-cursors'
+
 call plug#end()
 
 " === Plugin settings ===
 " deoplete
 let g:deoplete#enable_at_startup = 1
 let g:omni_sql_no_default_maps = 1
+
+" vim-multiple-cursors
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_start_word_key      = '<C-d>'
+let g:multi_cursor_next_key            = '<C-d>'
+
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
 
 " === Timeouts ===
 set ttimeoutlen=10
