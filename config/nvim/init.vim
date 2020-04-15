@@ -86,6 +86,7 @@ set nowrapscan
 set autoindent
 set smartindent
 set smarttab
+set indentkeys-=<:>
 
 " === Backup ===
 set nobackup
