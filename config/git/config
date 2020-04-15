@@ -43,7 +43,7 @@
   singlekey = true
 
 [format]
-  pretty = format:%C(bold red)%G?%C(reset) %C(bold)%s%C(reset) %C(yellow)@ %ar%C(reset) %C(blue bold)<%an>%C(reset)
+  pretty = format:%C(bold red)%G? %h%C(reset) %C(bold)%s%C(reset) %C(yellow)@ %ar%C(reset) %C(blue bold)<%an>%C(reset)
 
 [gc]
   aggressiveDepth  = 100
