@@ -20,8 +20,8 @@ hi TabLineFill ctermfg=0 ctermbg=0 cterm=bold
 hi EndOfBuffer ctermfg=0
 hi SignColumn ctermbg=0
 
-hi Pmenu ctermbg=0 ctermfg=0 cterm=bold
-hi PmenuSel ctermfg=7
+hi Pmenu ctermbg=7 ctermfg=0 cterm=bold,reverse
+hi PmenuSel ctermbg=0 ctermfg=0 cterm=bold,reverse
 hi PmenuSbar ctermfg=0 cterm=bold,reverse
 hi PmenuThumb ctermbg=7
 

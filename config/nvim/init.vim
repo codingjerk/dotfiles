@@ -4,6 +4,7 @@ call plug#begin('$XDG_DATA_HOME/nvim/plug')
 
 " Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
 Plug 'mattn/emmet-vim'
 
 Plug 'junegunn/fzf', { 'do': './install --bin' }
@@ -137,6 +138,9 @@ function! MyTabLabel(n)
 
   return filename
 endfunction
+
+" === Completion ===
+set completeopt-=preview
 
 " === Misc ===
 set clipboard=unnamed,unnamedplus
