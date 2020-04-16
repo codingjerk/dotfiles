@@ -31,6 +31,10 @@ Personal dotfiles.
 
 `curl 'https://gitlab.com/codingjerk/dotfiles/-/raw/master/tools/one-command-install.sh' | sh`
 
+*You might want to create a new user:*
+
+`useradd -m -G sudo,users -k /dev/null -s /bin/zsh cj`
+
 ### Semi-manual
 
 1. `git clone <repo>`
