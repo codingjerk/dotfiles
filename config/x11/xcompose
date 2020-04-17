@@ -64,6 +64,10 @@ include "%L"
 <Multi_key> <minus> <o> : "•"
 <Multi_key> <minus> <bracketleft> <bracketright> : "□"
 
+<Multi_key> <bracketleft>     <bracketright> : "☐"
+<Multi_key> <bracketleft> <v> <bracketright> : "☑"
+<Multi_key> <bracketleft> <x> <bracketright> : "☒"
+
 # === Emoji ===
 <Multi_key> <e> <1> <0> <0>             : "💯"
 <Multi_key> <e> <d> <i> <s>             : "👎"
