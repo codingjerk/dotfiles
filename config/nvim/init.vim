@@ -184,6 +184,12 @@ nnoremap e A
 vnoremap <expr> q mode()=~'\cv' ? "<C-V>^I" : "I"
 vnoremap <expr> e mode()=~'\cv' ? "<C-V>$A" : "$A"
 
+" = {c,x}Q/E for change / delete =
+noremap xe d$
+noremap xq d^
+noremap ce c$
+noremap cq c^
+
 " = Tabs =
 noremap <silent> <C-Q> <Esc>:tabp<CR>
 noremap <silent> <C-E> <Esc>:tabn<CR>
