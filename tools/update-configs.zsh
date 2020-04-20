@@ -35,3 +35,9 @@ if [ -d ~/.termux ]; then
   cp "${XDG_CONFIG_HOME}/termux/config" ~/.termux/termux.properties
   cp "${CJ_DOTFILES}/assets/font-hack.ttf" ~/.termux/font.ttf
 fi
+
+# == WSL ==
+WSLTTY_DIR="/mnt/c/Users/${USER}/AppData/Roaming/wsltty"
+if [ -d "${WSLTTY_DIR}" ]; then
+  zsh "${XDG_CONFIG_HOME}/mintty/config.in" > "${WSLTTY_DIR}/config"
+fi
