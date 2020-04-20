@@ -204,8 +204,21 @@ nnoremap N Nzz
 nnoremap <silent> b :noh<CR>
 
 " = Fzf =
+" by @jmoses from https://www.reddit.com/r/vim/comments/9ifsjf/vim_fzf_question_about_switching_to_already_open/
+function! s:GotoOrOpen(command, ...)
+  for file in a:000
+    if a:command == 'e'
+      exec 'e ' . file
+    else
+      exec "tab drop " . file
+    endif
+  endfor
+endfunction
+
+command! -nargs=+ GotoOrOpen call s:GotoOrOpen(<f-args>)
+
 nnoremap <silent> <C-O> :call fzf#run({
-  \ 'sink': 'tabe'
+  \ 'sink': 'GotoOrOpen tab'
   \ })<CR>
 
 " = Marks are very annoying when ` is tmux prefix =
