@@ -73,3 +73,4 @@ cat <<EOF
     frame_color = "#${CJ_COLOR_1_HEX}"
     timeout = 60
     icon = dialog-error
+EOF
