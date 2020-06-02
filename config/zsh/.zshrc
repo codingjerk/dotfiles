@@ -88,6 +88,7 @@ alias gsl='git stash list'
 alias gst='git diff --stat --color | cat'
 alias gra='git remote add'
 alias grl='git remote show'
+alias grm='git rm'
 alias grg='git remote get-url'
 alias grs='git remote set-url'
 
