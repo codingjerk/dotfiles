@@ -276,6 +276,9 @@ def is_block_device_line(mount_line: str) -> bool:
 
     exclude_prefixes = [
         "/dev/block/bootdevice",
+        "/dev/block/platform/bootdevice",
+        "/dev/block/dm-",
+        "/dev/block/loop",
     ]
 
     for prefix in exclude_prefixes:
