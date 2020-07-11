@@ -37,7 +37,7 @@ if [ -d ~/.termux ]; then
 fi
 
 # == WSL ==
-WSLTTY_DIR="/mnt/c/Users/${USER}/AppData/Roaming/wsltty"
+WSLTTY_DIR="/mnt/c/Users/${USER:=}/AppData/Roaming/wsltty"
 if [ -d "${WSLTTY_DIR}" ]; then
   zsh "${XDG_CONFIG_HOME}/mintty/config.in" > "${WSLTTY_DIR}/config"
 fi
