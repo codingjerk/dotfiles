@@ -138,6 +138,10 @@ function! MyTabLabel(n)
   let path = bufname(buflist[winnr - 1])
   let filename = fnamemodify(path, ":t")
 
+  if filename == ""
+    return "<unnamed>"
+  endif
+
   return filename
 endfunction
 
@@ -194,9 +198,11 @@ noremap cq c^
 " = Tabs =
 noremap <silent> <C-Q> <Esc>:tabp<CR>
 noremap <silent> <C-E> <Esc>:tabn<CR>
+noremap <silent> <C-T> <Esc>:tabe<CR>
 
 inoremap <silent> <C-Q> <C-o>:tabp<CR>
 inoremap <silent> <C-E> <C-o>:tabn<CR>
+inoremap <silent> <C-E> <C-o>:tabe<CR>
 
 " = Search =
 nnoremap n nzz
