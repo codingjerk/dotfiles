@@ -56,6 +56,7 @@ augroup whitespace_python
   au VimEnter *.py set softtabstop=4
   au VimEnter *.py set shiftwidth=4
   au VimEnter *.py set expandtab
+  au VimEnter *.py set indentkeys-=<:>
 augroup END
 
 augroup whitespace_rust
