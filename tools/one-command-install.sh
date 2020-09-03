@@ -67,6 +67,20 @@ ubuntu_packages() {
 EOF
 }
 
+arch_packages() {
+  sudo pacman -Syu
+  sudo pacman -S --noconfirm clang python zsh neovim python3 python3-neovim curl less man-db tmux htop ssh gnupg2 pinentry-tty python3-pip pass pass-otp fzf
+
+  # Rust
+  cat >> "${HOME}/postinstall.zsh" <<EOF
+  \curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- --no-modify-path
+  cargo install hexyl
+  cargo install ripgrep
+  cargo install exa
+  cargo install fd-find
+EOF
+}
+
 install_with() {
   common_install_pre
   "$1"
@@ -78,6 +92,8 @@ if grep -q Microsoft /proc/version; then
   install_with wsl_packages
 elif grep -q Ubuntu /proc/version; then
   install_with ubuntu_packages
+elif grep -q Arch /proc/version; then
+  install_with arch_packages
 else
   echo "Error: Unknown OS, can't install"
   exit 1
