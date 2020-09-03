@@ -68,12 +68,12 @@ EOF
 }
 
 arch_packages() {
-  sudo pacman -Syu
-  sudo pacman -S --noconfirm clang python zsh neovim python3 python3-neovim curl less man-db tmux htop ssh gnupg2 pinentry-tty python3-pip pass pass-otp fzf
+  sudo pacman -Syu --noconfirm
+  sudo pacman -S --noconfirm clang python2 python3 zsh neovim python-neovim python2-neovim curl less man-db tmux htop openssh gnupg pinentry python-pip python2-pip pass pass-otp fzf
 
   # Rust
   cat >> "${HOME}/postinstall.zsh" <<EOF
-  \curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- --no-modify-path
+  \curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- --no-modify-path -y --profile=complete --default-toolchain=nightly
   cargo install hexyl
   cargo install ripgrep
   cargo install exa
