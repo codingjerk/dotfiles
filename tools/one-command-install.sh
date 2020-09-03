@@ -68,8 +68,8 @@ EOF
 }
 
 arch_packages() {
-  sudo pacman -Syu --noconfirm
-  sudo pacman -S --noconfirm clang python2 python3 zsh neovim python-neovim curl less man-db tmux htop openssh gnupg pinentry python-pip python2-pip pass pass-otp fzf
+  sudo pacman -Syu --quiet --noconfirm
+  sudo pacman -S --quiet --noconfirm clang python2 python3 zsh neovim python-neovim curl less man-db tmux htop openssh gnupg pinentry python-pip python2-pip pass pass-otp fzf
 
   # Rust
   cat >> "${HOME}/postinstall.zsh" <<EOF
