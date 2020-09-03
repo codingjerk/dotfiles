@@ -2,7 +2,7 @@ install:
   image: archlinux/base
 
   before_script:
-    - pacman -Sy --quiet --noconfirm git zsh sudo
+    - pacman -Sy --quiet --noconfirm git zsh sudo > /dev/null
     - touch settings.sh
 
   script:
