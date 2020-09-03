@@ -92,7 +92,7 @@ if grep -q Microsoft /proc/version; then
   install_with wsl_packages
 elif grep -q Ubuntu /proc/version; then
   install_with ubuntu_packages
-elif grep -q Arch /proc/version; then
+elif [ -f "/etc/arch-release" ]; then
   install_with arch_packages
 else
   echo "Error: Unknown OS, can't install"
