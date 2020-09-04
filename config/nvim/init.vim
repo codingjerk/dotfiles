@@ -254,6 +254,10 @@ imap <expr><S-Tab> pumvisible()
 " = Emmet =
 imap <expr> <C-F> emmet#expandAbbrIntelligent("\<tab>")
 
+" === Database integraion ===
+nnoremap <M-CR> :w !./todb<CR>
+vnoremap <M-CR> :w !./todb<CR>
+
 " === Highlighting ===
 function! SynStack()
   if !exists("*synstack")
