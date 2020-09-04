@@ -18,7 +18,7 @@ cat <<EOF
 
   modules-left =
   modules-center = wm
-  modules-right = keyboard clock
+  modules-right = keyboard battery clock
 
 [module/wm]
   type = internal/i3
@@ -72,4 +72,9 @@ cat <<EOF
   exec = date +%H:%M
   label =  %output%
   interval = 60
+
+[module/battery]
+  type = internal/battery
+
+  label-discharging =  %percentage%%
 EOF
