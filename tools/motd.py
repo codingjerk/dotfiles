@@ -113,6 +113,11 @@ def print_table(table: List[List[str]], justifiers: List[str]) -> None:
     print_center(*lines)
 
 
+def print_top_padding() -> None:
+    for _ in range(4):
+        print()
+
+
 def show_banner() -> None:
     print_center(
         '\u001B[31m __ __ _____ __ __ _____ ___ _ _____ _____ ',
@@ -399,6 +404,7 @@ def fin() -> None:
     print('\u001B[0m', end='')
 
 
+print_top_padding()
 show_banner()
 show_uptime()
 show_resources()
