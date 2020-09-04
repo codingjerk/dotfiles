@@ -8,6 +8,7 @@ config/Electron
 config/GIMP
 config/Microsoft
 config/Postman
+config/Foxit Software
 config/QtProject.conf
 config/VirtualBox
 config/alacritty/alacritty.yml
