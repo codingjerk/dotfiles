@@ -17,9 +17,6 @@ Plug 'editorconfig/editorconfig-vim'
 " Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
 
-" Time tracking
-Plug 'wakatime/vim-wakatime'
-
 call plug#end()
 
 " === Plugin settings ===
