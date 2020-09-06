@@ -6,6 +6,6 @@ install:
     - touch settings.sh
 
   script:
-    - sh tools/one-command-install.sh
+    - zsh tools/install.zsh
     - "[ ! -f ~/.zshenv ]"
     - "[ -f ~/.pam_environment ]"
