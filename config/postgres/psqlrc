@@ -1,0 +1,6 @@
+\set QUIET 1
+\timing on
+\pset null '¤'
+\set PROMPT1 'psql » '
+
+\unset QUIET
