@@ -13,5 +13,7 @@ exec /usr/bin/sshfs \
   -o "ControlPath=${SOCKETS_DIR}/s-%r@%h:%p" \
   -o cache=yes \
   -o kernel_cache \
-  -o large_read \
+  -o auto_cache \
+  -o reconnect \
+  -o no_readahead \
   "$@"
