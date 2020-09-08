@@ -12,8 +12,8 @@ cat <<EOF
   foreground = ${CJ_COLOR_FG_HEX}
 
   font-0 = ${CJ_MONOFONT}:size=${CJ_MONOFONT_SIZE};3
-  font-1 = FontAwesome:size=${CJ_MONOFONT_SIZE};2
-  font-2 = Font Awesome 5 Free Solid:size=${CJ_MONOFONT_SIZE};2
+  font-1 = FontAwesome:size=${CJ_MONOFONT_SIZE};4
+  font-2 = Font Awesome 5 Free Solid:size=${CJ_MONOFONT_SIZE};4
 
   modules-left =
   modules-center = wm
@@ -49,21 +49,28 @@ cat <<EOF
   label-mode-padding   = 1
   label-mode-underline = ${CJ_COLOR_1_HEX}
 
-  ws-icon-0 = 1;
-  ws-icon-1 = 2;
-  ws-icon-2 = 3;
-  ws-icon-3 = 4;
-  ws-icon-4 = 5;
-  ws-icon-5 = 6;.
-  ws-icon-6 = 7;.
-  ws-icon-7 = 8;.
-  ws-icon-8 = 9;
-  ws-icon-9 = 10;
+  ws-icon-0 = 1;1
+  ws-icon-1 = 2;2
+  ws-icon-2 = 3;3
+  ws-icon-3 = 4;4
+  ws-icon-4 = 5;5
+  ws-icon-5 = 6;6
+  ws-icon-6 = 7;7
+  ws-icon-7 = 8;8
+  ws-icon-8 = 9;9
+  ws-icon-9 = 10;.
 
 [module/keyboard]
   type = internal/xkeyboard
   format = <label-layout>
   label-layout =  %layout%
+
+[module/battery]
+  type = internal/battery
+
+  label-charging =  %percentage%%
+  label-discharging =  %percentage%%
+  label-full =  %percentage%%
 
 [module/clock]
   type = custom/script
@@ -71,9 +78,4 @@ cat <<EOF
   exec = date +%H:%M
   label =  %output%
   interval = 60
-
-[module/battery]
-  type = internal/battery
-
-  label-discharging =  %percentage%%
 EOF
