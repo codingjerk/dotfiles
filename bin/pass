@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+if [[ "$@" =~ "/otp" ]]; then
+  exec /usr/bin/pass otp -c "$@"
+else
+  exec /usr/bin/pass -c "$@"
+fi
