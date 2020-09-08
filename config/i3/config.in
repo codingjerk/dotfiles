@@ -20,17 +20,6 @@ set \$ws8 "8"
 set \$ws9 "9"
 set \$ws10 "10"
 
-workspace \$ws1  output ${CJ_PRIMARY_MONITOR}
-workspace \$ws2  output ${CJ_PRIMARY_MONITOR}
-workspace \$ws3  output ${CJ_PRIMARY_MONITOR}
-workspace \$ws4  output ${CJ_PRIMARY_MONITOR}
-workspace \$ws5  output ${CJ_PRIMARY_MONITOR}
-workspace \$ws6  output ${CJ_PRIMARY_MONITOR}
-workspace \$ws7  output ${CJ_PRIMARY_MONITOR}
-workspace \$ws8  output ${CJ_PRIMARY_MONITOR}
-workspace \$ws9  output ${CJ_SECONDARY_MONITOR}
-workspace \$ws10 output ${CJ_SECONDARY_MONITOR}
-
 floating_modifier \$mod
 
 # === Look & Feel ===

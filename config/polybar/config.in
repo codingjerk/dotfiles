@@ -3,7 +3,6 @@
 
 cat <<EOF
 [bar/main]
-  monitor = \${env:MONITOR}
   height = $((${CJ_MONOFONT_SIZE:=12} * 8 / 3))
   padding = 2
   module-margin = 1

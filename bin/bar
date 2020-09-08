@@ -1,7 +1,3 @@
 #!/usr/bin/env sh
 
-if [ "${CJ_SECONDARY_MONITOR}" != "${CJ_PRIMARY_MONITOR}" ]; then
-  MONITOR="${CJ_SECONDARY_MONITOR}" polybar main &
-fi
-
-MONITOR="${CJ_PRIMARY_MONITOR}" exec polybar main
+exec polybar main
