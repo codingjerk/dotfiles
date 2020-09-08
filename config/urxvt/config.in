@@ -32,6 +32,13 @@ URxvt.scrollBar: false
 URxvt.internalBorder: ${BAR_HEIGHT}
 URxvt.urgentOnBell: true
 
+URxvt.perl-ext-common: default,clipboard,selection-to-clipboard
+URxvt.clipboard.autocopy: true
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
 URxvt.keysym.Control-Up:     \033[1;5A
 URxvt.keysym.Control-Down:   \033[1;5B
 URxvt.keysym.Control-Left:   \033[1;5D
