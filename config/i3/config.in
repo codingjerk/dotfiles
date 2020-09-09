@@ -101,4 +101,13 @@ bindsym \$mod+Shift+0 move container to workspace \$ws10
 
 bindsym \$mod+Shift+r restart
 bindsym \$mod+Shift+x exit
+
+bindsym XF86AudioPlay exec --no-startup-id mpc toggle
+bindsym XF86AudioPause exec --no-startup-id mpc toggle
+bindsym XF86AudioStop exec --no-startup-id mpc pause
+bindsym XF86AudioNext exec --no-startup-id mpc next
+bindsym XF86AudioPrev exec --no-startup-id mpc prev
+
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 EOF

@@ -15,9 +15,31 @@ cat <<EOF
   font-1 = FontAwesome:size=${CJ_MONOFONT_SIZE};4
   font-2 = Font Awesome 5 Free Solid:size=${CJ_MONOFONT_SIZE};4
 
-  modules-left =
+  modules-left = mpd
   modules-center = wm
   modules-right = keyboard battery clock
+
+[module/mpd]
+  type = internal/mpd
+
+  host = 127.0.0.1
+  port = 6600
+
+  label-song = %artist% - %title%
+
+  toggle-on-foreground = ${CJ_COLOR_4_HEX}
+  toggle-off-foreground = ${CJ_COLOR_8_HEX}
+
+  icon-play = 
+  icon-pause = 
+  icon-random = 
+  icon-repeat = 
+
+  format-online = "  <toggle> <label-song>"
+  format-offline = "   ..."
+  format-playing = \${self.format-online}
+  format-paused = \${self.format-online}
+  format-stopped = \${self.format-online}
 
 [module/wm]
   type = internal/i3
