@@ -6,8 +6,10 @@ import os
 
 
 def main():
-    monitors = get_active_monitors()
+    monitors = get_monitors()
+    print(f"Active monitors: {monitors}")
     prefered_monitor = select_prefered_monitor(monitors)
+    print(f"Prefered monitor: {prefered_monitor}")
 
     changes = []
     changes.append(enable_monitor(prefered_monitor))
@@ -27,7 +29,7 @@ def get_monitors():
     return [
         re.search(r"^([^ ]+) ", line).group(1)
         for line in monitor_lines
-        if not line.startswith("  ")
+        if not line.startswith("  ") and "connected" in line
     ]
 
 
@@ -45,7 +47,7 @@ def get_active_monitors():
     monitor_lines = result.stdout.decode().splitlines()[1:]
 
     return [
-        re.search(r": \+([^ ]+) ", line).group(1)
+        re.search(r": \+?\*?([^ ]+) ", line).group(1)
         for line in monitor_lines
     ]
 
