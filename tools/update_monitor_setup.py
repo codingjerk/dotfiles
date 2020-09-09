@@ -29,7 +29,7 @@ def get_monitors():
     return [
         re.search(r"^([^ ]+) ", line).group(1)
         for line in monitor_lines
-        if not line.startswith("  ") and "connected" in line
+        if not line.startswith("  ") and " connected" in line
     ]
 
 
