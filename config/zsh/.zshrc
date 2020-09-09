@@ -486,7 +486,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=0,bold'
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=300
 ZSH_AUTOSUGGEST_MANUAL_REBIND=y
 
-source "${CJ_DOTFILES}/third-party/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+source "${CJ_DOTFILES}/third-party/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 source "${CJ_DOTFILES}/third-party/zsh/alias-tips/alias-tips.plugin.zsh"
 ZSH_PLUGINS_ALIAS_TIPS_TEXT=$'\E[31mAlias tip: '
