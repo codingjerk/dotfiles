@@ -23,6 +23,7 @@ call plug#end()
 " deoplete
 let g:deoplete#enable_at_startup = 1
 let g:omni_sql_no_default_maps = 1
+call deoplete#custom#var('buffer', 'require_same_filetype', v:false)
 
 " vim-multiple-cursors
 let g:multi_cursor_use_default_mapping=0
