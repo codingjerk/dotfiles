@@ -199,7 +199,7 @@ noremap <silent> <C-T> <Esc>:tabe<CR>
 
 inoremap <silent> <C-Q> <C-o>:tabp<CR>
 inoremap <silent> <C-E> <C-o>:tabn<CR>
-inoremap <silent> <C-E> <C-o>:tabe<CR>
+inoremap <silent> <C-T> <C-o>:tabe<CR>
 
 " = Search =
 nnoremap n nzz
