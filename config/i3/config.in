@@ -3,7 +3,7 @@
 
 cat <<EOF
 # === Options ===
-exec --no-startup-id bar
+exec --no-startup-id python3 "${CJ_DOTFILES}/tools/update_monitor_setup.py"
 exec --no-startup-id lock
 exec --no-startup-id dunst
 
