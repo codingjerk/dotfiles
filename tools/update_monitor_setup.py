@@ -18,7 +18,7 @@ def main():
         if monitor != prefered_monitor:
             changes.append(disable_monitor(monitor))
 
-    if any(changes):
+    if any(changes) or not is_bar_running():
         restart_bar()
 
 
@@ -67,7 +67,7 @@ def enable_monitor(monitor):
     if status == "on":
         return 0
 
-    subprocess.run(["xrandr", "--output", monitor, "--auto"], check=True, capture_output=True)
+    subprocess.run(["xrandr", "--output", monitor, "--auto"], check=True)
     return 1
 
 
@@ -76,8 +76,22 @@ def disable_monitor(monitor):
     if status == "off":
         return 0
 
-    subprocess.run(["xrandr", "--output", monitor, "--off"], check=True, capture_output=True)
+    subprocess.run(["xrandr", "--output", monitor, "--off"], check=True)
     return 1
+
+
+def is_bar_running():
+    result = subprocess.run(["ps", "x"], capture_output=True)
+    processes = result.stdout.decode().splitlines()
+
+    for process in processes:
+        columns = [c for c in process.split(" ") if c != ""]
+        process = columns[4:]
+
+        if process == ["polybar", "main"]:
+            return True
+
+    return False
 
 
 def restart_bar():
