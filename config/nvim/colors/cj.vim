@@ -5,6 +5,7 @@ syntax reset
 
 " = UI =
 hi ErrorMsg ctermbg=1 ctermfg=0
+hi Error ctermbg=1 ctermfg=0
 hi WarningMsg ctermbg=5 ctermfg=0
 hi Visual ctermbg=0 ctermfg=7 cterm=reverse
 hi Search ctermbg=0 ctermfg=3 cterm=reverse
