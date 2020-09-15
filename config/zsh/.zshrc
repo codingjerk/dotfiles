@@ -228,7 +228,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' verbose true
 zstyle ':completion:*' list-dirs-first true
 
-zstyle ':completion:*' rehash true
+zstyle ':completion:*' rehash false
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' accept-exact-dirs true
 zstyle ':completion:*' use-cache true

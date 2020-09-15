@@ -2,7 +2,7 @@
 
 .fail
 
-### Automatically restore the volume of streams and devices
+load-module module-suspend-on-idle
 load-module module-device-restore
 load-module module-stream-restore
 load-module module-card-restore
