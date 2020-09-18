@@ -9,4 +9,8 @@ if ! command -v pulseaudio > /dev/null; then
   pulseaudio --start
 fi
 
+if ! command -v mpd > /dev/null; then
+  mpd
+fi
+
 exec i3

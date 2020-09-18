@@ -13,6 +13,7 @@ Plug 'junegunn/fzf.vim'
 " Language support
 Plug 'leafgarland/typescript-vim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'vim-python/python-syntax'
 
 " Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
@@ -36,6 +37,9 @@ let g:multi_cursor_select_all_key      = 'g<A-n>'
 let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
+
+" python-syntax
+let g:python_highlight_all = 1
 
 " === Timeouts ===
 set ttimeoutlen=10
