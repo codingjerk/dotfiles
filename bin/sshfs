@@ -11,9 +11,4 @@ exec /usr/bin/sshfs \
   -o "IdentityFile=${DATA_DIR}/id_rsa" \
   -o "UserKnownHostsFile=${DATA_DIR}/known_hosts" \
   -o "ControlPath=${SOCKETS_DIR}/s-%r@%h:%p" \
-  -o cache=yes \
-  -o kernel_cache \
-  -o auto_cache \
-  -o reconnect \
-  -o no_readahead \
   "$@"
