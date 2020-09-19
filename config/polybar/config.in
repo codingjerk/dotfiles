@@ -19,6 +19,9 @@ cat <<EOF
   modules-center = wm
   modules-right = keyboard battery clock
 
+  tray-position = right
+  tray-padding = 2
+
 [module/mpd]
   type = internal/mpd
 
@@ -35,8 +38,8 @@ cat <<EOF
   icon-random = 
   icon-repeat = 
 
-  format-online = "  <toggle> <label-song>"
-  format-offline = "   ..."
+  format-online = " <toggle> <label-song>"
+  format-offline = " "
   format-playing = \${self.format-online}
   format-paused = \${self.format-online}
   format-stopped = \${self.format-online}
@@ -92,7 +95,7 @@ cat <<EOF
 
   label-charging =  %percentage%%
   label-discharging =  %percentage%%
-  label-full =  %percentage%%
+  label-full =
 
 [module/clock]
   type = custom/script
