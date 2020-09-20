@@ -45,6 +45,11 @@ cat <<EOF
   format-offline = " "
   format-stopped = \${self.format-offline}
 
+  format-playing-foreground = ${CJ_COLOR_FG_HEX}
+  format-paused-foreground = ${CJ_COLOR_8_HEX}
+  format-stopped-foreground = ${CJ_COLOR_8_HEX}
+  format-offline-foreground = ${CJ_COLOR_8_HEX}
+
 [module/wm]
   type = internal/i3
 
