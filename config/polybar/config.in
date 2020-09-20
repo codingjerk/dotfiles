@@ -39,10 +39,11 @@ cat <<EOF
   icon-repeat = 
 
   format-online = " <toggle> <label-song>"
-  format-offline = " "
   format-playing = \${self.format-online}
   format-paused = \${self.format-online}
-  format-stopped = \${self.format-online}
+
+  format-offline = " "
+  format-stopped = \${self.format-offline}
 
 [module/wm]
   type = internal/i3
@@ -92,6 +93,10 @@ cat <<EOF
 
 [module/battery]
   type = internal/battery
+
+  battery = BAT0
+  adapter = AC0
+  poll-interval = 30
 
   label-charging =  %percentage%%
   label-discharging =  %percentage%%
