@@ -1,14 +1,14 @@
-CJ_COLOR_BLACK='       7  12  41'
-CJ_COLOR_DARK_GRAY='  98 101 130'
-CJ_COLOR_LIGHT_GRAY='199 202 230'
-CJ_COLOR_WHITE='     218 220 243'
+CJ_COLOR_BLACK='      10  15  20'
+CJ_COLOR_DARK_GRAY=' 100 100 125'
+CJ_COLOR_LIGHT_GRAY='150 150 175'
+CJ_COLOR_WHITE='     175 175 200'
 
-CJ_COLOR_RED='       214  67  96'
-CJ_COLOR_ORANGE='    214 134  67'
-CJ_COLOR_YELLOW='    214 214  67'
-CJ_COLOR_GREEN='      67 214 158'
-CJ_COLOR_BLUE='       67 180 214'
-CJ_COLOR_ELECTRIC='  147  67 214'
+CJ_COLOR_RED='       200  80 100'
+CJ_COLOR_ORANGE='    200 125 100'
+CJ_COLOR_YELLOW='    180 180 125'
+CJ_COLOR_GREEN='     100 200 175'
+CJ_COLOR_BLUE='      100 150 175'
+CJ_COLOR_ELECTRIC='  125 100 175'
 
 CJ_COLOR_0="${CJ_COLOR_BLACK}"
 CJ_COLOR_1="${CJ_COLOR_RED}"
@@ -49,3 +49,22 @@ CJ_COLOR_F_HEX="$(echo ${CJ_COLOR_F} | xargs printf '%02X%02X%02X')"
 
 CJ_COLOR_BG_HEX="$(echo $CJ_COLOR_BG | xargs printf '%02X%02X%02X')"
 CJ_COLOR_FG_HEX="$(echo $CJ_COLOR_FG | xargs printf '%02X%02X%02X')"
+
+cj_colors() {
+  echo "0 (Black):     " "#${CJ_COLOR_0_HEX}" "(${CJ_COLOR_0})"
+  echo "1 (Red)  :     " "#${CJ_COLOR_1_HEX}" "(${CJ_COLOR_1})"
+  echo "2 (Green):     " "#${CJ_COLOR_2_HEX}" "(${CJ_COLOR_2})"
+  echo "3 (Yellow):    " "#${CJ_COLOR_3_HEX}" "(${CJ_COLOR_3})"
+  echo "4 (Blue):      " "#${CJ_COLOR_4_HEX}" "(${CJ_COLOR_4})"
+  echo "5 (Orange):    " "#${CJ_COLOR_5_HEX}" "(${CJ_COLOR_5})"
+  echo "6 (Electic):   " "#${CJ_COLOR_6_HEX}" "(${CJ_COLOR_6})"
+  echo "7 (White):     " "#${CJ_COLOR_7_HEX}" "(${CJ_COLOR_7})"
+  echo "8 (Dark Gray): " "#${CJ_COLOR_8_HEX}" "(${CJ_COLOR_8})"
+  echo "9:             " "#${CJ_COLOR_9_HEX}" "(${CJ_COLOR_9})"
+  echo "A:             " "#${CJ_COLOR_A_HEX}" "(${CJ_COLOR_A})"
+  echo "B:             " "#${CJ_COLOR_B_HEX}" "(${CJ_COLOR_B})"
+  echo "C:             " "#${CJ_COLOR_C_HEX}" "(${CJ_COLOR_C})"
+  echo "D:             " "#${CJ_COLOR_D_HEX}" "(${CJ_COLOR_D})"
+  echo "E:             " "#${CJ_COLOR_E_HEX}" "(${CJ_COLOR_E})"
+  echo "F (Light Gray):" "#${CJ_COLOR_F_HEX}" "(${CJ_COLOR_F})"
+}
