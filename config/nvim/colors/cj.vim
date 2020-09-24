@@ -8,7 +8,9 @@ hi ErrorMsg ctermbg=1 ctermfg=0
 hi Error ctermbg=0 ctermfg=1 cterm=none
 hi WarningMsg ctermbg=5 ctermfg=0
 hi Visual ctermbg=0 ctermfg=7 cterm=reverse
-hi Search ctermbg=3 ctermfg=0 cterm=none
+
+" NOTE: ctermfg=16 is not an error, ctermfg=0 behaves strange sometimes
+hi Search ctermfg=16 ctermbg=6 cterm=none
 
 hi ALEErrorLine ctermbg=0 ctermfg=5 cterm=reverse
 
@@ -26,8 +28,8 @@ hi PmenuSel ctermbg=0 ctermfg=0 cterm=bold,reverse
 hi PmenuSbar ctermfg=0 cterm=bold,reverse
 hi PmenuThumb ctermbg=7
 
-hi CursorLine ctermbg=none ctermfg=none cterm=none
-hi CursorLineNR ctermfg=3
+hi CursorLine ctermbg=235 ctermfg=none cterm=none
+hi CursorLineNR ctermfg=3 ctermbg=235 cterm=none
 
 " = Diff =
 hi Folded ctermbg=0 ctermfg=0 cterm=bold
