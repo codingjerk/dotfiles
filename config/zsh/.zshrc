@@ -111,7 +111,7 @@ alias nt='npm t -s'
 
 alias rg='rg --hidden --glob "!.git"'
 
-alias tmux='tmux -f "${XDG_CONFIG_HOME}/tmux/config"'
+alias tmux='tmux -2 -f "${XDG_CONFIG_HOME}/tmux/config"'
 alias ta='tmux attach'
 alias tl='tmux list-sessions'
 alias tn='tmux new-session'
