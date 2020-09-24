@@ -17,10 +17,7 @@ cat <<EOF
 
   modules-left = mpd
   modules-center = wm
-  modules-right = keyboard battery clock
-
-  tray-position = right
-  tray-padding = 2
+  modules-right = battery keyboard clock
 
 [module/mpd]
   type = internal/mpd
@@ -103,9 +100,24 @@ cat <<EOF
   adapter = AC0
   poll-interval = 30
 
-  label-charging =  %percentage%%
-  label-discharging =  %percentage%%
-  label-full =
+  label-discharging = %percentage%%
+
+  ramp-capacity-0 = 
+  ramp-capacity-0-foreground = ${CJ_COLOR_1_HEX}
+  ramp-capacity-1 = 
+  ramp-capacity-1-foreground = ${CJ_COLOR_3_HEX}
+  ramp-capacity-2 = 
+  ramp-capacity-2-foreground = ${CJ_COLOR_5_HEX}
+  ramp-capacity-3 = 
+  ramp-capacity-3-foreground = ${CJ_COLOR_2_HEX}
+  ramp-capacity-4 = 
+  ramp-capacity-4-foreground = ${CJ_COLOR_4_HEX}
+  ramp-capacity-5 = 
+  ramp-capacity-5-foreground = ${CJ_COLOR_6_HEX}
+
+  format-discharging = <ramp-capacity>
+  format-charging = <ramp-capacity>
+  format-full =
 
 [module/clock]
   type = custom/script
