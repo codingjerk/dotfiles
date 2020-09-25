@@ -4,8 +4,8 @@ hi clear
 syntax reset
 
 " = UI =
-hi ErrorMsg ctermbg=1 ctermfg=0
-hi Error ctermbg=0 ctermfg=1 cterm=none
+hi ErrorMsg ctermbg=none ctermfg=0
+hi Error ctermbg=none ctermfg=1 cterm=none
 hi WarningMsg ctermbg=5 ctermfg=0
 hi Visual ctermbg=0 ctermfg=7 cterm=reverse
 
