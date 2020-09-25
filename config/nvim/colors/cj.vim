@@ -28,8 +28,9 @@ hi PmenuSel ctermbg=0 ctermfg=0 cterm=bold,reverse
 hi PmenuSbar ctermfg=0 cterm=bold,reverse
 hi PmenuThumb ctermbg=7
 
+hi CursorColumn ctermbg=235 ctermfg=none cterm=none
 hi CursorLine ctermbg=235 ctermfg=none cterm=none
-hi CursorLineNR ctermfg=3 ctermbg=235 cterm=none
+hi CursorLineNR ctermfg=4 ctermbg=235 cterm=none
 
 " = Diff =
 hi Folded ctermbg=0 ctermfg=0 cterm=bold
