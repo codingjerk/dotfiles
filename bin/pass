@@ -2,6 +2,8 @@
 
 if [[ "$@" =~ "/otp" ]]; then
   exec /usr/bin/pass otp -c "$@"
-else
+elif [[ "$@" =~ "/pwd" ]]; then
   exec /usr/bin/pass -c "$@"
+else
+  exec /usr/bin/pass "$@"
 fi

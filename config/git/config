@@ -1,5 +1,5 @@
 [user]
-  name = Coding Jerk
+  name = Denis Gruzdev
   email = codingjerk@gmail.com
   signingkey = E3DFEC736900FDE2
 
@@ -73,6 +73,9 @@
 
 [tag]
   forceSignAnnotated = true
+
+[pager]
+  branch = false
 
 [color "branch"]
   current  = blue bold
