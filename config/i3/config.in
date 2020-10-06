@@ -24,6 +24,10 @@ set \$ws12 "12"
 
 floating_modifier \$mod
 
+# === Hacks ===
+for_window [title="Microsoft Teams Notification"] floating enable
+no_focus [title="Microsoft Teams Notification"]
+
 # === Look & Feel ===
 hide_edge_borders smart
 default_border pixel 2
