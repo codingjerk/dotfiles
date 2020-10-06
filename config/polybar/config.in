@@ -8,7 +8,7 @@ cat <<EOF
   module-margin = 1
   line-size = 2
 
-  background = EB${CJ_COLOR_BG_HEX}
+  background = E9${CJ_COLOR_BG_HEX}
   foreground = ${CJ_COLOR_FG_HEX}
 
   font-0 = ${CJ_MONOFONT}:size=${CJ_MONOFONT_SIZE};3
