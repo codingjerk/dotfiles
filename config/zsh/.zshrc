@@ -211,6 +211,7 @@ function pomo(){
 LISTMAX=1000
 
 setopt glob_dots
+setopt no_nomatch
 setopt hist_verify
 setopt complete_in_word
 setopt always_to_end
