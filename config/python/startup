@@ -4,6 +4,24 @@ import atexit
 import os
 import sys
 import readline
+import importlib
+
+
+# === Usefull modules ===
+
+def try_exec(import_statement):
+    try:
+        exec(import_statement, globals())
+    except:
+        pass
+
+try_exec("import math")
+try_exec("import random")
+
+try_exec("from hypothesis import given, strategies as st")
+
+
+# === Prompt ===
 
 if sys.version_info > (3, 0):
   sys.ps1 = '\x01\u001b[34m\x02 python » \x01\u001b[0m\x02'
@@ -11,6 +29,9 @@ if sys.version_info > (3, 0):
 else:
   sys.ps1 = '\x01\x1b[34m\x02 python \xc2\xbb \x01\x1b[0m\x02'
   sys.ps2 = '\x01\x1b[35m\x02 ...... \xc2\xbb \x01\x1b[0m\x02'
+
+
+# === History ===
 
 data_dir = os.path.join(os.environ['XDG_DATA_HOME'], 'python')
 histfile = os.path.join(data_dir, 'history')
