@@ -41,15 +41,20 @@ force_display_urgency_hint 100 ms
 gaps inner 24
 smart_gaps on
 
+# === Fonts ===
+font pango:${CJ_MONOFONT} $((${CJ_MONOFONT_SIZE} * 2))
+for_window [class=".*"] title_format <span font="${CJ_MONOFONT} ${CJ_MONOFONT_SIZE}">   %title   </span>
+
 # === Colors ===
 set \$CL_BG #${CJ_COLOR_BG_HEX}
 set \$CL_FG #${CJ_COLOR_FG_HEX}
 set \$CL_AC #${CJ_COLOR_4_HEX}
 set \$CL_WR #${CJ_COLOR_1_HEX}
+set \$CL_IN #${CJ_COLOR_8_HEX}
 
 client.focused          \$CL_BG \$CL_BG \$CL_FG \$CL_WR \$CL_AC
 client.focused_inactive \$CL_BG \$CL_BG \$CL_FG \$CL_BG \$CL_BG
-client.unfocused        \$CL_BG \$CL_BG \$CL_FG \$CL_BG \$CL_BG
+client.unfocused        \$CL_BG \$CL_BG \$CL_IN \$CL_BG \$CL_BG
 client.urgent           \$CL_BG \$CL_BG \$CL_WR \$CL_WR \$CL_WR
 
 # === Keybindings ===
@@ -65,6 +70,9 @@ bindsym \$mod+Shift+d move right
 
 bindsym \$mod+h split h
 bindsym \$mod+v split v
+
+bindsym \$mod+t layout toggle
+bindsym \$mod+p focus parent
 
 bindsym \$mod+f fullscreen toggle
 bindsym \$mod+g floating toggle
@@ -117,6 +125,8 @@ bindsym XF86AudioPause exec --no-startup-id mpc toggle
 bindsym XF86AudioStop exec --no-startup-id mpc pause
 bindsym XF86AudioNext exec --no-startup-id mpc next
 bindsym XF86AudioPrev exec --no-startup-id mpc prev
+
+bindsym \$mod+F1 exec --no-startup-id "python3 '${CJ_DOTFILES}/tools/update_monitor_setup.py'"
 
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
