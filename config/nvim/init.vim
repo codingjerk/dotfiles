@@ -121,7 +121,6 @@ set statusline+=%1*%{(&ro==1)?'\ \ RO\ ':''}
 set statusline+=%9*\ %f\ "
 
 set statusline+=%9*%=
-set statusline+=%l/%L\ " Line number
 set statusline+=%4*%{(&filetype=='')?'':'\ '.&filetype.'\ '}"
 set statusline+=%6*%{(&fenc=='')?'':'\ \ '.&fenc.'\ '}"
 
