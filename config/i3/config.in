@@ -42,7 +42,7 @@ gaps inner 24
 smart_gaps on
 
 # === Fonts ===
-font pango:${CJ_MONOFONT} $((${CJ_MONOFONT_SIZE} * 2))
+font pango:${CJ_MONOFONT} $(echo "${CJ_MONOFONT_SIZE} * 2" | bc)
 for_window [class=".*"] title_format <span font="${CJ_MONOFONT} ${CJ_MONOFONT_SIZE}">   %title   </span>
 
 # === Colors ===
