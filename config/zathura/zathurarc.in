@@ -27,6 +27,7 @@ set show-recent false
 set selection-clipboard secondary
 
 # === Colors ===
+set default-bg \#${CJ_COLOR_BG_HEX}
 set completion-bg \#${CJ_COLOR_BG_HEX}
 set completion-fg \#${CJ_COLOR_FG_HEX}
 set inputbar-bg \#${CJ_COLOR_BG_HEX}
