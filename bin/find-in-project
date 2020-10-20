@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+rg '\S' \
+  --line-number \
+  --no-heading \
+  --no-binary \
+  --color=always \
+  --block-buffered \
+  --hidden \
+  --max-filesize 20M \
+  --ignore-vcs \
+  --require-git \
+  --no-search-zip \
+  | fzf --delimiter=: --nth=3..
