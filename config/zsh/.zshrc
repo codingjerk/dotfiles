@@ -109,7 +109,7 @@ alias ns='npm s'
 alias nf='npm s'
 alias nt='npm t -s'
 
-alias rg='rg --hidden --glob "!.git"'
+alias rg='rg --hidden --ignore-vcs --require-git --glob "!.git"'
 
 alias tmux='tmux -2 -f "${XDG_CONFIG_HOME}/tmux/config"'
 alias ta='tmux attach'

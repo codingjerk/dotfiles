@@ -71,6 +71,7 @@ include "%L"
 # === Emoji ===
 <Multi_key> <e> <1> <0> <0>             : "💯"
 <Multi_key> <e> <d> <i> <s>             : "👎"
+<Multi_key> <e> <d> <o> <g>             : "🐶"
 <Multi_key> <e> <f> <i> <r> <e>         : "🔥"
 <Multi_key> <e> <h> <e> <a> <r> <t>     : "❤️"
 <Multi_key> <e> <l> <i> <k> <e>         : "👍"
