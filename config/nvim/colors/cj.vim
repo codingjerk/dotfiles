@@ -6,7 +6,8 @@ syntax reset
 " = UI =
 hi ErrorMsg ctermbg=none ctermfg=1 cterm=none
 hi Error ctermbg=none ctermfg=1 cterm=none
-hi WarningMsg ctermbg=5 ctermfg=0
+hi WarningMsg ctermbg=3 ctermfg=0
+hi healthSuccess ctermbg=2 ctermfg=0
 hi Visual ctermbg=0 ctermfg=7 cterm=reverse
 
 " NOTE: ctermfg=16 is not an error, ctermfg=0 behaves strange sometimes
