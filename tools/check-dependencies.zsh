@@ -20,6 +20,7 @@ recommend_message() { message 33 warning "$1" recommended }
 # === Test functions ===
 binary() { which "$1" > /dev/null }
 python3_lib() { python3 -c "import $1" 2> /dev/null }
+python2_lib() { binary python2 && python2 -c "import $1" 2> /dev/null }
 consolefont() { test -e "/usr/share/kbd/consolefonts/$1.psf.gz" }
 font()  { which fc-list > /dev/null && fc-list | grep -i "$1" > /dev/null 2> /dev/null }
 theme() { test -e "/usr/share/themes/$1" }
@@ -86,6 +87,11 @@ fi
 # === Vim-plugin dependencies ===
 if [[ "$mode" =~ vim ]]; then
   require python3_lib "neovim (Python library)" neovim
+  require binary "Python 2.x" python2
+  require python2_lib "neovim (Python 2 library)" neovim
+  require binary "Ruby" ruby
+  require binary "Node.js" node
+  require binary "NPM" npm
 fi
 
 # === OS-specfic ===
