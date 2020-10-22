@@ -59,7 +59,7 @@ eval color 13 ${CJ_COLOR_B}
 eval color 14 ${CJ_COLOR_4}
 eval color 15 ${CJ_COLOR_C}
 
-# Orange
+# Cyan
 eval color 16 ${CJ_COLOR_5}
 eval color 17 ${CJ_COLOR_D}
 

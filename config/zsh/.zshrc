@@ -371,7 +371,7 @@ fg=(
   green   $'\033[32m'
   yellow  $'\033[33m'
   blue    $'\033[34m'
-  orange  $'\033[35m'
+  cyan    $'\033[35m'
   electro $'\033[36m'
 )
 reset_color=$'\033[0m'
@@ -394,7 +394,7 @@ __in-git-repo() {
 
 __git-path() {
   if ! git diff-index --quiet HEAD -- > /dev/null 2>&1; then
-    print -rn "%{$fg[orange]%}"
+    print -rn "%{$fg[red]%}"
   elif { git status --porcelain | command grep '^?? ' } > /dev/null 2>&1; then
     print -rn "%{$fg[yellow]%}"
   else
@@ -422,7 +422,7 @@ __prompt() {
   else
     case "${PWD}" in
       ${HOME}*) print -rn "%{$fg[blue]%}%~" ;;
-      *) print -rn "%{$fg[orange]%}%/" ;;
+      *) print -rn "%{$fg[red]%}%/" ;;
     esac
     print -rn "${PROMPT_SEPARATOR}"
   fi
