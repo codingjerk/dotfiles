@@ -166,7 +166,6 @@ set showmatch
 set backspace=indent,eol,start
 set encoding=utf8
 set nowrap
-set cursorline
 let g:netrw_home=$XDG_CACHE_HOME.'/nvim'
 
 autocmd BufReadPost *
@@ -294,7 +293,3 @@ hi User4 ctermbg=0 ctermfg=4 cterm=reverse
 hi User5 ctermbg=0 ctermfg=5 cterm=reverse
 hi User6 ctermbg=0 ctermfg=6 cterm=reverse
 hi User9 none
-
-" == Unwanted single quotes ==
-highlight SingleQuote ctermbg=1 ctermfg=0
-match SingleQuote /\'/
