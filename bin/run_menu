@@ -7,9 +7,9 @@
 rofi \
   -show drun -display-drun ' » ' \
   -theme-str ' * { highlight: none; } #textbox-prompt-colon { enabled: false; }' \
-  -bw 2 -padding 24 -hide-scrollbar -lines 7 \
+  -bw 0 -padding 24 -hide-scrollbar -lines 7 \
   -font "${CJ_MONOFONT} ${CJ_MONOFONT_SIZE}" \
   -color-normal "#00${CJ_COLOR_BG_HEX}, #${CJ_COLOR_FG_HEX}, #00${CJ_COLOR_BG_HEX}, #00${CJ_COLOR_BG_HEX}, #${CJ_COLOR_4_HEX}" \
   -color-urgent "#00${CJ_COLOR_BG_HEX}, #${CJ_COLOR_FG_HEX}, #00${CJ_COLOR_BG_HEX}, #00${CJ_COLOR_BG_HEX}, #${CJ_COLOR_4_HEX}" \
   -color-active "#00${CJ_COLOR_BG_HEX}, #${CJ_COLOR_FG_HEX}, #00${CJ_COLOR_BG_HEX}, #00${CJ_COLOR_BG_HEX}, #${CJ_COLOR_4_HEX}" \
-  -color-window "#EB${CJ_COLOR_BG_HEX}, #${CJ_COLOR_4_HEX},  #00${CJ_COLOR_BG_HEX}"
+  -color-window "#FF${CJ_COLOR_BG_HEX}, #${CJ_COLOR_4_HEX},  #00${CJ_COLOR_BG_HEX}"
