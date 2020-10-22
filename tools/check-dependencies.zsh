@@ -49,6 +49,8 @@ if [[ "$mode" =~ opt ]]; then
   recommend binary "exa" exa
   recommend binary "hexyl" hexyl
   recommend binary "Ripgrep" rg
+  recommend binary "mpd" mpd
+  recommend binary "pulseaudio" pulseaudio
 fi
 
 # === GUI ===
@@ -82,6 +84,7 @@ if [[ "$mode" =~ gui ]]; then
   recommend binary "Zathura" zathura
   recommend binary "Chromium" chromium
   recommend binary "mpv" mpv
+  recommend binary "picom" picom
 fi
 
 # === Vim-plugin dependencies ===
