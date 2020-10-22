@@ -51,6 +51,8 @@ if [[ "$mode" =~ opt ]]; then
   recommend binary "Ripgrep" rg
   recommend binary "mpd" mpd
   recommend binary "pulseaudio" pulseaudio
+  recommend binary "pavucontrol" pavucontrol
+  recommend binary "pass" pass
 fi
 
 # === GUI ===

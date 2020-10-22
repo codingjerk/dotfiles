@@ -1,10 +1,10 @@
-CJ_COLOR_BLACK='      55  62  77'
+CJ_COLOR_BLACK='       0   0   0'
 CJ_COLOR_DARK_GRAY='  94 102 119'
 CJ_COLOR_LIGHT_GRAY='130 141 163'
 CJ_COLOR_WHITE='     190 210 215'
 
 CJ_COLOR_RED='       191  97 106'
-CJ_COLOR_CYAN='    136 192 208'
+CJ_COLOR_CYAN='      136 192 208'
 CJ_COLOR_YELLOW='    235 203 139'
 CJ_COLOR_GREEN='     163 190 140'
 CJ_COLOR_BLUE='      129 161 193'
@@ -56,7 +56,7 @@ cj_colors() {
   echo "2 (Green):     " "#${CJ_COLOR_2_HEX}" "(${CJ_COLOR_2})"
   echo "3 (Yellow):    " "#${CJ_COLOR_3_HEX}" "(${CJ_COLOR_3})"
   echo "4 (Blue):      " "#${CJ_COLOR_4_HEX}" "(${CJ_COLOR_4})"
-  echo "5 (Orange):    " "#${CJ_COLOR_5_HEX}" "(${CJ_COLOR_5})"
+  echo "5 (Cyan):      " "#${CJ_COLOR_5_HEX}" "(${CJ_COLOR_5})"
   echo "6 (Electic):   " "#${CJ_COLOR_6_HEX}" "(${CJ_COLOR_6})"
   echo "7 (White):     " "#${CJ_COLOR_7_HEX}" "(${CJ_COLOR_7})"
   echo "8 (Dark Gray): " "#${CJ_COLOR_8_HEX}" "(${CJ_COLOR_8})"

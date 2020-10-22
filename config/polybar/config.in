@@ -15,7 +15,7 @@ cat <<EOF
   font-1 = FontAwesome:size=${CJ_MONOFONT_SIZE};3
   font-2 = Font Awesome 5 Free Solid:size=${CJ_MONOFONT_SIZE};3
 
-  modules-left = mpd
+  modules-left =
   modules-center = wm
   modules-right = battery keyboard clock
 

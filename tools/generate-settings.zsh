@@ -13,5 +13,5 @@ export CJ_MONOFONT_SIZE=$(ask 'Font size' '12')
 
 export CJ_MONITORS="$(ask 'Monitor list' 'HDMI-A-0;eDP')"
 export CJ_X_AUTOSTART=$(ask 'Autostart X? (yes/no)' 'yes')
-export CJ_WALLPAPER='${CJ_DOTFILES}/assets/wallpaper-$(ask 'Wallpaper variant (railroad.png, forest-2.jpg, keyboard.jpg)' 'keyboard.jpg')'
+export CJ_WALLPAPER='${CJ_DOTFILES}/assets/wallpaper-$(ask 'Wallpaper variant (railroad.png, forest-2.jpg, keyboard.jpg)' 'forest-2.jpg')'
 EOF

@@ -123,20 +123,20 @@ def show_banner() -> None:
         '\u001B[31m __ __ _____ __ __ _____ ___ _ _____ _____ ',
         '\u001B[31m|  |  |  ___|  |  |  ___|   | |_   _|     |',
         '\u001B[31m|     |  ___|     |  ___|     | | | |  -  |',
-        '\u001B[35m|_|_|_|_____|_|_|_|_____|_|___| |_| |_____|',
+        '\u001B[33m|_|_|_|_____|_|_|_|_____|_|___| |_| |_____|',
     )
 
     print_center(
-        '\u001B[35m __ __ _____ ____ _____ ',
-        '\u001B[35m|  |  |     | __ \_   _|',
-        '\u001B[33m|     |  -  |    <_| |_ ',
-        '\u001B[33m|_|_|_|_____|_|__|_____|',
+        '\u001B[33m __ __ _____ ____ _____ ',
+        '\u001B[33m|  |  |     | __ \_   _|',
+        '\u001B[32m|     |  -  |    <_| |_ ',
+        '\u001B[32m|_|_|_|_____|_|__|_____|',
     )
 
     print_center(
-        '\u001B[32m ____ _____ ____ ____ _____ ',
-        '\u001B[32m|    |  _  | __ \ __ \  ___|',
-        '\u001B[32m| ---|     |    <  __/  ___|',
+        '\u001B[35m ____ _____ ____ ____ _____ ',
+        '\u001B[35m|    |  _  | __ \ __ \  ___|',
+        '\u001B[35m| ---|     |    <  __/  ___|',
         '\u001B[34m|____|__|__|_|__|_|  |_____|',
     )
 
@@ -196,12 +196,10 @@ def get_color_by_usage(usage: Meminfo) -> str:
     if factor > 0.8:
         return '\u001B[31m'  # red
     if factor > 0.7:
-        return '\u001B[35m'  # orange
-    if factor > 0.6:
         return '\u001B[33m'  # yellow
-    if factor > 0.5:
+    if factor > 0.6:
         return '\u001B[36m'  # magenta
-    if factor > 0.4:
+    if factor > 0.5:
         return '\u001B[34m'  # blue
 
     return '\u001B[32m'  # green
@@ -320,12 +318,10 @@ def get_color_by_load(load: float) -> str:
     if load > 0.7:
         return '\u001B[31m'  # red
     if load > 0.6:
-        return '\u001B[35m'  # orange
-    if load > 0.5:
         return '\u001B[33m'  # yellow
-    if load > 0.4:
+    if load > 0.5:
         return '\u001B[36m'  # magenta
-    if load > 0.3:
+    if load > 0.4:
         return '\u001B[34m'  # blue
 
     return '\u001B[32m'  # green
