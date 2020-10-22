@@ -12,6 +12,10 @@ cat > /usr/share/icons/default/index.theme <<EOF
 Inherits=Breeze_Snow
 EOF
 
+cat > /etc/vconsole.conf <<EOF
+FONT=ter-c20n
+EOF
+
 cat > /etc/ssh/sshd_config <<EOF
 PermitRootLogin no
 MaxAuthTries 1

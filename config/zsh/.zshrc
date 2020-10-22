@@ -21,7 +21,8 @@ export TERM=${TERM:s/-256color/}
 if [[ -o login ]]; then
   if [[ "${TERM}" = 'linux' ]]; then
     zsh "${CJ_DOTFILES}/tools/tty-colors.zsh"
-    setfont '/usr/share/kbd/consolefonts/ter-i20n.psf.gz'
+    # In case we don't have root configs installed
+    setfont '/usr/share/kbd/consolefonts/ter-c20n.psf.gz'
     clear
   fi
 
