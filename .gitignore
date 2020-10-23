@@ -4,11 +4,12 @@ bin/fd
 bin/xclip
 
 config/3T
+config/Code - OSS
 config/Electron
+config/Foxit Software
 config/GIMP
 config/Microsoft
 config/Postman
-config/Foxit Software
 config/QtProject.conf
 config/VirtualBox
 config/alacritty/alacritty.yml
@@ -46,6 +47,7 @@ config/polybar/config
 config/pulse/*-default-*
 config/pulse/*.tdb
 config/pulse/cookie
+config/qBittorrent
 config/remmina
 config/skypeforlinux
 config/sublime-text-3
