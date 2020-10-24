@@ -51,6 +51,7 @@ config/qBittorrent
 config/remmina
 config/skypeforlinux
 config/sublime-text-3
+config/systemd
 config/teams
 config/transmission
 config/transmission-remote-gtk
