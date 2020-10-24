@@ -102,12 +102,13 @@ alias ll='ls -lo --time-style=iso'
 
 alias m='make'
 
+alias nf='npm s'
 alias ni='npm install --prefer-offline --save'
 alias nid='npm install --prefer-offline --save-dev'
 alias nig='npm install -g --prefer-offline'
 alias nit='npm init -y'
+alias nr='npm run'
 alias ns='npm s'
-alias nf='npm s'
 alias nt='npm t -s'
 
 alias rg='rg --hidden --ignore-vcs --require-git --glob "!.git"'
