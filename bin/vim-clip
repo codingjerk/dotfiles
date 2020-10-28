@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if which clip.exe > /dev/null 2>&1; then
+  if [[ "$1" == "save" ]]; then
+    tee <&0 | clip.exe
+  else
+    powershell.exe Get-Clipboard | tr -d '\r'
+  fi
+else
+  if [[ "$1" == "save" ]]; then
+    xclip
+  else
+    xclip -o
+  fi
+fi

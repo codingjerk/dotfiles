@@ -159,8 +159,22 @@ endfunction
 " === Completion ===
 set completeopt-=preview
 
-" === Misc ===
+" === Clipboard ===
 set clipboard=unnamed,unnamedplus
+let g:clipboard = {
+\	'name': 'vim-clip',
+\	'copy': {
+\		'+': 'vim-clip save',
+\		'*': 'vim-clip save',
+\	},
+\	'paste': {
+\		'+': 'vim-clip load',
+\		'*': 'vim-clip load',
+\	},
+\	'cache_enabled': 0,
+\}
+
+" === Misc ===
 set undofile
 set lazyredraw
 set showmatch
