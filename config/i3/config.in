@@ -126,7 +126,7 @@ bindsym XF86AudioStop exec --no-startup-id mpc pause
 bindsym XF86AudioNext exec --no-startup-id mpc next
 bindsym XF86AudioPrev exec --no-startup-id mpc prev
 
-bindsym \$mod+m exec --no-startup-id "python3 '${CJ_DOTFILES}/tools/update_monitor_setup.py'"
+bindsym \$mod+m exec --no-startup-id python3 '${CJ_DOTFILES}/tools/update_monitor_setup.py'
 
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
