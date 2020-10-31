@@ -8,8 +8,8 @@ if which clip.exe > /dev/null 2>&1; then
   fi
 else
   if [[ "$1" == "save" ]]; then
-    xclip
+    xclip -selection clipboard
   else
-    xclip -o
+    xclip -selection clipboard -o
   fi
 fi
