@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-if which clip.exe > /dev/null; then
+if which clip.exe > /dev/null 2>&1; then
   if [[ "$@" =~ "/otp" ]]; then
     exec /usr/bin/pass otp "$@" | clip.exe
   elif [[ "$@" =~ "/pwd" ]]; then
