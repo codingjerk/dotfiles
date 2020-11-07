@@ -285,8 +285,8 @@ imap <expr> <C-F> emmet#expandAbbrIntelligent("\<tab>")
 " === Database integraion ===
 set splitbelow
 
-nnoremap <silent> <M-CR> :w !./todb > /tmp/dbout 2>&1<CR>:split /tmp/dbout<CR>
-vnoremap <silent> <M-CR> :w !./todb > /tmp/dbout 2>&1<CR>:split /tmp/dbout<CR>
+nnoremap <silent> <M-CR> :w !./run > /tmp/dbout 2>&1<CR>:split /tmp/dbout<CR>
+vnoremap <silent> <M-CR> :w !./run > /tmp/dbout 2>&1<CR>:split /tmp/dbout<CR>
 
 " === Highlighting ===
 function! SynStack()
