@@ -255,25 +255,18 @@ vnoremap <S-Tab> <gv
 nnoremap <Tab> v><Esc>
 nnoremap <S-Tab> v<<Esc>
 
-" = Completion =
-imap <expr><Tab> pumvisible()
-  \ ? "\<C-n>"
-  \ : "\<Tab>"
-
-imap <expr><S-Tab> pumvisible()
-  \ ? "\<C-p>"
-  \ : "\<C-o>:<<CR>"
-
 " = Emmet =
 imap <expr> <C-F> emmet#expandAbbrIntelligent("\<tab>")
 
 " = CoC =
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <silent><expr> <c-p> coc#refresh()
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-references)
+nnoremap <silent> <space>h :call <SID>show_documentation()<CR>
+nnoremap <silent> <space>f :call CocAction('format')<CR>
+nnoremap <silent> <space>i :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -283,6 +276,17 @@ function! s:show_documentation()
   else
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " === Database integraion ===

@@ -9,14 +9,15 @@ hi Error ctermbg=none ctermfg=1 cterm=none
 hi WarningMsg ctermbg=3 ctermfg=0
 hi healthSuccess ctermbg=2 ctermfg=0
 hi Visual ctermbg=0 ctermfg=7 cterm=reverse
+hi MoreMsg ctermfg=2
 
 " CoC
-hi CocFloating ctermbg=0
+hi CocFloating ctermbg=0 ctermfg=0 cterm=bold
 hi CocWarningFloat ctermfg=3
 hi CocWarningSign ctermfg=3
 
 " NOTE: ctermfg=16 is not an error, ctermfg=0 behaves strange sometimes
-hi Search ctermfg=16 ctermbg=6 cterm=none
+hi Search ctermfg=15 ctermbg=3 cterm=none
 
 hi ALEErrorLine ctermbg=0 ctermfg=5 cterm=reverse
 
