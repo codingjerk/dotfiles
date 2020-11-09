@@ -19,23 +19,6 @@ Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 " === Plugin settings ===
-" coc
-inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <silent><expr> <c-p> coc#refresh()
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gi <Plug>(coc-implementation)oc#refresh()
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
 " vim-multiple-cursors
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_start_word_key      = '<C-d>'
@@ -283,6 +266,24 @@ imap <expr><S-Tab> pumvisible()
 
 " = Emmet =
 imap <expr> <C-F> emmet#expandAbbrIntelligent("\<tab>")
+
+" = CoC =
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-p> coc#refresh()
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
 
 " === Database integraion ===
 set splitbelow
