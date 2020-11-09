@@ -10,6 +10,11 @@ hi WarningMsg ctermbg=3 ctermfg=0
 hi healthSuccess ctermbg=2 ctermfg=0
 hi Visual ctermbg=0 ctermfg=7 cterm=reverse
 
+" CoC
+hi CocFloating ctermbg=0
+hi CocWarningFloat ctermfg=3
+hi CocWarningSign ctermfg=3
+
 " NOTE: ctermfg=16 is not an error, ctermfg=0 behaves strange sometimes
 hi Search ctermfg=16 ctermbg=6 cterm=none
 
@@ -24,10 +29,10 @@ hi TabLineFill ctermfg=0 ctermbg=0 cterm=bold
 hi EndOfBuffer ctermfg=0
 hi SignColumn ctermbg=0
 
-hi Pmenu ctermbg=7 ctermfg=0 cterm=bold,reverse
-hi PmenuSel ctermbg=0 ctermfg=0 cterm=bold,reverse
-hi PmenuSbar ctermfg=0 cterm=bold,reverse
-hi PmenuThumb ctermbg=7
+hi Pmenu ctermbg=none ctermfg=7 cterm=bold
+hi PmenuSel ctermbg=none ctermfg=7 cterm=none
+hi PmenuSbar ctermbg=none ctermfg=0 cterm=none
+hi PmenuThumb ctermbg=none
 
 hi CursorColumn ctermbg=235 ctermfg=none cterm=none
 hi CursorLine ctermbg=235 ctermfg=none cterm=none

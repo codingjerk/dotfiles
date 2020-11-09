@@ -3,16 +3,13 @@ source $CJ_DOTFILES/third-party/vim-plug/plug.vim
 call plug#begin('$XDG_DATA_HOME/nvim/plug')
 
 " Autocompletion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
 Plug 'mattn/emmet-vim'
+Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
 
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
 " Language support
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-python/python-syntax'
 
@@ -22,10 +19,22 @@ Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 " === Plugin settings ===
-" deoplete
-let g:deoplete#enable_at_startup = 1
-let g:omni_sql_no_default_maps = 1
-call deoplete#custom#var('buffer', 'require_same_filetype', v:false)
+" coc
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-p> coc#refresh()
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gi <Plug>(coc-implementation)oc#refresh()
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
 
 " vim-multiple-cursors
 let g:multi_cursor_use_default_mapping=0
@@ -38,15 +47,6 @@ let g:multi_cursor_select_all_key      = 'g<A-n>'
 let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
-
-" NOTE: make multiple cursors work fine with deoplete
-function g:Multiple_cursors_before()
-  call deoplete#custom#buffer_option('auto_complete', v:false)
-endfunction
-
-function g:Multiple_cursors_after()
-  call deoplete#custom#buffer_option('auto_complete', v:true)
-endfunction
 
 " python-syntax
 let g:python_highlight_all = 1
@@ -84,6 +84,7 @@ set listchars=tab:»-,trail:•,nbsp:_
 " === Gutter ===
 set number
 set numberwidth=1
+set signcolumn=number
 
 " === Diff ===
 set diffopt=filler,context:4,foldcolumn:0
@@ -181,6 +182,7 @@ set showmatch
 set backspace=indent,eol,start
 set encoding=utf8
 set nowrap
+set updatetime=200
 let g:netrw_home=$XDG_CACHE_HOME.'/nvim'
 
 autocmd BufReadPost *

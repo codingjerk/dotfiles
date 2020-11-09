@@ -1,0 +1,11 @@
+{
+  "python.linting.mypyEnabled": true,
+
+  "suggest.enablePreview": true,
+  "diagnostic.errorSign": " •",
+  "diagnostic.warningSign": " •",
+  "diagnostic.infoSign": " •",
+  "diagnostic.hintSign": " •",
+
+  "diagnostic.refreshOnInsertMode": true
+}
