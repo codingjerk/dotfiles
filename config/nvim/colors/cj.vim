@@ -17,7 +17,7 @@ hi CocWarningFloat ctermfg=3
 hi CocWarningSign ctermfg=3
 
 " NOTE: ctermfg=16 is not an error, ctermfg=0 behaves strange sometimes
-hi Search ctermfg=15 ctermbg=3 cterm=none
+hi Search ctermfg=16 ctermbg=3 cterm=none
 
 hi ALEErrorLine ctermbg=0 ctermfg=5 cterm=reverse
 

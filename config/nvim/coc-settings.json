@@ -2,10 +2,12 @@
   "python.linting.mypyEnabled": true,
 
   "suggest.enablePreview": true,
+  "suggest.removeDuplicateItems": true,
+  "codeLens.enable": true,
+
   "diagnostic.errorSign": " •",
   "diagnostic.warningSign": " •",
   "diagnostic.infoSign": " •",
   "diagnostic.hintSign": " •",
-
   "diagnostic.refreshOnInsertMode": true
 }
