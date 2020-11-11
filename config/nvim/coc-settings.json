@@ -1,6 +1,8 @@
 {
   "python.linting.mypyEnabled": true,
 
+  "sql.database": "postgresql",
+
   "suggest.enablePreview": true,
   "suggest.removeDuplicateItems": true,
   "codeLens.enable": true,

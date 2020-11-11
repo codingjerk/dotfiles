@@ -93,6 +93,9 @@ alias grm='git rm'
 alias grg='git remote get-url'
 alias grs='git remote set-url'
 
+# Git prune command, clears and resets all in repo
+alias gpr='git reset -- . && git checkout -- . && git clean -xfd'
+
 alias grep="grep --color=auto --binary-files=without-match --exclude-dir={.bzr,.git,.hg,.svn}"
 
 alias ixio="\curl -F 'f:1=<-' ix.io"
