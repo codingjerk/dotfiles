@@ -38,6 +38,7 @@ config/mimeapps.list
 config/mpd/bakoga.conf
 config/mpv/watch_later
 config/neofetch
+config/coc
 config/obs-studio
 config/okular_fictionbook_generator_settings
 config/okularpartrc
@@ -67,3 +68,4 @@ share
 runtime
 
 settings.sh
+startup.local
