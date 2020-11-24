@@ -20,6 +20,7 @@ hi CocWarningSign ctermfg=3
 hi Search ctermfg=16 ctermbg=3 cterm=none
 
 hi ALEErrorLine ctermbg=0 ctermfg=5 cterm=reverse
+hi LimelightDim cterm=bold ctermfg=0
 
 hi VertSplit ctermbg=0 ctermfg=0 cterm=bold
 hi LineNr ctermfg=0 cterm=bold
