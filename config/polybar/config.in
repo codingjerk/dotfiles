@@ -17,35 +17,12 @@ cat <<EOF
 
   modules-left =
   modules-center = wm
-  modules-right = battery keyboard clock
+  modules-right = battery volume keyboard clock
 
-[module/mpd]
-  type = internal/mpd
+[module/volume]
+  type = internal/pulseaudio
 
-  host = 127.0.0.1
-  port = 6600
-
-  label-song = %artist% - %title%
-
-  toggle-on-foreground = ${CJ_COLOR_4_HEX}
-  toggle-off-foreground = ${CJ_COLOR_8_HEX}
-
-  icon-play = 
-  icon-pause = 
-  icon-random = 
-  icon-repeat = 
-
-  format-online = " <toggle> <label-song>"
-  format-playing = \${self.format-online}
-  format-paused = \${self.format-online}
-
-  format-offline = " "
-  format-stopped = \${self.format-offline}
-
-  format-playing-foreground = ${CJ_COLOR_FG_HEX}
-  format-paused-foreground = ${CJ_COLOR_8_HEX}
-  format-stopped-foreground = ${CJ_COLOR_8_HEX}
-  format-offline-foreground = ${CJ_COLOR_8_HEX}
+  label-volume =  %percentage%%
 
 [module/wm]
   type = internal/i3

@@ -130,4 +130,8 @@ bindsym \$mod+m exec --no-startup-id python3 '${CJ_DOTFILES}/tools/update_monito
 
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 '+5%'
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 '-5%'
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle
 EOF
