@@ -15,14 +15,16 @@ cat <<EOF
   font-1 = FontAwesome:size=${CJ_MONOFONT_SIZE};3
   font-2 = Font Awesome 5 Free Solid:size=${CJ_MONOFONT_SIZE};3
 
-  modules-left =
-  modules-center = wm
-  modules-right = battery volume keyboard clock
+  modules-left = wm
+  modules-center = clock
+  modules-right = battery volume keyboard
 
 [module/volume]
   type = internal/pulseaudio
 
   label-volume =  %percentage%%
+  label-muted =  %percentage%%
+  label-muted-foreground = ${CJ_COLOR_8_HEX}
 
 [module/wm]
   type = internal/i3
@@ -77,28 +79,12 @@ cat <<EOF
 
   battery = BAT0
   adapter = AC0
-  poll-interval = 30
+  full-at = 98
+  poll-interval = 60
 
-  label-discharging = %percentage%%
-
-  ramp-capacity-0 = 
-  ramp-capacity-0-foreground = ${CJ_COLOR_1_HEX}
-  ramp-capacity-1 = 
-  ramp-capacity-1-foreground = ${CJ_COLOR_3_HEX}
-  ramp-capacity-2 = 
-  ramp-capacity-2-foreground = ${CJ_COLOR_2_HEX}
-  ramp-capacity-3 = 
-  ramp-capacity-3-foreground = ${CJ_COLOR_4_HEX}
-  ramp-capacity-4 = 
-  ramp-capacity-4-foreground = ${CJ_COLOR_5_HEX}
-  ramp-capacity-5 = 
-  ramp-capacity-5-foreground = ${CJ_COLOR_6_HEX}
-  ramp-capacity-6 = 
-  ramp-capacity-6-foreground = ${CJ_COLOR_FG_HEX}
-
-  format-discharging = <ramp-capacity>
-  format-charging = <ramp-capacity>
-  format-full =
+  label-charging =  %percentage%%
+  label-discharging =  %percentage%%
+  label-full =
 
 [module/clock]
   type = custom/script
