@@ -6,6 +6,7 @@ import os
 import sys
 import readline
 import importlib
+import pprint
 
 
 # === Usefull modules ===
@@ -43,3 +44,13 @@ readline.read_history_file(histfile)
 readline.set_history_length(histsize)
 
 atexit.register(readline.write_history_file, histfile)
+
+# === Display hook ===
+def pprint_displayhook(value):
+  if value is None:
+    print("<None>")
+  else:
+    __builtins__._ = value
+    pprint.pprint(value)
+
+setattr(sys, 'displayhook', pprint_displayhook)
