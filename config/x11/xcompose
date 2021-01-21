@@ -83,3 +83,8 @@ include "%L"
 <Multi_key> <e> <t> <h> <u> <m> <b>     : "👍"
 <Multi_key> <e> <s> <m> <i> <r> <k>     : "😏"
 <Multi_key> <e> <p> <i> <s> <t> <o> <l> : "🔫"
+
+# === Currencies ===
+<Multi_key> <r> <u> <b>                 : "₽"
+<Multi_key> <e> <u> <r>                 : "€"
+<Multi_key> <g> <b> <p>                 : "£"
