@@ -36,8 +36,12 @@ ClientAliveCountMax 60
 EOF
 
 cat > /etc/sysctl.d/perf.conf <<EOF
+kernel.printk = 3 3 3 3
+
 kernel.sched_migration_cost_ns = 10000000
 kernel.sched_autogroup_enabled = 0
+
+kernel.nmi_watchdog = 0
 
 vm.swappiness = 0
 vm.dirty_ratio = 5
