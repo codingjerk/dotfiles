@@ -11,7 +11,7 @@ __path-prepend "${CJ_DOTFILES}/bin"
 
 # === X autostart ===
 if [[ "${CJ_X_AUTOSTART}" == "yes" ]] && tty | command grep tty1 > /dev/null; then
-  exec xinit -- vt1 :0 -allowMouseOpenFail -nolisten tcp -disableVidMode -ignoreABI -nosilk -novtswitch
+  exec xinit -- vt1 :0 -allowMouseOpenFail -nolisten tcp -disableVidMode -ignoreABI -nosilk -novtswitch > /dev/null 2>&1
 fi
 
 # === Removing 256color suffix ===
