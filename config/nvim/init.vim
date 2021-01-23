@@ -310,6 +310,72 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" === Russian reybindings ===
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+
+" = Colon =
+nnoremap ж :
+
+" = WASD =
+noremap ц k
+noremap ы j
+noremap ф h
+noremap в l
+
+noremap Ф b
+noremap В w
+vnoremap В e
+
+noremap Ц 5k
+noremap Ы 5j
+
+noremap ч d
+
+" = Q/E for insertion =
+nnoremap й I
+nnoremap у A
+vnoremap <expr> й mode()=~'\cv' ? "<C-V>^I" : "I"
+vnoremap <expr> у mode()=~'\cv' ? "<C-V>$A" : "$A"
+
+" = {c,x}Q/E for change / delete =
+noremap чу d$
+noremap чй d^
+noremap су c$
+noremap сй c^
+
+" = Tabs =
+noremap <silent> <C-й> <Esc>:tabp<CR>
+noremap <silent> <C-у> <Esc>:tabn<CR>
+noremap <silent> <C-е> <Esc>:tabe<CR>
+
+inoremap <silent> <C-й> <C-o>:tabp<CR>
+inoremap <silent> <C-у> <C-o>:tabn<CR>
+inoremap <silent> <C-е> <C-o>:tabe<CR>
+
+" = Search =
+nnoremap т nzz
+nnoremap Т Nzz
+
+nnoremap <silent> и :noh<CR>
+
+" = Fzf =
+nnoremap <silent> <C-щ> :call fzf#run({
+  \ 'sink': 'GotoOrOpen tab'
+  \ })<CR>
+
+" = Emmet =
+imap <expr> <C-а> emmet#expandAbbrIntelligent("\<tab>")
+
+" = CoC =
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-з> coc#refresh()
+nnoremap <silent> пd <Plug>(coc-definition)
+nnoremap <silent> пш <Plug>(coc-implementation)
+nnoremap <silent> пк <Plug>(coc-references)
+nnoremap <silent> <space>р :call <SID>show_documentation()<CR>
+nnoremap <silent> <space>а :call CocAction('format')<CR>
+nnoremap <silent> <space>ш :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
+
 " === Database integraion ===
 set splitbelow
 
