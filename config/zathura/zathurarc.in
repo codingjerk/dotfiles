@@ -16,6 +16,9 @@ map D scroll right
 map r reload
 map f adjust_window width
 
+map Z zoom in
+map z zoom out
+
 # === Options ===
 set guioptions ""
 set font "${CJ_MONOFONT} $(( ${CJ_MONOFONT_SIZE} - 1 ))"
