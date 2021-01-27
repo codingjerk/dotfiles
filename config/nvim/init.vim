@@ -376,11 +376,14 @@ nnoremap <silent> <space>р :call <SID>show_documentation()<CR>
 nnoremap <silent> <space>а :call CocAction('format')<CR>
 nnoremap <silent> <space>ш :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
 
-" === Database integraion ===
+" === Minimalistic build system ===
 set splitbelow
 
-nnoremap <silent> <M-CR> :w !./run > /tmp/dbout 2>&1<CR>:split /tmp/dbout<CR>
-vnoremap <silent> <M-CR> :w !./run > /tmp/dbout 2>&1<CR>:split /tmp/dbout<CR>
+nnoremap <silent> <M-CR> :w !make > /tmp/vimrunout 2>&1<CR>:split /tmp/vimrunout<CR>
+vnoremap <silent> <M-CR> :w !make > /tmp/vimrunout 2>&1<CR>:split /tmp/vimrunout<CR>
+
+" === Spelling ===
+set spelllang=en_us,ru
 
 " === Highlighting ===
 function! SynStack()
