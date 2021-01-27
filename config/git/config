@@ -3,6 +3,9 @@
   email = codingjerk@gmail.com
   signingkey = E3DFEC736900FDE2
 
+[init]
+  defaultBranch = development
+
 [gpg]
   program = gpg2
 
