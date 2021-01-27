@@ -17,7 +17,14 @@ cat <<EOF
 
   modules-left = wm
   modules-center = clock
-  modules-right = battery volume keyboard
+  modules-right = battery backlight volume keyboard
+
+[module/backlight]
+  type = internal/backlight
+
+  card = intel_backlight
+  enable-scroll = true
+  label =  %percentage%%
 
 [module/volume]
   type = internal/pulseaudio
