@@ -17,6 +17,7 @@ config/VirtualBox
 config/alacritty/alacritty.yml
 config/cef_user_data
 config/chromium
+config/coc
 config/configstore
 config/darktable
 config/dconf
@@ -26,6 +27,7 @@ config/dleyna-renderer-service.conf
 config/dunst/dunstrc
 config/enchant
 config/evolution
+config/fmit
 config/gtk-2.0/gtkfilechooser.ini
 config/gtk-3.0/bookmarks
 config/gtk-3.0/gtk.css
@@ -40,7 +42,6 @@ config/mimeapps.list
 config/mpd/bakoga.conf
 config/mpv/watch_later
 config/neofetch
-config/coc
 config/obs-studio
 config/okular_fictionbook_generator_settings
 config/okularpartrc
@@ -62,6 +63,7 @@ config/transmission-remote-gtk
 config/urxvt/config
 config/vivaldi
 config/vlc
+config/yandex-browser-beta
 config/zathura/zathurarc
 config/zsh/.zcompdump
 
