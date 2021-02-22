@@ -16,22 +16,8 @@ cat <<EOF
   font-2 = Font Awesome 5 Free Solid:size=${CJ_MONOFONT_SIZE};3
 
   modules-left = wm
-  modules-center = clock
-  modules-right = battery backlight volume keyboard
-
-[module/backlight]
-  type = internal/backlight
-
-  card = intel_backlight
-  enable-scroll = true
-  label =  %percentage%%
-
-[module/volume]
-  type = internal/pulseaudio
-
-  label-volume =  %percentage%%
-  label-muted =  %percentage%%
-  label-muted-foreground = ${CJ_COLOR_8_HEX}
+  modules-center =
+  modules-right = battery volume
 
 [module/wm]
   type = internal/i3
@@ -76,6 +62,13 @@ cat <<EOF
   ws-icon-10 = 11;
   ws-icon-11 = 12;
 
+[module/clock]
+  type = custom/script
+
+  exec = date +%H:%M
+  label =  %output%
+  interval = 60
+
 [module/keyboard]
   type = internal/xkeyboard
   format = <label-layout>
@@ -86,17 +79,24 @@ cat <<EOF
 
   battery = BAT0
   adapter = AC0
-  full-at = 98
+  full-at = 95
   poll-interval = 60
 
   label-charging =  %percentage%%
   label-discharging =  %percentage%%
   label-full =
 
-[module/clock]
-  type = custom/script
+[module/backlight]
+  type = internal/backlight
 
-  exec = date +%H:%M
-  label =  %output%
-  interval = 60
+  card = intel_backlight
+  enable-scroll = true
+  label =  %percentage%%
+
+[module/volume]
+  type = internal/pulseaudio
+
+  label-volume =  %percentage%%
+  label-muted =  %percentage%%
+  label-muted-foreground = ${CJ_COLOR_8_HEX}
 EOF
