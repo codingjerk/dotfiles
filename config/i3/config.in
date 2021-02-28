@@ -47,7 +47,7 @@ for_window [class=".*"] title_format <span font="${CJ_MONOFONT} ${CJ_MONOFONT_SI
 # === Colors ===
 set \$CL_BG #${CJ_COLOR_BG_HEX}
 set \$CL_FG #${CJ_COLOR_FG_HEX}
-set \$CL_AC #${CJ_COLOR_4_HEX}
+set \$CL_AC #${CJ_COLOR_F_HEX}
 set \$CL_WR #${CJ_COLOR_1_HEX}
 set \$CL_IN #${CJ_COLOR_8_HEX}
 
