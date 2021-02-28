@@ -17,6 +17,8 @@ exec i3lock \
   \
   --timesize="$((${CJ_MONOFONT_SIZE} * 15 / 2))" \
   --datesize="$((${CJ_MONOFONT_SIZE} * 5 / 2))" \
+  \
+  --indpos="(240):(h - 200)" \
   --datepos="tx:ty + $((${CJ_MONOFONT_SIZE} * 25 / 6))" \
   \
   --timestr="%H:%M" \
