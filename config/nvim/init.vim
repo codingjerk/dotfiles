@@ -32,6 +32,8 @@ endfunction
 " Language support
 Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-python/python-syntax'
+Plug 'cespare/vim-toml'
+Plug 'raimon49/requirements.txt.vim'
 
 " Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
