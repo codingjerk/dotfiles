@@ -27,6 +27,9 @@ floating_modifier \$mod
 for_window [title="Microsoft Teams Notification"] floating enable
 no_focus [title="Microsoft Teams Notification"]
 
+for_window [title="win0"] floating enable
+no_focus [title="win0"]
+
 # === Look & Feel ===
 hide_edge_borders smart
 default_border pixel 2
