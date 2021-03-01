@@ -42,8 +42,6 @@ cat <<EOF
   label-visible-foreground   = ${CJ_COLOR_8_HEX}
   label-urgent-foreground    = ${CJ_COLOR_8_HEX}
 
-  label-focused-underline = ${CJ_COLOR_4_HEX}
-  label-visible-underline = ${CJ_COLOR_4_HEX}
   label-urgent-underline  = ${CJ_COLOR_1_HEX}
 
   label-mode-padding   = 1
@@ -62,18 +60,6 @@ cat <<EOF
   ws-icon-10 = 11;
   ws-icon-11 = 12;
 
-[module/clock]
-  type = custom/script
-
-  exec = date +%H:%M
-  label =  %output%
-  interval = 60
-
-[module/keyboard]
-  type = internal/xkeyboard
-  format = <label-layout>
-  label-layout =  %layout%
-
 [module/battery]
   type = internal/battery
 
@@ -85,13 +71,6 @@ cat <<EOF
   label-charging =  %percentage%%
   label-discharging =  %percentage%%
   label-full =
-
-[module/backlight]
-  type = internal/backlight
-
-  card = intel_backlight
-  enable-scroll = true
-  label =  %percentage%%
 
 [module/volume]
   type = internal/pulseaudio
