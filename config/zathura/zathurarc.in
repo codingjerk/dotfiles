@@ -35,9 +35,21 @@ set completion-bg \#${CJ_COLOR_BG_HEX}
 set completion-fg \#${CJ_COLOR_FG_HEX}
 set inputbar-bg \#${CJ_COLOR_BG_HEX}
 set inputbar-fg \#${CJ_COLOR_FG_HEX}
+set completion-group-bg \#${CJ_COLOR_BG_HEX}
+set completion-group-fg \#${CJ_COLOR_FG_HEX}
+set tabbar-bg \#${CJ_COLOR_BG_HEX}
+set tabbar-fg \#${CJ_COLOR_FG_HEX}
+set statusbar-bg \#${CJ_COLOR_BG_HEX}
+set statusbar-fg \#${CJ_COLOR_FG_HEX}
+set index-bg \#${CJ_COLOR_BG_HEX}
+set index-fg \#${CJ_COLOR_FG_HEX}
 
 set completion-highlight-bg \#${CJ_COLOR_4_HEX}
 set completion-highlight-fg \#${CJ_COLOR_BG_HEX}
+set tabbar-focus-bg \#${CJ_COLOR_4_HEX}
+set tabbar-focus-fg \#${CJ_COLOR_BG_HEX}
+set index-active-bg \#${CJ_COLOR_4_HEX}
+set index-active-fg \#${CJ_COLOR_BG_HEX}
 
 set notification-bg \#${CJ_COLOR_7_HEX}
 set notification-fg \#${CJ_COLOR_BG_HEX}
