@@ -312,6 +312,10 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" = Snippets =
+
+nnoremap <silent> t "=strftime('%Y-%m-%d %H:%M')<CR>pa <Esc>a
+
 " === Russian reybindings ===
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
@@ -377,6 +381,10 @@ nnoremap <silent> пк <Plug>(coc-references)
 nnoremap <silent> <space>р :call <SID>show_documentation()<CR>
 nnoremap <silent> <space>а :call CocAction('format')<CR>
 nnoremap <silent> <space>ш :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
+
+" = Snippets =
+
+nnoremap <silent> е "=strftime('%Y-%m-%d %H:%M')<CR>pa <Esc>a
 
 " === Minimalistic build system ===
 set splitbelow
