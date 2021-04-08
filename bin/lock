@@ -3,7 +3,7 @@
 . "${CJ_DOTFILES}/assets/colors.sh"
 . "${CJ_DOTFILES}/settings.sh"
 
-TEXT_COLOR="#${CJ_COLOR_FG_HEX}"
+TEXT_COLOR="#${CJ_COLOR_BG_HEX}"
 
 exec i3lock \
   --image "${CJ_WALLPAPER}" \
@@ -18,7 +18,6 @@ exec i3lock \
   --timesize="$((${CJ_MONOFONT_SIZE} * 15 / 2))" \
   --datesize="$((${CJ_MONOFONT_SIZE} * 5 / 2))" \
   \
-  --indpos="(240):(h - 200)" \
   --datepos="tx:ty + $((${CJ_MONOFONT_SIZE} * 25 / 6))" \
   \
   --timestr="%H:%M" \
