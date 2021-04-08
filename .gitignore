@@ -3,11 +3,21 @@ bin/fzf
 bin/fd
 bin/xclip
 
+config/JetBrains
+config/Jitsi Meet
+config/Android Open Source Project
+config/Google
+config/android
+config/sublime-text
+config/tint2
+config/java
 config/3T
 config/Arena_x86_64_linux
 config/Code
 config/Code - OSS
+config/DataGrip
 config/Electron
+config/Element
 config/Foxit Software
 config/GIMP
 config/Microsoft
