@@ -314,7 +314,10 @@ endfunction
 
 " = Snippets =
 
-nnoremap <silent> t "=strftime('%Y-%m-%d %H:%M')<CR>pa <Esc>a
+nnoremap <silent> T "=strftime('%Y-%m-%d %H:%M')<CR>pa <Esc>a
+vnoremap <silent> tf :w! /tmp/selection<CR>:!trans :fr --no-ansi -i /tmp/selection<CR>
+vnoremap <silent> te :w! /tmp/selection<CR>:!trans :en --no-ansi -i /tmp/selection<CR>
+vnoremap <silent> tr :w! /tmp/selection<CR>:!trans :ru --no-ansi -i /tmp/selection<CR>
 
 " === Russian reybindings ===
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
@@ -384,7 +387,10 @@ nnoremap <silent> <space>ш :call CocAction('runCommand', 'editor.action.organiz
 
 " = Snippets =
 
-nnoremap <silent> е "=strftime('%Y-%m-%d %H:%M')<CR>pa <Esc>a
+nnoremap <silent> Е "=strftime('%Y-%m-%d %H:%M')<CR>pa <Esc>a
+vnoremap <silent> еа :w! /tmp/selection<CR>:!trans :fr --no-ansi -i /tmp/selection<CR>
+vnoremap <silent> еу :w! /tmp/selection<CR>:!trans :en --no-ansi -i /tmp/selection<CR>
+vnoremap <silent> ек :w! /tmp/selection<CR>:!trans :ru --no-ansi -i /tmp/selection<CR>
 
 " === Minimalistic build system ===
 set splitbelow
