@@ -59,7 +59,7 @@ E() { sudo zsh -lc "${EDITOR} $@" }
 
 alias exa='exa --all --binary --group-directories-first'
 alias exa-all='exa'
-alias exa-ignore='exa --git-ignore --git --ignore-glob .git'
+alias exa-ignore='exa --git-ignore --git --ignore-glob ".git|__pycache__|.expo|.expo-shared|.mypy_cache"'
 
 alias free='free -h'
 
