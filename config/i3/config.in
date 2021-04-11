@@ -54,7 +54,7 @@ set \$CL_AC #${CJ_COLOR_4_HEX}
 set \$CL_WR #${CJ_COLOR_1_HEX}
 set \$CL_IN #${CJ_COLOR_4_HEX}
 
-client.focused          \$CL_BG \$CL_BG \$CL_FG \$CL_WR \$CL_AC
+client.focused          \$CL_BG \$CL_BG \$CL_FG \$CL_WR \$CL_BG
 client.focused_inactive \$CL_BG \$CL_BG \$CL_FG \$CL_BG \$CL_BG
 client.unfocused        \$CL_BG \$CL_BG \$CL_IN \$CL_BG \$CL_BG
 client.urgent           \$CL_BG \$CL_BG \$CL_WR \$CL_WR \$CL_WR
