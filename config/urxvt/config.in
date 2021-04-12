@@ -31,6 +31,15 @@ URxvt.boldFont:
 URxvt.scrollBar: false
 URxvt.internalBorder: ${BAR_HEIGHT}
 URxvt.urgentOnBell: true
+URxvt.jumpScroll: true
+URxvt.skipScroll: true
+URxvt.scrollTtyOutput: false
+URxvt.scrollWithBuffer: true
+URxvt.skipBuiltinGlyphs: true
+URxvt.cursorBlink: false
+URxvt.cursorUnderline: true
+URxvt.pointerBlank: true
+URxvt.pointerBlankDelay: 5
 
 URxvt.perl-ext-common: default,clipboard,selection-to-clipboard
 URxvt.clipboard.autocopy: true
