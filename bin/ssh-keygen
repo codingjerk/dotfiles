@@ -5,6 +5,6 @@ DATA_DIR="${XDG_DATA_HOME}/ssh"
 mkdir -p "${DATA_DIR}"
 
 exec /usr/bin/ssh-keygen \
-  -f "${DATA_DIR}/id_rsa" \
-  -b 4096 \
+  -t ed25519 \
+  -f "${DATA_DIR}/id_ed25519" \
   "$@"

@@ -4,6 +4,6 @@ HACK_TEMP_DIR="${HOME}/.ssh"
 
 mkdir "${HACK_TEMP_DIR}"
 ssh -O exit "$@"
-/usr/bin/ssh-copy-id -i "${XDG_DATA_HOME}/ssh/id_rsa" "$@"
+/usr/bin/ssh-copy-id -i "${XDG_DATA_HOME}/ssh/id_ed25519" "$@"
 rm "${HACK_TEMP_DIR}/authorized_keys"
 rmdir "${HACK_TEMP_DIR}"

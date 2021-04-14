@@ -8,7 +8,7 @@ mkdir -p "${SOCKETS_DIR}"
 
 exec /usr/bin/ssh \
   -F "${XDG_CONFIG_HOME}/ssh/config" \
-  -o "IdentityFile=${DATA_DIR}/id_rsa" \
+  -o "IdentityFile=${DATA_DIR}/id_ed25519" \
   -o "UserKnownHostsFile=${DATA_DIR}/known_hosts" \
   -o "ControlPath=${SOCKETS_DIR}/s-%r@%h:%p" \
   "$@"
