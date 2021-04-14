@@ -9,26 +9,6 @@ Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-loc
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
-" Distraction free
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-let g:limelight_conceal_ctermfg = 0
-
-autocmd! User GoyoEnter call DistractionEnter()
-function DistractionEnter()
-  colorscheme cj
-  Limelight
-  execute("hi NonText ctermfg=0")
-  execute("hi StatusLine ctermfg=0 cterm=none")
-  execute("hi StatusLineNC ctermfg=0")
-endfunction
-
-autocmd! User GoyoLeave call DistractionLeave()
-function DistractionLeave()
-  Limelight!
-  colorscheme cj
-endfunction
-
 " Language support
 Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-python/python-syntax'
