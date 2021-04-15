@@ -55,4 +55,14 @@ URxvt.keysym.Control-Left:   \033[1;5D
 URxvt.keysym.Control-Right:  \033[1;5C
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+
+URxvt.keysym.C-1: command:\033]50;xft:${CJ_MONOFONT}:size=$(( ${CJ_MONOFONT_SIZE} - 6 ))\007
+URxvt.keysym.C-2: command:\033]50;xft:${CJ_MONOFONT}:size=$(( ${CJ_MONOFONT_SIZE} - 4 ))\007
+URxvt.keysym.C-3: command:\033]50;xft:${CJ_MONOFONT}:size=$(( ${CJ_MONOFONT_SIZE} - 2 ))\007
+
+URxvt.keysym.C-4: command:\033]50;xft:${CJ_MONOFONT}:size=$(( ${CJ_MONOFONT_SIZE} + 3))\007
+URxvt.keysym.C-5: command:\033]50;xft:${CJ_MONOFONT}:size=$(( ${CJ_MONOFONT_SIZE} + 6))\007
+URxvt.keysym.C-6: command:\033]50;xft:${CJ_MONOFONT}:size=$(( ${CJ_MONOFONT_SIZE} + 9))\007
+
+URxvt.keysym.C-0: command:\033]50;xft:${CJ_MONOFONT}:size=${CJ_MONOFONT_SIZE}\007
 EOF
