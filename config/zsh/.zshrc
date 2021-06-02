@@ -55,7 +55,7 @@ alias df='df -h -x devtmpfs'
 alias du='du -h -c'
 
 alias e='${=EDITOR}'
-E() { sudo zsh -lc "${EDITOR} $@" }
+alias E='sudo -e'
 
 alias exa='exa --all --binary --group-directories-first'
 alias exa-all='exa'
