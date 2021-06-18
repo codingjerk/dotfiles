@@ -115,6 +115,8 @@ alias ns='npm s'
 alias nt='npm t -s'
 
 alias rg='rg --hidden --ignore-vcs --require-git --glob "!.git"'
+alias rsync!='\rsync --info=progress2 --archive --update --human-readable --partial --compress --compress-choice=zstd --compress-level=1 --verbose --acls --one-file-system --xattrs'
+alias rsync='rsync! --dry-run'
 
 alias tmux='tmux -2 -f "${XDG_CONFIG_HOME}/tmux/config"'
 alias ta='tmux attach'
