@@ -22,7 +22,7 @@ call plug#end()
 
 " === Plugin settings ===
 " vim-multiple-cursors
-let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_use_default_mapping = 0
 let g:multi_cursor_start_word_key      = '<C-d>'
 let g:multi_cursor_next_key            = '<C-d>'
 
@@ -141,9 +141,6 @@ function! MyTabLabel(n)
 
   return filename
 endfunction
-
-" === Completion ===
-set completeopt-=preview
 
 " === Clipboard ===
 set clipboard=unnamed,unnamedplus

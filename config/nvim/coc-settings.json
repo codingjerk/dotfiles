@@ -1,10 +1,10 @@
 {
   "typescript.referencesCodeLens.enable": false,
   "typescript.implementationsCodeLens.enable": false,
+  "javascript.referencesCodeLens.enable": false,
+  "javascript.implementationsCodeLens.enable": false,
 
   "python.linting.mypyEnabled": true,
-
-  "sql.database": "postgresql",
 
   "suggest.enablePreview": true,
   "suggest.removeDuplicateItems": true,
