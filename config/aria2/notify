@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+exec notify-send "Download finished" "$3"
