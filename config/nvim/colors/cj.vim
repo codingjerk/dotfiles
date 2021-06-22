@@ -12,7 +12,7 @@ hi Visual ctermbg=0 ctermfg=7 cterm=reverse
 hi MoreMsg ctermfg=2
 
 " CoC
-hi CocFloating ctermbg=0 ctermfg=0 cterm=bold
+hi CocFloating ctermbg=16 ctermfg=0 cterm=bold
 hi CocWarningFloat ctermfg=3
 hi CocWarningSign ctermfg=3
 
@@ -31,10 +31,10 @@ hi TabLineFill ctermfg=0 ctermbg=0 cterm=bold
 hi EndOfBuffer ctermfg=0
 hi SignColumn ctermbg=0
 
-hi Pmenu ctermbg=none ctermfg=7 cterm=bold
-hi PmenuSel ctermbg=none ctermfg=7 cterm=none
-hi PmenuSbar ctermbg=none ctermfg=0 cterm=none
-hi PmenuThumb ctermbg=none
+hi Pmenu ctermbg=16 ctermfg=7 cterm=bold
+hi PmenuSel ctermbg=16 ctermfg=7 cterm=none
+hi PmenuSbar ctermbg=16 ctermfg=0 cterm=none
+hi PmenuThumb ctermbg=16
 
 hi CursorColumn ctermbg=235 ctermfg=none cterm=none
 hi CursorLine ctermbg=235 ctermfg=none cterm=none

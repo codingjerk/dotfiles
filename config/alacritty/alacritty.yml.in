@@ -22,6 +22,8 @@ font:
 
   size: ${CJ_MONOFONT_SIZE}.0
 
+draw_bold_text_with_bright_colors: true
+
 colors:
   primary:
     background: '0x${CJ_COLOR_BG_HEX}'
@@ -54,6 +56,10 @@ colors:
     magenta: '0x${CJ_COLOR_D_HEX}'
     cyan:    '0x${CJ_COLOR_E_HEX}'
     white:   '0x${CJ_COLOR_F_HEX}'
+
+  indexed_colors: [
+    { index: 16, color: '0x${CJ_COLOR_DIM_BLACK_HEX}' }
+  ]
 
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }

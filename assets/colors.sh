@@ -1,3 +1,4 @@
+CJ_COLOR_DIM_BLACK='  27  21  49'
 CJ_COLOR_BLACK='      37  31  59'
 CJ_COLOR_DARK_GRAY=' 107  99 138'
 CJ_COLOR_LIGHT_GRAY='131 122 163'
@@ -47,6 +48,7 @@ CJ_COLOR_D_HEX="$(echo ${CJ_COLOR_D} | xargs printf '%02X%02X%02X')"
 CJ_COLOR_E_HEX="$(echo ${CJ_COLOR_E} | xargs printf '%02X%02X%02X')"
 CJ_COLOR_F_HEX="$(echo ${CJ_COLOR_F} | xargs printf '%02X%02X%02X')"
 
+CJ_COLOR_DIM_BLACK_HEX="$(echo $CJ_COLOR_DIM_BLACK | xargs printf '%02X%02X%02X')"
 CJ_COLOR_BG_HEX="$(echo $CJ_COLOR_BG | xargs printf '%02X%02X%02X')"
 CJ_COLOR_FG_HEX="$(echo $CJ_COLOR_FG | xargs printf '%02X%02X%02X')"
 
