@@ -90,14 +90,14 @@
 [color "diff"]
   context = normal
 
-  meta = yellow
-  frag = yellow
-  func = yellow
+  meta = black bold
+  frag = black
+  func = black
 
-  old        = red reverse
-  new        = green reverse
-  whitespace = red reverse
-  commit     = normal bold
+  old        = red
+  new        = green
+  whitespace = red
+  commit     = normal
 
   oldMoved                  = magenta
   newMoved                  = magenta
