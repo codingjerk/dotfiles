@@ -1,6 +1,9 @@
 \set QUIET 1
 \timing on
 \pset null '¤'
-\set PROMPT1 'psql » '
+\set PROMPT1 ' psql » '
+\set HISTSIZE -1
+\set FETCH_COUNT 1000
+\set ON_ERROR_STOP on
 
 \unset QUIET
