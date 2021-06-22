@@ -8,8 +8,8 @@ cat <<EOF
   module-margin = 1
   line-size = 2
 
-  background = ${CJ_COLOR_BG_HEX}
-  foreground = ${CJ_COLOR_FG_HEX}
+  background = F0${CJ_COLOR_BG_HEX}
+  foreground = F0${CJ_COLOR_FG_HEX}
 
   font-0 = ${CJ_MONOFONT}:size=${CJ_MONOFONT_SIZE};3
   font-1 = FontAwesome:size=${CJ_MONOFONT_SIZE};3

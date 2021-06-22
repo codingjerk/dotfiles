@@ -12,4 +12,4 @@ rofi \
   -color-normal "#00${CJ_COLOR_BG_HEX}, #${CJ_COLOR_FG_HEX}, #00${CJ_COLOR_BG_HEX}, #00${CJ_COLOR_BG_HEX}, #${CJ_COLOR_4_HEX}" \
   -color-urgent "#00${CJ_COLOR_BG_HEX}, #${CJ_COLOR_FG_HEX}, #00${CJ_COLOR_BG_HEX}, #00${CJ_COLOR_BG_HEX}, #${CJ_COLOR_4_HEX}" \
   -color-active "#00${CJ_COLOR_BG_HEX}, #${CJ_COLOR_FG_HEX}, #00${CJ_COLOR_BG_HEX}, #00${CJ_COLOR_BG_HEX}, #${CJ_COLOR_4_HEX}" \
-  -color-window "#FF${CJ_COLOR_BG_HEX}, #${CJ_COLOR_4_HEX},  #00${CJ_COLOR_BG_HEX}"
+  -color-window "#D0${CJ_COLOR_BG_HEX}, #${CJ_COLOR_4_HEX},  #00${CJ_COLOR_BG_HEX}"

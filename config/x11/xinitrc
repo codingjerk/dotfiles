@@ -6,7 +6,7 @@ xrdb -merge ${XDG_CONFIG_HOME}/urxvt/config
 urxvtd -q -f -o
 
 if command -v picom > /dev/null; then
-  picom --daemon
+  picom --daemon --experimental-backends
 fi
 
 exec i3
