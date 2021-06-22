@@ -3,10 +3,10 @@
 . "${CJ_DOTFILES}/assets/colors.sh"
 . "${CJ_DOTFILES}/settings.sh"
 
-TEXT_COLOR="#${CJ_COLOR_FG_HEX}55"
+TEXT_COLOR="#${CJ_COLOR_FG_HEX}99"
 
 exec i3lock \
-  --image "${CJ_WALLPAPER}" \
+  --color="00000010" \
   --tiling \
   --no-unlock-indicator \
   --force-clock \
