@@ -104,6 +104,7 @@ alias ls='ls -vAh --color=auto --group-directories-first --file-type --quoting-s
 alias ll='ls -lo --time-style=iso'
 
 alias m='make'
+mk() { mkdir -p "$1"; cd "$1" }
 
 alias nf='npm s'
 alias ni='npm install --prefer-offline --save'
