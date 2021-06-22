@@ -7,14 +7,14 @@ BAR_HEIGHT=$((${CJ_MONOFONT_SIZE:=12} * 8 / 3))
 cat <<EOF
 [global]
     geometry = "500x0-$BAR_HEIGHT+$(( $BAR_HEIGHT * 2 ))"
-    frame_width = 2
+    frame_width = 0
     separator_height = 2
     padding = ${BAR_HEIGHT}
     horizontal_padding = ${BAR_HEIGHT}
 
     font = ${CJ_MONOFONT} ${CJ_MONOFONT_SIZE}
 
-    transparency = 0
+    transparency = 20
     frame_color = "#${CJ_COLOR_4_HEX}"
     separator_color = frame
 
