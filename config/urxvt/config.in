@@ -38,7 +38,7 @@ URxvt.scrollWithBuffer: true
 URxvt.scrollTtyKeypress: true
 URxvt.skipBuiltinGlyphs: true
 URxvt.cursorBlink: false
-URxvt.cursorUnderline: true
+URxvt.cursorUnderline: false
 URxvt.pointerBlank: true
 URxvt.pointerBlankDelay: 5
 
