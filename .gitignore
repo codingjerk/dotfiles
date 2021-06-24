@@ -58,6 +58,7 @@ config/okularpartrc
 config/okularrc
 config/pavucontrol.ini
 config/pikaur.conf
+config/pipewire
 config/polybar/config
 config/pulse/*-default-*
 config/pulse/*.tdb
