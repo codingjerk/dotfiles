@@ -1,17 +1,26 @@
 . "${CJ_DOTFILES}/settings.sh"
 . "${CJ_DOTFILES}/assets/colors.sh"
-. "${CJ_DOTFILES}/settings.sh"
+
+BAR_HEIGHT=$((${CJ_MONOFONT_SIZE:=12} * 8 / 3))
+BAR_HEIGHT_4=$((${BAR_HEIGHT} - 4))
 
 cat <<EOF
+env:
+  TERM: xterm
+  WINIT_X11_SCALE_FACTOR: '1.0'
+
 window:
   padding:
-    x: 24
-    y: 24
+    x: ${BAR_HEIGHT}
+    y: ${BAR_HEIGHT_4}
 
   dynamic_padding: true
 
+  title: term
+  dynamic_title: false
+
 scrolling:
-  history: 0
+  history: 10000
 
 font:
   normal:
@@ -20,7 +29,10 @@ font:
   bold:
     style: Regular
 
-  size: ${CJ_MONOFONT_SIZE}.0
+  size: ${CJ_MONOFONT_SIZE}
+
+  use_thin_strokes: false
+  ligatures: true
 
 draw_bold_text_with_bright_colors: true
 
@@ -60,6 +72,9 @@ colors:
   indexed_colors: [
     { index: 16, color: '0x${CJ_COLOR_DIM_BLACK_HEX}' }
   ]
+
+cursor:
+  thickness: 0.10
 
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
