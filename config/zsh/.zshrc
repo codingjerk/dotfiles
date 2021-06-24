@@ -248,11 +248,6 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*:functions' ignored-patterns '_*'
 zstyle ':completion:*:users' ignored-patterns adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna clamav daemon dbus distcache dnsmasq dovecot fax ftp games gdm gkrellmd gopher hacluster haldaemon halt hsqldb ident junkbust kdm ldap lp mail mailman mailnull man messagebus mldonkey mysql nagios named netdump news nfsnobody nobody nscd ntp nut nx obsrun openvpn operator pcap polkitd postfix postgres privoxy pulse pvm quagga radvd rpc rpcuser rpm rtkit scard shutdown squid sshd statd svn sync tftp usbmux uucp vcsa wwwrun xfs cron mongodb nullmail portage redis shoutcast tcpdump '_*'
 
-if (( $+commands[pip] )); then
-  eval "`pip completion --zsh`"
-  compctl -K _pip_completion pip3
-fi
-
 # === History ===
 HISTFILE="${XDG_DATA_HOME}/zsh/history"
 HISTSIZE=100000
