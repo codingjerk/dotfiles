@@ -96,20 +96,19 @@ set noswapfile
 set noshowmode
 set shortmess+=catI
 
-set laststatus=2
-set statusline=
-set statusline+=%4*%{(mode()=='n')?(&mod==0)?'\ \ NORMAL\ ':'':''}
-set statusline+=%5*%{(mode()=='n')?(&mod==1)?'\ \ NORMAL\ ':'':''}
-set statusline+=%4*%{(mode()=='c')?(&mod==0)?'\ \ NORMAL\ ':'':''}
-set statusline+=%5*%{(mode()=='c')?(&mod==1)?'\ \ NORMAL\ ':'':''}
-set statusline+=%5*%{(mode()=='i')?'\ \ INSERT\ ':''}
-set statusline+=%6*%{(mode()=='v')?'\ \ VISUAL\ ':''}
-set statusline+=%1*%{(&ro==1)?'\ \ RO\ ':''}
-set statusline+=%9*\ %f\ "
+set laststatus=0
+set noruler
 
-set statusline+=%9*%=
-set statusline+=%4*%{(&filetype=='')?'':'\ '.&filetype.'\ '}"
-set statusline+=%6*%{(&fenc=='')?'':'\ \ '.&fenc.'\ '}"
+function! s:empty_message(timer)
+  if mode() ==# 'n'
+    echon ''
+  endif
+endfunction
+
+augroup cmd_msg_cls
+    autocmd!
+    autocmd CmdlineLeave :  call timer_start(2000, funcref('s:empty_message'))
+augroup END
 
 " === Tabline ===
 set tabline=%!MyTabLine()
