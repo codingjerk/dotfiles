@@ -82,5 +82,6 @@ cache
 share
 runtime
 
+local.sh
 settings.sh
 startup.local
