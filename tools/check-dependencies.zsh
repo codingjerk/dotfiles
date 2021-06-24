@@ -50,7 +50,7 @@ if [[ "$mode" =~ opt ]]; then
   recommend binary "hexyl" hexyl
   recommend binary "Ripgrep" rg
   recommend binary "mpd" mpd
-  recommend binary "pulseaudio" pulseaudio
+  recommend binary "pipewire" pipewire
   recommend binary "pavucontrol" pavucontrol
   recommend binary "pass" pass
 fi
