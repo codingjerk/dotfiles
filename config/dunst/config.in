@@ -15,7 +15,7 @@ cat <<EOF
     font = ${CJ_MONOFONT} ${CJ_MONOFONT_SIZE}
 
     transparency = 20
-    frame_color = "#${CJ_COLOR_4_HEX}"
+    frame_color = "#${CJ_COLOR_BG_HEX}"
     separator_color = frame
 
     format = "%s\n%b"
