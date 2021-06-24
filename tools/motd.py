@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import collections
 import datetime
 import shutil
@@ -399,8 +401,13 @@ def fin() -> None:
     print('\u001B[0m', end='')
 
 
-print_top_padding()
-show_banner()
-show_uptime()
-show_resources()
-fin()
+def main() -> None:
+    print_top_padding()
+    show_banner()
+    show_uptime()
+    show_resources()
+    fin()
+
+
+if __name__ == "__main__":
+    main()
