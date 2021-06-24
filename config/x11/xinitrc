@@ -2,9 +2,6 @@ feh --no-fehbg --bg-tile "${CJ_WALLPAPER}"
 
 setxkbmap -layout "us,ru" -option "grp:caps_toggle,grp_led:caps,grp_led:scroll,grp_led:num,compose:ralt"
 
-xrdb -merge ${XDG_CONFIG_HOME}/urxvt/config
-urxvtd -q -f -o
-
 if command -v picom > /dev/null; then
   picom --daemon --experimental-backends
 fi
