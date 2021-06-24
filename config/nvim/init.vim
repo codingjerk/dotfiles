@@ -178,8 +178,8 @@ autocmd BufReadPost *
 nnoremap ; :
 
 " = WASD =
-noremap w k
-noremap s j
+noremap w gk
+noremap s gj
 noremap a h
 noremap d l
 
@@ -187,10 +187,14 @@ noremap A b
 noremap D w
 vnoremap D e
 
-noremap W 5k
-noremap S 5j
+noremap W 5gk
+noremap S 5gj
 
 noremap x d
+
+" = Arrows =
+noremap <UP> gk
+noremap <DOWN> gj
 
 " = Q/E for insertion =
 nnoremap q I
@@ -304,8 +308,8 @@ set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNO
 nnoremap ж :
 
 " = WASD =
-noremap ц k
-noremap ы j
+noremap ц gk
+noremap ы gj
 noremap ф h
 noremap в l
 
@@ -313,8 +317,8 @@ noremap Ф b
 noremap В w
 vnoremap В e
 
-noremap Ц 5k
-noremap Ы 5j
+noremap Ц 5gk
+noremap Ы 5gj
 
 noremap ч d
 
