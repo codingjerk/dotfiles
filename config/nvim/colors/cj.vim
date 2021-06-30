@@ -97,3 +97,6 @@ hi xmlNamespace ctermfg=6
 hi SpellBad  ctermbg=0 ctermfg=1 cterm=reverse
 hi SpellCap  ctermbg=0 ctermfg=1 cterm=reverse
 hi SpellRare ctermbg=0 ctermfg=5 cterm=reverse
+
+" = Binary =
+hi SpecialKey ctermbg=0 ctermfg=0 cterm=bold
