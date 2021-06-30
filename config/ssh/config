@@ -1,6 +1,7 @@
 Host *
   Compression yes
   AddressFamily inet
+  ExitOnForwardFailure yes
 
   ControlMaster auto
   ControlPersist 5m
