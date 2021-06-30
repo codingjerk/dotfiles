@@ -195,6 +195,9 @@ noremap x d
 noremap <UP> gk
 noremap <DOWN> gj
 
+" = Ctrl-A =
+noremap <C-a> ggVG
+
 " = Q/E for insertion =
 nnoremap q I
 nnoremap e A
