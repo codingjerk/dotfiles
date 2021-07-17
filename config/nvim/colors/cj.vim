@@ -92,6 +92,15 @@ hi rustString ctermfg=2
 " = XML =
 hi xmlAttrib ctermfg=6
 hi xmlNamespace ctermfg=6
+hi xmlTagName ctermfg=1
+
+" = Html =
+hi htmlArg ctermfg=6
+hi htmlTagName ctermfg=1
+
+" = JS/JSX/TS =
+hi jsxAttrib ctermfg=6
+hi jsxComponentName ctermfg=1
 
 " = Speling =
 hi SpellBad  ctermbg=0 ctermfg=1 cterm=reverse

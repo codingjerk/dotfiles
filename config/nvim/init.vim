@@ -14,9 +14,14 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-python/python-syntax'
 Plug 'cespare/vim-toml'
 Plug 'raimon49/requirements.txt.vim'
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
 
 " Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
+
+" Wakatime
+Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 
