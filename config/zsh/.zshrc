@@ -54,6 +54,8 @@ alias dmesg='sudo dmesg -H'
 alias df='df -h -x devtmpfs'
 alias du='du -h -c'
 
+alias dops='docker ps --format="table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}"'
+
 alias e='${=EDITOR}'
 alias E='sudo -e'
 
