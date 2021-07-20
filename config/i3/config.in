@@ -32,8 +32,8 @@ no_focus [title="win0"]
 
 # === Look & Feel ===
 hide_edge_borders smart
-default_border pixel 2
-default_floating_border pixel 2
+default_border none
+default_floating_border none
 
 focus_follows_mouse yes
 mouse_warping output
@@ -43,7 +43,7 @@ force_display_urgency_hint 100 ms
 gaps inner 24
 smart_gaps on
 
-border_radius 15
+border_radius 14
 
 # === Fonts ===
 font pango:${CJ_MONOFONT} $(echo "${CJ_MONOFONT_SIZE} * 2" | bc)
@@ -54,7 +54,7 @@ set \$CL_BG #${CJ_COLOR_BG_HEX}
 set \$CL_FG #${CJ_COLOR_FG_HEX}
 set \$CL_AC #${CJ_COLOR_4_HEX}
 set \$CL_WR #${CJ_COLOR_1_HEX}
-set \$CL_IN #${CJ_COLOR_4_HEX}
+set \$CL_IN #${CJ_COLOR_8_HEX}
 
 client.focused          \$CL_BG \$CL_BG \$CL_FG \$CL_WR \$CL_BG
 client.focused_inactive \$CL_BG \$CL_BG \$CL_FG \$CL_BG \$CL_BG
