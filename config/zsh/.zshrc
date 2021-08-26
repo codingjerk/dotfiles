@@ -340,6 +340,11 @@ __interactive-open() {
 }
 zle -N __interactive-open
 
+__exit() {
+  exit
+}
+zle -N __exit
+
 # === Keybindings (terminfo keys) ===
 __map Delete       delete-char
 __map ShiftTab     reverse-menu-complete
@@ -355,6 +360,7 @@ __map ControlRight forward-word
 
 # === Keybindings (C-L keys) ===
 bindkey '^A' beginning-of-line
+bindkey '^D' __exit
 bindkey '^E' end-of-line
 bindkey '^Q' push-line
 bindkey '^K' kill-line
