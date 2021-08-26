@@ -40,6 +40,7 @@ setopt interactive_comments
 export GPG_TTY=$(tty)
 
 # === Aliases ===
+alias :q="exit"
 alias cal='cal -m'
 alias curl='curl -JOL#'
 
