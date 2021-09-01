@@ -216,7 +216,7 @@ function notify(){
 
 function pomo(){
   countdown $(printf '%.0f' $(( $1 * 60 )))
-  notify "Pomo" "current countdown is ended"
+  notify "Pomo" "${2:-Countdown finished}"
 }
 
 # === Completion ===
