@@ -1,0 +1,42 @@
+window {
+  height: 100%;
+  width: 30em;
+  location: west;
+  anchor: west;
+  background-color: #000000;
+  border: 0px;
+  padding: 2em;
+}
+
+inputbar {
+  children: [ entry ];
+}
+
+entry {
+  text-color: #C8CBDA;
+  placeholder: "";
+  padding: 1em;
+}
+
+listview {
+  border: 0px;
+  scrollbar: false;
+  columns: 5;
+  fixed-columns: true;
+  spacing: 1.5em;
+}
+
+element {
+  padding: 0;
+  margin: 0;
+  children: [ element-icon, element-text ];
+}
+
+element-text {
+  enabled: false;
+}
+
+element-icon {
+  size: 4em;
+  background-color: #000000;
+}
