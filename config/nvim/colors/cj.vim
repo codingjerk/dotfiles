@@ -13,6 +13,10 @@ hi MoreMsg ctermfg=2
 
 " CoC
 hi CocFloating ctermbg=16 ctermfg=0 cterm=bold
+hi CocFadeOut ctermbg=0 ctermfg=8 cterm=bold,underline
+hi FgCocHintFloatBgCocFloating ctermbg=16 ctermfg=3 cterm=none
+hi FgCocInfoFloatBgCocFloating ctermbg=16 ctermfg=3 cterm=none
+hi FgCocErrorFloatBgCocFloating ctermbg=16 ctermfg=1 cterm=none
 hi CocWarningFloat ctermfg=3
 hi CocWarningSign ctermfg=3
 
