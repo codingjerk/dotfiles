@@ -18,6 +18,11 @@ entry {
   padding: 1em;
 }
 
+textbox {
+  padding: 30em 0;
+  text-color: #ED7291;
+}
+
 listview {
   border: 0px;
   scrollbar: false;

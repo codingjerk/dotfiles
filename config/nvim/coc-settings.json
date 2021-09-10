@@ -8,7 +8,7 @@
 
   "suggest.enablePreview": true,
   "suggest.removeDuplicateItems": true,
-  "codeLens.enable": true,
+  "codeLens.enable": false,
 
   "diagnostic.errorSign": " •",
   "diagnostic.warningSign": " •",
