@@ -81,6 +81,7 @@ config/zsh/.zcompdump
 cache
 share
 runtime
+state
 
 local.sh
 settings.sh
