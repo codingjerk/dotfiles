@@ -12,7 +12,7 @@ Plug 'junegunn/fzf.vim'
 " Language support
 Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-python/python-syntax'
-Plug 'cespare/vim-toml'
+Plug 'cespare/vim-toml', { 'branch': 'main' }
 Plug 'raimon49/requirements.txt.vim'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
