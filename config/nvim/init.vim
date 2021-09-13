@@ -26,6 +26,21 @@ Plug 'wakatime/vim-wakatime'
 call plug#end()
 
 " === Plugin settings ===
+" CoC
+let g:coc_global_extensions = [
+      \'coc-browser',
+      \'coc-calc',
+      \'coc-css',
+      \'coc-html',
+      \'coc-json',
+      \'coc-pyright',
+      \'coc-rust-analyzer',
+      \'coc-sh',
+      \'coc-sql',
+      \'coc-toml',
+      \'coc-vimlsp'
+      \]
+
 " vim-multiple-cursors
 let g:multi_cursor_use_default_mapping = 0
 let g:multi_cursor_start_word_key      = '<C-d>'
