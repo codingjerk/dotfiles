@@ -1,9 +1,15 @@
 \set QUIET 1
-\timing on
-\pset null '¤'
-\set PROMPT1 ' psql » '
+
+\pset border 2
+\pset linestyle unicode
+\pset null '(null)'
 \set HISTSIZE -1
-\set FETCH_COUNT 1000
 \set ON_ERROR_STOP on
+\set PROMPT1 ' %[%033[34m%]%n » %[%033[36m%]%/ »%[%033[0m%] '
+\set PROMPT2 ' %[%033[31m%]%... »%[%033[0m%] '
+\set VERBOSITY verbose
+\timing on
+
+set application_name to psql;
 
 \unset QUIET
