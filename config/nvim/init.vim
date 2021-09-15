@@ -185,6 +185,9 @@ set encoding=utf8
 set nowrap
 set linebreak
 set updatetime=200
+set scrolloff=2
+set confirm
+set sidescrolloff=5
 let g:netrw_home=$XDG_CACHE_HOME.'/nvim'
 
 autocmd BufReadPost *
