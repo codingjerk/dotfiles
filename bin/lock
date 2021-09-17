@@ -3,25 +3,30 @@
 . "${CJ_DOTFILES}/assets/colors.sh"
 . "${CJ_DOTFILES}/settings.sh"
 
-TEXT_COLOR="#${CJ_COLOR_4_HEX}AA"
+TEXT_COLOR="${CJ_COLOR_4_HEX}77"
 
-exec i3lock \
-  --image="${CJ_WALLPAPER}" \
-  --color="00000000" \
-  --tiling \
-  --no-unlock-indicator \
-  --force-clock \
-  --screen=2 \
-  \
-  --timecolor="${TEXT_COLOR}" \
-  --datecolor="${TEXT_COLOR}" \
-  \
-  --timesize="$((${CJ_MONOFONT_SIZE} * 15 / 2))" \
-  --datesize="$((${CJ_MONOFONT_SIZE} * 5 / 2))" \
-  \
-  --indpos="(240):(h - 200)" \
-  --datepos="tx:ty + $((${CJ_MONOFONT_SIZE} * 25 / 6))" \
-  \
-  --timestr="%H:%M" \
-  --datestr="%e, %A" \
-  "$@"
+i3lock_args=(
+  # Image
+  --image="${CJ_WALLPAPER}"
+  --fill
+
+  # Basics
+  --screen=2
+  --color="00000000"
+  --force-clock
+  --show-failed-attempts
+  --special-passthrough
+  --ignore-empty-password
+
+  # Clock
+  --time-color="${TEXT_COLOR}"
+  --date-color="${TEXT_COLOR}"
+  --time-size="$((${CJ_MONOFONT_SIZE} * 15 / 2))"
+  --date-size="$((${CJ_MONOFONT_SIZE} * 5 / 2))"
+  --time-pos="(240):(h - 200)"
+  --date-pos="tx:ty + $((${CJ_MONOFONT_SIZE} * 25 / 6))"
+  --time-str="%H:%M"
+  --date-str="%e, %A"
+)
+
+exec i3lock "${i3lock_args[@]}" "$@"
