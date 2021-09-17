@@ -84,7 +84,7 @@ if [[ "$mode" =~ gui ]]; then
   recommend binary "xclip" xclip
 
   recommend binary "Zathura" zathura
-  recommend binary "Chromium" chromium
+  recommend binary "Firefox" firefox
   recommend binary "mpv" mpv
   recommend binary "picom" picom
 fi
