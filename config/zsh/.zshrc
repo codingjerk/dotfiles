@@ -45,6 +45,7 @@ alias cal='cal -m'
 alias curl='curl -JOL#'
 
 alias cb='cargo build'
+alias ch='cargo bench'
 alias cr='cargo run'
 alias ct='cargo test'
 
@@ -155,6 +156,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 alias xclip='xclip -selection clipboard'
+alias vim='e'
 
 # === Colors ===
 man() {
