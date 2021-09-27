@@ -16,11 +16,35 @@ i3lock_args=(
   --force-clock
   --show-failed-attempts
   --special-passthrough
+  --pass-media-keys
+  --pass-screen-keys
+  --pass-volume-keys
   --ignore-empty-password
+
+  # Ring
+  --radius=100
+  --ring-width=30
+  --bshl-color=00000000
+  --inside-color="${CJ_COLOR_4_HEX}77"
+  --insidever-color="${CJ_COLOR_2_HEX}77"
+  --insidewrong-color="${CJ_COLOR_1_HEX}77"
+  --keyhl-color=00000000
+  --line-color="${CJ_COLOR_FG_HEX}77"
+  --ring-color=00000000
+  --ringver-color=00000000
+  --ringwrong-color=00000000
+  --separator-color=00000000
+  --wrong-color="${CJ_COLOR_1_HEX}ff"
+  --verif-text=""
+  --wrong-text=""
+  --noinput-text=""
+  --greeter-text=""
 
   # Clock
   --time-color="${TEXT_COLOR}"
   --date-color="${TEXT_COLOR}"
+  --layout-color="${TEXT_COLOR}"
+  --keylayout=1
   --time-size="$((${CJ_MONOFONT_SIZE} * 15 / 2))"
   --date-size="$((${CJ_MONOFONT_SIZE} * 5 / 2))"
   --time-pos="(240):(h - 200)"
