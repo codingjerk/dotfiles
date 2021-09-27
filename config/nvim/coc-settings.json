@@ -1,18 +1,23 @@
 {
-  "typescript.referencesCodeLens.enable": false,
-  "typescript.implementationsCodeLens.enable": false,
-  "javascript.referencesCodeLens.enable": false,
-  "javascript.implementationsCodeLens.enable": false,
-
-  "python.linting.mypyEnabled": true,
-
-  "suggest.enablePreview": true,
-  "suggest.removeDuplicateItems": true,
   "codeLens.enable": false,
 
   "diagnostic.errorSign": " •",
-  "diagnostic.warningSign": " •",
-  "diagnostic.infoSign": " •",
   "diagnostic.hintSign": " •",
-  "diagnostic.refreshOnInsertMode": true
+  "diagnostic.infoSign": " •",
+  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.warningSign": " •",
+
+  "javascript.implementationsCodeLens.enable": false,
+  "javascript.referencesCodeLens.enable": false,
+
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyEnabled": true,
+
+  "rust.clippy_preference": "on",
+  "rust-analyzer.inlayHints.enable": false,
+  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.server.path": "rust-analyzer",
+
+  "typescript.implementationsCodeLens.enable": false,
+  "typescript.referencesCodeLens.enable": false
 }
