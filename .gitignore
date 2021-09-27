@@ -3,6 +3,7 @@ bin/fzf
 bin/fd
 bin/xclip
 
+config/BraveSoftware
 config/JetBrains
 config/Jitsi Meet
 config/Android Open Source Project
@@ -75,6 +76,7 @@ config/urxvt/config
 config/vivaldi
 config/vlc
 config/yandex-browser-beta
+config/wireshark
 config/zathura/zathurarc
 config/zsh/.zcompdump
 
