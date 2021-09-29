@@ -13,6 +13,9 @@
   "python.linting.flake8Enabled": true,
   "python.linting.mypyEnabled": true,
 
+  "suggest.enablePreview": true,
+  "suggest.removeDuplicateItems": true,
+
   "rust.clippy_preference": "on",
   "rust-analyzer.inlayHints.enable": false,
   "rust-analyzer.procMacro.enable": true,
