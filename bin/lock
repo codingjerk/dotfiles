@@ -6,10 +6,6 @@
 TEXT_COLOR="${CJ_COLOR_4_HEX}77"
 
 i3lock_args=(
-  # Image
-  --image="${CJ_WALLPAPER}"
-  --fill
-
   # Basics
   --screen=2
   --color="00000000"
