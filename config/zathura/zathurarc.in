@@ -13,6 +13,9 @@ map A scroll left
 map S scroll half-down
 map D scroll right
 
+map <PageUp> scroll half-up
+map <PageDown> scroll half-down
+
 map r reload
 map f adjust_window width
 
