@@ -66,7 +66,7 @@ cat <<EOF
   battery = BAT0
   adapter = AC0
   full-at = 95
-  poll-interval = 60
+  poll-interval = 600
 
   label-charging =  %percentage%%
   label-discharging =  %percentage%%

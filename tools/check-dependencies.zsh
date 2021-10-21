@@ -49,7 +49,6 @@ if [[ "$mode" =~ opt ]]; then
   recommend binary "exa" exa
   recommend binary "hexyl" hexyl
   recommend binary "Ripgrep" rg
-  recommend binary "mpd" mpd
   recommend binary "pipewire" pipewire
   recommend binary "pavucontrol" pavucontrol
   recommend binary "pass" pass
@@ -84,7 +83,7 @@ if [[ "$mode" =~ gui ]]; then
   recommend binary "xclip" xclip
 
   recommend binary "Zathura" zathura
-  recommend binary "Firefox" firefox
+  recommend binary "Brave" brave
   recommend binary "mpv" mpv
   recommend binary "picom" picom
 fi
@@ -97,6 +96,7 @@ if [[ "$mode" =~ vim ]]; then
   require binary "Ruby" ruby
   require binary "Node.js" node
   require binary "NPM" npm
+  require binary "yarn" yarn
 fi
 
 # === OS-specfic ===
