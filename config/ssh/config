@@ -2,6 +2,7 @@ Host *
   Compression yes
   AddressFamily inet
   ExitOnForwardFailure yes
+  StrictHostKeyChecking accept-new
 
   ControlMaster auto
   ControlPersist 5m
