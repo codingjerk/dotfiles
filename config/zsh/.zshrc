@@ -42,7 +42,7 @@ export GPG_TTY=$(tty)
 # === Aliases ===
 alias :q='exit'
 alias cal='cal -m'
-alias curl='curl -JOL#'
+alias curl='curl -sJL#'
 
 alias cb='cargo build'
 alias ch='cargo bench'
