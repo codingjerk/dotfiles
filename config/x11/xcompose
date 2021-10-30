@@ -95,3 +95,6 @@ include "%L"
 <Multi_key> <r> <u> <b>                 : "₽"
 <Multi_key> <e> <u> <r>                 : "€"
 <Multi_key> <g> <b> <p>                 : "£"
+
+# === Runes ===
+<Multi_key> <f> <e> <h> <u>             : "ᚠ"
