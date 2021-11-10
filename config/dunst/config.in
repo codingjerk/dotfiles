@@ -6,7 +6,14 @@ BAR_HEIGHT=$((${CJ_MONOFONT_SIZE:=12} * 8 / 3))
 
 cat <<EOF
 [global]
-    geometry = "500x0-$BAR_HEIGHT+$(( $BAR_HEIGHT * 2 ))"
+    width = 500
+    origin = top-right
+    offset = "${BAR_HEIGHT}x$(( $BAR_HEIGHT * 2 ))"
+
+    progress_bar_height = $(( ${BAR_HEIGHT} / 2 ))
+    progress_bar_frame_width = 2
+    progress_bar_max_width = $(( 500 - ${BAR_HEIGHT} * 2 ))
+
     frame_width = 2
     separator_height = 2
     padding = ${BAR_HEIGHT}
@@ -23,8 +30,7 @@ cat <<EOF
     show_age_threshold = 60
     word_wrap = yes
     ignore_newline = no
-    stack_duplicates = no
-    notification_height = 0
+    stack_duplicates = yes
     indicate_hidden = yes
     shrink = no
     sort = yes
@@ -45,32 +51,29 @@ cat <<EOF
     history_length = 20
     dmenu = rofi -dmenu
     browser = /usr/bin/chromium
-    verbosity = mesg
-    startup_notification = false
     corner_radius = 0
 
     mouse_left_click = close_current
     mouse_middle_click = do_action
     mouse_right_click = do_action
 
-[shortcuts]
-    close = mod1+n
-    history = mod1+shift+n
-
 [urgency_low]
     background = "#${CJ_COLOR_BG_HEX}"
     foreground = "#${CJ_COLOR_FG_HEX}"
+    highlight = "#${CJ_COLOR_4_HEX}"
     timeout = 15
 
 [urgency_normal]
     background = "#${CJ_COLOR_BG_HEX}"
     foreground = "#${CJ_COLOR_FG_HEX}"
+    highlight = "#${CJ_COLOR_4_HEX}"
     timeout = 30
 
 [urgency_critical]
     background = "#${CJ_COLOR_BG_HEX}"
     foreground = "#${CJ_COLOR_FG_HEX}"
     frame_color = "#${CJ_COLOR_1_HEX}"
+    highlight = "#${CJ_COLOR_4_HEX}"
     timeout = 60
     icon = dialog-error
 EOF
