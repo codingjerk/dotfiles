@@ -3,6 +3,3 @@ vcs = "none"
 
 [http]
 timeout = 5
-
-[net]
-offline = true
