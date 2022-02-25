@@ -16,6 +16,9 @@ Plug 'cespare/vim-toml', { 'branch': 'main' }
 Plug 'raimon49/requirements.txt.vim'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'lifepillar/pgsql.vim'
+Plug 'LnL7/vim-nix'
+Plug 'glench/vim-jinja2-syntax'
 
 " Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
@@ -36,7 +39,6 @@ let g:coc_global_extensions = [
       \'coc-pyright',
       \'coc-rust-analyzer',
       \'coc-sh',
-      \'coc-sql',
       \'coc-toml',
       \'coc-vimlsp'
       \]
@@ -55,6 +57,9 @@ let g:multi_cursor_quit_key            = '<Esc>'
 
 " python-syntax
 let g:python_highlight_all = 1
+
+" pgplsql
+let g:sql_type_default = 'pgsql'
 
 " === Timeouts ===
 set ttimeoutlen=10
