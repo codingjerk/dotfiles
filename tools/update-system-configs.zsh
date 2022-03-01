@@ -6,6 +6,37 @@ if (( $UID != 0 )); then
   exit 1
 fi
 
+cat > /etc/systemd/system/rc-local.service <<EOF
+[Unit]
+Description=/etc/rc.local Compatibility
+ConditionPathExists=/etc/rc.local
+
+[Service]
+Type=forking
+ExecStart=/etc/rc.local start
+TimeoutSec=0
+StandardOutput=tty
+RemainAfterExit=yes
+SysVStartPriority=99
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+cat > /etc/rc.local <<EOF
+modprobe zram
+
+echo zstd > /sys/block/zram0/comp_algorithm
+echo 16G > /sys/block/zram0/disksize
+
+mkswap --label ZRAM /dev/zram0
+swapon --priority 100 /dev/zram0
+EOF
+
+chmod +x /etc/rc.local
+
+systemctl enable --now rc-local
+
 mkdir -p /usr/share/icons/default
 cat > /usr/share/icons/default/index.theme <<EOF
 [icon theme]
