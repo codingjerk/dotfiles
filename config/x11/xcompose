@@ -98,3 +98,9 @@ include "%L"
 
 # === Runes ===
 <Multi_key> <f> <e> <h> <u>             : "ᚠ"
+
+# === Ukrainian ===
+<Multi_key> <Г> <Г>                     : "Ґ"
+<Multi_key> <г> <г>                     : "ґ"
+<Multi_key> <Э> <Э>                     : "Є"
+<Multi_key> <э> <э>                     : "є"
