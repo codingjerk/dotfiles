@@ -23,9 +23,6 @@ Plug 'glench/vim-jinja2-syntax'
 " Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
 
-" Wakatime
-Plug 'wakatime/vim-wakatime'
-
 call plug#end()
 
 " === Plugin settings ===
