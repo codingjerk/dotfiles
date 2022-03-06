@@ -25,6 +25,7 @@ cat <<EOF
 *.color13: #${CJ_COLOR_D_HEX}
 *.color14: #${CJ_COLOR_E_HEX}
 *.color15: #${CJ_COLOR_F_HEX}
+*.color16: #${CJ_COLOR_DIM_BLACK_HEX}
 
 URxvt.font: xft:${CJ_MONOFONT}:size=${CJ_MONOFONT_SIZE}
 URxvt.boldFont:

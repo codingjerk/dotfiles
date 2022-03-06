@@ -74,7 +74,7 @@ if [[ "$mode" =~ gui ]]; then
   require binary "Dunst" dunst
   require binary "i3 (gaps)" i3
   require binary "i3lock (color, by PandorasFox)" i3lock
-  require binary "alacritty" alacritty
+  require binary "rxvt-unicode" urxvt
   require binary "Rofi" rofi
   require binary "maim" maim
   require binary "slop" slop

@@ -10,4 +10,7 @@ if [[ -f "${CJ_DOTFILES}/local.sh" ]]; then
   . "${CJ_DOTFILES}/local.sh"
 fi
 
+xrdb -merge "${CJ_DOTFILES}/config/urxvt/config"
+urxvtd -f -q
+
 exec i3
