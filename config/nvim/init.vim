@@ -19,6 +19,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'lifepillar/pgsql.vim'
 Plug 'LnL7/vim-nix'
 Plug 'glench/vim-jinja2-syntax'
+Plug 'lepture/vim-jinja'
 
 " Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
