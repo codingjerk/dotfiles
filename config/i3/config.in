@@ -120,6 +120,7 @@ bindsym \$mod+Shift+0 move container to workspace \$ws10
 bindsym \$mod+Shift+minus move container to workspace \$ws11
 bindsym \$mod+Shift+plus move container to workspace \$ws12
 
+bindsym \$mod+r reload
 bindsym \$mod+Shift+r restart
 bindsym \$mod+Shift+x exit
 
@@ -139,5 +140,5 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Notifications
-bindsym \$mod+n exec --no-startup-id dunstctl close
+bindsym \$mod+n exec --no-startup-id dunstctl close-all
 EOF
