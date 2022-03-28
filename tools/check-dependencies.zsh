@@ -52,6 +52,7 @@ if [[ "$mode" =~ opt ]]; then
   recommend binary "pipewire" pipewire
   recommend binary "pavucontrol" pavucontrol
   recommend binary "pass" pass
+  recommend binary "redshift" redshift
 fi
 
 # === GUI ===
