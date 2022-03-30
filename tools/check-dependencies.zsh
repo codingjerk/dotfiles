@@ -53,6 +53,7 @@ if [[ "$mode" =~ opt ]]; then
   recommend binary "pavucontrol" pavucontrol
   recommend binary "pass" pass
   recommend binary "redshift" redshift
+  recommend binary "xbacklight" xbacklight
 fi
 
 # === GUI ===
