@@ -133,12 +133,12 @@ bindsym XF86AudioPrev exec --no-startup-id mpc prev
 
 bindsym \$mod+m exec --no-startup-id python3 '${CJ_DOTFILES}/tools/update_monitor_setup.py'
 
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+bindsym XF86MonBrightnessUp exec --no-startup-id blctl inc
+bindsym XF86MonBrightnessDown exec --no-startup-id blctl dec
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ '+5%'
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ '-5%'
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id sndctl inc
+bindsym XF86AudioLowerVolume exec --no-startup-id sndctl dec
+bindsym XF86AudioMute exec --no-startup-id sndctl mute
 
 # Notifications
 bindsym \$mod+n exec --no-startup-id dunstctl close-all

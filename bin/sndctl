@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+. "${CJ_DOTFILES}/assets/colors.sh"
+. "${CJ_DOTFILES}/settings.sh"
+
+value='-5%'
+if [ "_$1" = "_mute" ]; then
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
+  exit
+elif [ "_$1" = "_inc" ]; then
+  value='+5%'
+fi
+
+pactl set-sink-volume @DEFAULT_SINK@ "$value"
+volume=$(pamixer --get-volume)
+notify-send --expire-time=2000 --icon /usr/share/icons/Papirus-Dark/symbolic/status/audio-volume-low-symbolic.svg --hint "int:value:$volume" "[Volume]"

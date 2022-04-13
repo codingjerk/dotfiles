@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+. "${CJ_DOTFILES}/assets/colors.sh"
+. "${CJ_DOTFILES}/settings.sh"
+
+action='-dec'
+if [ "_$1" = "_inc" ]; then
+  action='-inc'
+fi
+
+xbacklight $action 5
+volume=$(xbacklight -get)
+notify-send --expire-time=2000 --icon /usr/share/icons/Papirus-Dark/symbolic/status/display-brightness-symbolic.svg --hint "int:value:$volume" "[Brightness]"
