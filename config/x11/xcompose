@@ -91,6 +91,8 @@ include "%L"
 <Multi_key> <e> <d> <o> <i> <n> <g>     : "🔄"
 <Multi_key> <e> <b> <l> <o> <c> <k>     : "🔄"
 <Multi_key> <e> <d> <r> <o> <p>         : "❎"
+<Multi_key> <e> <p> <i> <n> <g>         : "❎"
+<Multi_key> <e> <p> <o> <n> <g>         : "🏓"
 
 # === Currencies ===
 <Multi_key> <r> <u> <b>                 : "₽"
