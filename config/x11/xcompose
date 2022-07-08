@@ -107,3 +107,8 @@ include "%L"
 <Multi_key> <г> <г>                     : "ґ"
 <Multi_key> <Э> <Э>                     : "Є"
 <Multi_key> <э> <э>                     : "є"
+
+# === Russian ===
+
+<Multi_key> <я> <т> <ь>                 : "ѣ"
+<Multi_key> <Я> <т> <ь>                 : "Ѣ"
