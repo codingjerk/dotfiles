@@ -51,6 +51,7 @@ if [[ "$mode" =~ opt ]]; then
   recommend binary "Ripgrep" rg
   recommend binary "pipewire" pipewire
   recommend binary "pavucontrol" pavucontrol
+  recommend binary "pamixer" pamixer
   recommend binary "pass" pass
   recommend binary "redshift" redshift
   recommend binary "xbacklight" xbacklight
