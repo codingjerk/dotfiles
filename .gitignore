@@ -3,17 +3,10 @@ bin/fzf
 bin/fd
 bin/xclip
 
-config/BraveSoftware
-config/JetBrains
-config/Jitsi Meet
-config/Android Open Source Project
-config/Google
-config/android
-config/sublime-text
-config/tint2
-config/java
 config/3T
+config/Android Open Source Project
 config/Arena_x86_64_linux
+config/BraveSoftware
 config/Code
 config/Code - OSS
 config/DataGrip
@@ -21,11 +14,17 @@ config/Electron
 config/Element
 config/Foxit Software
 config/GIMP
+config/Google
+config/JetBrains
+config/Jitsi Meet
 config/Microsoft
+config/Outline/
 config/Postman
 config/QtProject.conf
+config/Unknown Organization/
 config/VirtualBox
 config/alacritty/alacritty.yml
+config/android
 config/cef_user_data
 config/chromium
 config/coc
@@ -45,6 +44,7 @@ config/gtk-3.0/gtk.css
 config/i3/config
 config/inkscape
 config/insight-nodejs/insight-yo.json
+config/java
 config/jupyter
 config/kernel.org
 config/less/lesskey
@@ -67,17 +67,21 @@ config/pulse/cookie
 config/qBittorrent
 config/remmina
 config/skypeforlinux
+config/sublime-text
 config/sublime-text-3
 config/systemd
 config/teams
+config/tint2
+config/torbrowser/
 config/transmission
 config/transmission-remote-gtk
 config/urxvt/config
 config/vivaldi
 config/vlc
-config/yandex-browser-beta
 config/wireshark
+config/yandex-browser-beta
 config/zathura/zathurarc
+config/zoomus.conf
 config/zsh/.zcompdump
 
 cache
