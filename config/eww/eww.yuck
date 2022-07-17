@@ -46,6 +46,7 @@
     :width "48px"
     :height "100%"
   )
+  :reserve (struts :distance "48px" :side "left")
   :stacking "overlay"
   (box
     :orientation "vertical"

@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+. "${CJ_DOTFILES}/assets/colors.sh"
+. "${CJ_DOTFILES}/settings.sh"
+
+exec ${CJ_DOTFILES}/third-party/eww/target/release/eww open vertical-bar
