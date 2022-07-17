@@ -5,29 +5,32 @@
 
 # Startup
 
-pkill sxhkd dunst redshift urxvtd picom
+pkill sxhkd
+pkill dunst
+pkill picom
+pkill -9 urxvtd
+pkill -9 redshift
 
 if [[ -f "${CJ_DOTFILES}/local.sh" ]]; then
   . "${CJ_DOTFILES}/local.sh"
 fi
 
 feh --no-fehbg --bg-scale "${CJ_WALLPAPER}"
-
+xsetroot -cursor_name left_ptr
 setxkbmap -layout "us,ru" -option "grp:caps_toggle,grp_led:caps,grp_led:scroll,grp_led:num,compose:ralt"
+python3 "${CJ_DOTFILES}/tools/update_monitor_setup.py" &
 
 if command -v picom > /dev/null; then
   picom --daemon --experimental-backends
 fi
 
+vertical_bar &
+
 xrdb -merge "${CJ_DOTFILES}/config/urxvt/config"
 urxvtd -f -q
 
-xsetroot -cursor_name left_ptr
-
 sxhkd &
-python3 "${CJ_DOTFILES}/tools/update_monitor_setup.py" &
 dunst &
-vertical_bar &
 redshift &
 
 # Base

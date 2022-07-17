@@ -12,26 +12,35 @@ def icon_for_desktop(desktop: int) -> str:
 
 
 def get_desktops():
-    raw_occupied = subprocess.check_output([
-        "bspc",
-        "query",
-        "-D",
-        "--names",
-        "-d",
-        ".occupied",
-    ])
+    try:
+        raw_occupied = subprocess.check_output([
+            "bspc",
+            "query",
+            "-D",
+            "--names",
+            "-d",
+            ".occupied",
+        ])
+    except Exception:
+        raw_occupied = b""
 
-    raw_focused = subprocess.check_output([
-        "bspc",
-        "query",
-        "-D",
-        "--names",
-        "-d",
-        "focused",
-    ])
+    try:
+        raw_focused = subprocess.check_output([
+            "bspc",
+            "query",
+            "-D",
+            "--names",
+            "-d",
+            "focused",
+        ])
+    except Exception:
+        raw_focused = b""
 
-    occupied = [int(v) for v in raw_occupied.decode().split("\n") if v]
-    focused = [int(v) for v in raw_focused.decode().split("\n") if v]
+    occupied = [int(v) for v in raw_occupied.decode().split("\n") if v.strip()]
+    focused = [int(v) for v in raw_focused.decode().split("\n") if v.strip()]
+
+    if not occupied:
+        occupied = [1]
 
     result = []
     for desktop in sorted(set(occupied + focused)):
@@ -51,7 +60,7 @@ def button_class(display):
     return "workspace-button"
 
 
-def main():
+def try_main():
     desktops = get_desktops()
 
     buttons = [
@@ -78,6 +87,18 @@ def main():
         """.replace("\n", ""),
         flush=True,
     )
+
+
+def main():
+    try:
+        try_main()
+    except Exception:
+        print(
+            """
+            (box "ERR")
+            """.replace("\n", ""),
+            flush=True,
+        )
 
 
 main()
