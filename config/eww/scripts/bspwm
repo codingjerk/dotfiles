@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+bspc subscribe desktop node_transfer | python ~/dotfiles/config/eww/scripts/bspwm-generate

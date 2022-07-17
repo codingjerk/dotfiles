@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+pactl subscribe | grep change | python ~/dotfiles/config/eww/scripts/volume-generate

@@ -1,0 +1,68 @@
+(deflisten bspwm "scripts/bspwm")
+(defwidget bspwm []
+  (literal :content bspwm)
+)
+
+(defpoll hour
+  :interval "1m"
+  "date '+%H'"
+)
+
+(defpoll minute
+  :interval "1m"
+  "date '+%M'"
+)
+
+(defwidget time []
+  (box
+    :orientation "vertical"
+    :space-evenly "false"
+    :valign "start"
+    :halign "center"
+    :style "font-size: 18px"
+    hour
+    minute
+  )
+)
+
+(deflisten volume "scripts/volume")
+(defwidget volume []
+  (literal :content volume)
+)
+
+(deflisten battery "scripts/battery")
+(defwidget battery []
+  (literal :content battery)
+)
+
+(defwidget spacer []
+  (box "")
+)
+
+(defwindow vertical-bar
+  :geometry (geometry
+    :x "0"
+    :y "0"
+    :width "48px"
+    :height "100%"
+  )
+  :stacking "overlay"
+  (box
+    :orientation "vertical"
+    (box
+      :orientation "vertical"
+      :space-evenly "false"
+      :valign "start"
+      (spacer)
+      (bspwm)
+    )
+    (box
+      :orientation "vertical"
+      :space-evenly "false"
+      :valign "end"
+      (time)
+      (battery)
+      (spacer)
+    )
+  )
+)

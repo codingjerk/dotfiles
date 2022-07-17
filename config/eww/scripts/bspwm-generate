@@ -1,0 +1,85 @@
+#!/usr/bin/env python
+
+import subprocess
+import sys
+
+
+def icon_for_desktop(desktop: int) -> str:
+    return {
+        11: "",
+        12: "",
+    }.get(desktop, "")
+
+
+def get_desktops():
+    raw_occupied = subprocess.check_output([
+        "bspc",
+        "query",
+        "-D",
+        "--names",
+        "-d",
+        ".occupied",
+    ])
+
+    raw_focused = subprocess.check_output([
+        "bspc",
+        "query",
+        "-D",
+        "--names",
+        "-d",
+        "focused",
+    ])
+
+    occupied = [int(v) for v in raw_occupied.decode().split("\n") if v]
+    focused = [int(v) for v in raw_focused.decode().split("\n") if v]
+
+    result = []
+    for desktop in sorted(set(occupied + focused)):
+        result.append({
+            "desktop": desktop,
+            "icon": icon_for_desktop(desktop),
+            "focused": desktop in focused,
+        })
+
+    return result
+
+
+def button_class(display):
+    if display["focused"]:
+        return "workspace-button-focused"
+
+    return "workspace-button"
+
+
+def main():
+    desktops = get_desktops()
+
+    buttons = [
+        f"""
+        (button
+            :class "{button_class(d)}"
+            :width 10
+            :tooltip "{d["desktop"]}"
+            :onclick "bspc desktop --focus {d["desktop"]}"
+            "{d["icon"]}"
+        )
+        """
+        for d in desktops
+    ]
+
+    print(
+        f"""
+        (box
+            :orientation "vertical"
+            :halign "center"
+
+            {" ".join(buttons)}
+        )
+        """.replace("\n", ""),
+        flush=True,
+    )
+
+
+main()
+for line in sys.stdin:
+    main()

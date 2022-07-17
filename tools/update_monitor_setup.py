@@ -88,16 +88,16 @@ def is_bar_running():
         columns = [c for c in process.split(" ") if c != ""]
         process = columns[4:]
 
-        if process == ["polybar", "main"]:
+        if process == ["eww"]:
             return True
 
     return False
 
 
 def restart_bar():
-    subprocess.run(["pkill", "polybar"])
+    subprocess.run(["pkill", "eww"])
     subprocess.Popen(
-        ["nohup", "bar"],
+        ["nohup", "vertical_bar"],
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
         preexec_fn=os.setpgrp,

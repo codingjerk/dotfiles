@@ -5,6 +5,8 @@
 
 # Startup
 
+pkill sxhkd dunst redshift urxvtd picom
+
 if [[ -f "${CJ_DOTFILES}/local.sh" ]]; then
   . "${CJ_DOTFILES}/local.sh"
 fi
@@ -22,7 +24,6 @@ urxvtd -f -q
 
 xsetroot -cursor_name left_ptr
 
-pkill sxhkd
 sxhkd &
 python3 "${CJ_DOTFILES}/tools/update_monitor_setup.py" &
 dunst &

@@ -1,0 +1,49 @@
+#!/usr/bin/env python
+
+import psutil
+import time
+
+
+def main():
+    battery = psutil.sensors_battery()
+
+    if battery.power_plugged:
+        icon = ""  # fa-battery-full
+        color = "#98D6B3"  # green
+    elif True or battery.secsleft <= 600:
+        icon = ""  # fa-battery-empty
+        color = "#ED729"
+    elif battery.percent <= 12.5:
+        icon = ""  # fa-battery-empty
+        color = "#ED729"
+    elif battery.percent <= 37.5:
+        icon = ""  # fa-battery-quarter
+        color = "#E1BD76"
+    elif battery.percent <= 62.5:
+        icon = ""  # fa-battery-half
+        color = "#DBD5ED"
+    elif battery.percent <= 87.5:
+        icon = ""  # fa-battery-three-quarters
+        color = "#DBD5ED"
+    else:
+        icon = ""  # fa-battery-full
+        color = "#DBD5ED"
+
+    percent = f"{round(battery.percent)}%"
+
+    print(
+        f"""
+        (label
+            :class "battery"
+            :text "{icon}"
+            :tooltip "{percent}"
+            :style "color: {color}"
+        )
+        """.replace("\n", " "),
+        flush=True,
+    )
+
+
+while True:
+    main()
+    time.sleep(60)
