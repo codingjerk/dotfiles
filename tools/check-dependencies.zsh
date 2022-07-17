@@ -72,11 +72,14 @@ if [[ "$mode" =~ gui ]]; then
   require icons "Breeze (cursors)" "Breeze_Snow"
 
   require binary "xinit" xinit
+  require binary "xsetroot" xsetroot
   require binary "feh" feh
   require binary "Polybar" polybar
   require binary "Dunst" dunst
   require binary "i3 (gaps)" i3
   require binary "i3lock (color, by PandorasFox)" i3lock
+  require binary "bspwm" bspwm
+  require binary "sxhkd" sxhkd
   require binary "rxvt-unicode" urxvt
   require binary "Rofi" rofi
   require binary "maim" maim

@@ -1,0 +1,71 @@
+# WM Control
+
+alt + shift + {x,r}
+  bspc {quit,wm --restart}
+
+alt + l
+  lock
+
+# Applications
+
+alt + j
+  urxvtc
+
+Super_L
+  run_menu
+
+# Desktop focus
+
+alt {+,+ shift +} {1-9,0,minus,equal}
+  bspc {desktop --focus,node --to-desktop} '^{1-9,10,11,12}'
+
+alt + Tab
+  bspc desktop --focus last
+
+# Node focus
+
+alt + space
+  bspc node --focus any.floating
+
+alt {+,+ shift +} {w,a,s,d}
+  bspc node {--focus,--to-node} {north,west,south,east}
+
+# Node controls
+
+alt + f
+  bspc node --state '~fullscreen'
+
+alt + g
+  bspc node --state '~floating'
+
+alt + Escape
+  bspc node --close
+
+alt + {v,h}
+  bspc node --presel-dir {south,east}
+
+alt + shift + e
+  bspc node any.hidden --flag hidden=off; bspc node --state floating; bspc node --flag marked=on; bspc node --flag hidden=on
+
+alt + e
+  bspc node any.marked --to-desktop focused; bspc node any.marked --flag hidden; bspc node any.marked --focus
+
+# Media
+
+{shift,control,_} + Print
+  screenshot {selection,selection,selection}
+
+XF86Audio{Play,Pause,Stop,Next,Prev}
+  mpc {toggle,toggle,pause,next,prev}
+
+XF86MonBrightness{Up,Down}
+  blctl {inc,dec}
+
+XF86Audio{RaiseVolume,LowerVolume,Mute}
+  sndctl {inc,dec,mute}
+
+alt + n
+  dunstctl close-all
+
+alt + m
+  python3 '${CJ_DOTFILES}/tools/update_monitor_setup.py'
