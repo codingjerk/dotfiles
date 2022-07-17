@@ -10,3 +10,6 @@
 [submodule "third-party/vim-plug"]
 	path = third-party/vim-plug
 	url = https://github.com/junegunn/vim-plug
+[submodule "third-party/eww"]
+	path = third-party/eww
+	url = https://github.com/elkowar/eww.git
