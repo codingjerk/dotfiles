@@ -6,6 +6,13 @@ import time
 
 def main():
     battery = psutil.sensors_battery()
+    if not battery:
+        return print(
+            f"""
+            (box)
+            """.replace("\n", " "),
+            flush=True,
+        )
 
     if battery.power_plugged:
         icon = ""  # fa-battery-full
