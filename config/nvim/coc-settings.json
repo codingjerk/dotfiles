@@ -20,8 +20,9 @@
   "rust-analyzer.diagnostics.disabled": [ "incorrect-ident-case", "non_upper_case_globals" ],
   "rust-analyzer.inlayHints.enable": false,
   "rust-analyzer.procMacro.enable": true,
-  "rust-analyzer.server.path": "rust-analyzer",
 
   "typescript.implementationsCodeLens.enable": false,
-  "typescript.referencesCodeLens.enable": false
+  "typescript.referencesCodeLens.enable": false,
+
+  "zig.path": "/usr/bin/zls"
 }

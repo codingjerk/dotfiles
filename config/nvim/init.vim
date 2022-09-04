@@ -20,6 +20,7 @@ Plug 'lifepillar/pgsql.vim'
 Plug 'LnL7/vim-nix'
 Plug 'glench/vim-jinja2-syntax'
 Plug 'lepture/vim-jinja'
+Plug 'ziglang/zig.vim'
 
 " Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
@@ -58,6 +59,9 @@ let g:python_highlight_all = 1
 
 " pgplsql
 let g:sql_type_default = 'pgsql'
+
+" zig
+let g:zig_fmt_autosave = 0
 
 " === Timeouts ===
 set ttimeoutlen=10
