@@ -1,10 +1,16 @@
+* {
+  all: unset;
+  font-family: "Font Awesome 5 Free Solid";
+  background-color: #2E3440;
+}
+
 .workspace-button {
-  color: #404040;
+  color: #566075;
   padding: 10px 0;
 }
 
 .workspace-button-focused {
-  color: #98B2D6;
+  color: #81A1C1;
   padding: 10px 0;
 }
 
@@ -13,8 +19,6 @@
   font-size: 18px;
 }
 
-* {
-  all: unset;
-  font-family: "Font Awesome 5 Free Solid";
-  background-color: #161320;
+.time {
+  color: #BBC5DB;
 }

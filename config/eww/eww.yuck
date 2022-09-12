@@ -20,6 +20,7 @@
     :valign "start"
     :halign "center"
     :style "font-size: 18px"
+    :class "time"
     hour
     minute
   )
