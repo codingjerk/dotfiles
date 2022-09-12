@@ -9,6 +9,7 @@ config/Arena_x86_64_linux
 config/BraveSoftware
 config/Code
 config/Code - OSS
+config/Code\ -\ Insiders
 config/DataGrip
 config/Electron
 config/Element
@@ -17,7 +18,9 @@ config/GIMP
 config/Google
 config/JetBrains
 config/Jitsi Meet
+config/LHelp_x86_64_linux
 config/Microsoft
+config/NecroDancer
 config/Outline/
 config/Postman
 config/QtProject.conf
@@ -47,6 +50,7 @@ config/insight-nodejs/insight-yo.json
 config/java
 config/jupyter
 config/kernel.org
+config/knightsrc
 config/less/lesskey
 config/libreoffice
 config/mimeapps.list
@@ -64,6 +68,7 @@ config/polybar/config
 config/pulse/*-default-*
 config/pulse/*.tdb
 config/pulse/cookie
+config/pychess
 config/qBittorrent
 config/remmina
 config/skypeforlinux
@@ -79,10 +84,12 @@ config/urxvt/config
 config/vivaldi
 config/vlc
 config/wireshark
+config/yandex-browser
 config/yandex-browser-beta
 config/zathura/zathurarc
 config/zoomus.conf
 config/zsh/.zcompdump
+
 
 cache
 share
