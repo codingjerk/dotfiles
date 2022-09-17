@@ -23,13 +23,13 @@ def main():
         color = "#E1BD76"
     elif battery.percent <= 62.5:
         icon = ""  # fa-battery-half
-        color = "#DBD5ED"
+        color = "#BBC5DB"
     elif battery.percent <= 87.5:
         icon = ""  # fa-battery-three-quarters
-        color = "#DBD5ED"
+        color = "#BBC5DB"
     else:
         icon = ""  # fa-battery-full
-        color = "#DBD5ED"
+        color = "#BBC5DB"
 
     minutes = round(battery.secsleft / 60)
 

@@ -3,7 +3,7 @@ window {
   width: 30em;
   location: west;
   anchor: west;
-  background-color: #000000;
+  background-color: #2E3440;
   border: 0px;
   padding: 2em;
 }
@@ -43,5 +43,5 @@ element-text {
 
 element-icon {
   size: 4em;
-  background-color: #000000;
+  background-color: #2E3440;
 }
