@@ -1,3 +1,7 @@
+# === Terminal fix ===
+set -g default-terminal "tmux-256color"
+set -sg terminal-overrides ",*:RGB"
+
 # === Better prefix ===
 unbind C-b
 set -g prefix `
