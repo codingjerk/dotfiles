@@ -149,6 +149,11 @@ alias pg='openssl rand -base64 33'
 alias py='python3'
 alias pip='pip3'
 
+alias pa='pass'
+alias pac='pass -c'
+alias po='pass otp'
+alias pac='pass otp -c'
+
 alias ss='ss -raopuwtn'
 
 alias sd='sudo systemctl'
