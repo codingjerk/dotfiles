@@ -7,7 +7,7 @@
   defaultBranch = development
 
 [gpg]
-  program = gpg2
+  program = gpg
 
 [core]
   autocrlf = input
