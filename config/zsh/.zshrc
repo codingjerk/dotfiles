@@ -146,8 +146,8 @@ alias rf='rm -rf'
 
 alias ping='ping -4AUO'
 alias pg='openssl rand -base64 33'
-alias py="python3"
-alias pip="pip3"
+alias py='python3'
+alias pip='pip3'
 
 alias ss='ss -raopuwtn'
 
