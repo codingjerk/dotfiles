@@ -11,10 +11,11 @@ env:
 
 window:
   padding:
-    x: ${BAR_HEIGHT}
-    y: ${BAR_HEIGHT_4}
+    x: 16
+    y: 8
 
-  dynamic_padding: true
+  dynamic_padding: false
+  decorations: none
 
   title: term
   dynamic_title: false
@@ -80,6 +81,11 @@ mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
   - { mouse: Right, action: PasteSelection }
 
+key_bindings:
+  - { key: W, mods: Command, action: None }
+  - { key: Right, mods: Alt, chars: "\x1BF" }
+  - { key: Left,  mods: Alt, chars: "\x1BB" }
+
 mouse:
   hide_when_typing: true
 
@@ -87,4 +93,7 @@ selection:
   save_to_clipboard: true
 
 live_config_reload: true
+
+debug:
+  log_level: Off
 EOF
