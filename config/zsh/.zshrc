@@ -53,6 +53,8 @@ alias diff='diff --color=auto'
 
 alias dmesg='sudo dmesg -H'
 
+alias dc='docker-compose'
+
 alias df='df -h -x devtmpfs'
 alias du='du -h -c'
 
@@ -82,7 +84,7 @@ alias gu='git pull'
 alias gap='git add -p'
 alias gbi='git bisect'
 alias gca='git commit --amend --no-edit'
-alias gcl='git clone'
+alias gcl='git clone --recursive-submodules'
 alias gco='git checkout'
 alias gds='gd --staged'
 alias gdt='git difftool'
