@@ -2,8 +2,9 @@
 
 import collections
 import datetime
+import os
 import shutil
-from typing import Any, Callable, List
+from typing import Any, Callable, List, Optional
 
 
 Partition = collections.namedtuple("Partition", [
@@ -70,8 +71,11 @@ def print_center(*lines: str) -> None:
 
 
 def get_fillers_for_table(table: List[List[str]]) -> List[List[str]]:
-    table_rows = len(table)
-    table_columns = len(table[0])
+    if not (table_rows := len(table)):
+        return []
+
+    if not (table_columns := len(table[0])):
+        return []
 
     fillers = [["" for _ in range(table_columns)] for _ in range(table_rows)]
 
@@ -151,7 +155,10 @@ def show_banner() -> None:
     print()
 
 
-def get_uptime() -> datetime.timedelta:
+def get_uptime() -> Optional[datetime.timedelta]:
+    if not os.path.exists('/proc/uptime'):
+        return None
+
     with open('/proc/uptime') as fh:
         seconds = float(fh.read().split()[0])
         return datetime.timedelta(seconds=seconds)
@@ -172,12 +179,12 @@ def format_uptime(uptime: datetime.timedelta) -> str:
 
 
 def show_uptime() -> None:
-    try:
-        uptime = format_uptime(get_uptime())
-    except PermissionError:
-        uptime = '?'
+    if not (uptime := get_uptime()):
+        return
 
-    print_center('\u001B[34mup: \u001B[36m' + uptime + '\u001B[0m')
+    uptime_str = format_uptime(uptime)
+
+    print_center('\u001B[34mup: \u001B[36m' + uptime_str + '\u001B[0m')
     print()
 
 
@@ -297,6 +304,9 @@ def is_block_device_line(mount_line: str) -> bool:
 
 
 def get_mountpoints() -> List[Partition]:
+    if not os.path.exists('/proc/mounts'):
+        return []
+
     with open('/proc/mounts') as fh:
         rawmounts = filter(is_block_device_line, fh.readlines())
 
@@ -328,20 +338,32 @@ def get_color_by_load(load: float) -> str:
     return '\u001B[32m'  # green
 
 
-def get_loadavg() -> float:
+def get_loadavg() -> Optional[float]:
+    if not os.path.exists('/proc/loadavg'):
+        return None
+
     with open('/proc/loadavg', 'r') as fh:
         averages = fh.read().split()
         return float(averages[0])
 
 
-def get_cpu_count() -> int:
+def get_cpu_count() -> Optional[int]:
+    if not os.path.exists('/proc/cpuinfo'):
+        return None
+
     with open('/proc/cpuinfo') as fh:
         return fh.read().count("processor")
 
 
 def get_cpu_line() -> List[str]:
+    if not (cpu_count := get_cpu_count()):
+        return []
+
+    if not (load_avg := get_loadavg()):
+        return []
+    
     try:
-        cpu_load = get_loadavg() / get_cpu_count()
+        cpu_load = load_avg / cpu_count
         color = get_color_by_load(cpu_load)
 
         bar = draw_resource_bar(cpu_load)
@@ -353,10 +375,14 @@ def get_cpu_line() -> List[str]:
     return ['cpu:', bar, val]
 
 
-def get_meminfo() -> Meminfo:
+def get_meminfo() -> Optional[Meminfo]:
+    if not os.path.exists('/proc/meminfo'):
+        return None
+
     total = 0
     free = 0
     cached = 0
+
     with open('/proc/meminfo') as fh:
         for [key, value, *_] in map(str.split, fh.readlines()):
             if key == 'MemTotal:':
@@ -375,7 +401,9 @@ def get_meminfo() -> Meminfo:
 
 
 def get_mem_line(title: str, key: Callable[[Meminfo], float]) -> List[str]:
-    meminfo = get_meminfo()
+    if not (meminfo := get_meminfo()):
+        return []
+
     mem_load = key(meminfo) / meminfo.total
     color = get_color_by_load(mem_load)
 
@@ -389,9 +417,18 @@ def get_mem_line(title: str, key: Callable[[Meminfo], float]) -> List[str]:
 def show_resources() -> None:
     table = get_space_lines()
     table.append(['', '', ''])
-    table.append(get_cpu_line())
-    table.append(get_mem_line("mem", lambda x: x.used))
-    table.append(get_mem_line("mem+cached", lambda x: x.used + x.cached))
+
+    if line := get_cpu_line():
+        table.append(line)
+
+    if line := get_mem_line("mem", lambda x: x.used):
+        table.append(line)
+        
+    if line := get_mem_line("mem", lambda x: x.used):
+        table.append(line)
+
+    if line := get_mem_line("mem+cached", lambda x: x.used + x.cached):
+        table.append(line)
 
     print_table(table, ['RIGHT', 'LEFT', 'LEFT'])
     print()
