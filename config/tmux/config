@@ -8,7 +8,8 @@ set -g prefix `
 bind ` send-prefix
 
 # === Options ===
-set -g mouse on
+set -g default-command "${SHELL}"
+set -g mouse off
 set -g automatic-rename off
 set -g escape-time 0
 set -g base-index 1
@@ -32,10 +33,9 @@ set -g window-status-bell-style "fg=magenta,bg=default"
 set -g status-interval 60
 
 set -g status-left '#[fg=cyan]#S'
-set -g status-left-length 15
+set -g status-left-length 20
 
-set -g status-right "#[fg=blue]%d/%m #[fg=cyan]%H:%M"
-set -g status-right-length 15
+set -g status-right ''
 
 set -g status-justify centre
 
