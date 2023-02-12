@@ -17,7 +17,7 @@ chmod ugo-w "${XDG_CONFIG_HOME}/htop/htoprc"
 chmod go-rwx "${XDG_DATA_HOME}/gnupg"
 
 # === Update *.in configs ===
-lesskey -o "${XDG_CONFIG_HOME}/less/lesskey" "${XDG_CONFIG_HOME}/less/lesskey.in"
+lesskey -o "${XDG_CONFIG_HOME}/less/lesskey" "${XDG_CONFIG_HOME}/less/lesskey.in" 2> /dev/null
 sh "${XDG_CONFIG_HOME}/pam/environment.in" > "${HOME}/.pam_environment"
 sh "${XDG_CONFIG_HOME}/i3/config.in" > "${XDG_CONFIG_HOME}/i3/config"
 sh "${XDG_CONFIG_HOME}/polybar/config.in" > "${XDG_CONFIG_HOME}/polybar/config"

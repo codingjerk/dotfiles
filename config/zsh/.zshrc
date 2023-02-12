@@ -397,7 +397,7 @@ fg=(
 reset_color=$'\033[0m'
 
 __utf-mode() {
-  [[ "${LANG}" =~ "UTF|utf" ]]
+  [[ "${LANG:-${LC_ALL}}" =~ "UTF|utf" ]]
 }
 
 if __utf-mode; then
