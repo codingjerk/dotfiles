@@ -88,7 +88,7 @@ alias gu='git pull'
 alias gap='git add -p'
 alias gbi='git bisect'
 alias gca='git commit --amend --no-edit'
-alias gcl='git clone --recursive-submodules'
+alias gcl='git clone --recursive'
 alias gco='git checkout'
 alias gds='gd --staged'
 alias gdt='git difftool'
@@ -110,9 +110,6 @@ alias gpr='git reset -- . && git checkout -- . && git clean -xfd'
 alias grep="grep --color=auto --binary-files=without-match --exclude-dir={.bzr,.git,.hg,.svn}"
 
 alias ixio="\curl -F 'f:1=<-' ix.io"
-
-alias ls='ls -vAh --color=auto --group-directories-first --file-type --quoting-style=literal'
-alias ll='ls -lo --time-style=iso'
 
 alias m='make'
 mk() { mkdir -p "$1"; cd "$1" }
@@ -149,6 +146,8 @@ alias rf='rm -rf'
 
 alias ping='ping -4AUO'
 alias pg='openssl rand -base64 33'
+alias py="python3"
+alias pip="pip3"
 
 alias ss='ss -raopuwtn'
 
@@ -520,23 +519,13 @@ ZSH_PLUGINS_ALIAS_TIPS_TEXT=$'\E[31mAlias tip: '
 
 add-zsh-hook preexec __ctr-update-start
 
-# === Version managers ===
-__load-rustup() {
-  __path-prepend "${CARGO_HOME}/bin"
-}
-__load-rustup
-
 # === Dynamic aliases / alias-like functions ===
 if (( $+commands[exa] )); then
+  alias ls='exa'
   alias l='exa-ignore --long'
   alias la='exa-all --long'
   alias s='exa-ignore -1'
   alias sa='exa-all -1'
-else
-  alias l='ll'
-  alias la='ll -a'
-  alias s='ll -1'
-  alias sa='ll -a1'
 fi
 
 node() { if [[ -z ${1} ]]; then command node "${CJ_DOTFILES}/bin/node-repl"; else command node "$@"; fi }
@@ -611,3 +600,19 @@ if (( $+commands[apt-get] )) && ! [[ "_$PREFIX" =~ "_/data/data" ]]; then
 
   . '/etc/zsh_command_not_found'
 fi
+
+# === Macos ===
+if (( $+commands[brew] )); then
+  alias f='brew search'
+  alias i='brew install'
+  alias u='brew upgrade'
+  alias r='brew uninstall'
+
+  alias o='xdg-open'
+
+  command_not_found_handler() {
+    echo "zsh: command not found '$1'"
+    brew search $1
+  }
+fi
+
