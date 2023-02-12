@@ -15,6 +15,8 @@ export GREP_COLORS='sl=0:cx=1;30:fn=0;33:ln=0;35'
 
 export LESS='-imRSc -x4 -z-4 -#10 -j8'
 
+export PASSWORD_STORE_CLIP_TIME=8
+
 # === LS_COLORS ===
 LS_COLORS='no=0:fi=0:di=34'
 
