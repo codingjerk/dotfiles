@@ -19,12 +19,13 @@ set -g clock-mode-colour cyan
 set -g clock-mode-style 24
 
 # === Status ===
-set -g status-bg black
+set -g status-bg default
+set -g status-style bg=default
 set -g status-fg white
 
 set -g window-status-current-style "fg=blue"
 set -g window-status-current-format '#{?window_zoomed_flag,#[fg=red],}*'
-set -g window-status-style "fg=black,bold"
+set -g window-status-style "fg=0,bold,bg=default"
 set -g window-status-format '#{?window_bell_flag,!,-}'
 set -g window-status-bell-style "fg=magenta,bg=default"
 
