@@ -1,0 +1,3 @@
+[[language]]
+name = "rust"
+config = { diagnostics = { disabled = [ "inactive-code" ] } }

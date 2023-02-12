@@ -1,11 +1,11 @@
 # === Tools ===
-export EDITOR='nvim -p'
+export EDITOR='hx'
 export VISUAL="${EDITOR}"
 export PAGER='less'
 
 # === GUI Tools ===
-export TERMINAL='urxvtc'
-export BROWSER='chromium'
+export TERMINAL='alacritty'
+export BROWSER='safari'
 
 # === Options ===
 export FZF_DEFAULT_COMMAND='fd -t f -t l -S-10M -H --color=always -E .git/'

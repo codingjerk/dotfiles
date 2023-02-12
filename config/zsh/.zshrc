@@ -21,9 +21,6 @@ if [[ "${CJ_X_AUTOSTART}" == "yes" ]] && tty | command grep tty1 > /dev/null; th
   exec xinit -- vt1 :0 -allowMouseOpenFail -nolisten tcp -disableVidMode -ignoreABI -nosilk -novtswitch > /dev/null 2>&1
 fi
 
-# === Removing 256color suffix ===
-export TERM=${TERM:s/-256color/}
-
 # === Autoload ===
 if [[ -o login ]]; then
   if [[ "${TERM}" = 'linux' ]]; then
