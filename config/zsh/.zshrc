@@ -8,6 +8,13 @@ __path-prepend() {
 
 __path-prepend "${GOPATH}/bin"
 __path-prepend "${CJ_DOTFILES}/bin"
+__path-prepend "${CARGO_HOME}/bin"
+__path-prepend "${PYENV_ROOT}/bin"
+__path-prepend "/opt/homebrew/bin"
+
+if which -s pyenv > /dev/null; then
+  eval "$(pyenv init -)"
+fi
 
 # === X autostart ===
 if [[ "${CJ_X_AUTOSTART}" == "yes" ]] && tty | command grep tty1 > /dev/null; then
