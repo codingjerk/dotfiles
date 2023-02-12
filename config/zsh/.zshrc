@@ -241,7 +241,15 @@ setopt hist_verify
 setopt complete_in_word
 setopt always_to_end
 
-FPATH=/opt/homebrew/share/zsh/site-functions:/opt/homebrew/share/zsh-completions:$FPATH
+LOCAL_COMPDIR="${XDG_CACHE_HOME}/zsh-completions"
+mkdir -p "${LOCAL_COMPDIR}"
+
+if which -s rustup > /dev/null; then
+    rustup completions zsh rustup > "${LOCAL_COMPDIR}/_rustup"
+    rustup completions zsh cargo > "${LOCAL_COMPDIR}/_cargo"
+fi
+
+FPATH="${LOCAL_COMPDIR}:/opt/homebrew/share/zsh/site-functions:/opt/homebrew/share/zsh-completions:$FPATH"
 ZSH_COMPDUMP="${XDG_CACHE_HOME}/zsh/compdump"
 zmodload -i zsh/complist
 autoload -Uz compinit
