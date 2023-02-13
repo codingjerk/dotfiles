@@ -2,7 +2,7 @@
 
 Personal dotfiles.
 
-![Showcase](./asserts/showcase.ong)
+![Showcase](./assets/showcase.png)
 *Helix editor in tmux in alacritty*
 
 ## Read first
