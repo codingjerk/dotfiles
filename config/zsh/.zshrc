@@ -6,11 +6,11 @@ __path-prepend() {
   export PATH="$1:$PATH"
 }
 
-__path-prepend "${GOPATH}/bin"
-__path-prepend "${CJ_DOTFILES}/bin"
-__path-prepend "${CARGO_HOME}/bin"
-__path-prepend "${PYENV_ROOT}/bin"
 __path-prepend "/opt/homebrew/bin"
+__path-prepend "${GOPATH}/bin"
+__path-prepend "${PYENV_ROOT}/bin"
+__path-prepend "${CARGO_HOME}/bin"
+__path-prepend "${CJ_DOTFILES}/bin"
 
 if which -s pyenv > /dev/null; then
   eval "$(pyenv init -)"
