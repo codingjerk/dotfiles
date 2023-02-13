@@ -2,14 +2,8 @@
 
 Personal dotfiles.
 
-![Zsh features (last exit status, command line, autosuggestions), neovim and tmux](https://i.imgur.com/O1l4gay.png)
-*Zsh features (last exit status, command line, autosuggestions), neovim and tmux*
-
-![Lock screen (i3lock)](https://i.imgur.com/X13LdB9.png)
-*Lock screen (i3lock)*
-
-![Motd.py and colors](https://i.imgur.com/ejtzI25.png)
-*Motd.py and colors*
+![Showcase](./asserts/showcase.ong)
+*Helix editor in tmux in alacritty*
 
 ## Read first
 
