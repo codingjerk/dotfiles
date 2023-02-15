@@ -255,6 +255,11 @@ function pomo(){
   notify "Pomo" "${2:-Countdown finished}"
 }
 
+# === Tools ===
+if which -s zoxide > /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
 # === Completion ===
 LISTMAX=1000
 
