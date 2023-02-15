@@ -13,6 +13,12 @@
   autocrlf = input
   compression = 9
   quotepath = false
+  whitespace = trailing-space,space-before-tab
+
+[advice]
+  addEmptyPathspec = false
+  pushNonFastForward = false
+  statusHints = false
 
 [blame]
   blankBoundary = true
@@ -20,6 +26,7 @@
 
 [branch]
   autoSetupRebase = always
+  sort = -committerdate
 
 [commit]
   gpgSign = true
@@ -38,6 +45,7 @@
 
 [merge]
   tool = neovimmerge
+  log = true
 
 [mergetool "neovimmerge"]
   cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
@@ -81,6 +89,12 @@
 [tag]
   forceSignAnnotated = true
 
+[diff]
+  renames = copies
+
+[diff "bin"]
+  textconv = hexyl
+
 [pager]
   branch = false
 
@@ -118,3 +132,12 @@
   tag          = yellow
   stash        = yellow
   HEAD         = blue
+
+[url "git@github.com:"]
+  insteadOf = "gh:"
+
+[url "ssh://git@git.qrator.net:2202/"]
+  insteadOf = "qr:"
+
+[url "ssh://git@git.qrator.net:2202/radar/"]
+  insteadOf = "radar:"
