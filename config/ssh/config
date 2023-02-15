@@ -8,8 +8,8 @@ Host *
   ControlPersist 5m
 
   TCPKeepAlive yes
-  ServerAliveInterval 30
-  ServerAliveCountMax 4
+  ServerAliveInterval 1
+  ServerAliveCountMax 3
 
   HostkeyAlgorithms +ssh-rsa
   PubkeyAcceptedAlgorithms +ssh-rsa
