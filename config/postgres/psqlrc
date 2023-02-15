@@ -1,15 +1,26 @@
 \set QUIET 1
 
+-- History settings
+\set HISTSIZE -1
+\set HISTCONTROL ignoredups
+
+-- Configure table style
 \pset border 2
 \pset linestyle unicode
 \pset null '(null)'
-\set HISTSIZE -1
-\set ON_ERROR_STOP on
+
+-- Change prompt
 \set PROMPT1 ' %[%033[34m%]%n » %[%033[36m%]%/ »%[%033[0m%] '
 \set PROMPT2 ' %[%033[31m%]%... »%[%033[0m%] '
-\set VERBOSITY verbose
-\timing on
 
+-- Other options
+\set ON_ERROR_STOP on
+\set VERBOSITY verbose
+
+-- Change application name for debugging
 set application_name to psql;
+
+-- Enable timing of commands
+\timing on
 
 \unset QUIET
