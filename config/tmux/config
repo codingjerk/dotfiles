@@ -8,6 +8,7 @@ set -g prefix `
 bind ` send-prefix
 
 # === Options ===
+set -g bell-action any
 set -g default-command "${SHELL}"
 set -g mouse off
 set -g automatic-rename off
