@@ -59,7 +59,6 @@ alias dmesg='sudo dmesg -H'
 
 alias dc='docker-compose'
 
-alias df='df -h -x devtmpfs'
 alias du='du -h -c'
 
 alias dops='docker ps --format="table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}"'
@@ -74,7 +73,7 @@ alias exa-ignore='exa --git-ignore --git --ignore-glob ".git|__pycache__|.expo|.
 alias free='free -h'
 
 alias ga='git add'
-alias gb='git branch'
+alias gb='git branch --all'
 alias gc='git commit'
 alias gd='git diff --output-indicator-new=" " --output-indicator-old=" "'
 alias gi='git init'
@@ -167,6 +166,30 @@ alias mv='mv -i'
 
 alias xclip='xclip -selection clipboard'
 alias vim='e'
+alias nvim='e'
+
+# Macos specific
+if [[ $(uname) == 'Darwin' ]]; then
+  alias df='gdf -h -x devtmpfs'
+else
+  alias df='df -h -x devtmpfs'
+fi
+
+# Urls
+g() {
+  $BROWSER "https://google.com/search?q=$*"
+}
+
+repo() {
+  url=$( \
+    git config --get remote.origin.url \
+    | sed 's/ssh:\/\/git@/https:\/\//g' \
+    | sed 's/git@github.com:/https:\/\/github.com\//g' \
+    | sed 's/:2202//g' \
+  )
+
+  $BROWSER "$url"
+}
 
 # === Colors ===
 man() {
