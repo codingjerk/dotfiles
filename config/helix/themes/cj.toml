@@ -3,7 +3,9 @@
 "ui.text" = "light-gray"
 "ui.linenr" = "gray"
 "ui.linenr.selected" = "light-gray"
-"ui.popup" = "gray"
+"ui.popup" = { fg = "gray", bg = "#3B4252" }
+"ui.help" = { bg = "#3B4252" }
+"ui.menu" = { bg = "#3B4252" }
 "ui.selection" = { fg = "light-gray", bg = "gray", modifiers = [] }
 
 "punctuation.bracket" = "white"
