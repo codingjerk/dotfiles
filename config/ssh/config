@@ -1,5 +1,9 @@
 Host *
+  ConnectTimeout 5
+  ConnectionAttempts 3
+
   Compression yes
+
   AddressFamily inet
   ExitOnForwardFailure yes
   StrictHostKeyChecking accept-new
