@@ -47,8 +47,6 @@ C-s = "select_regex"
 
 C-a = "select_all"
 
-esc = "keep_primary_selection"
-
 [keys.select]
 w = "extend_line_up"
 a = "extend_char_left"
