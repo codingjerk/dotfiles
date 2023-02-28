@@ -6,6 +6,7 @@ __path-prepend() {
   export PATH="$1:$PATH"
 }
 
+__path-prepend "/usr/local/bin"
 __path-prepend "/opt/homebrew/bin"
 __path-prepend "${GOPATH}/bin"
 __path-prepend "${PYENV_ROOT}/bin"
