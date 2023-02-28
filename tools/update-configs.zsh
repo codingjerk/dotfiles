@@ -1,5 +1,10 @@
 setopt ERR_EXIT NO_UNSET PIPE_FAIL
 
+# === Load settings ===
+
+export CJ_DOTFILES="${0:a:h:h}"
+. "${CJ_DOTFILES}/settings.sh"
+
 # === Ensure directories exist ===
 mkdir -p "${XDG_RUNTIME_DIR}"
 
@@ -18,7 +23,6 @@ chmod go-rwx "${XDG_DATA_HOME}/gnupg"
 
 # === Update *.in configs ===
 lesskey -o "${XDG_CONFIG_HOME}/less/lesskey" "${XDG_CONFIG_HOME}/less/lesskey.in" 2> /dev/null
-sh "${XDG_CONFIG_HOME}/pam/environment.in" > "${HOME}/.pam_environment"
 sh "${XDG_CONFIG_HOME}/i3/config.in" > "${XDG_CONFIG_HOME}/i3/config"
 sh "${XDG_CONFIG_HOME}/polybar/config.in" > "${XDG_CONFIG_HOME}/polybar/config"
 sh "${XDG_CONFIG_HOME}/dunst/config.in" > "${XDG_CONFIG_HOME}/dunst/dunstrc"
@@ -26,6 +30,13 @@ sh "${XDG_CONFIG_HOME}/alacritty/alacritty.yml.in" > "${XDG_CONFIG_HOME}/alacrit
 sh "${XDG_CONFIG_HOME}/urxvt/config.in" > "${XDG_CONFIG_HOME}/urxvt/config"
 sh "${XDG_CONFIG_HOME}/gtk-3.0/gtk.css.in" > "${XDG_CONFIG_HOME}/gtk-3.0/gtk.css"
 sh "${XDG_CONFIG_HOME}/zathura/zathurarc.in" > "${XDG_CONFIG_HOME}/zathura/zathurarc"
+
+# === Environment file ===
+if [[ "${CJ_USE_ZSHENV}" == "yes" ]]; then
+  sh "${XDG_CONFIG_HOME}/pam/environment.in" | zsh "${CJ_DOTFILES}/tools/generate-zshenv.zsh" > ~/.zshenv
+else
+  sh "${XDG_CONFIG_HOME}/pam/environment.in" > "${HOME}/.pam_environment"
+fi
 
 # === Os-specific steps ===
 

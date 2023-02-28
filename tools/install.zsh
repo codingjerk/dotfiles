@@ -16,6 +16,8 @@ if ! [ -e "${CJ_DOTFILES}/settings.sh" ]; then
   zsh "${CJ_DOTFILES}/tools/generate-settings.zsh" > "${CJ_DOTFILES}/settings.sh"
 fi
 
+. "${CJ_DOTFILES}/settings.sh"
+
 # === Update configs ===
 . "${CJ_DOTFILES}/config/zsh/.zprofile"
 zsh "${CJ_DOTFILES}/tools/update-configs.zsh"
