@@ -9,3 +9,4 @@
 "ui.selection" = { fg = "light-gray", bg = "gray", modifiers = [] }
 
 "punctuation.bracket" = "white"
+"comment" = "gray"
