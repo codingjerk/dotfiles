@@ -8,5 +8,6 @@
 "ui.menu" = { bg = "#3B4252" }
 "ui.selection" = { fg = "light-gray", bg = "gray", modifiers = [] }
 
+"markup.italic" = { fg = "light-magenta", modifiers = ["bold"] }
 "punctuation.bracket" = "white"
 "comment" = "gray"
