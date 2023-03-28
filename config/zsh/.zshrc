@@ -145,7 +145,6 @@ t-magnet() { t-add "magnet:?xt=urn:btih:$1" "${@:2}" }
 
 alias rf='rm -rf'
 
-alias ping='ping -4AUO'
 alias pg='openssl rand -base64 33'
 alias py='python3'
 alias pip='pip3'
@@ -172,8 +171,10 @@ alias nvim='e'
 
 # Macos specific
 if [[ $(uname) == 'Darwin' ]]; then
+  alias ping='ping -i 0.1'
   alias df='gdf -h -x devtmpfs'
 else
+  alias ping='ping -4AUO'
   alias df='df -h -x devtmpfs'
 fi
 
