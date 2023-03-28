@@ -47,6 +47,8 @@ C-s = "select_regex"
 
 C-a = "select_all"
 
+g = { w = "goto_file_start", s = "goto_file_end", a = "goto_line_start", d = "goto_line_end" }
+
 [keys.select]
 w = "extend_line_up"
 a = "extend_char_left"
