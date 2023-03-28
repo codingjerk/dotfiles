@@ -13,7 +13,7 @@ Host *
 
   TCPKeepAlive yes
   ServerAliveInterval 1
-  ServerAliveCountMax 3
+  ServerAliveCountMax 5
 
   HostkeyAlgorithms +ssh-rsa
   PubkeyAcceptedAlgorithms +ssh-rsa
