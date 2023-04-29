@@ -17,6 +17,8 @@ export LESS='-imRSc -x4 -z-4 -#10 -j8'
 
 export PASSWORD_STORE_CLIP_TIME=8
 
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 # === LS_COLORS ===
 LS_COLORS='no=0:fi=0:di=34'
 
