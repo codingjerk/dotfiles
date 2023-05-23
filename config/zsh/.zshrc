@@ -46,7 +46,7 @@ export GPG_TTY=$(tty)
 
 # === Aliases ===
 alias :q='exit'
-alias :w="echo Oops! Looks like you're not in an editor :)"
+alias :w="echo \"Oops! Looks like you\'re not in an editor :)\""
 alias cal='cal -m'
 alias curl='curl -sJL#'
 
