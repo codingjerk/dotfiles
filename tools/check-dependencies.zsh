@@ -2,14 +2,14 @@ setopt ERR_EXIT NO_UNSET PIPE_FAIL
 
 if ! [[ -v 1 ]]; then
   echo "Usage: check-dependencies.zsh MODE"
-  echo "MODE can be opt, gui, vim and/or all"
+  echo "MODE can be opt, gui, sound and/or all"
   exit 1
 fi
 
 mode="$1"
 
 if [[ "all" =~ "$mode" ]]; then
-  mode="opt,gui,vim"
+  mode="opt,gui,sound"
 fi
 
 # === Text functions ===
@@ -32,10 +32,11 @@ recommend() { "$1" "$3" || recommend_message "$2" }
 
 # === Strict dependencies ===
 require binary "Z shell" zsh
-require binary "NeoVim" nvim
+require binary "helix" hx
 require binary "Python (3.x)" python3
 require binary "fzf" fzf
 require binary "fd" fd
+require binary "bc" bc
 
 # === Optional dependencies ===
 if [[ "$mode" =~ opt ]]; then
@@ -49,12 +50,13 @@ if [[ "$mode" =~ opt ]]; then
   recommend binary "exa" exa
   recommend binary "hexyl" hexyl
   recommend binary "Ripgrep" rg
+  recommend binary "pass" pass
+fi
+
+if [[ "$mode" =~ sound ]]; then
   recommend binary "pipewire" pipewire
   recommend binary "pavucontrol" pavucontrol
   recommend binary "pamixer" pamixer
-  recommend binary "pass" pass
-  recommend binary "redshift" redshift
-  recommend binary "xbacklight" xbacklight
 fi
 
 # === GUI ===
@@ -71,38 +73,9 @@ if [[ "$mode" =~ gui ]]; then
   require icons "Breeze (icons)" "breeze"
   require icons "Breeze (cursors)" "Breeze_Snow"
 
-  require binary "xinit" xinit
-  require binary "xsetroot" xsetroot
-  require binary "feh" feh
-  require binary "Polybar" polybar
-  require binary "Dunst" dunst
-  require binary "i3 (gaps)" i3
-  require binary "i3lock (color, by PandorasFox)" i3lock
-  require binary "bspwm" bspwm
-  require binary "sxhkd" sxhkd
-  require binary "rxvt-unicode" urxvt
-  require binary "Rofi" rofi
-  require binary "maim" maim
-  require binary "slop" slop
-  require binary "ImageMagick" convert
-
-  recommend binary "xclip" xclip
-
+  require binary "alacritty" alacritty
   recommend binary "Zathura" zathura
-  recommend binary "Brave" brave
   recommend binary "mpv" mpv
-  recommend binary "picom" picom
-fi
-
-# === Vim-plugin dependencies ===
-if [[ "$mode" =~ vim ]]; then
-  require python3_lib "neovim (Python library)" neovim
-  require binary "Python 2.x" python2
-  require python2_lib "neovim (Python 2 library)" neovim
-  require binary "Ruby" ruby
-  require binary "Node.js" node
-  require binary "NPM" npm
-  require binary "yarn" yarn
 fi
 
 # === OS-specfic ===
