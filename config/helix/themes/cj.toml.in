@@ -1,0 +1,23 @@
+. "${CJ_DOTFILES}/settings.sh"
+. "${CJ_DOTFILES}/assets/colors.sh"
+
+cat <<EOF
+"inherits" = "base16_transparent"
+
+"ui.text" = "light-gray"
+"ui.linenr" = "gray"
+"ui.linenr.selected" = "light-gray"
+"ui.popup" = { fg = "gray", bg = "dim" }
+"ui.help" = { bg = "dim" }
+"ui.menu" = { bg = "dim" }
+"ui.selection" = { fg = "light-gray", bg = "gray", modifiers = [] }
+
+"markup.italic" = { fg = "light-magenta", modifiers = ["bold"] }
+"punctuation.bracket" = "white"
+"comment" = "gray"
+
+"info" = "red"
+
+[palette]
+dim = "#${CJ_COLOR_DIM_BLACK_HEX}"
+EOF
