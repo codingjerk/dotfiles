@@ -3,6 +3,11 @@ bin/fzf
 bin/fd
 bin/xclip
 
+# Generated configs
+config/alacritty/alacritty.yml
+config/gtk-3.0/gtk.css
+config/helix/themes/cj.toml
+
 config/3T
 config/Android Open Source Project
 config/Arena_x86_64_linux
@@ -27,7 +32,6 @@ config/Postman
 config/QtProject.conf
 config/Unknown Organization/
 config/VirtualBox
-config/alacritty/alacritty.yml
 config/android
 config/cef_user_data
 config/chromium
@@ -44,7 +48,6 @@ config/evolution
 config/fmit
 config/gtk-2.0/gtkfilechooser.ini
 config/gtk-3.0/bookmarks
-config/gtk-3.0/gtk.css
 config/i3/config
 config/inkscape
 config/insight-nodejs/insight-yo.json
