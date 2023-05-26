@@ -1,3 +1,18 @@
+[language-servers.pylsp.config.pylsp.plugins]
+autopep8 = { enabled = false }
+mccabe = { enabled = false }
+preload = { enabled = false }
+pycodestyle = { enabled = false }
+pyflakes = { enabled = false }
+yapf = { enabled = false }
+jedi_completion = { fuzzy = true, resolve_at_most = 10 }
+ruff = { enabled = true }
+mypy = { enabled = true, dmypy = true }
+black = { enabled = true }
+
+[language-servers.python-lsp-ruff]
+command = "python-lsp-ruff"
+
 [[language]]
-name = "rust"
-config = { diagnostics = { disabled = [ "inactive-code" ] } }
+name = "python"
+language-servers = [ "pylsp" ]
