@@ -90,7 +90,7 @@ config/yandex-browser-beta
 config/zathura/zathurarc
 config/zoomus.conf
 config/zsh/.zcompdump
-
+config/zsh/.zsh_sessions/
 
 cache
 share
