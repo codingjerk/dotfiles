@@ -17,8 +17,11 @@ window:
   dynamic_padding: false
   decorations: none
 
-  title: term
+  title: ""
   dynamic_title: false
+
+selection:
+  save_to_clipboard: true
 
 scrolling:
   history: 10000
@@ -32,7 +35,6 @@ font:
 
   size: ${CJ_MONOFONT_SIZE}
 
-  use_thin_strokes: false
   ligatures: true
 
 draw_bold_text_with_bright_colors: true
