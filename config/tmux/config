@@ -42,7 +42,7 @@ set -g status-justify centre
 
 # === Colors ===
 set -g pane-border-style "fg=colour8"
-set -g pane-active-border-style "fg=colour6"
+set -g pane-active-border-style "fg=colour4"
 
 # === Keybindings ===
 bind w select-pane -U
