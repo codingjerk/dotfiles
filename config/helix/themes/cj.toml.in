@@ -4,6 +4,38 @@
 cat <<EOF
 "inherits" = "base16_transparent"
 
+# Avaliable colors
+
+# NOTE: white and light-gray are swapped
+# - black
+# - gray
+# - light-gray
+# - white
+
+# NOTE: cyan and magenta are swapped
+# - red
+# - green
+# - yellow
+# - blue
+# - magenta
+# - cyan
+
+# Syntax
+
+"variable" = "light-gray"
+"type" = "cyan"
+"punctuation" = "white"
+"operator" = "white"
+"comment" = "gray"
+
+# Markdown-specific
+"markup.italic" = { fg = "light-magenta", modifiers = ["bold"] }
+
+# For TODOs and NOTEs
+"info" = "red"
+
+# UI
+
 "ui.text" = "light-gray"
 "ui.linenr" = "gray"
 "ui.linenr.selected" = "light-gray"
@@ -11,12 +43,6 @@ cat <<EOF
 "ui.help" = { bg = "dim" }
 "ui.menu" = { bg = "dim" }
 "ui.selection" = { fg = "light-gray", bg = "gray", modifiers = [] }
-
-"markup.italic" = { fg = "light-magenta", modifiers = ["bold"] }
-"punctuation.bracket" = "white"
-"comment" = "gray"
-
-"info" = "red"
 
 [palette]
 dim = "#${CJ_COLOR_DIM_BLACK_HEX}"
