@@ -1,4 +1,11 @@
+# General temporary files
+.coverage
+
+# My TODO files
 *.todo
+TODO.md
+
+# Python specific
 .mypy_cache/
 .pytest_cache/
 __pycache__/
