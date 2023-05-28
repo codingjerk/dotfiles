@@ -8,6 +8,8 @@ import readline
 import importlib
 import pprint
 
+from contextlib import suppress
+
 
 # === Usefull modules ===
 
@@ -40,7 +42,8 @@ histfile = os.path.join(data_dir, 'history')
 histsize = int(os.environ.get('HISTSIZE', 10000))
 
 open(histfile, "a").close()
-readline.read_history_file(histfile)
+with suppress(OSError):
+  readline.read_history_file(histfile)
 readline.set_history_length(histsize)
 
 atexit.register(readline.write_history_file, histfile)
