@@ -57,6 +57,13 @@ cat <<EOF
 "ui.menu" = { bg = "dim" }
 "ui.selection" = { fg = "light-gray", bg = "gray", modifiers = [] }
 
+# Diagnostics
+"diagnostic.info" = {}
+"diagnostic.hint" = {}
+"diagnostic.debug" = {}
+"diagnostic.warning" = {}
+"diagnostic.error" = {}
+
 [palette]
 dim = "#${CJ_COLOR_DIM_BLACK_HEX}"
 EOF
