@@ -1,12 +1,12 @@
 # Theme: Nord (modified)
-CJ_COLOR_DIM_BLACK='  35  45  56'
+CJ_COLOR_DIM_BLACK='  35  45  56'  # Custom: 80% of BG
 CJ_COLOR_BLACK='      46  52  64'
 CJ_COLOR_DARK_GRAY='  92 104 128'
 CJ_COLOR_LIGHT_GRAY='123 133 155'
-CJ_COLOR_WHITE='     216 222 233'
+CJ_COLOR_WHITE='     202 208 220'  # Custom: +156 to BG
 
 CJ_COLOR_RED='       191 102 114'  # Mixed red
-CJ_COLOR_ORANGE='    124 195 202'  # Mixed cyan
+CJ_COLOR_ORANGE='    144 195 212'  # Mixed cyan (less saturation)
 CJ_COLOR_YELLOW='    192 195 168'  # Mixed yellow
 CJ_COLOR_GREEN='     124 195 167'  # Mixed green
 CJ_COLOR_BLUE='      124 159 202'  # Mixed blue
