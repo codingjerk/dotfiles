@@ -20,12 +20,25 @@ cat <<EOF
 # - magenta
 # - cyan
 
-# Syntax
-
-"variable" = "light-gray"
+"attribute" = "blue"
+"constant" = "magenta"
+"constant.character.escape" = "red"
+"constant.numeric" = "magenta"
+"constructor" = "red"
+"function" = "blue"
+"identifier" = "blue"
+"keyword" = "blue"
+"label" = "red"
+"namespace" = "cyan"
+"special" = "red"
+"string"  = "green"
 "type" = "cyan"
-"punctuation" = "white"
+"variable" = "light-gray"
+"variable.other.member" = "blue"
+
+# Lightweight punctuation
 "operator" = "white"
+"punctuation" = "white"
 "comment" = "gray"
 
 # Markdown-specific
