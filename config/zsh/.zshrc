@@ -59,7 +59,7 @@ alias diff='diff --color=auto'
 
 alias dmesg='sudo dmesg -H'
 
-alias dc='docker-compose'
+alias dc='docker compose'
 
 alias du='du -h -c'
 
