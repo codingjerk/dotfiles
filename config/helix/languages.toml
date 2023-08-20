@@ -16,3 +16,7 @@ command = "python-lsp-ruff"
 [[language]]
 name = "python"
 language-servers = [ "pylsp" ]
+
+[[language]]
+name = "git-commit"
+rulers = []
