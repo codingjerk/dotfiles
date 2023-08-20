@@ -1,5 +1,5 @@
 # === Tools ===
-export EDITOR='hx'
+export EDITOR='helix'
 export VISUAL="${EDITOR}"
 export PAGER='less'
 
