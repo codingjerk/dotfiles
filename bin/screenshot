@@ -1,24 +1,22 @@
 #!/usr/bin/env sh
 
+. "${CJ_DOTFILES}/assets/colors.sh"
+
 # === Geometry ===
-MONITOR=$(polybar -m|tail -1|sed -e 's/:.*$//g')
 if [ "_$1" = "_selection" ]; then
-  geometry="$(slop --padding="-2" --bordersize=2 --color='0.9,0.3,0.5')"
+  geometry="$(slurp -b "${CJ_COLOR_DIM_BLACK_HEX}BB" -w 2 -c "${CJ_COLOR_4_HEX}FF")"
+  geometry_args=(-g "$geometry")
 else
-  geometry="$(xrandr | grep -Po "${MONITOR} connected( primary)? \K.[0-9]*x[0-9]*\+[0-9]*\+[0-9]*")"
+  geometry="$(xrandr | grep -Po "connected( primary)? \K.[0-9]*x[0-9]*\+[0-9]*\+[0-9]*")"
+  geometry_args=()
 fi
 
-width=$(echo "$geometry" | grep -Po '[0-9]*(?=x)')
-height=$(echo "$geometry" | grep -Po '[0-9]*x\K[0-9]*(?=\+)')
+width=$(echo "$geometry" | grep -Po '[0-9]+(?=x)')
+height=$(echo "$geometry" | grep -Po '(?<=x)[0-9]+')
 
 # === Screenshot ===
 original="$(mktemp --suffix .png)"
-maim \
-  --format=png \
-  --quality=10 \
-  --hidecursor \
-  --geometry=$geometry \
-  "$original"
+grim "${geometry_args[@]}" $original
 
 # === Mask ===
 mask="$(mktemp --suffix .png)"
@@ -49,9 +47,7 @@ convert \
   "$shadowed"
 
 # === Clipboard ===
-xclip < "$shadowed" \
-  -selection clipboard \
-  -t image/png
+wl-copy < "$shadowed"
 
 # === Cleanup ===
 rm "$original" "$mask" "$rounded" "$shadowed"

@@ -1,0 +1,178 @@
+. "${CJ_DOTFILES}/assets/colors.sh"
+. "${CJ_DOTFILES}/settings.sh"
+
+cat <<EOF
+# === Sway specific ===
+output "*" background "${CJ_DOTFILES}/assets/wallpaper.png" fill
+
+# === Keyboard ===
+input type:keyboard {
+    xkb_layout "us,ru"
+    xkb_options "grp:caps_toggle,grp_led:caps,compose:ralt"
+}
+
+# === Touchpad ===
+input "*" {
+	tap enabled
+	natural_scroll enabled
+
+	scroll_factor 0.15
+}
+
+# === Statusbar ===
+bar {
+	status_command i3status-rs
+	position top
+	font "$CJ_MONOFONT $CJ_MONOFONT_SIZE"
+	tray_output none
+
+	status_padding 12
+	status_edge_padding 24
+	gaps 0 0 0 24
+
+	colors {
+		background #${CJ_COLOR_BG_HEX}
+		statusline #${CJ_COLOR_FG_HEX}
+		separator #${CJ_COLOR_BG_HEX}
+
+		focused_workspace #${CJ_COLOR_BG_HEX} #${CJ_COLOR_BG_HEX} #${CJ_COLOR_4_HEX}
+		active_workspace #${CJ_COLOR_BG_HEX} #${CJ_COLOR_BG_HEX} #${CJ_COLOR_8_HEX}
+		inactive_workspace #${CJ_COLOR_BG_HEX} #${CJ_COLOR_BG_HEX} #${CJ_COLOR_8_HEX}
+		urgent_workspace #${CJ_COLOR_BG_HEX} #${CJ_COLOR_BG_HEX} #${CJ_COLOR_1_HEX}
+	}
+}
+
+# === Options ===
+set \$mod Mod1
+
+set \$ws1 "1"
+set \$ws2 "2"
+set \$ws3 "3"
+set \$ws4 "4"
+set \$ws5 "5"
+set \$ws6 "6"
+set \$ws7 "7"
+set \$ws8 "8"
+set \$ws9 "9"
+set \$ws10 "10"
+set \$ws11 "11"
+set \$ws12 "12"
+
+floating_modifier \$mod
+
+# === Hacks ===
+for_window [title="Microsoft Teams Notification"] floating enable
+no_focus [title="Microsoft Teams Notification"]
+
+for_window [title="win0"] floating enable
+no_focus [title="win0"]
+
+# === Look & Feel ===
+hide_edge_borders smart
+default_border pixel 2
+default_floating_border pixel 2
+
+focus_follows_mouse yes
+mouse_warping output
+popup_during_fullscreen ignore
+force_display_urgency_hint 100 ms
+
+gaps inner 24
+smart_gaps on
+
+# === Fonts ===
+font pango:${CJ_MONOFONT} $(echo "${CJ_MONOFONT_SIZE} * 2" | bc)
+for_window [class=".*"] title_format <span font="${CJ_MONOFONT} ${CJ_MONOFONT_SIZE}">   %title   </span>
+
+# === Colors ===
+set \$CL_BG #${CJ_COLOR_BG_HEX}
+set \$CL_FG #${CJ_COLOR_FG_HEX}
+set \$CL_AC #${CJ_COLOR_4_HEX}
+set \$CL_WR #${CJ_COLOR_1_HEX}
+set \$CL_IN #${CJ_COLOR_8_HEX}
+
+client.focused          \$CL_BG \$CL_BG \$CL_FG \$CL_WR \$CL_AC
+client.focused_inactive \$CL_BG \$CL_BG \$CL_FG \$CL_BG \$CL_BG
+client.unfocused        \$CL_BG \$CL_BG \$CL_IN \$CL_BG \$CL_BG
+client.urgent           \$CL_BG \$CL_BG \$CL_WR \$CL_WR \$CL_WR
+
+# === Keybindings ===
+bindsym --to-code \$mod+w focus up
+bindsym --to-code \$mod+a focus left
+bindsym --to-code \$mod+s focus down
+bindsym --to-code \$mod+d focus right
+
+bindsym --to-code \$mod+Shift+w move up
+bindsym --to-code \$mod+Shift+a move left
+bindsym --to-code \$mod+Shift+s move down
+bindsym --to-code \$mod+Shift+d move right
+
+bindsym --to-code \$mod+h split h
+bindsym --to-code \$mod+v split v
+
+bindsym --to-code \$mod+t layout toggle
+bindsym --to-code \$mod+p focus parent
+
+bindsym --to-code \$mod+f fullscreen toggle
+bindsym --to-code \$mod+g floating toggle
+bindsym --to-code \$mod+space focus mode_toggle
+
+bindsym --to-code \$mod+e scratchpad show
+bindsym --to-code \$mod+Shift+e move scratchpad
+
+bindsym --to-code \$mod+Escape kill
+
+bindsym Super_L exec --no-startup-id run_menu
+bindsym --to-code \$mod+j exec --no-startup-id "\$TERMINAL"
+bindsym --to-code \$mod+l exec --no-startup-id swaylock
+
+bindsym Print         exec --no-startup-id "screenshot selection"
+bindsym Control+Print exec --no-startup-id "screenshot"
+bindsym Shift+Print   exec --no-startup-id "screenshot"
+
+bindsym --to-code \$mod+1 workspace \$ws1
+bindsym --to-code \$mod+2 workspace \$ws2
+bindsym --to-code \$mod+3 workspace \$ws3
+bindsym --to-code \$mod+4 workspace \$ws4
+bindsym --to-code \$mod+5 workspace \$ws5
+bindsym --to-code \$mod+6 workspace \$ws6
+bindsym --to-code \$mod+7 workspace \$ws7
+bindsym --to-code \$mod+8 workspace \$ws8
+bindsym --to-code \$mod+9 workspace \$ws9
+bindsym --to-code \$mod+0 workspace \$ws10
+bindsym --to-code \$mod+minus workspace \$ws11
+bindsym --to-code \$mod+plus workspace \$ws12
+
+bindsym --to-code \$mod+Shift+1 move container to workspace \$ws1
+bindsym --to-code \$mod+Shift+2 move container to workspace \$ws2
+bindsym --to-code \$mod+Shift+3 move container to workspace \$ws3
+bindsym --to-code \$mod+Shift+4 move container to workspace \$ws4
+bindsym --to-code \$mod+Shift+5 move container to workspace \$ws5
+bindsym --to-code \$mod+Shift+6 move container to workspace \$ws6
+bindsym --to-code \$mod+Shift+7 move container to workspace \$ws7
+bindsym --to-code \$mod+Shift+8 move container to workspace \$ws8
+bindsym --to-code \$mod+Shift+9 move container to workspace \$ws9
+bindsym --to-code \$mod+Shift+0 move container to workspace \$ws10
+bindsym --to-code \$mod+Shift+minus move container to workspace \$ws11
+bindsym --to-code \$mod+Shift+plus move container to workspace \$ws12
+
+bindsym --to-code \$mod+r reload
+bindsym --to-code \$mod+Shift+r restart
+bindsym --to-code \$mod+Shift+x exit
+
+bindsym XF86AudioPlay exec --no-startup-id mpc toggle
+bindsym XF86AudioPause exec --no-startup-id mpc toggle
+bindsym XF86AudioStop exec --no-startup-id mpc pause
+bindsym XF86AudioNext exec --no-startup-id mpc next
+bindsym XF86AudioPrev exec --no-startup-id mpc prev
+
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set "5%+"
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set "5%-"
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id sndctl inc
+bindsym XF86AudioLowerVolume exec --no-startup-id sndctl dec
+bindsym XF86AudioMute exec --no-startup-id sndctl mute
+
+# Notifications
+bindsym --to-code \$mod+n exec --no-startup-id dunstctl close-all
+EOF

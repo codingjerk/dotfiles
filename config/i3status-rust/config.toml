@@ -1,0 +1,29 @@
+icons_format = "{icon}"
+
+[icons]
+icons = "material-nf"
+
+[[block]]
+block = "battery"
+
+[[block]]
+block = "keyboard_layout"
+driver = "sway"
+format = " \uf11c  $layout "
+
+[block.mappings]
+"English (US)" = "us"
+"Russian (N/A)" = "ru"
+
+[[block]]
+block = "sound"
+
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
+
+[[block]]
+block = "time"
+interval = 30
+format = " $icon $timestamp.datetime(f:'%R') "
+timezone = "Asia/Bangkok"

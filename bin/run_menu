@@ -3,4 +3,4 @@
 . "${CJ_DOTFILES}/assets/colors.sh"
 . "${CJ_DOTFILES}/settings.sh"
 
-rofi -modi drun -show drun
+exec wofi --show drun

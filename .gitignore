@@ -78,6 +78,7 @@ config/remmina
 config/skypeforlinux
 config/sublime-text
 config/sublime-text-3
+config/sway/config
 config/systemd
 config/teams
 config/tint2

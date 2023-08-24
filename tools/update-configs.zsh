@@ -24,6 +24,7 @@ chmod go-rwx "${XDG_DATA_HOME}/gnupg"
 # === Update *.in configs ===
 lesskey -o "${XDG_CONFIG_HOME}/less/lesskey" "${XDG_CONFIG_HOME}/less/lesskey.in" 2> /dev/null
 sh "${XDG_CONFIG_HOME}/i3/config.in" > "${XDG_CONFIG_HOME}/i3/config"
+sh "${XDG_CONFIG_HOME}/sway/config.in" > "${XDG_CONFIG_HOME}/sway/config"
 sh "${XDG_CONFIG_HOME}/polybar/config.in" > "${XDG_CONFIG_HOME}/polybar/config"
 sh "${XDG_CONFIG_HOME}/dunst/config.in" > "${XDG_CONFIG_HOME}/dunst/dunstrc"
 sh "${XDG_CONFIG_HOME}/alacritty/alacritty.yml.in" > "${XDG_CONFIG_HOME}/alacritty/alacritty.yml"
