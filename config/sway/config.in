@@ -1,9 +1,14 @@
+#!/usr/bin/env sh
+
 . "${CJ_DOTFILES}/assets/colors.sh"
 . "${CJ_DOTFILES}/settings.sh"
 
 cat <<EOF
 # === Sway specific ===
 output "*" background "${CJ_DOTFILES}/assets/wallpaper.png" fill
+seat "*" xcursor_theme Breeze_Snow
+
+exec swayidle
 
 # === Keyboard ===
 input type:keyboard {
@@ -141,7 +146,7 @@ bindsym --to-code \$mod+8 workspace \$ws8
 bindsym --to-code \$mod+9 workspace \$ws9
 bindsym --to-code \$mod+0 workspace \$ws10
 bindsym --to-code \$mod+minus workspace \$ws11
-bindsym --to-code \$mod+plus workspace \$ws12
+bindsym --to-code \$mod+equal workspace \$ws12
 
 bindsym --to-code \$mod+Shift+1 move container to workspace \$ws1
 bindsym --to-code \$mod+Shift+2 move container to workspace \$ws2
@@ -154,7 +159,7 @@ bindsym --to-code \$mod+Shift+8 move container to workspace \$ws8
 bindsym --to-code \$mod+Shift+9 move container to workspace \$ws9
 bindsym --to-code \$mod+Shift+0 move container to workspace \$ws10
 bindsym --to-code \$mod+Shift+minus move container to workspace \$ws11
-bindsym --to-code \$mod+Shift+plus move container to workspace \$ws12
+bindsym --to-code \$mod+plus move container to workspace \$ws12
 
 bindsym --to-code \$mod+r reload
 bindsym --to-code \$mod+Shift+r restart
