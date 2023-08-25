@@ -1,21 +1,19 @@
-[language-servers.pylsp.config.pylsp.plugins]
+[[language]]
+name = "python"
+language-server = { command = "pylsp" }
+
+[language.config.pylsp.plugins]
 autopep8 = { enabled = false }
 mccabe = { enabled = false }
 preload = { enabled = false }
 pycodestyle = { enabled = false }
 pyflakes = { enabled = false }
 yapf = { enabled = false }
+flake8 = { enabled = true }
 jedi_completion = { fuzzy = true, resolve_at_most = 10 }
 ruff = { enabled = true }
 mypy = { enabled = true, dmypy = true }
-black = { enabled = true }
-
-[language-servers.python-lsp-ruff]
-command = "python-lsp-ruff"
-
-[[language]]
-name = "python"
-language-servers = [ "pylsp" ]
+black = { enabled = true, preview = true }
 
 [[language]]
 name = "git-commit"
