@@ -361,7 +361,7 @@ def get_cpu_line() -> List[str]:
 
     if not (load_avg := get_loadavg()):
         return []
-    
+
     try:
         cpu_load = load_avg / cpu_count
         color = get_color_by_load(cpu_load)
@@ -423,7 +423,7 @@ def show_resources() -> None:
 
     if line := get_mem_line("mem", lambda x: x.used):
         table.append(line)
-        
+
     if line := get_mem_line("mem", lambda x: x.used):
         table.append(line)
 
