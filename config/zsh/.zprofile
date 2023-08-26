@@ -19,6 +19,8 @@ export PASSWORD_STORE_CLIP_TIME=8
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 
+export MOZ_ENABLE_WAYLAND=1
+
 # === LS_COLORS ===
 LS_COLORS='no=0:fi=0:di=34'
 
