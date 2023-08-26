@@ -9,6 +9,7 @@ output "*" background "${CJ_DOTFILES}/assets/wallpaper.png" fill
 seat "*" xcursor_theme Breeze_Snow
 
 exec swayidle
+exec mako
 
 # === Keyboard ===
 input type:keyboard {
@@ -22,6 +23,7 @@ input "*" {
 	natural_scroll enabled
 
 	scroll_factor 0.15
+	dwt disabled
 }
 
 # === Statusbar ===
@@ -120,6 +122,7 @@ bindsym --to-code \$mod+p focus parent
 
 bindsym --to-code \$mod+f fullscreen toggle
 bindsym --to-code \$mod+g floating toggle
+bindsym --to-code \$mod+y sticky toggle
 bindsym --to-code \$mod+space focus mode_toggle
 
 bindsym --to-code \$mod+e scratchpad show

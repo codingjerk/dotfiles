@@ -57,6 +57,7 @@ config/kernel.org
 config/knightsrc
 config/less/lesskey
 config/libreoffice
+config/mako/config
 config/mimeapps.list
 config/mpd/bakoga.conf
 config/mpv/watch_later

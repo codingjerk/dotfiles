@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+. "${CJ_DOTFILES}/assets/colors.sh"
+. "${CJ_DOTFILES}/settings.sh"
+
+cat <<EOF
+max-history=5
+
+font=$CJ_MONOFONT $CJ_MONOFONT_SIZE
+background-color=#${CJ_COLOR_BG_HEX}FF
+text-color=#${CJ_COLOR_FG_HEX}FF
+border-color=#${CJ_COLOR_DIM_BLACK_HEX}FF
+border-radius=8
+
+height=256
+width=512
+max-icon-size=64
+
+padding=24,32
+outer-margin=0
+margin=8
+
+icon-path=/usr/share/icons/breeze-dark
+EOF
