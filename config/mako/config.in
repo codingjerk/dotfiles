@@ -9,7 +9,7 @@ max-history=5
 font=$CJ_MONOFONT $CJ_MONOFONT_SIZE
 background-color=#${CJ_COLOR_BG_HEX}FF
 text-color=#${CJ_COLOR_FG_HEX}FF
-border-color=#${CJ_COLOR_DIM_BLACK_HEX}FF
+border-color=#${CJ_COLOR_4_HEX}FF
 border-radius=8
 
 height=256
