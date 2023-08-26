@@ -7,6 +7,7 @@ cat <<EOF
 # === Sway specific ===
 output "*" background "${CJ_DOTFILES}/assets/wallpaper.png" fill
 seat "*" xcursor_theme Breeze_Snow
+output "*" adaptive_sync on
 
 exec swayidle
 exec mako
@@ -168,12 +169,6 @@ bindsym --to-code \$mod+r reload
 bindsym --to-code \$mod+Shift+r restart
 bindsym --to-code \$mod+Shift+x exit
 
-bindsym XF86AudioPlay exec --no-startup-id mpc toggle
-bindsym XF86AudioPause exec --no-startup-id mpc toggle
-bindsym XF86AudioStop exec --no-startup-id mpc pause
-bindsym XF86AudioNext exec --no-startup-id mpc next
-bindsym XF86AudioPrev exec --no-startup-id mpc prev
-
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set "5%+"
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set "5%-"
 
@@ -182,5 +177,5 @@ bindsym XF86AudioLowerVolume exec --no-startup-id sndctl dec
 bindsym XF86AudioMute exec --no-startup-id sndctl mute
 
 # Notifications
-bindsym --to-code \$mod+n exec --no-startup-id dunstctl close-all
+bindsym --to-code \$mod+n exec --no-startup-id makoctl dismiss
 EOF
