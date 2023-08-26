@@ -131,7 +131,7 @@ bindsym --to-code \$mod+Shift+e move scratchpad
 
 bindsym --to-code \$mod+Escape kill
 
-bindsym Super_L exec --no-startup-id run_menu
+bindsym Super_L exec --no-startup-id fuzzel
 bindsym --to-code \$mod+j exec --no-startup-id "\$TERMINAL"
 bindsym --to-code \$mod+l exec --no-startup-id swaylock
 

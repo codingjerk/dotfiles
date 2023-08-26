@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+
+. "${CJ_DOTFILES}/assets/colors.sh"
+. "${CJ_DOTFILES}/settings.sh"
+
+cat <<EOF
+font = ${CJ_MONOFONT}:pixelsize=$(( $CJ_MONOFONT_SIZE + 4 ))
+prompt = ""
+icon-theme = breeze-dark
+lines = 8
+width = 50
+horizontal-pad = 64
+vertical-pad = 24
+inner-pad = 12
+line-height = 32
+
+[colors]
+background = ${CJ_COLOR_BG_HEX}FF
+text = ${CJ_COLOR_FG_HEX}FF
+match = ${CJ_COLOR_4_HEX}FF
+selection = ${CJ_COLOR_DIM_BLACK_HEX}FF
+selection-text = ${CJ_COLOR_FG_HEX}FF
+selection-match = ${CJ_COLOR_4_HEX}FF
+border = ${CJ_COLOR_4_HEX}FF
+
+[border]
+width = 2
+radius = 8
+EOF

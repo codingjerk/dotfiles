@@ -1,6 +1,0 @@
-#!/usr/bin/env sh
-
-. "${CJ_DOTFILES}/assets/colors.sh"
-. "${CJ_DOTFILES}/settings.sh"
-
-exec wofi --show drun
