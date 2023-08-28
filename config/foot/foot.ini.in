@@ -1,0 +1,64 @@
+#!/usr/bin/env sh
+
+. "${CJ_DOTFILES}/assets/colors.sh"
+. "${CJ_DOTFILES}/settings.sh"
+
+cat <<EOF
+[main]
+font=${CJ_MONOFONT}:size=${CJ_MONOFONT_SIZE}
+font-bold=${CJ_MONOFONT}:size=${CJ_MONOFONT_SIZE}
+font-italic=${CJ_MONOFONT}:size=${CJ_MONOFONT_SIZE}
+font-bold-italic=${CJ_MONOFONT}:size=${CJ_MONOFONT_SIZE}
+
+pad=24x24
+bold-text-in-bright=palette-based
+
+term=xterm
+selection-target=both
+workers=0
+utmp-helper=none
+
+[bell]
+urgent=yes
+
+[scrollback]
+lines=10
+
+[cursor]
+color=${CJ_COLOR_BG_HEX} ${CJ_COLOR_FG_HEX}
+
+[mouse]
+hide-when-typing=yes
+
+[key-bindings]
+clipboard-paste=Control+v
+
+[tweak]
+scaling-filter=none
+font-monospace-warn=no
+sixel=no
+
+[colors]
+background=${CJ_COLOR_BG_HEX}
+foreground=${CJ_COLOR_FG_HEX}
+
+regular0=${CJ_COLOR_0_HEX}
+regular1=${CJ_COLOR_1_HEX}
+regular2=${CJ_COLOR_2_HEX}
+regular3=${CJ_COLOR_3_HEX}
+regular4=${CJ_COLOR_4_HEX}
+regular5=${CJ_COLOR_5_HEX}
+regular6=${CJ_COLOR_6_HEX}
+regular7=${CJ_COLOR_7_HEX}
+
+bright0=${CJ_COLOR_8_HEX}
+bright1=${CJ_COLOR_9_HEX}
+bright2=${CJ_COLOR_A_HEX}
+bright3=${CJ_COLOR_B_HEX}
+bright4=${CJ_COLOR_C_HEX}
+bright5=${CJ_COLOR_D_HEX}
+bright6=${CJ_COLOR_E_HEX}
+bright7=${CJ_COLOR_F_HEX}
+
+16=${CJ_COLOR_DIM_BLACK_HEX}
+EOF
