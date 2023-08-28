@@ -11,6 +11,7 @@ output "*" adaptive_sync on
 
 exec swayidle
 exec mako
+exec foot --server
 
 # === Keyboard ===
 input type:keyboard {

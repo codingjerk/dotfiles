@@ -46,6 +46,7 @@ config/dunst/dunstrc
 config/enchant
 config/evolution
 config/fmit
+config/foot/foot.ini
 config/fuzzel/fuzzel.ini
 config/gtk-2.0/gtkfilechooser.ini
 config/gtk-3.0/bookmarks

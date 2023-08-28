@@ -26,6 +26,7 @@ lesskey -o "${XDG_CONFIG_HOME}/less/lesskey" "${XDG_CONFIG_HOME}/less/lesskey.in
 sh "${XDG_CONFIG_HOME}/i3/config.in" > "${XDG_CONFIG_HOME}/i3/config"
 sh "${XDG_CONFIG_HOME}/sway/config.in" > "${XDG_CONFIG_HOME}/sway/config"
 sh "${XDG_CONFIG_HOME}/swaylock/config.in" > "${XDG_CONFIG_HOME}/swaylock/config"
+sh "${XDG_CONFIG_HOME}/foot/foot.ini.in" > "${XDG_CONFIG_HOME}/foot/foot.ini"
 sh "${XDG_CONFIG_HOME}/mako/config.in" > "${XDG_CONFIG_HOME}/mako/config"
 sh "${XDG_CONFIG_HOME}/fuzzel/fuzzel.ini.in" > "${XDG_CONFIG_HOME}/fuzzel/fuzzel.ini"
 sh "${XDG_CONFIG_HOME}/polybar/config.in" > "${XDG_CONFIG_HOME}/polybar/config"
