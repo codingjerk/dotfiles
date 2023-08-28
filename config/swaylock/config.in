@@ -1,0 +1,45 @@
+#!/usr/bin/env sh
+
+. "${CJ_DOTFILES}/assets/colors.sh"
+. "${CJ_DOTFILES}/settings.sh"
+
+cat <<EOF
+ignore-empty-password
+show-failed-attempts
+daemonize
+
+screenshots
+indicator
+clock
+timestr=%H:%M
+datestr=
+hide-keyboard-layout
+disable-caps-lock-text
+
+indicator-radius=128
+indicator-thickness=3
+indicator-x-position=300
+
+effect-blur=16x4
+
+font=$CJ_MONOFONT
+font-size=$(( $CJ_MONOFONT_SIZE * 3 / 2 ))
+
+ring-color=${CJ_COLOR_4_HEX}11
+ring-clear-color=${CJ_COLOR_3_HEX}FF
+ring-ver-color=${CJ_COLOR_2_HEX}77
+ring-wrong-color=${CJ_COLOR_1_HEX}FF
+key-hl-color=${CJ_COLOR_4_HEX}FF
+bs-hl-color=${CJ_COLOR_3_HEX}FF
+inside-color=00000000
+inside-clear-color=00000000
+inside-ver-color=00000000
+inside-wrong-color=00000000
+separator-color=00000000
+line-uses-ring
+
+text-color=${CJ_COLOR_FG_HEX}FF
+text-clear-color=00000000
+text-ver-color=00000000
+text-wrong-color=00000000
+EOF
