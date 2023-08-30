@@ -31,7 +31,7 @@ color=${CJ_COLOR_BG_HEX} ${CJ_COLOR_FG_HEX}
 hide-when-typing=yes
 
 [key-bindings]
-clipboard-paste=Control+v
+clipboard-paste=Control+v Control+Shift+v
 
 [tweak]
 scaling-filter=none

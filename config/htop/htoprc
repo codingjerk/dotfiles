@@ -13,7 +13,7 @@ cpu_count_from_zero=0
 update_process_names=0
 account_guest_in_cpu_meter=0
 
-delay=10
+delay=20
 
 hide_threads=1
 hide_kernel_threads=1

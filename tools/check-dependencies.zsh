@@ -69,7 +69,7 @@ if [[ "$mode" =~ gui ]]; then
   require font "Noto Color Emoji (font)" "Noto Color Emoji"
   require font "Twitter Color Emoji (font)" "Twitter Color Emoji"
 
-  require theme "Adapta (theme)" "Adapta"
+  require theme "Arc (theme)" "Arc"
   require icons "Breeze (icons)" "breeze"
   require icons "Breeze (cursors)" "Breeze_Snow"
 
