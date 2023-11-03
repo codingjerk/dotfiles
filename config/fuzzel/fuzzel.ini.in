@@ -6,6 +6,7 @@
 cat <<EOF
 font = ${CJ_MONOFONT}:pixelsize=$(( $CJ_MONOFONT_SIZE + 4 ))
 prompt = ""
+icons-enabled = no
 icon-theme = breeze-dark
 lines = 8
 width = 50
