@@ -77,4 +77,8 @@ RXVT_SOCKET DEFAULT=${XDG_RUNTIME_DIR}/urxvtd.socket
 WINEPREFIX DEFAULT=${XDG_DATA_HOME}/wine/prefixes/default
 
 _JAVA_OPTIONS DEFAULT=-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java
+
+# === Wayland support ===
+MOZ_ENABLE_WAYLAND DEFAULT=1
+
 EOF
