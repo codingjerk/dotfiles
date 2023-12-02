@@ -424,9 +424,6 @@ def show_resources() -> None:
     if line := get_mem_line("mem", lambda x: x.used):
         table.append(line)
 
-    if line := get_mem_line("mem", lambda x: x.used):
-        table.append(line)
-
     if line := get_mem_line("mem+cached", lambda x: x.used + x.cached):
         table.append(line)
 
