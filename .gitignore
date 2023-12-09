@@ -20,6 +20,7 @@ config/DataGrip
 config/Electron
 config/Element
 config/Foxit Software
+config/Genymobile/
 config/GIMP
 config/Google
 config/JetBrains
@@ -89,6 +90,7 @@ config/tint2
 config/torbrowser/
 config/transmission
 config/transmission-remote-gtk
+config/unity3d/
 config/urxvt/config
 config/vivaldi
 config/vlc
