@@ -10,3 +10,7 @@ TODO.md
 .pytest_cache/
 __pycache__/
 .hypothesis/
+
+# Zig specific
+zig-cache
+zig-out
