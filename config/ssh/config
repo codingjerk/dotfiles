@@ -1,6 +1,6 @@
 Host *
-  ConnectTimeout 5
-  ConnectionAttempts 3
+  ConnectTimeout 10
+  ConnectionAttempts 5
 
   Compression yes
 
@@ -12,7 +12,7 @@ Host *
   ControlPersist 5m
 
   TCPKeepAlive yes
-  ServerAliveInterval 1
+  ServerAliveInterval 3
   ServerAliveCountMax 10
 
   HostkeyAlgorithms +ssh-rsa
