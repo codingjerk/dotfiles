@@ -38,7 +38,7 @@ fi
 
 # === Misc options ===
 KEYTIMEOUT=1
-WORDCHARS='-_'
+WORDCHARS='-_:'
 
 setopt interactive_comments
 
