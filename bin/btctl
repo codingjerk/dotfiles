@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+. "${CJ_DOTFILES}/assets/colors.sh"
+. "${CJ_DOTFILES}/settings.sh"
+
+LED_PATH="/sys/bus/platform/devices/asus-nb-wmi/leds/platform::micmute/brightness"
+
+if [ $(cat "$LED_PATH") = "1" ]; then
+  rfkill unblock bluetooth
+  echo 0 > "$LED_PATH"
+else
+  rfkill block bluetooth
+  echo 1 > "$LED_PATH"
+fi

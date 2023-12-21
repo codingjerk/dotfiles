@@ -173,6 +173,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set "5%-"
 bindsym XF86AudioRaiseVolume exec --no-startup-id sndctl inc
 bindsym XF86AudioLowerVolume exec --no-startup-id sndctl dec
 bindsym XF86AudioMute exec --no-startup-id sndctl mute
+bindsym XF86AudioMicMute exec --no-startup-id btctl toggle
 
 # Notifications
 bindsym --to-code \$mod+n exec --no-startup-id makoctl dismiss
