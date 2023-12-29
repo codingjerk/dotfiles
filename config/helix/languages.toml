@@ -2,22 +2,28 @@
 command = "pylsp"
 
 [language-server.pylsp.config.plugins]
+jedi_completion = { fuzzy = true, resolve_at_most = 100 }
+mypy = { enabled = true, dmypy = true }
+
 autopep8 = { enabled = false }
 mccabe = { enabled = false }
 preload = { enabled = false }
 pycodestyle = { enabled = false }
 pyflakes = { enabled = false }
 yapf = { enabled = false }
-flake8 = { enabled = true }
-jedi_completion = { fuzzy = true, resolve_at_most = 10 }
-ruff = { enabled = true }
-mypy = { enabled = true, dmypy = true }
-black = { enabled = true, preview = true }
+flake8 = { enabled = false }
+ruff = { enabled = false }
+black = { enabled = false }
+
+[language-server.ruff]
+command = "ruff-lsp"
 
 [[language]]
+auto-format = true
 name = "python"
 language-servers = [
-  { name = "pylsp" },
+  { name = "pylsp", except-features = [ "format" ] },
+  { name = "ruff" },
 ]
 
 [[language]]
