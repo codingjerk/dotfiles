@@ -612,7 +612,7 @@ fi
 # === Arch linux ===
 if (( $+commands[pacman] )); then
   alias f='pacman -Ss'
-  alias i='sudo pacman -S'
+  alias i='sudo pacman -S --needed'
   alias u='sudo pacman -Syyuu'
   alias r='sudo pacman -Rs'
 
