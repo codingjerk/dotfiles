@@ -1,0 +1,46 @@
+exclude = [ ".git", ".ruff_cache" ]
+
+line-length = 80
+indent-width = 4
+target-version = "py312"
+
+[format]
+  quote-style = "double"
+  indent-style = "space"
+  line-ending = "lf"
+  skip-magic-trailing-comma = false
+
+[lint]
+  select = [ "ALL" ]
+  ignore = [
+    # Documentation
+    "D",
+
+    # Formatter rules
+    "COM812", "ISC001",
+
+    # TODO notes
+    "FIX",
+
+    # __init__.py
+    "INP001",
+    
+    # Controversial
+    "SIM118",  # `key in dict.keys()` is better than `key in dict`
+    "ANN101",  # self doesn't need type annotation
+  ]
+
+[lint.isort]
+  force-sort-within-sections = false
+
+[lint.flake8-bugbear]
+  extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "fastapi.params.Query"]
+
+[per-file-ignores]
+  "tests/**/*.py" = [
+    "S101",    # Asserts are necessary in tests
+    "PLR2004", # Magic values are useful in tests
+  ]
+  "tests/**/test_bench_*.py" = [
+    "ANN001",  # Allows usage of benchmark fixture
+  ]

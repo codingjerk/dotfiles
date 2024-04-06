@@ -1,0 +1,26 @@
+Host *
+    # If user is unspecified, connect as root
+    User root
+
+    ConnectTimeout 2
+    ConnectionAttempts 3
+
+    Compression yes
+    IPQoS lowdelay
+
+    AddressFamily inet
+    ExitOnForwardFailure yes
+    StrictHostKeyChecking accept-new
+
+    # Multiplexing
+    ControlMaster auto
+    ControlPersist 10m
+    ControlPath ~/.ssh/control-%h-%p-%r
+
+    # Keepalive
+    TCPKeepAlive yes
+    ServerAliveInterval 3
+    ServerAliveCountMax 20
+
+Host beta
+    Port 1122

@@ -1,0 +1,123 @@
+theme = "cj"
+
+[editor]
+  auto-save = true  # pretty useful
+  auto-pairs = false  # too annoying sometimes
+  mouse = false  # I don't have mouse
+  cursorline = true
+  idle-timeout = 0  # instant autocompletion
+  completion-trigger-len = 1  # minimal length for autocompletion
+  true-color = true  # force true color support
+  color-modes = true  # use color to show modes
+
+[editor.cursor-shape]
+  insert = "bar"
+
+[editor.file-picker]
+  hidden = false  # show files starting with dot
+
+[editor.gutters.line-numbers]
+  min-width = 2
+
+# TODO: enable similar line for rulers
+# WATCH: https://github.com/helix-editor/helix/issues/5190
+[editor.indent-guides]
+  render = true
+  character = "¦"  # "🭲" is okay too
+  skip-levels = 1
+
+[editor.search]
+  wrap-around = false  # easier to navigate through matches
+
+# TODO: disable cmdline / maybe statusline
+# WATCH: https://github.com/helix-editor/helix/issues/1662
+[editor.statusline]
+  left = ["mode", "read-only-indicator"]
+  center = []
+  right = ["diagnostics"]
+  mode.normal = " "
+  mode.insert = "I"
+  mode.select = "S"
+
+[editor.whitespace.render]
+  tab = "all"
+  nbsp = "all"
+
+[editor.whitespace.characters]
+  nbsp = "⍽"
+
+[keys.normal]
+  # WASD movements
+  w = "move_line_up"
+  a = "move_char_left"
+  s = "move_line_down"
+  d = "move_char_right"
+
+  W = ["move_line_up", "move_line_up", "move_line_up", "move_line_up", "move_line_up"]
+  A = "move_prev_word_end"
+  S = ["move_line_down", "move_line_down", "move_line_down", "move_line_down", "move_line_down"]
+  D = "move_next_word_start"
+
+  q = "extend_to_line_start"
+  e = "extend_to_line_end"
+  Q = "insert_at_line_start"
+  E = "insert_at_line_end"
+
+  # Bash-like C-a / C-e
+  C-a = "goto_line_start"
+  C-e = "goto_line_end"
+
+  # Multiple cursors
+  C-s = "select_regex"
+  C-d = ["search_selection", "extend_search_next"]
+  C-f = "split_selection_on_newline"
+
+  # Command palette
+  "C-p" = "command_palette"
+  "?" = "command_palette"
+
+  # Rebind missing actions
+  x = "delete_selection"
+  v = "extend_line_below"
+  V = "select_mode"
+
+[keys.insert]
+  # Bash-like C-a / C-e
+  C-a = "goto_line_start"
+  C-e = "goto_line_end_newline"
+
+  # Command palette
+  "C-p" = "command_palette"
+
+[keys.select]
+  # WASD movements
+  w = "extend_line_up"
+  a = "extend_char_left"
+  s = "extend_line_down"
+  d = "extend_char_right"
+
+  W = "extend_line_up"
+  A = "extend_prev_word_end"
+  S = "extend_line_down"
+  D = "extend_next_word_start"
+
+  q = "extend_to_line_start"
+  e = "extend_to_line_end"
+  Q = "extend_to_line_start"
+  E = "extend_to_line_end"
+
+  # Bash-like C-a / C-e
+  C-a = "goto_line_start"
+  C-e = "goto_line_end"
+
+  # Multiple cursors
+  C-s = "select_regex"
+  C-d = ["search_selection", "extend_search_next"]
+  C-f = "split_selection_on_newline"
+
+  # Command palette
+  "C-p" = "command_palette"
+  "?" = "command_palette"
+
+  # Rebind missing actions
+  x = "delete_selection"

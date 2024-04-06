@@ -1,0 +1,100 @@
+# Source: https://github.com/estin/simple-completion-language-server
+# Build: `cargo build --release`
+[language-server.buffer]
+  command = "/home/cj2/dev/simple-completion-language-server/target/release/simple-completion-language-server"
+
+  [language-server.buffer.config]
+    max_completion_items = 100
+    feature_snippets = false
+    feature_unicode_input = false
+
+# Source: https://github.com/vlabo/cspell-lsp
+# Build: `npm install; npm run build`
+[language-server.cspell]
+  command = "node"
+  args = [ "/home/cj2/dev/cspell-lsp/index.js", "--stdio" ]
+
+# Install ruff-lsp
+[language-server.ruff]
+  command = "ruff-lsp"
+
+# Install: pyright
+[language-server.pyright]
+  command = "pyright-langserver"
+
+  [language-server.pyright.config.python.analysis]
+    typeCheckingMode = "strict"
+
+  [language-server.pyright.config.python.analysis.diagnosticSeverityOverrides]
+    reportMissingImports = false
+    reportMissingTypeStubs = false
+
+    # Covered by ruff
+    reportUnusedImport = false
+
+# Install: python-lsp-server, python-rope
+[language-server.pylsp]
+  command = "pylsp"
+
+  [language-server.pylsp.config.pylsp.plugins]
+    # Disable unused plugins
+    autopep8.enabled = false
+    flake8.enabled = false
+    mccabe.enabled = false
+    preload.enabled = false
+    pycodestyle.enabled = false
+    pyflakes.enabled = false
+    yapf.enabled = false
+
+    # Settings
+    jedi_symbols.include_import_symbols = false
+    rope_autoimport.enabled = true
+    rope_autoimport.completions.enabled = false
+
+    [language-server.pylsp.config.pylsp.plugins.jedi_completion]
+      include_params = false
+      fuzzy = true
+      resolve_at_most = 100
+
+[[language]]
+  name = "python"
+  auto-format = true
+  language-servers = [
+    # Completions, documentation, go to definition
+    { name = "pylsp", except-features = [ "diagnostics", "format" ] },
+    # Linting, formatting
+    "ruff",
+    # Type checking
+    { name = "pyright", only-features = [ "diagnostics" ] },
+    "buffer",
+    "cspell",
+  ]
+
+[[language]]
+  name = "bash"
+  # Install: bash-language-server
+  language-servers = [ "bash-language-server", "buffer", "cspell" ]
+
+[[language]]
+  name = "dockerfile"
+  # Install: dockerfile-language-server (aur)
+  language-servers = [ "docker-langserver", "buffer", "cspell" ]
+
+[[language]]
+  name = "markdown"
+  # Install: marksman
+  language-servers = [ "marksman", "buffer", "cspell" ]
+  roots = ["README.md"]
+
+[[language]]
+  name = "yaml"
+  language-servers = [ "buffer", "cspell" ]
+
+[[language]]
+  name = "toml"
+  language-servers = [ "buffer", "cspell" ]
+
+[[language]]
+  name = "git-commit"
+  rulers = []
+  language-servers = [ "buffer", "cspell" ]

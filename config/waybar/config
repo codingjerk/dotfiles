@@ -1,0 +1,72 @@
+{
+  "layer": "top", // don't dim in special workspaces
+
+  "modules-left": [
+    "hyprland/workspaces",
+  ],
+
+  "modules-center": [],
+
+  "modules-right": [
+    "battery",
+    "pulseaudio",
+    "hyprland/language",
+    "clock",
+  ],
+
+  "hyprland/workspaces": {
+    "format": "●",
+  },
+
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "tooltip-format": "{timeTo} | {power}w",
+    "format-icons": [ "󰂃", "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹" ],
+
+    "states": {
+      "critical": 10,
+      "warning": 25,
+      "low": 50,
+      "full": 100,
+    },
+  },
+
+  // TODO: replace with pipewire
+  "pulseaudio": {
+    "format": "{format_source}{icon} {volume}%",
+    "format-muted": "{format_source}󰝟",
+
+    "format-source": "<span color='#D67C8E'>󰍬 on</span>  ",  // red
+    "format-source-muted": "",
+
+    "format-icons": {
+      "default": [ "󰕿", "󰖀", "󰕾", "󱄠" ],
+    },
+
+    "tooltip": false,
+    "on-click": "pavucontrol",
+    "on-click-right": "pamixer --default-source --toggle-mute",
+  },
+
+  "hyprland/language": {
+    "format": "󰌌 {}",
+    "format-en": "us",
+    "format-ru": "ru",
+    "format-th": "th",
+
+    "keyboard-name": "keyd-virtual-keyboard",
+
+    "on-click": "hyprctl keyword input:kb_layout us,ru",
+    "on-click-right": "hyprctl keyword input:kb_layout us,th",
+  },
+
+  "clock": {
+    "timezone": "Asia/Bangkok",
+    "format": "󰅐 {:%H:%M}",
+
+    "tooltip": true,
+    "tooltip-format": "{:%e %B, %A}",  // 2 April, Saturday
+
+    "on-click": "footclient --hold when ci"
+  },
+}

@@ -1,0 +1,21 @@
+font=Noto Sans Mono Light 11
+
+max-history=0
+ignore-timeout=1
+max-visible=-1
+
+width=450
+height=200
+anchor=top-center
+border-radius=24
+outer-margin=0
+margin=12
+padding=24
+format=%s\n%b
+
+background-color=#1D2433
+text-color=#BDD9F2
+
+# Imitate shadow
+border-color=#00000040
+border-size=1

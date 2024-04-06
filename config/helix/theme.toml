@@ -1,0 +1,118 @@
+# Syntax
+"comment" = "fg-dim"
+
+"type" = "fg-half-dim"
+"constructor" = "yellow"
+
+"constant.numeric" = "yellow"
+"constant.builtin" = "orange"
+
+"string" = "green"
+"constant.character.escape" = "pink"
+"string.special" = "green"
+
+"variable.builtin" = "orange"
+"variable.parameter" = "cyan"
+
+"function" = "purple"
+"function.method" = "fg"
+"function.builtin" = "orange"
+
+"punctuation" = "fg-half-dim"
+"punctuation.bracket" = "fg-dim"
+"punctuation.special" = "pink"
+"operator" = "fg-dim"
+"label" = "fg-dim"
+
+"keyword" = "blue"
+"namespace" = "fg"
+
+"markup.heading" = "orange"
+"markup.list" = "fg-dim"
+"markup.list.unchecked" = "red"
+"markup.bold" = "red"
+"markup.italic" = { modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.link.url" = { underline.style = "line" }
+"markup.quote" = "fg-half-dim"
+"markup.raw.inline" = "yellow"
+
+"special" = "blue"  # also, highlight in file picker
+
+# HTML
+"attribute" = "yellow"
+"string.regexp" = "pink"
+"tag" = "purple"
+
+# Diff
+"diff.plus" = "green"
+"diff.minus" = "red"
+"diff.delta" = "purple"
+
+# Background
+"ui.background" = { bg = "bg", fg = "fg" }
+
+# Cursor
+"ui.cursor" = { bg = "fg-dim", fg = "bg" }
+"ui.selection" = { bg = "bg-sel" }
+"ui.cursor.match" = { fg = "purple", underline.style = "line" }
+"ui.cursorline.primary" = { bg = "bg-dim" }
+
+# Gutter
+"ui.linenr" = "fg-dim"
+"ui.linenr.selected" = "fg"
+
+"error" = "red"
+"warning" = "orange"
+"info" = "yellow"  # for TODO highlighting
+"hint" = "gray"
+
+# Diagnostics
+"diagnostic.error" = { fg = "red", underline.style = "line" }
+"diagnostic.warning" = { fg = "orange", underline.style = "line" }
+"diagnostic.info" = { underline.style = "line" }
+"diagnostic.hint" = { underline.style = "line" }
+
+# Statusline
+"ui.statusline" = { fg = "fg" }
+"ui.statusline.insert" = { bg = "yellow", fg = "bg" }
+"ui.statusline.select" = { bg = "purple", fg = "bg" }
+
+# Whitespace
+"ui.virtual.whitespace" = "red"
+"ui.virtual.indent-guide" = "bg-sel"
+"ui.virtual.ruler" = { bg = "bg-sel" }
+
+# Windows & Popups
+"ui.popup" = { bg = "bg-dim", fg = "fg-half-dim" }
+"ui.popup.info" = { bg = "bg", fg = "fg-half-dim" }
+"ui.window" = { fg = "fg-dim" }
+"ui.help" = { fg = "fg-half-dim", bg = "bg-dim" }
+
+"ui.text" = "fg"
+"ui.text.focus" = { fg = "fg", bg = "bg-sel" }
+"ui.text.inactive" = "fg-dim"
+
+"ui.menu" = { fg = "fg-half-dim", bg = "bg-dim" }
+"ui.menu.selected" = { fg = "fg", bg = "bg-sel" }
+"ui.menu.scroll" = { bg = "bg-sel", fg = "bg-sel" }
+
+"ui.highlight" = { bg = "bg-dim" }  # highlight in file picker
+
+[palette]
+  bg          = "#1D2433"
+  bg-dim      = "#181E2C"  # panels, line highlighting
+  bg-sel      = "#313847"  # selection
+
+  fg          = "#BDD9F2"
+  fg-half-dim = "#818DA7"  # some menus
+  fg-dim      = "#606D88"  # comments
+
+  red         = "#D67C8E"  # errors, important stuff
+  orange      = "#D6A37C"  # warnings, less important stuff
+  yellow      = "#DFD696"  # highlighting
+  green       = "#ACDF96"  # strings, good stuff
+  cyan        = "#96DFC0"  # arguments
+  blue        = "#9BB8F2"  # keywords
+  purple      = "#BBAAF2"  # functions and tags
+  pink        = "#DF96C7"  # string interpolation, regexps

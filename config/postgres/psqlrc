@@ -1,0 +1,21 @@
+\set QUIET 1
+
+-- Prompt (current database)
+\set PROMPT1 ' %[%033[34m%]%/%[%033[0m%] '
+
+-- Table style
+\pset border 2  -- border with outer lines
+\pset linestyle unicode  -- unicode borders
+\pset null '∅'
+
+-- Other options
+\set ON_ERROR_STOP on
+\set VERBOSITY verbose
+
+-- Change application name for debugging
+set application_name to psql;
+
+-- Enable command timing
+\timing on
+
+\unset QUIET

@@ -1,0 +1,58 @@
+# Programs
+export EDITOR='helix'
+export TERMINAL='footclient'
+export PAGER='less'
+
+export VISUAL="${EDITOR}"
+
+# Settings: fzf
+FZF_DEFAULT_OPTS_ARR=(
+  --scheme=history
+  --ansi
+  --exact
+  --no-mouse
+
+  # Reverse order
+  --tac
+  --layout=reverse
+
+  # Styling
+  --height=90%
+  --min-height=7
+  '--prompt="  "'
+  --info=inline-right
+  --border=none
+  --no-scrollbar
+  --no-separator
+  --color='bw,fg:white,hl:regular:blue,fg+:regular,hl+:regular:blue,info:black:bold,prompt:black:bold,pointer:black:bold'
+)
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS_ARR"
+
+# Settings: less
+export LESS='-cigRS -j4 -x4 -#5 -z-10'
+
+# Settings: pass
+export PASSWORD_STORE_CLIP_TIME=8
+
+# Settings: LS_COLORS
+LS_COLORS='no=0:fi=0:di=34'
+
+# Hidden files
+LS_COLORS+=":.*=90"
+
+# Programming (purple)
+LS_COLORS+=":*.py=36:*.sh=36"
+LS_COLORS+=":*Dockerfile=36:*Makefile=36"
+
+# Text files (green)
+LS_COLORS+=":*.md=32:*.txt=32:*.html=32"
+
+# Config files (yellow)
+LS_COLORS+=":*.json=33:*.toml=33:*.yml=33"
+LS_COLORS+=":*.in=33:*.conf=33:*.example=33"
+LS_COLORS+=":.zshrc=33:.zprofile=33"
+export LS_COLORS
+
+# Cleanup environment variables
+unset MAIL
+unset DEBUGINFOD_URLS

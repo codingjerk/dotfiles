@@ -1,0 +1,60 @@
+#waybar {
+  background: #1D2433;  /* bg */
+  color: #BDD9F2;  /* fg */
+  font-family: "Noto Sans Mono Light";
+  font-size: 14px;
+}
+
+/* padding */
+
+#workspaces,
+#backlight,
+#battery,
+#pulseaudio,
+#language,
+#clock {
+  padding: 6px 10px;
+}
+#workspaces {
+  padding-left: 20px;
+}
+
+#clock {
+  padding-right: 20px;
+}
+
+/* workspaces */
+
+#workspaces button {
+  font-size: 16px;
+  padding: 0 1px;
+  color: #606D88;  /* fg-dim */
+  border: none;
+}
+
+#workspaces button.active {
+  color: #9BB8F2;  /* blue */
+}
+
+#workspaces button.urgent {
+  color: #D67C8E;  /* red */
+}
+
+#workspaces button:hover {
+  background: none;
+  color: #BBAAF2;  /* purple */
+}
+
+/* battery */
+
+#battery.critical {
+  color: #D67C8E;  /* red */
+}
+
+#battery.warning {
+  color: #D6A37C;  /* orange */
+}
+
+#battery.low {
+  color: #DFD696;  /* yellow */
+}
