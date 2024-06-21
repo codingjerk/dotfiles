@@ -28,6 +28,8 @@
   [language-server.pyright.config.python.analysis.diagnosticSeverityOverrides]
     reportMissingImports = false
     reportMissingTypeStubs = false
+    reportUntypedFunctionDecorator = false
+    reportUnknownVariableType = false
 
     # Covered by ruff
     reportUnusedImport = false
@@ -47,10 +49,6 @@
     yapf.enabled = false
 
     # Settings
-    jedi_symbols.include_import_symbols = false
-    rope_autoimport.enabled = true
-    rope_autoimport.completions.enabled = false
-
     [language-server.pylsp.config.pylsp.plugins.jedi_completion]
       include_params = false
       fuzzy = true
@@ -121,6 +119,10 @@
 
 [[language]]
   name = "yaml"
+  language-servers = [ "buffer", "cspell" ]
+
+[[language]]
+  name = "html"
   language-servers = [ "buffer", "cspell" ]
 
 [[language]]
