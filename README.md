@@ -48,12 +48,13 @@ git clone <repo> .password-store
    Check `helix`'s `language.toml` for actual sources
    and build instructions.
 
-## Update
+## Update (re-render configuration files)
 
-Update tool it will do everything (except installation):
+Pull sources and re-render configs:
 
 ```sh
-~/dotfiles/tools/update
+git pull
+./tools/render
 ```
 
 ## How it works?
@@ -62,9 +63,10 @@ This repository contains:
 
 - `config` -- a bunch of configuration files and templates. Main directory here
 - `settings` -- configurable settings (color palette, font, etc.), used by templates
-- `wallpaper.png`
-- `install` -- tool to clone this repo and run update
-- `update` -- tool to render templates into configuration files
+- `wallpaper.png` -- a wallpaper
+- `tools`
+   - `install` -- tool to clone this repo and run render
+   - `render` -- tool to render templates into configuration files
 
 Itself, repository should be placed somewhere in your home directory,
 and after running `update` it will place rendered configuration files
