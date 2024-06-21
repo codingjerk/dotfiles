@@ -1,0 +1,8 @@
+# Home directories
+.cache/
+.password-store/
+.pyenv/
+.cargo/registry/
+.npm/
+
+*.tdb
