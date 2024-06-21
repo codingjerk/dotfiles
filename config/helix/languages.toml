@@ -56,13 +56,46 @@
       fuzzy = true
       resolve_at_most = 100
 
+[language-server.zls]
+  command = "zls"
+
+  [language-server.zls.config]
+    enable_autofix = true
+    enable_inlay_hints = false
+    enable_argument_placeholders = false
+    warn_style = true
+
+[language-server.rust-analyzer]
+  command = "rust-analyzer"
+
+  [language-server.rust-analyzer.config]
+    completion.callable.snippets = "none"
+    completion.fullFunctionSignatures.enable = true
+    completion.limit = 1024
+
+    diagnostics.experimental.enable = true
+    diagnostics.styleLints.enable = true
+
+    rustfmt.extraArgs = [
+      "--config=empty_item_single_line=false",
+      "--config=wrap_comments=true",
+      "--config=condense_wildcard_suffixes=true",
+      "--config=enum_discrim_align_threshold=10",
+      "--config=format_code_in_doc_comments=true",
+      "--config=hex_literal_case=Upper",
+      "--config=max_width=80",
+      "--config=reorder_impl_items=true",
+      "--config=group_imports=StdExternalCrate",
+      "--config=use_field_init_shorthand=true",
+    ]
+
 [[language]]
   name = "python"
   auto-format = true
   language-servers = [
     # Completions, documentation, go to definition
     { name = "pylsp", except-features = [ "diagnostics", "format" ] },
-    # Linting, formatting
+    # Linting, fixes, formatting
     "ruff",
     # Type checking
     { name = "pyright", only-features = [ "diagnostics" ] },
@@ -98,3 +131,13 @@
   name = "git-commit"
   rulers = []
   language-servers = [ "buffer", "cspell" ]
+
+[[language]]
+  name = "zig"
+  # Install: zls
+  language-servers = [ "zls", "buffer", "cspell" ]
+
+[[language]]
+  name = "rust"
+  # Install: rust-analyzer
+  language-servers = [ "rust-analyzer", "buffer", "cspell" ]
