@@ -1,0 +1,141 @@
+#!/usr/bin/env python
+
+import shutil
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Self
+
+
+@dataclass
+class Config:
+    host: Path  # relative to home directory
+    repo: Path  # relative to `dotfiles/config` directory
+
+    @classmethod
+    def home(cls: type[Self], host: str, repo: str) -> Self:
+        host_root = Path.home()
+        repo_root = Path.home() / "dotfiles" / "config"
+
+        return cls(
+            host=host_root / host,
+            repo=repo_root / repo,
+        )
+
+
+CONFIG_FILES = [
+    # TODO:
+    # - ansible
+    # - cargo
+    # - docker
+    # - ipython
+    # - firefox
+    # - npm
+    # - pyenv
+    # - zoom
+    # - pipewire, wireplumber
+    # - aria
+    # - matplotlib (better default theme)
+    # - mpv
+    # - pip/pipx
+    # - poetry
+    # - iwd / iwctl
+    # - man
+    # - numbat
+    # - zathura
+    # - discord
+    # - xcompose
+    # - system configs
+    #   - keyd
+    # Zsh
+    Config.home(".zshrc", "zsh/zshrc"),
+    Config.home(".zprofile", "zsh/zprofile"),
+    # Ssh
+    Config.home(".ssh/config", "ssh/config"),
+    Config.home(".ssh/authorized_keys", "ssh/authorized_keys"),
+    # Git
+    Config.home(".config/git/config", "git/config"),
+    Config.home(".config/git/ignore", "git/ignore"),
+    Config.home(".config/git/template", "git/template"),
+    # Less
+    Config.home(".lesskey", "less/lesskey"),
+    # Htop
+    Config.home(".config/htop/htoprc", "htop/htoprc"),
+    # Curl
+    Config.home(".config/curlrc", "curl/curlrc"),
+    # Postgres
+    Config.home(".psqlrc", "postgres/psqlrc"),
+    # Tmux
+    Config.home(".tmux.conf", "tmux/tmux.conf"),
+    # Helix
+    Config.home(".config/helix/config.toml", "helix/config.toml"),
+    Config.home(".config/helix/languages.toml", "helix/languages.toml"),
+    Config.home(".config/helix/ignore", "helix/ignore"),
+    Config.home(".config/helix/themes/cj.toml", "helix/theme.toml"),
+    # Ruff
+    Config.home(".config/ruff/ruff.toml", "ruff/ruff.toml"),
+    # Cspell
+    Config.home(".cspell.yml", "cspell/cspell.yml"),
+    Config.home(".local/cspell-cj.txt", "cspell/dict-cj.txt"),
+    # Paru
+    Config.home(".config/paru/paru.conf", "paru/paru.conf"),
+    # Hyprland
+    Config.home(".config/hypr/hyprland.conf", "hypr/hyprland.conf"),
+    Config.home(".config/hypr/hyprlock.conf", "hypr/hyprlock.conf"),
+    Config.home(".config/hypr/hypridle.conf", "hypr/hypridle.conf"),
+    # Waybar
+    Config.home(".config/waybar/config", "waybar/config"),
+    Config.home(".config/waybar/style.css", "waybar/style.css"),
+    # Foot
+    Config.home(".config/foot/foot.ini", "foot/foot.ini"),
+    # Mako
+    Config.home(".config/mako/config", "mako/config"),
+    # Wofi
+    Config.home(".config/wofi/config", "wofi/config"),
+    Config.home(".config/wofi/style.css", "wofi/style.css"),
+    # Fontconfig
+    Config.home(".config/fontconfig/fonts.conf", "fontconfig/fonts.conf"),
+    # Electron
+    Config.home(
+        ".config/electron29-flags.conf", "electron/electron-flags.conf"
+    ),
+    Config.home(
+        ".config/electron30-flags.conf", "electron/electron-flags.conf"
+    ),
+    # XDG
+    Config.home(".config/user-dirs.dirs", "xdg/user-dirs.dirs"),
+]
+
+
+def main() -> None:
+    reverse = len(sys.argv) == 2 and sys.argv[1] == "reverse"
+    render_all(reverse)
+
+
+def render_all(reverse: bool) -> None:
+    process = de_render if reverse else render
+
+    for file in CONFIG_FILES:
+        process(file)
+
+
+def render(file: Config) -> None:
+    sys.stderr.write(f"× TODO: render {file.repo} to {file.host}\n")
+
+    # TODO:
+    # - prepare dirs
+    # - render template
+    # - write file
+
+
+def de_render(file: Config) -> None:
+    """
+    Copies file from host back to config directory
+    """
+
+    sys.stderr.write(f"× INFO: de-render {file.host} to {file.repo}\n")
+    shutil.copy(file.host, file.repo)
+
+
+if __name__ == "__main__":
+    main()
