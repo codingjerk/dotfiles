@@ -66,6 +66,7 @@ mk() {
 }
 alias rf='rm -rf'
 alias py='python3'
+alias ipy='ipython'
 alias ping='ping -4A'
 
 alias -g p='2>&1 | less'
@@ -199,7 +200,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#606090'
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=60
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
 
 # Plugin: syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
