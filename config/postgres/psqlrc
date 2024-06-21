@@ -4,8 +4,10 @@
 \set PROMPT1 ' %[%033[34m%]%/%[%033[0m%] '
 
 -- Table style
-\pset border 2  -- border with outer lines
-\pset linestyle unicode  -- unicode borders
+-- border with outer lines
+\pset border 2
+-- unicode borders
+\pset linestyle unicode
 \pset null '∅'
 
 -- Other options
