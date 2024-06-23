@@ -1,0 +1,21 @@
+---
+$schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json
+version: '0.2'
+language: en
+dictionaries:
+  - python
+  - python-common
+  - cpp
+  - node
+  - typescript
+  - html
+  - bash
+  - en-us
+  - ru-ru
+  - custom-cj
+  - custom-radar
+dictionaryDefinitions:
+  - name: custom-cj
+    path: .local/cspell-cj.txt
+  - name: custom-radar
+    path: .local/cspell-radar.txt
