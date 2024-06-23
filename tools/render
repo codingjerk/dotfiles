@@ -138,6 +138,8 @@ def de_render(file: Config) -> None:
     """
 
     sys.stderr.write(f"× INFO: de-render {file.host} to {file.repo}\n")
+
+    file.repo.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy(file.host, file.repo)
 
 
