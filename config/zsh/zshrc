@@ -90,6 +90,19 @@ alias pdu='pud'
 alias pui='pu'
 alias piu='pu'
 
+# Aliases: ledger
+alias lg='ledger'
+alias lga='ledger accounts'
+alias lgb='ledger balance'
+alias lgr='ledger register'
+alias el='e ~/.ledger/journal.ldg'
+alias cdl='cd ~/.ledger'
+
+# Aliases: when
+alias wi='when ci --future=30'
+alias ew='when eci'
+alias cdw='cd ~/.when'
+
 # Man colors
 man() {
   GROFF_NO_SGR=1 \
@@ -171,9 +184,11 @@ zstyle ':completion:*' squeeze-slashes yes  # replace // with /
 zstyle ':completion:*' file-sort modification  # show recently used files first
 zstyle ':completion:*' list-dirs-first yes
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"  # colored files and directories, blue selection box
+zstyle ':completion:*' ignored-patterns '.git'
 
 zstyle ':completion:*' rehash false  # improves performance
 zstyle ':completion:*' use-cache true
+
 
 # Keyboard
 unsetopt flow_control  # disable ^S / ^Q

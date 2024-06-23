@@ -1,0 +1,6 @@
+intro-banner = "off"
+prompt = "\u001B[0;36m @ \u001B[0m"
+pretty-print = "auto"
+
+[exchange-rates]
+fetching-policy = "on-first-use"

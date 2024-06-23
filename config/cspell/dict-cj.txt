@@ -291,3 +291,8 @@ mimalloc
 CQRS
 phind
 ublock
+matplotlibrc
+xcompose
+zathurarc
+pypoetry
+ledgerrc

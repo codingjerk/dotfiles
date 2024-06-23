@@ -1,0 +1,60 @@
+# === Keybindings ===
+map w scroll up
+map a scroll left
+map s scroll down
+map d scroll right
+
+map W scroll half-up
+map A scroll left
+map S scroll half-down
+map D scroll right
+
+map <PageUp> scroll half-up
+map <PageDown> scroll half-down
+
+map r reload
+map f adjust_window width
+
+map Z zoom in
+map z zoom out
+
+# === Options ===
+set guioptions ""
+set font "Fira Mono 10"
+set adjust-open width
+set database plain
+set dbus-service false
+set page-cache-size 32
+set show-recent false
+set selection-clipboard secondary
+
+# === Colors ===
+set default-bg \#1D2433
+set completion-bg \#1D2433
+set completion-fg \#CAD0DC
+set inputbar-bg \#1D2433
+set inputbar-fg \#CAD0DC
+set completion-group-bg \#1D2433
+set completion-group-fg \#CAD0DC
+set tabbar-bg \#1D2433
+set tabbar-fg \#CAD0DC
+set statusbar-bg \#1D2433
+set statusbar-fg \#CAD0DC
+set index-bg \#1D2433
+set index-fg \#CAD0DC
+
+set completion-highlight-bg \#7C9FCA
+set completion-highlight-fg \#1D2433
+set tabbar-focus-bg \#7C9FCA
+set tabbar-focus-fg \#1D2433
+set index-active-bg \#7C9FCA
+set index-active-fg \#1D2433
+
+set notification-bg \#CAD0DC
+set notification-fg \#1D2433
+
+set notification-warning-bg \#90C3D4
+set notification-warning-fg \#1D2433
+
+set notification-error-bg \#BF6672
+set notification-error-fg \#1D2433

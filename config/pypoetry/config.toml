@@ -1,0 +1,13 @@
+[installer]
+max-workers = 16
+
+[keyring]
+enabled = false
+
+[virtualenvs]
+in-project = true
+prefer-active-python = true
+
+  [virtualenvs.options]
+  no-pip = true
+  no-setuptools = true
