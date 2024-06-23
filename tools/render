@@ -24,29 +24,6 @@ class Config:
 
 
 CONFIG_FILES = [
-    # TODO:
-    # - ansible
-    # - cargo
-    # - docker
-    # - ipython
-    # - firefox
-    # - npm
-    # - pyenv
-    # - zoom
-    # - pipewire, wireplumber
-    # - aria
-    # - matplotlib (better default theme)
-    # - mpv
-    # - pip/pipx
-    # - poetry
-    # - iwd / iwctl
-    # - man
-    # - numbat
-    # - zathura
-    # - discord
-    # - xcompose
-    # - system configs
-    #   - keyd
     # Zsh
     Config.home(".zshrc", "zsh/zshrc"),
     Config.home(".zprofile", "zsh/zprofile"),
@@ -104,6 +81,33 @@ CONFIG_FILES = [
     ),
     # XDG
     Config.home(".config/user-dirs.dirs", "xdg/user-dirs.dirs"),
+    # IPython
+    Config.home(
+        ".ipython/profile_default/ipython_config.py",
+        "ipython/ipython_config.py",
+    ),
+    # Matplotlib
+    Config.home(
+        ".config/matplotlib/matplotlibrc",
+        "matplotlib/matplotlibrc",
+    ),
+    # XCompose
+    Config.home(".XCompose", "x11/xcompose"),
+    # Zathura
+    Config.home(".config/zathura/zathurarc", "zathura/zathurarc"),
+    # Aria2
+    Config.home(".config/aria2/aria2.conf", "aria2/aria2.conf"),
+    # Mpv
+    Config.home(".config/mpv/mpv.conf", "mpv/mpv.conf"),
+    Config.home(".config/mpv/input.conf", "mpv/input.conf"),
+    # Cargo
+    Config.home(".cargo/config.toml", "cargo/config.toml"),
+    # Numbat
+    Config.home(".config/numbat/config.toml", "numbat/config.toml"),
+    # Poetry
+    Config.home(".config/pypoetry/config.toml", "pypoetry/config.toml"),
+    # Ledger
+    Config.home(".ledgerrc", "ledger/ledgerrc"),
 ]
 
 
