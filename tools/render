@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os
 import shutil
 import sys
 import tomllib
@@ -11,6 +12,8 @@ from typing import Self
 HOST_ROOT: Path = Path.home()
 REPO_ROOT: Path = Path(__file__).parent.parent
 CONFIG_ROOT: Path = REPO_ROOT / "config"
+
+OS_TERMUX = "com.termux" in os.environ.get("PREFIX", "")
 
 
 @dataclass
@@ -161,6 +164,21 @@ CONFIG_FILES = [
     # Ledger
     Config.home(".ledgerrc", "ledger/ledgerrc"),
 ]
+
+
+# Termux-dependent files
+if OS_TERMUX:
+    CONFIG_FILES += [
+        Config.home(
+            ".termux/termux.properties",
+            "termux/termux.properties",
+        ),
+        Config.home(
+            ".termux/colors.properties",
+            "termux/colors.properties",
+            templated=True,
+        ),
+    ]
 
 
 def main() -> None:
