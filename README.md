@@ -10,7 +10,7 @@ Add user:
 useradd -m -G docker,systemd-journal,users,wheel -k /dev/null -s /usr/bin/zsh cj
 ```
 
-Run installation script:
+Run installation script as a new user:
 
 ```sh
 curl https://dots.cj.dog | sh
@@ -22,7 +22,7 @@ I don't recommend to run it on your own machines.
 If you're not me (lol), just clone this repository and
 poke into configuration files (it's in `config` directory!).
 
-### Extra steps (on new hosts)
+### Optional extra steps (on new hosts)
 
 1. Generate ssh keys:
 
@@ -38,10 +38,13 @@ gpg --edit-key <key-id>
 # trust, 5, save
 ```
 
-3. Initialize password store:
+3. Initialize stores:
 
 ```sh
 git clone <repo> .password-store
+git clone <repo> .when
+git clone <repo> .ledger
+git clone <repo> notes
 ```
 
 4. Install LSPs for `helix`.
@@ -65,7 +68,7 @@ This repository contains:
 - `settings.toml` -- configurable settings (color palette, font, etc.), used by templates
 - `wallpaper.png` -- a wallpaper
 - `tools`
-   - `install` -- tool to clone this repo and run render
+   - `install` -- tool to clone this repo, check for dependencies and run render
    - `render` -- tool to render templates into configuration files
 
 Itself, repository should be placed somewhere in your home directory,
