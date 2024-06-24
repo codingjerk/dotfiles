@@ -100,19 +100,19 @@
 "ui.highlight" = { bg = "bg-dim" }  # highlight in file picker
 
 [palette]
-  bg          = "#1D2433"
-  bg-dim      = "#181E2C"  # panels, line highlighting
-  bg-sel      = "#313847"  # selection
+  bg          = "#${bg}"
+  bg-dim      = "#${bg_dim}"  # panels, line highlighting
+  bg-sel      = "#${bg_sel}"  # selection
 
-  fg          = "#BDD9F2"
-  fg-half-dim = "#818DA7"  # some menus
-  fg-dim      = "#606D88"  # comments
+  fg          = "#${fg}"
+  fg-half-dim = "#${fg_half_dim}"  # some menus
+  fg-dim      = "#${fg_dim}"       # comments
 
-  red         = "#D67C8E"  # errors, important stuff
-  orange      = "#D6A37C"  # warnings, less important stuff
-  yellow      = "#DFD696"  # highlighting
-  green       = "#ACDF96"  # strings, good stuff
-  cyan        = "#96DFC0"  # arguments
-  blue        = "#9BB8F2"  # keywords
-  purple      = "#BBAAF2"  # functions and tags
-  pink        = "#DF96C7"  # string interpolation, regexps
+  red         = "#${red}"     # errors, important stuff
+  orange      = "#${orange}"  # warnings, less important stuff
+  yellow      = "#${yellow}"  # highlighting
+  green       = "#${green}"   # strings, good stuff
+  cyan        = "#${cyan}"    # arguments
+  blue        = "#${blue}"    # keywords
+  purple      = "#${purple}"  # functions and tags
+  pink        = "#${pink}"    # string interpolation, regexps

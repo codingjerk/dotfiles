@@ -35,7 +35,7 @@
     "format": "{format_source}{icon} {volume}%",
     "format-muted": "{format_source}󰝟",
 
-    "format-source": "<span color='#D67C8E'>󰍬 on</span>  ",  // red
+    "format-source": "<span color='#${red}'>󰍬 on</span>  ",  // red
     "format-source-muted": "",
 
     "format-icons": {

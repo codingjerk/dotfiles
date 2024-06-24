@@ -13,8 +13,8 @@ margin=12
 padding=24
 format=%s\n%b
 
-background-color=#1D2433
-text-color=#BDD9F2
+background-color=#${bg}
+text-color=#${fg}
 
 # Imitate shadow
 border-color=#00000040

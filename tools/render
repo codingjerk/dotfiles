@@ -2,24 +2,34 @@
 
 import shutil
 import sys
+import tomllib
 from dataclasses import dataclass
 from pathlib import Path
+from string import Template
 from typing import Self
+
+HOST_ROOT: Path = Path.home()
+REPO_ROOT: Path = Path(__file__).parent.parent
+CONFIG_ROOT: Path = REPO_ROOT / "config"
 
 
 @dataclass
 class Config:
     host: Path  # relative to home directory
     repo: Path  # relative to `dotfiles/config` directory
+    templated: bool
 
     @classmethod
-    def home(cls: type[Self], host: str, repo: str) -> Self:
-        host_root = Path.home()
-        repo_root = Path.home() / "dotfiles" / "config"
-
+    def home(
+        cls: type[Self],
+        host: str,
+        repo: str,
+        templated: bool = False,
+    ) -> Self:
         return cls(
-            host=host_root / host,
-            repo=repo_root / repo,
+            host=HOST_ROOT / host,
+            repo=CONFIG_ROOT / repo,
+            templated=templated,
         )
 
 
@@ -48,7 +58,11 @@ CONFIG_FILES = [
     Config.home(".config/helix/config.toml", "helix/config.toml"),
     Config.home(".config/helix/languages.toml", "helix/languages.toml"),
     Config.home(".config/helix/ignore", "helix/ignore"),
-    Config.home(".config/helix/themes/cj.toml", "helix/theme.toml"),
+    Config.home(
+        ".config/helix/themes/cj.toml",
+        "helix/theme.toml",
+        templated=True,
+    ),
     # Ruff
     Config.home(".config/ruff/ruff.toml", "ruff/ruff.toml"),
     # Cspell
@@ -57,27 +71,57 @@ CONFIG_FILES = [
     # Paru
     Config.home(".config/paru/paru.conf", "paru/paru.conf"),
     # Hyprland
-    Config.home(".config/hypr/hyprland.conf", "hypr/hyprland.conf"),
-    Config.home(".config/hypr/hyprlock.conf", "hypr/hyprlock.conf"),
+    Config.home(
+        ".config/hypr/hyprland.conf",
+        "hypr/hyprland.conf",
+        templated=True,
+    ),
+    Config.home(
+        ".config/hypr/hyprlock.conf",
+        "hypr/hyprlock.conf",
+        templated=True,
+    ),
     Config.home(".config/hypr/hypridle.conf", "hypr/hypridle.conf"),
     # Waybar
-    Config.home(".config/waybar/config", "waybar/config"),
-    Config.home(".config/waybar/style.css", "waybar/style.css"),
+    Config.home(
+        ".config/waybar/config",
+        "waybar/config",
+        templated=True,
+    ),
+    Config.home(
+        ".config/waybar/style.css",
+        "waybar/style.css",
+        templated=True,
+    ),
     # Foot
-    Config.home(".config/foot/foot.ini", "foot/foot.ini"),
+    Config.home(
+        ".config/foot/foot.ini",
+        "foot/foot.ini",
+        templated=True,
+    ),
     # Mako
-    Config.home(".config/mako/config", "mako/config"),
+    Config.home(
+        ".config/mako/config",
+        "mako/config",
+        templated=True,
+    ),
     # Wofi
     Config.home(".config/wofi/config", "wofi/config"),
-    Config.home(".config/wofi/style.css", "wofi/style.css"),
+    Config.home(
+        ".config/wofi/style.css",
+        "wofi/style.css",
+        templated=True,
+    ),
     # Fontconfig
     Config.home(".config/fontconfig/fonts.conf", "fontconfig/fonts.conf"),
     # Electron
     Config.home(
-        ".config/electron29-flags.conf", "electron/electron-flags.conf"
+        ".config/electron29-flags.conf",
+        "electron/electron-flags.conf",
     ),
     Config.home(
-        ".config/electron30-flags.conf", "electron/electron-flags.conf"
+        ".config/electron30-flags.conf",
+        "electron/electron-flags.conf",
     ),
     # XDG
     Config.home(".config/user-dirs.dirs", "xdg/user-dirs.dirs"),
@@ -94,7 +138,11 @@ CONFIG_FILES = [
     # XCompose
     Config.home(".XCompose", "x11/xcompose"),
     # Zathura
-    Config.home(".config/zathura/zathurarc", "zathura/zathurarc"),
+    Config.home(
+        ".config/zathura/zathurarc",
+        "zathura/zathurarc",
+        templated=True,
+    ),
     # Aria2
     Config.home(".config/aria2/aria2.conf", "aria2/aria2.conf"),
     # Mpv
@@ -117,19 +165,42 @@ def main() -> None:
 
 
 def render_all(reverse: bool) -> None:
-    process = de_render if reverse else render
+    if reverse:
+        process = de_render
+    else:
+        settings = load_settings()
+        process = lambda file: render(file, settings)
 
     for file in CONFIG_FILES:
         process(file)
 
 
-def render(file: Config) -> None:
-    sys.stderr.write(f"× TODO: render {file.repo} to {file.host}\n")
+def load_settings() -> dict[str, str]:
+    settings_path = REPO_ROOT / "settings.toml"
 
-    # TODO:
-    # - prepare dirs
-    # - render template
-    # - write file
+    with settings_path.open("rb") as settings_file:
+        return tomllib.load(settings_file)
+
+
+def render(file: Config, settings: dict[str, str]) -> None:
+    sys.stderr.write(f"× INFO: render {file.repo} to {file.host}\n")
+
+    file.host.parent.mkdir(parents=True, exist_ok=True)
+
+    # Load original file
+    with file.repo.open("r") as repo_file:
+        original_data = repo_file.read()
+
+    # Render template
+    if file.templated:
+        template = Template(original_data)
+        config_data = template.safe_substitute(**settings)
+    else:
+        config_data = original_data
+
+    # Write final config
+    with file.host.open("w") as host_file:
+        host_file.write(config_data)
 
 
 def de_render(file: Config) -> None:

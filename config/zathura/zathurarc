@@ -29,32 +29,32 @@ set show-recent false
 set selection-clipboard secondary
 
 # === Colors ===
-set default-bg \#1D2433
-set completion-bg \#1D2433
-set completion-fg \#CAD0DC
-set inputbar-bg \#1D2433
-set inputbar-fg \#CAD0DC
-set completion-group-bg \#1D2433
-set completion-group-fg \#CAD0DC
-set tabbar-bg \#1D2433
-set tabbar-fg \#CAD0DC
-set statusbar-bg \#1D2433
-set statusbar-fg \#CAD0DC
-set index-bg \#1D2433
-set index-fg \#CAD0DC
+set default-bg \#${bg}
+set completion-bg \#${bg}
+set completion-fg \#${fg}
+set inputbar-bg \#${bg}
+set inputbar-fg \#${fg}
+set completion-group-bg \#${bg}
+set completion-group-fg \#${fg}
+set tabbar-bg \#${bg}
+set tabbar-fg \#${fg}
+set statusbar-bg \#${bg}
+set statusbar-fg \#${fg}
+set index-bg \#${bg}
+set index-fg \#${fg}
 
-set completion-highlight-bg \#7C9FCA
-set completion-highlight-fg \#1D2433
-set tabbar-focus-bg \#7C9FCA
-set tabbar-focus-fg \#1D2433
-set index-active-bg \#7C9FCA
-set index-active-fg \#1D2433
+set completion-highlight-bg \#${blue}
+set completion-highlight-fg \#${bg}
+set tabbar-focus-bg \#${blue}
+set tabbar-focus-fg \#${bg}
+set index-active-bg \#${blue}
+set index-active-fg \#${bg}
 
-set notification-bg \#CAD0DC
-set notification-fg \#1D2433
+set notification-bg \#${fg}
+set notification-fg \#${bg}
 
-set notification-warning-bg \#90C3D4
-set notification-warning-fg \#1D2433
+set notification-warning-bg \#${yellow}
+set notification-warning-fg \#${bg}
 
-set notification-error-bg \#BF6672
-set notification-error-fg \#1D2433
+set notification-error-bg \#${red}
+set notification-error-fg \#${bg}

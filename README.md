@@ -62,7 +62,7 @@ git pull
 This repository contains:
 
 - `config` -- a bunch of configuration files and templates. Main directory here
-- `settings` -- configurable settings (color palette, font, etc.), used by templates
+- `settings.toml` -- configurable settings (color palette, font, etc.), used by templates
 - `wallpaper.png` -- a wallpaper
 - `tools`
    - `install` -- tool to clone this repo and run render

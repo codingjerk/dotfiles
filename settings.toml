@@ -1,0 +1,17 @@
+# Colors
+bg          = "1D2433"
+bg_dim      = "181E2C"
+bg_sel      = "313847"
+
+fg          = "BDD9F2"
+fg_half_dim = "818DA7"
+fg_dim      = "606D88"
+
+red         = "D67C8E"
+orange      = "D6A37C"
+yellow      = "DFD696"
+green       = "ACDF96"
+cyan        = "96DFC0"
+blue        = "9BB8F2"
+purple      = "BBAAF2"
+pink        = "DF96C7"

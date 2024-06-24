@@ -1,6 +1,6 @@
 * {
   background: none;
-  color: #BDD9F2;  /* fg */
+  color: #${fg};
   border: none;
   outline: none;
   box-shadow: none;
@@ -33,5 +33,5 @@
 }
 
 #entry:selected * {
-  color: #9BB8F2; /* blue */
+  color: #${blue};
 }
