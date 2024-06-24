@@ -56,7 +56,11 @@ CONFIG_FILES = [
     Config.home(".tmux.conf", "tmux/tmux.conf"),
     # Helix
     Config.home(".config/helix/config.toml", "helix/config.toml"),
-    Config.home(".config/helix/languages.toml", "helix/languages.toml"),
+    Config.home(
+        ".config/helix/languages.toml",
+        "helix/languages.toml",
+        templated=True,
+    ),
     Config.home(".config/helix/ignore", "helix/ignore"),
     Config.home(
         ".config/helix/themes/cj.toml",
@@ -179,7 +183,13 @@ def load_settings() -> dict[str, str]:
     settings_path = REPO_ROOT / "settings.toml"
 
     with settings_path.open("rb") as settings_file:
-        return tomllib.load(settings_file)
+        settings = tomllib.load(settings_file)
+
+    # Add builtin variables
+    settings["home"] = str(Path.home())
+    settings["dotfiles"] = str(REPO_ROOT)
+
+    return settings
 
 
 def render(file: Config, settings: dict[str, str]) -> None:

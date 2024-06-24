@@ -58,3 +58,6 @@ set notification-warning-fg \#${bg}
 
 set notification-error-bg \#${red}
 set notification-error-fg \#${bg}
+
+set recolor-darkcolor \#${fg}
+set recolor-lightcolor \#${bg}

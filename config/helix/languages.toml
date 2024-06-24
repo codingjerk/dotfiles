@@ -1,7 +1,7 @@
 # Source: https://github.com/estin/simple-completion-language-server
 # Build: `cargo build --release`
 [language-server.buffer]
-  command = "/home/cj2/dev/simple-completion-language-server/target/release/simple-completion-language-server"
+  command = "${home}/dev/simple-completion-language-server/target/release/simple-completion-language-server"
 
   [language-server.buffer.config]
     max_completion_items = 100
@@ -12,7 +12,7 @@
 # Build: `npm install; npm run build`
 [language-server.cspell]
   command = "node"
-  args = [ "/home/cj2/dev/cspell-lsp/index.js", "--stdio" ]
+  args = [ "${home}/dev/cspell-lsp/index.js", "--stdio" ]
 
 # Install ruff-lsp
 [language-server.ruff]
