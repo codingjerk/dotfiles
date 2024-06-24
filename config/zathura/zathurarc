@@ -20,16 +20,18 @@ map z zoom out
 
 # === Options ===
 set guioptions ""
-set font "Fira Mono 10"
+set font "Noto Sans Mono Light 11"
 set adjust-open width
 set database plain
 set dbus-service false
 set page-cache-size 32
 set show-recent false
 set selection-clipboard secondary
+set sandbox strict
+set page-padding 16
 
 # === Colors ===
-set default-bg \#${bg}
+set default-bg \#${bg_dim}
 set completion-bg \#${bg}
 set completion-fg \#${fg}
 set inputbar-bg \#${bg}
