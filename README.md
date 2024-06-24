@@ -2,6 +2,9 @@
 
 > Configuration of software I personally use for software development
 
+![Showcase](./showcase.png)
+*Hyprland with foot terminal and neofetch*
+
 ## Install
 
 Add user:
