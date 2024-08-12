@@ -14,7 +14,7 @@
   command = "node"
   args = [ "${home}/dev/cspell-lsp/index.js", "--stdio" ]
 
-# Install ruff-lsp
+# Install: ruff-lsp
 [language-server.ruff]
   command = "ruff-lsp"
 
@@ -34,7 +34,7 @@
     # Covered by ruff
     reportUnusedImport = false
 
-# Install: python-lsp-server, python-rope
+# Install: python-lsp-server, python-rope, python-pylsp-mypy
 [language-server.pylsp]
   command = "pylsp"
 

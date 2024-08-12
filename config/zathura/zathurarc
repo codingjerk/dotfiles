@@ -12,7 +12,8 @@ map D scroll right
 map <PageUp> scroll half-up
 map <PageDown> scroll half-down
 
-map r reload
+map r set recolor
+map R reload
 map f adjust_window width
 
 map Z zoom in

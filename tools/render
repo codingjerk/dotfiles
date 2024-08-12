@@ -55,6 +55,9 @@ CONFIG_FILES = [
     Config.home(".config/curlrc", "curl/curlrc"),
     # Postgres
     Config.home(".psqlrc", "postgres/psqlrc"),
+    # Gnupg
+    Config.home(".gnupg/gpg.conf", "gnupg/gpg.conf"),
+    Config.home(".gnupg/gpg-agent.conf", "gnupg/gpg-agent.conf"),
     # Tmux
     Config.home(".tmux.conf", "tmux/tmux.conf"),
     # Helix

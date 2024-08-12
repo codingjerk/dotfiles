@@ -298,3 +298,4 @@ pypoetry
 ledgerrc
 termux
 capitaine
+otus
