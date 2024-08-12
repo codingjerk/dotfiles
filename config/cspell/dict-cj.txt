@@ -296,3 +296,5 @@ xcompose
 zathurarc
 pypoetry
 ledgerrc
+termux
+capitaine
