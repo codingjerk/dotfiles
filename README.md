@@ -13,10 +13,12 @@ Add user:
 useradd -m -G docker,systemd-journal,users,wheel -k /dev/null -s /usr/bin/zsh cj
 ```
 
-Run installation script as a new user:
+Clone repository and install dotfiles as a new user:
 
 ```sh
-curl https://dots.cj.dog | sh
+sudo -iu cj
+git clone https://github.com/codingjerk/dotfiles.git
+python ~/dotfiles/tools/render
 ```
 
 **WARNING:** it's for me and myself only,
@@ -60,7 +62,7 @@ Pull sources and re-render configs:
 
 ```sh
 git pull
-./tools/render
+python ~/dotfiles/tools/render
 ```
 
 ## How it works?
@@ -71,7 +73,6 @@ This repository contains:
 - `settings.toml` -- configurable settings (color palette, font, etc.), used by templates
 - `wallpaper.png` -- a wallpaper
 - `tools`
-   - `install` -- tool to clone this repo, check for dependencies and run render
    - `render` -- tool to render templates into configuration files
 
 Itself, repository should be placed somewhere in your home directory,
