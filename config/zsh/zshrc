@@ -29,6 +29,7 @@ alias gs='git status --short'
 alias gu='git pull'
 
 # Aliases: docker
+alias dps='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"'
 alias dc="docker-compose"
 
 # Aliases: tmux
