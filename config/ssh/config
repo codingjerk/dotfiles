@@ -2,7 +2,7 @@ Host *
     # If user is unspecified, connect as root
     User root
 
-    ConnectTimeout 2
+    ConnectTimeout 5
     ConnectionAttempts 3
 
     Compression yes
