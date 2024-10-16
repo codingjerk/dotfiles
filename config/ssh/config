@@ -1,3 +1,10 @@
+Host lambda lambda.cj.dog
+    User cj
+    Port 1022
+
+Host *.cj.dog
+    User cj
+
 Host *
     # If user is unspecified, connect as root
     User root
@@ -21,6 +28,3 @@ Host *
     TCPKeepAlive yes
     ServerAliveInterval 3
     ServerAliveCountMax 20
-
-Host beta
-    Port 1122

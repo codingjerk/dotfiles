@@ -64,15 +64,41 @@
     warn_style = true
 
 [language-server.rust-analyzer]
-  command = "rust-analyzer"
+  command = "${home}/.cargo/bin/ra-multiplex"
 
   [language-server.rust-analyzer.config]
+    cachePriming.enable = false
     completion.callable.snippets = "none"
-    completion.fullFunctionSignatures.enable = true
+    completion.fullFunctionSignatures.enable = false  # make list shorter
     completion.limit = 1024
+    completion.postfix.enable = false  # disable postfix snippets
+    completion.hideDeprecated = true
+
+    imports.preferNoStd = true
+
+    hover.actions.run.enable = false
+    hover.show.fields = 10
+
+    inlayHints.chainingHints.enable = false
+    inlayHints.closingBraceHints.enable = false
+    inlayHints.genericParameterHints.const.enable = false
+    inlayHints.typeHints.enable = false
+    inlayHints.parameterHints.enable = false
+    inlayHints.renderColons = false
+
+    lens.enable = false
+
+    lru.capacity = 512
 
     diagnostics.experimental.enable = true
     diagnostics.styleLints.enable = true
+
+    check.command = "clippy"
+
+    # Use separate target directory for rust-analyzer to remove interferences with cargo
+    cargo.targetDir = true
+
+    cargo.allTargets = false
 
     rustfmt.extraArgs = [
       "--config=empty_item_single_line=false",
@@ -141,5 +167,5 @@
 
 [[language]]
   name = "rust"
-  # Install: rust-analyzer
+  # Install: rust-analyzer, ra-multiplex
   language-servers = [ "rust-analyzer", "buffer", "cspell" ]

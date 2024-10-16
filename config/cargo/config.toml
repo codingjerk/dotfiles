@@ -3,6 +3,5 @@ vcs = "none"  # do not automatically create git repository
 
 # Let's make cargo quiet, more UNIX-like
 [term]
-quiet = true
 verbose = false
 progress.when = "never"

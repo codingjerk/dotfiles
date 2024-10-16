@@ -31,7 +31,7 @@ alias gu='git pull'
 # Aliases: docker
 alias dps='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"'
 alias dl='docker logs --tail=100'
-alias dc="docker compose"
+alias dc='docker compose'
 
 # Aliases: tmux
 alias ta='tmux attach'
@@ -82,15 +82,10 @@ alias pte='poetry run $EDITOR'
 # Aliases: package managers
 alias pi='sudo pacman -S'
 alias pf='pacman -Ss'
-alias pu='sudo pacman -Su'
-alias pd='sudo pacman -Sy'
 alias pr='sudo pacman -Rs'
-alias pq='sudo pacman -Qi'
 
-alias pud='sudo pacman -Syu'
-alias pdu='pud'
-alias pui='pu'
-alias piu='pu'
+# Recommended kind of update with reduced keyring-related problems
+alias pu='sudp pacman -Sy archlinux-keyring && sudo pacman -Su'
 
 # Aliases: ledger
 alias lg='ledger'

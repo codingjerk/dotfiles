@@ -1,8 +1,18 @@
 # Home directories
 .cache/
 .password-store/
-.pyenv/
 .cargo/registry/
 .npm/
 
 *.tdb
+
+# Git specific
+.git-crypt/
+
+# Python specific
+.pyenv/
+.venv/
+
+# Rust specific
+Cargo.lock
+target/

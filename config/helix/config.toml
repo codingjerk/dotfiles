@@ -1,14 +1,17 @@
 theme = "cj"
 
 [editor]
-  auto-save = true  # pretty useful
+  auto-save = false  # pretty annoying
   auto-pairs = false  # too annoying sometimes
   mouse = false  # I don't have mouse
   cursorline = true
-  idle-timeout = 0  # instant autocompletion
+  idle-timeout = 250
+  completion-timeout = 5  # instant autocompletion
   completion-trigger-len = 1  # minimal length for autocompletion
   true-color = true  # force true color support
   color-modes = true  # use color to show modes
+  jump-label-alphabet = "asdfzxcqwervtgbyhnujmikolp"
+  rulers = [ 80, 120 ]
 
 [editor.cursor-shape]
   insert = "bar"
@@ -32,9 +35,9 @@ theme = "cj"
 # TODO: disable cmdline / maybe statusline
 # WATCH: https://github.com/helix-editor/helix/issues/1662
 [editor.statusline]
-  left = ["mode", "read-only-indicator"]
+  left = [ "mode", "read-only-indicator" ]
   center = []
-  right = ["diagnostics"]
+  right = [ "diagnostics" ]
   mode.normal = " "
   mode.insert = "I"
   mode.select = "S"
@@ -70,21 +73,33 @@ theme = "cj"
   # Multiple cursors
   C-s = "select_regex"
   C-d = ["search_selection", "extend_search_next"]
-  C-f = "split_selection_on_newline"
+  l = "split_selection_on_newline"
 
   # Command palette
   "C-p" = "command_palette"
-  "?" = "command_palette"
+
+  # Search
+  "?" = "global_search"
 
   # Rebind missing actions
   x = "delete_selection"
   v = "extend_line_below"
   V = "select_mode"
 
+  # Jump back / forward
+  "j" = "jump_backward"
+  "J" = "jump_forward"
+
+  # Help
+  "h" = "hover"
+
 [keys.insert]
   # Bash-like C-a / C-e
   C-a = "goto_line_start"
   C-e = "goto_line_end_newline"
+
+  # Insert tab character
+  C-t = "insert_tab"
 
   # Command palette
   "C-p" = "command_palette"
@@ -113,11 +128,13 @@ theme = "cj"
   # Multiple cursors
   C-s = "select_regex"
   C-d = ["search_selection", "extend_search_next"]
-  C-f = "split_selection_on_newline"
+  l = "split_selection_on_newline"
 
   # Command palette
   "C-p" = "command_palette"
-  "?" = "command_palette"
+
+  # Search
+  "?" = "global_search"
 
   # Rebind missing actions
   x = "delete_selection"

@@ -286,6 +286,22 @@ userauth
 rustfmt
 flate
 mimalloc
+lumbermill
+sqlx
+unseparated
+humantime
+reqwest
+serde
+rustls
+shadowsocks
+clippy
+chacha
+rngs
+dalek
+getrandom
+wgapi
+defguard
+prvkey
 
 # Tech
 CQRS
@@ -297,5 +313,4 @@ zathurarc
 pypoetry
 ledgerrc
 termux
-capitaine
 otus

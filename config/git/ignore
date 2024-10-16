@@ -5,3 +5,6 @@ __pycache__/
 .hypothesis/
 .ruff_cache/
 .ropeproject/
+
+# Rust specific
+target/

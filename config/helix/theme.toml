@@ -99,6 +99,9 @@
 
 "ui.highlight" = { bg = "bg-dim" }  # highlight in file picker
 
+# Jump labels
+"ui.virtual.jump-label" = { fg = "yellow", modifiers = [ "reversed" ] }
+
 [palette]
   bg          = "#${bg}"
   bg-dim      = "#${bg_dim}"  # panels, line highlighting

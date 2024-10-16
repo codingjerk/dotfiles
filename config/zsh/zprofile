@@ -1,7 +1,7 @@
 # Programs
 export EDITOR='helix'
 export TERMINAL='footclient'
-export BROWSER='firefox'
+export BROWSER='google-chrome-unstable'
 export PAGER='less'
 
 export VISUAL="${EDITOR}"
