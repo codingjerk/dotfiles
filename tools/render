@@ -185,8 +185,23 @@ if OS_TERMUX:
 
 
 def main() -> None:
-    reverse = len(sys.argv) == 2 and sys.argv[1] == "reverse"
-    render_all(reverse)
+    try:
+        action = sys.argv[1]
+    except IndexError:
+        sys.stderr.write(
+            "× CRIT: action is not specified. Should be `install` or `sync-repo`\n"
+        )
+        exit(1)
+
+    if action == "install":
+        render_all(reverse=False)
+    elif action == "sync-repo":
+        render_all(reverse=True)
+    else:
+        sys.stderr.write(
+            f"× CRIT: unknown action `{action}`. Should be `install` or `sync-repo`\n"
+        )
+        exit(1)
 
 
 def render_all(reverse: bool) -> None:

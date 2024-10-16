@@ -62,7 +62,7 @@ Pull sources and re-render configs:
 
 ```sh
 git pull
-python ~/dotfiles/tools/render
+python ~/dotfiles/tools/render install
 ```
 
 ## How it works?
