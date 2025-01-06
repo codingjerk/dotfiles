@@ -257,7 +257,11 @@ def de_render(file: Config) -> None:
     sys.stderr.write(f"× INFO: de-render {file.host} to {file.repo}\n")
 
     file.repo.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copy(file.host, file.repo)
+
+    if file.host.exists():
+        shutil.copy(file.host, file.repo)
+    else:
+        sys.stderr.write(f"× WARNING: file {file.host} doesn't exist. Skipping\n")
 
 
 if __name__ == "__main__":
