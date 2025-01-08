@@ -12,6 +12,7 @@ theme = "cj"
   color-modes = true  # use color to show modes
   jump-label-alphabet = "asdfzxcqwervtgbyhnujmikolp"
   rulers = [ 80, 120 ]
+  end-of-line-diagnostics = "hint"
 
 [editor.cursor-shape]
   insert = "bar"
