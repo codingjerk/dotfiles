@@ -1,0 +1,105 @@
+[
+  {
+    "bindings": {
+      "ctrl-shift-w": null,
+      "ctrl-q": "pane::CloseActiveItem",
+      "ctrl-f": "workspace::ToggleRightDock",
+      "ctrl-b": "workspace::ToggleLeftDock",
+
+      // Tabs
+      "ctrl-tab": "pane::ActivateNextItem",
+      "ctrl-shift-tab": "pane::ActivatePrevItem"
+    }
+  },
+
+  {
+    "context": "Editor",
+
+    "bindings": {
+      // Bash-like: Ctrl+A / Ctrl+E to move to start/end of file
+      "ctrl-a": "vim::FirstNonWhitespace",
+      "ctrl-e": "vim::EndOfLine",
+
+      // Ctrl+W to delete word
+      "ctrl-w": "editor::DeleteToPreviousWordStart",
+
+      // Multi-cursor
+      "ctrl-up": "editor::AddSelectionAbove",
+      "ctrl-down": "editor::AddSelectionBelow"
+    }
+  },
+
+  {
+    "context": "VimControl",
+
+    "bindings": {
+      // WASD movements
+      "w": "vim::Up",
+      "s": "vim::Down",
+      "a": "vim::Left",
+      "d": "vim::Right",
+
+      // Move by word with capital A/D
+      "A": "vim::PreviousWordStart",
+      "D": "vim::NextWordEnd",
+
+      // Move by 5 lines with W/S
+      "W": ["workspace::SendKeystrokes", "5 w"],
+      "S": ["workspace::SendKeystrokes", "5 s"],
+
+      // Q/E to move to start/end of line
+      "q": "vim::FirstNonWhitespace",
+      "e": "vim::EndOfLine",
+
+      "Q": "vim::InsertFirstNonWhitespace",
+      "E": "vim::InsertEndOfLine",
+
+      // Bash-like: Ctrl+A / Ctrl+E to move to start/end of file
+      "ctrl-a": "vim::FirstNonWhitespace",
+      "ctrl-e": "vim::EndOfLine",
+
+      // Ctrl+W to delete word
+      "ctrl-w": "editor::DeleteToPreviousWordStart",
+
+      // Modifications
+      "x": "vim::HelixDelete",
+      "U": "vim::Redo",
+
+      // Jumps
+      "j": "pane::GoBack",
+      "J": "pane::GoForward",
+      "g e": "vim::StartOfDocument",
+      "g r": "editor::GoToDefinitionSplit",
+      "g f": "editor::OpenExcerpts",
+
+      // Copy-paste
+      "y": "vim::YankLine",
+
+      // Multi-cursor
+      "ctrl-up": "editor::AddSelectionAbove",
+      "ctrl-down": "editor::AddSelectionBelow",
+      "C": "editor::AddSelectionBelow",
+      "v": "vim::ToggleVisualLine",
+      "ctrl-d": ["editor::SelectNext", { "replace_newest": false }],
+
+      // Indentation
+      ">": "vim::Indent",
+      "<": "editor::TabPrev",
+
+      // Pickers
+      "space f": "file_finder::Toggle",
+      "space d": "editor::GoToDiagnostic",
+      "space a": "editor::ToggleCodeActions",
+      "space s": "outline::Toggle",
+
+      // Panes
+      "[": ["workspace::ActivatePaneInDirection", "Left"],
+      "]": ["workspace::ActivatePaneInDirection", "Right"],
+
+      // Help
+      "h": "editor::Hover"
+
+      // "fake item": "fake action"
+    }
+  }
+]
