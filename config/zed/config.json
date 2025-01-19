@@ -1,0 +1,62 @@
+{
+  // Disable shit
+  "assistant": {
+    "default_model": {
+      "provider": "anthropic",
+      "model": "claude-3-5-sonnet-latest"
+    },
+    "version": "2"
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "show_user_picture": false,
+  "scrollbar": {
+    "show": "auto",
+    "axes": {
+      "vertical": true,
+      "horizontal": false
+    }
+  },
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false
+  },
+  "tab_bar": { "show": false },
+  "project_panel": { "button": false },
+  "outline_panel": { "button": false },
+  "collaboration_panel": { "button": false },
+  "notification_panel": { "button": false },
+  "terminal": { "button": false },
+
+  // Smaller gutter
+  "gutter": {
+    "code_actions": false,
+    "runnables": false,
+    "folds": false
+  },
+
+  // Maybe
+  "active_pane_modifiers": {
+    "magnification": 1.5,
+    // Inset border size of the active pane, in pixels.
+    "border_size": 0.0,
+    // Opacity of the inactive panes. 0 means transparent, 1 means opaque.
+    // Values are clamped to the [0.0, 1.0] range.
+    "inactive_opacity": 0.85
+  },
+  "auto_signature_help": true,
+
+  // Usability
+  "vim_mode": true,
+
+  // Looks
+  "ui_font_size": 15,
+  "buffer_font_size": 15.0,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "One Light"
+  }
+}
