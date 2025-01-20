@@ -3,12 +3,21 @@
     "bindings": {
       "ctrl-shift-w": null,
       "ctrl-q": "pane::CloseActiveItem",
-      "ctrl-f": "workspace::ToggleRightDock",
       "ctrl-b": "workspace::ToggleLeftDock",
 
       // Tabs
       "ctrl-tab": "pane::ActivateNextItem",
-      "ctrl-shift-tab": "pane::ActivatePrevItem"
+      "ctrl-shift-tab": "pane::ActivatePrevItem",
+
+      // Projects
+      "ctrl-o": "projects::OpenRecent",
+      "ctrl-shift-o": "workspace::Open",
+
+      // AI
+      "ctrl-f": "workspace::ToggleRightDock",
+      "ctrl-[": "copilot::PreviousSuggestion",
+      "ctrl-]": "copilot::NextSuggestion",
+      "ctrl-shift-space": "copilot::Suggest"
     }
   },
 
@@ -25,7 +34,12 @@
 
       // Multi-cursor
       "ctrl-up": "editor::AddSelectionAbove",
-      "ctrl-down": "editor::AddSelectionBelow"
+      "ctrl-down": "editor::AddSelectionBelow",
+
+      // Copy paste
+      "ctrl-c": "editor::Copy",
+      "ctrl-v": "editor::Paste",
+      "ctrl-x": "editor::Cut"
     }
   },
 
@@ -72,25 +86,30 @@
       "g r": "editor::GoToDefinitionSplit",
       "g f": "editor::OpenExcerpts",
 
-      // Copy-paste
-      "y": "vim::YankLine",
-
       // Multi-cursor
       "ctrl-up": "editor::AddSelectionAbove",
       "ctrl-down": "editor::AddSelectionBelow",
       "C": "editor::AddSelectionBelow",
       "v": "vim::ToggleVisualLine",
       "ctrl-d": ["editor::SelectNext", { "replace_newest": false }],
+      "l": "editor::SplitSelectionIntoLines"
+    }
+  },
+
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+
+    "bindings": {
+      // Pickers
+      "space f": "file_finder::Toggle",
+      "space d": "editor::GoToDiagnostic",
+      "space D": "diagnostics::Deploy",
+      "space a": "editor::ToggleCodeActions",
+      "space s": "outline::Toggle",
 
       // Indentation
       ">": "vim::Indent",
       "<": "editor::TabPrev",
-
-      // Pickers
-      "space f": "file_finder::Toggle",
-      "space d": "editor::GoToDiagnostic",
-      "space a": "editor::ToggleCodeActions",
-      "space s": "outline::Toggle",
 
       // Panes
       "[": ["workspace::ActivatePaneInDirection", "Left"],
@@ -98,8 +117,36 @@
 
       // Help
       "h": "editor::Hover"
+    }
+  },
 
-      // "fake item": "fake action"
+  {
+    "context": "vim_mode == normal",
+
+    // TODO: clipboard make c and p not touch the clipboard (only x should do it)
+    "bindings": {
+      "y": "vim::YankLine",
+
+      // Vim-like Modifications
+      "c w": ["workspace::SendKeystrokes", "ctrl-d c"],
+      "c c": ["workspace::SendKeystrokes", "v c"]
+    }
+  },
+
+  {
+    "context": "vim_mode == visual",
+
+    "bindings": {
+      "y": "vim::VisualYank"
+    }
+  },
+
+  {
+    "context": "ProjectPanel && not_editing",
+
+    "bindings": {
+      // FIXME
+      "space f": "file_finder::Toggle"
     }
   }
 ]

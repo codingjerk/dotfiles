@@ -1,12 +1,5 @@
 {
   // Disable shit
-  "assistant": {
-    "default_model": {
-      "provider": "anthropic",
-      "model": "claude-3-5-sonnet-latest"
-    },
-    "version": "2"
-  },
   "telemetry": {
     "diagnostics": false,
     "metrics": false
@@ -28,7 +21,33 @@
   "outline_panel": { "button": false },
   "collaboration_panel": { "button": false },
   "notification_panel": { "button": false },
-  "terminal": { "button": false },
+  "terminal": {
+    "button": false,
+    "copy_on_select": true,
+    "dock": "left",
+    "toolbar": {
+      "breadcrumbs": false
+    }
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+
+  // AI
+  "assistant": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-3-5-sonnet"
+    },
+    "version": "2"
+  },
+
+  // Rullers and wrapping
+  "wrap_guides": [80, 120],
+  "preferred_line_length": 80,
+  "soft_wrap": "preferred_line_length",
 
   // Smaller gutter
   "gutter": {
@@ -37,19 +56,29 @@
     "folds": false
   },
 
+  // Smaller statusbar
+  "line_indicator_format": "short",
+
   // Maybe
   "active_pane_modifiers": {
     "magnification": 1.5,
-    // Inset border size of the active pane, in pixels.
-    "border_size": 0.0,
-    // Opacity of the inactive panes. 0 means transparent, 1 means opaque.
-    // Values are clamped to the [0.0, 1.0] range.
     "inactive_opacity": 0.85
   },
-  "auto_signature_help": true,
 
   // Usability
   "vim_mode": true,
+  "auto_signature_help": true,
+
+  // Extensions
+  "auto_install_extensions": {
+    "html": true,
+    "dockerfile": true,
+    "docker-compose": true,
+
+    // TODO: remove
+    "markdown-oxide": false,
+    "cspell": false
+  },
 
   // Looks
   "ui_font_size": 15,
@@ -57,6 +86,6 @@
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "One Light"
+    "dark": "Casablanca"
   }
 }
