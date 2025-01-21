@@ -85,6 +85,11 @@
       "g e": "vim::StartOfDocument",
       "g r": "editor::GoToDefinitionSplit",
       "g f": "editor::OpenExcerpts",
+      "g F": "editor::OpenExcerptsSplit",
+
+      // Excerpts (TODO)
+      "z w": "editor::ExpandExcerptsUp",
+      "z s": "editor::ExpandExcerptsDown",
 
       // Multi-cursor
       "ctrl-up": "editor::AddSelectionAbove",
@@ -92,7 +97,10 @@
       "C": "editor::AddSelectionBelow",
       "v": "vim::ToggleVisualLine",
       "ctrl-d": ["editor::SelectNext", { "replace_newest": false }],
-      "l": "editor::SplitSelectionIntoLines"
+      "l": "editor::SplitSelectionIntoLines",
+
+      // Visual mode
+      "ctrl-shift-v": "vim::ToggleVisual"
     }
   },
 
@@ -116,7 +124,10 @@
       "]": ["workspace::ActivatePaneInDirection", "Right"],
 
       // Help
-      "h": "editor::Hover"
+      "h": "editor::Hover",
+
+      // AI
+      "shift-enter": "assistant::InlineAssist"
     }
   },
 
@@ -137,7 +148,10 @@
     "context": "vim_mode == visual",
 
     "bindings": {
-      "y": "vim::VisualYank"
+      "y": "vim::VisualYank",
+
+      // AI
+      "r": "assistant::InlineAssist"
     }
   },
 

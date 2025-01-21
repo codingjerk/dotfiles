@@ -39,7 +39,7 @@
         "icon.accent": "#BBAAF2",
         "status_bar.background": "#181E2C",
         "title_bar.background": "#181E2C",
-        "title_bar.inactive_background": "#232634d9",
+        "title_bar.inactive_background": "#1D2433",
         "toolbar.background": "#1D2433",
         "tab_bar.background": "#181E2C",
         "tab.inactive_background": "#181E2C",
@@ -65,7 +65,7 @@
         "editor.wrap_guide": "#313847",
         "editor.active_wrap_guide": "#626880",
         "editor.indent_guide": "#313847",
-        "editor.indent_guide_active": "#606D88",
+        "editor.indent_guide_active": "#505D78",
         "editor.document_highlight.read_background": "#303D58",
         "editor.document_highlight.write_background": "#303D58",
         "terminal.background": "#1D2433",
@@ -183,7 +183,7 @@
         ],
         "syntax": {
           "attribute": {
-            "color": "#e5c890",
+            "color": "#BBAAF2",
             "font_style": null,
             "font_weight": null
           },
@@ -203,7 +203,7 @@
             "font_weight": null
           },
           "constant": {
-            "color": "#ef9f76",
+            "color": "#BDD9F2",
             "font_style": null,
             "font_weight": null
           },
@@ -258,12 +258,12 @@
             "font_weight": null
           },
           "number": {
-            "color": "#ef9f76",
+            "color": "#DFD6c6", // NOTE: this is new yellow
             "font_style": null,
             "font_weight": null
           },
           "operator": {
-            "color": "#99d1db",
+            "color": "#606D88",
             "font_style": null,
             "font_weight": null
           },
@@ -298,7 +298,7 @@
             "font_weight": null
           },
           "punctuation.delimiter": {
-            "color": "#949cbb",
+            "color": "#606D88",
             "font_style": null,
             "font_weight": null
           },
@@ -308,7 +308,7 @@
             "font_weight": null
           },
           "punctuation.special": {
-            "color": "#81c8be",
+            "color": "#606D88",
             "font_style": null,
             "font_weight": null
           },
@@ -318,7 +318,7 @@
             "font_weight": null
           },
           "string": {
-            "color": "#ACDF96",
+            "color": "#99dfbc", // NOTE: this is new green
             "font_style": null,
             "font_weight": null
           },
@@ -358,7 +358,7 @@
             "font_weight": 800
           },
           "type": {
-            "color": "#DFD696",
+            "color": "#818DA7",
             "font_style": null,
             "font_weight": null
           },
@@ -373,7 +373,7 @@
             "font_weight": null
           },
           "variable": {
-            "color": "#BDD9F2",
+            "color": "#96bFe0",
             "font_style": null,
             "font_weight": null
           },
@@ -383,12 +383,12 @@
             "font_weight": null
           },
           "variable.parameter": {
-            "color": "#ef9f76",
+            "color": "#96cFd0", // NOTE: this is new cyan
             "font_style": "italic",
             "font_weight": null
           },
           "variable.special": {
-            "color": "#d3b1c8",
+            "color": "#DF96C7",
             "font_style": "italic",
             "font_weight": null
           },

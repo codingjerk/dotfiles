@@ -13,7 +13,7 @@
     }
   },
   "toolbar": {
-    "breadcrumbs": false,
+    "breadcrumbs": true,
     "quick_actions": false
   },
   "tab_bar": { "show": false },
@@ -47,7 +47,7 @@
   // Rullers and wrapping
   "wrap_guides": [80, 120],
   "preferred_line_length": 80,
-  "soft_wrap": "preferred_line_length",
+  "soft_wrap": "none", // enable per-language
 
   // Smaller gutter
   "gutter": {
@@ -68,24 +68,106 @@
   // Usability
   "vim_mode": true,
   "auto_signature_help": true,
+  "hover_popover_delay": 50,
+  "scroll_sensitivity": 5,
 
   // Extensions
   "auto_install_extensions": {
     "html": true,
     "dockerfile": true,
     "docker-compose": true,
-
-    // TODO: remove
-    "markdown-oxide": false,
-    "cspell": false
+    "ruff": true
   },
 
   // Looks
+  "buffer_line_height": {
+    "custom": 1.16 // Like I've used in terminal, but it's pretty dense
+  },
   "ui_font_size": 15,
   "buffer_font_size": 15.0,
+  "buffer_font_family": "Noto Sans Mono",
+  "buffer_font_weight": 300,
+  "ui_font_weight": 400,
+  "ui_font_family": "Noto Sans",
   "theme": {
     "mode": "dark",
     "light": "One Light",
     "dark": "Casablanca"
+  },
+
+  // LSPs
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "cachePriming": { "enable": false },
+        "completion": {
+          "callable": { "snippets": "none" },
+          "fullFunctionSignatures": { "enable": false },
+          "limit": 1024,
+          "postfix": { "enable": false },
+          "hideDeprecated": true
+        },
+
+        "imports": { "preferNoStd": true },
+
+        "hover": {
+          "actions": { "run": { "enable": false } },
+          "show": { "fields": 10 }
+        },
+
+        "inlayHints": {
+          "chainingHints": { "enable": false },
+          "closingBraceHints": { "enable": false },
+          "genericParameterHints": { "const": { "enable": false } },
+          "typeHints": { "enable": false },
+          "parameterHints": { "enable": false },
+          "renderColons": false
+        },
+        "lens": {
+          "enable": false
+        },
+        "lru": {
+          "capacity": 512
+        },
+        "diagnostics": {
+          "experimental": {
+            "enable": true
+          },
+          "styleLints": {
+            "enable": true
+          }
+        },
+        "check": {
+          "command": "clippy"
+        },
+        "cargo": {
+          "targetDir": true,
+          "allTargets": false
+        },
+        "rustfmt": {
+          "extraArgs": [
+            "--config=empty_item_single_line=false",
+            "--config=wrap_comments=true",
+            "--config=condense_wildcard_suffixes=true",
+            "--config=enum_discrim_align_threshold=10",
+            "--config=format_code_in_doc_comments=true",
+            "--config=hex_literal_case=Upper",
+            "--config=max_width=80",
+            "--config=reorder_impl_items=true",
+            "--config=group_imports=StdExternalCrate",
+            "--config=use_field_init_shorthand=true"
+          ]
+        }
+      }
+    }
+  },
+
+  // Languages
+  "languages": {
+    "Python": {
+      "format_on_save": "on",
+      "formatter": [{ "language_server": { "name": "ruff" } }]
+    },
+    "Markdown": { "soft_wrap": "preferred_line_length" }
   }
 }
