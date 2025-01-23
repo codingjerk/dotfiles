@@ -166,6 +166,10 @@ CONFIG_FILES = [
     Config.home(".config/pypoetry/config.toml", "pypoetry/config.toml"),
     # Ledger
     Config.home(".ledgerrc", "ledger/ledgerrc"),
+    # Zed
+    Config.home(".config/zed/settings.json", "zed/settings.json"),
+    Config.home(".config/zed/keymap.json", "zed/keymap.json"),
+    Config.home(".config/zed/themes/Casablanca.json", "zed/theme.json"),
 ]
 
 
