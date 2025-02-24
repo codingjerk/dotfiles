@@ -1,12 +1,15 @@
 # feat: ✨ 
 # feat: 🔍 
 # feat: 🔗 
+# feat: 🔒 
 
 # fix: 🐛 
 # fix: 🐞 
 # fix: 🩹 
+# fix: 🚑️ 
 
 # style: 💅 
+# style: 🎨 
 # style: 💄 
 
 # ci: 🦊 
@@ -16,6 +19,8 @@
 # deploy: 📦 
 
 # chore: 🧹 
+# chore: 🔧 
+# chore: ⚙️ 
 # docs: 📜 
 
 # refactor: 🔨 
@@ -23,3 +28,7 @@
 
 # test: 🚦 
 # debug: 🧪 
+
+# BREAKING CHANGE: 🚨 
+# BREAKING CHANGE: 💥 
+# BREAKING CHANGE: 💣 

@@ -8,3 +8,7 @@ __pycache__/
 
 # Rust specific
 target/
+
+# Zig specific
+.zig-cache/
+zig-out/

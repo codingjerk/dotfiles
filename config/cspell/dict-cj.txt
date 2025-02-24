@@ -2,6 +2,36 @@
 Кекич
 kekich
 
+# Assembler
+cmov
+cmovne
+
+# Helix
+nonwhitespace
+textobject
+noyank
+
+# Chess
+bitboard
+bitboards
+bitscan
+movegen
+startpos
+perft
+stockfish
+shakmaty
+zobrist
+
+# Uci
+wtime
+btime
+winc
+binc
+bestmove
+uciok
+readyok
+ucinewgame
+
 # Russian
 дешборд
 ревьюшка
@@ -17,6 +47,9 @@ kekich
 # Names
 gruzdev
 codingjerk
+
+# Words
+blazingly
 
 # Rirs
 rir
@@ -134,13 +167,21 @@ Eeuo
 exitfirst
 gsed
 
+# Python
+popleft
+maxsplit
+
 # Python libs
 fernet
 libnotify
 pypackages
+aiopg
 
 # Bash & Linux
+iptables
+wg
 htoprc
+traceroute
 iwctl
 iwd
 hypr
@@ -254,6 +295,7 @@ nofail
 coredump
 nspawn
 nconfig
+pipefail
 
 # Technologies
 nextdns
@@ -276,6 +318,8 @@ smallcaps
 emph
 
 # Rust
+rustflags
+Ctarget
 chrono
 Datelike
 Timelike
@@ -314,3 +358,12 @@ pypoetry
 ledgerrc
 termux
 otus
+ipinfo
+mmdb
+keepalive
+keepalives
+
+# Chess
+halfmove
+fullmove
+rnbqkbnr

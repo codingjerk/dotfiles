@@ -1,17 +1,13 @@
-exclude = [ ".git", ".ruff_cache" ]
-
 line-length = 80
-indent-width = 4
-target-version = "py312"
+target-version = "py313"
 
 [format]
-  quote-style = "double"
-  indent-style = "space"
   line-ending = "lf"
-  skip-magic-trailing-comma = false
+  docstring-code-format = true
 
 [lint]
   select = [ "ALL" ]
+  fixable = [ "ALL" ]
   ignore = [
     # Documentation
     "D",
@@ -20,7 +16,11 @@ target-version = "py312"
     "COM812", "ISC001",
 
     # TODO notes
-    "FIX",
+    "FIX002",  # Ignore TODO, and HACK, but lint FIXME
+    "FIX004",  # ^
+    "TD001",   # ^
+    "TD002",   # Do not ask for TODO's author and issue link
+    "TD003",   # ^
 
     # __init__.py
     "INP001",
@@ -28,6 +28,9 @@ target-version = "py312"
     # Controversial
     "SIM118",  # `key in dict.keys()` is better than `key in dict`
     "ANN101",  # self doesn't need type annotation
+    "T201",    # Yeah it's bad in finished products, but in most scripts and
+               # while debugging it's really annoying
+    "RET504",  # Naming result before returning can improve readability
   ]
 
 [lint.isort]
@@ -36,7 +39,13 @@ target-version = "py312"
 [lint.flake8-bugbear]
   extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "fastapi.params.Query"]
 
-[per-file-ignores]
+[lint.flake8-builtins]
+  builtins-ignorelist = ["id"]
+
+[lint.flake8-quotes]
+  avoid-escape = false
+
+[lint.per-file-ignores]
   "tests/**/*.py" = [
     "S101",    # Asserts are necessary in tests
     "PLR2004", # Magic values are useful in tests

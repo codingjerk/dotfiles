@@ -32,7 +32,6 @@
 
 [log]
     abbrevCommit = true  # short commits
-    date = relative
     graphColors = blue,yellow,cyan,magenta,green,red
 
 [status]
@@ -53,6 +52,9 @@
 
 [pull]
     rebase = true
+
+[submodule]
+    fetchJobs = 16
 
 [rebase]
     autoStash = true

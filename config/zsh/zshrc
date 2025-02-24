@@ -1,6 +1,6 @@
 # Aliases: editor
-alias e='$EDITOR'
-alias E='sudo -e'
+alias e="$EDITOR"
+alias E="sudo -e"
 
 # Aliases: ls
 alias l='eza -1A --group-directories-first --color=always --git-ignore'
@@ -17,16 +17,19 @@ alias gc='git commit'
 alias gca='gc --amend --no-edit'
 alias gce='gc --amend'
 alias gco='git checkout'
-alias gcm='gc --message'
 alias gcl='git clone --recursive'
 alias gd='git diff --output-indicator-new=" " --output-indicator-old=" "'
 alias gds='gd --staged'
 alias gi='git init'
 alias gl='git log --graph --all --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(blue)  %D%n%s%n"'
+alias gm='git merge'
+alias gn='git checkout -b'  # new branch
 alias gp='git push'
 alias gr='git reset'
 alias gs='git status --short'
 alias gu='git pull'
+
+gcm() { git commit --message "$*" }
 
 # Aliases: docker
 alias dps='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"'
@@ -54,7 +57,7 @@ alias sdu='systemctl --user'
 alias jd='journalctl --no-pager'
 
 # Aliases: human-readable
-alias cal='cal --monday'
+alias cal='TZ=Asia/Bangkok cal --monday'
 alias du='du --human-readable'
 alias free='free --human'
 
@@ -80,12 +83,12 @@ alias ptr='poetry run'
 alias pte='poetry run $EDITOR'
 
 # Aliases: package managers
-alias pi='sudo pacman -S'
+alias pi='sudo pacman -S --needed'
 alias pf='pacman -Ss'
 alias pr='sudo pacman -Rs'
 
 # Recommended kind of update with reduced keyring-related problems
-alias pu='sudp pacman -Sy archlinux-keyring && sudo pacman -Su'
+alias pu='sudo pacman -Sy --needed archlinux-keyring && sudo pacman -Su'
 
 # Aliases: ledger
 alias lg='ledger'
@@ -156,7 +159,6 @@ __history() {
 }
 
 zle -N __history
-bindkey '^R' __history
 
 # Completion
 LISTMAX=10000  # do not show warning if there is too much items in completion
@@ -190,11 +192,15 @@ zstyle ':completion:*' use-cache true
 # Keyboard
 unsetopt flow_control  # disable ^S / ^Q
 
+bindkey -e  # Zsh default keybindings are vim, because EDITOR is set to vim, use emacs ones
+
 bindkey '^I' complete-word  # Tab, complete instead of expand-and-complete
 bindkey '^[[3~' delete-char  # Delete
 bindkey '^[[Z' reverse-menu-complete  # Shift+Tab
 bindkey '^[[1;5D' backward-word  # Control-Left
 bindkey '^[[1;5C' forward-word  # Control-Right
+
+bindkey '^R' __history
 
 # Line editor
 autoload -Uz edit-command-line
@@ -206,6 +212,10 @@ export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS --select-1 --exit-0"
 eval "$(zoxide init zsh --no-cmd)"
 alias z='__zoxide_zi'
 alias ~='cd ~'
+ze() {
+  DIR=$(zoxide query -i "$@")
+  [ -n "$DIR" ] && cd "$DIR" && e .
+}
 
 # Plugin: autosuggestions
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh

@@ -170,6 +170,9 @@ CONFIG_FILES = [
     Config.home(".config/zed/settings.json", "zed/settings.json"),
     Config.home(".config/zed/keymap.json", "zed/keymap.json"),
     Config.home(".config/zed/themes/Casablanca.json", "zed/theme.json"),
+    # Neovim
+    Config.home(".config/nvim/init.lua", "nvim/init.lua"),
+    Config.home(".config/nvim/colors/nuitbleue.vim", "nvim/nuitbleue.vim"),
 ]
 
 
@@ -195,7 +198,7 @@ def main() -> None:
         sys.stderr.write(
             "× CRIT: action is not specified. Should be `install` or `sync-repo`\n"
         )
-        exit(1)
+        sys.exit(1)
 
     if action == "install":
         render_all(reverse=False)
@@ -205,7 +208,7 @@ def main() -> None:
         sys.stderr.write(
             f"× CRIT: unknown action `{action}`. Should be `install` or `sync-repo`\n"
         )
-        exit(1)
+        sys.exit(1)
 
 
 def render_all(reverse: bool) -> None:
@@ -265,7 +268,9 @@ def de_render(file: Config) -> None:
     if file.host.exists():
         shutil.copy(file.host, file.repo)
     else:
-        sys.stderr.write(f"× WARNING: file {file.host} doesn't exist. Skipping\n")
+        sys.stderr.write(
+            f"× WARNING: file {file.host} doesn't exist. Skipping\n"
+        )
 
 
 if __name__ == "__main__":

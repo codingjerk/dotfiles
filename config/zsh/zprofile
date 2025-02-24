@@ -1,5 +1,5 @@
 # Programs
-export EDITOR='helix'
+export EDITOR='nvim'
 export TERMINAL='footclient'
 export BROWSER='google-chrome-unstable'
 export PAGER='less'

@@ -39,7 +39,7 @@
   "assistant": {
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-3-5-sonnet"
+      "model": "o3-mini"
     },
     "version": "2"
   },
@@ -70,6 +70,7 @@
   "auto_signature_help": true,
   "hover_popover_delay": 50,
   "scroll_sensitivity": 5,
+  "restore_on_startup": "none",
 
   // Extensions
   "auto_install_extensions": {

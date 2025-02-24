@@ -5,6 +5,9 @@ Host lambda lambda.cj.dog
 Host *.cj.dog
     User cj
 
+Host voyager
+    Port 2206
+
 Host *
     # If user is unspecified, connect as root
     User root
