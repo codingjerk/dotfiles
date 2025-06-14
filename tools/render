@@ -173,6 +173,8 @@ CONFIG_FILES = [
     # Neovim
     Config.home(".config/nvim/init.lua", "nvim/init.lua"),
     Config.home(".config/nvim/colors/nuitbleue.vim", "nvim/nuitbleue.vim"),
+    # Fd
+    Config.home(".config/fd/ignore", "fd/ignore"),
 ]
 
 

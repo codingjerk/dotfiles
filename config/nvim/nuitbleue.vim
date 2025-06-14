@@ -6,7 +6,8 @@ let g:colors_name = "nuitbleue"
 let s:bg="#1d2433"
 let s:bg_dim="#1a202e"
 let s:bg_dim_more="#171c29"
-let s:bg_sel="#293145"
+let s:bg_sel="#333e59"
+let s:bg_sel_hi="#293145"
 
 let s:fg="#bfd3ff"
 let s:fg_half_dim="#54678c"
@@ -32,15 +33,16 @@ call s:hl("CursorLine", "NONE", s:bg_dim)
 call s:hl("CursorLineNr", s:blue, s:bg_dim)
 call s:hl("Visual", "NONE", s:bg_sel)
 call s:hl("SignColumn", "NONE", s:bg)
+call s:hl("FoldColumn", "NONE", s:bg)
 
 call s:hl("TabLine", "NONE", s:bg_dim)
 call s:hl("TabLineFill", "NONE", s:bg_dim)
 highlight TabLineFill gui=none
 
-call s:hl("StatusLine", s:fg, s:bg_dim)
+call s:hl("StatusLine", s:purple, "NONE")
 highlight StatusLine gui=none
 
-call s:hl("StatusLineNC", s:fg_dim, s:bg_dim)
+call s:hl("StatusLineNC", s:fg_dim, "NONE")
 highlight StatusLineNC gui=none
 
 call s:hl("NormalFloat", "NONE", s:bg_dim)
@@ -55,10 +57,10 @@ call s:hl("CursorColumn", "NONE", s:fg_dim)
 call s:hl("IblScope", s:accent_dim, "NONE")
 
 " Cursor
-call s:hl("MatchParen", s:purple, "NONE")
+call s:hl("MatchParen", s:purple, s:bg_sel)
 call s:hl("Cursor", s:bg, s:fg_half_dim)
 call s:hl("MultiCursorSign", s:blue, "NONE")
-hi MatchParen gui=underline
+" exec "hi MatchParen gui=underline guisp=" . s:purple
 
 " Search
 call s:hl("Search",    s:yellow, "NONE")
@@ -72,6 +74,7 @@ exec "hi IncSearch gui=underline guisp=" . s:yellow
 call s:hl("Pmenu", s:fg, s:bg)
 call s:hl("PmenuSel", s:fg, s:bg_sel)
 call s:hl("PmenuThumb", s:fg_dim, s:fg_dim)
+call s:hl("PmenuSbar", s:red, s:bg_dim)
 
 " Dimmed text
 call s:hl("LineNr", s:fg_dim, s:bg)
@@ -90,7 +93,12 @@ call s:hl("Identifier", s:fg, "NONE")
 call s:hl("Function", s:blue, "NONE")
 call s:hl("Todo", s:blue, "NONE")
 call s:hl("@tag.html", s:blue, "NONE")
+call s:hl("@tag.xml", s:blue, "NONE")
+call s:hl("@tag.vue", s:blue, "NONE")
+call s:hl("@tag.delimiter.vue", s:blue, "NONE")
+call s:hl("@tag.delimiter", s:blue, "NONE")
 call s:hl("dosiniLabel", s:blue, "NONE")
+call s:hl("tomlKey", s:blue, "NONE")
 
 " Red (mutable variables)
 call s:hl("@lsp.mod.mutable", s:red, "NONE")
@@ -100,14 +108,28 @@ call s:hl("Keyword", s:purple, "NONE")
 call s:hl("@keyword", s:purple, "NONE")
 call s:hl("@keyword.repeat", s:purple, "NONE")
 call s:hl("@keyword.import", s:purple, "NONE")
+call s:hl("@keyword.exception", s:purple, "NONE")
 call s:hl("@keyword.conditional", s:purple, "NONE")
 call s:hl("@keyword.type.python", s:purple, "NONE")
 call s:hl("Directory", s:purple, "NONE")
 call s:hl("@tag.attribute.html", s:purple, "NONE")
+call s:hl("@tag.attribute.xml", s:purple, "NONE")
+call s:hl("@tag.attribute.vue", s:purple, "NONE")
 call s:hl("dosiniHeader", s:purple, "NONE")
+call s:hl("zigVarDecl", s:purple, "NONE")
+call s:hl("zigConditional", s:purple, "NONE")
+call s:hl("zigExecution", s:purple, "NONE")
+
+call s:hl("CfgSection", s:purple, "NONE")
+call s:hl("tomlTable", s:purple, "NONE")
+call s:hl("tomlTableArray", s:purple, "NONE")
+call s:hl("Title", s:purple, "NONE")
 
 " Green (strings)
 call s:hl("String", s:green, "NONE")
+call s:hl("CfgValues", s:green, "NONE")
+call s:hl("CfgOnOff", s:green, "NONE")
+call s:hl("@punctuation.special.vue", s:green, "NONE")
 
 " Yellow (constants)
 call s:hl("Constant", s:yellow, "NONE")
@@ -115,12 +137,20 @@ call s:hl("@constant.bash", s:blue, "NONE") " special case
 
 " Orange (types, classes)
 call s:hl("Type", s:orange, "NONE")
+call s:hl("@constructor", s:orange, "NONE")
+call s:hl("@type.builtin", s:orange, "NONE")
+call s:hl("@character.rust", s:orange, "NONE") " special case to distinguish from strings
+call s:hl("@character.zig", s:orange, "NONE")
 
 " Pink (special, rare, important, builtins)
 call s:hl("Special", s:pink, "NONE")
 call s:hl("PreProc", s:pink, "NONE")
 call s:hl("@boolean", s:pink, "NONE")
 call s:hl("@constant.html", s:pink, "NONE")
+call s:hl("@lsp.type.builtin.zig", s:pink, "NONE")
+call s:hl("zigBuiltinFn", s:pink, "NONE")
+call s:hl("zigNull", s:pink, "NONE")
+call s:hl("@keyword.import.zig", s:pink, "NONE")
 
 " Disabled
 call s:hl("Delimiter", s:fg_half_dim, "NONE")
@@ -128,6 +158,7 @@ call s:hl("Operator", s:fg_half_dim, "NONE")
 call s:hl("@constructor.lua", s:fg_half_dim, "NONE")
 call s:hl("@tag.delimiter.html", s:fg_half_dim, "NONE")
 call s:hl("dosiniSection", s:fg_half_dim, "NONE")
+call s:hl("Conceal", s:red, s:green)
 
 " Diagnostic
 call s:hl("DiagnosticError", s:red, "NONE")
@@ -142,8 +173,10 @@ exec "highlight SpellBad" . " guisp=" . s:orange
 call s:hl("DiagnosticInfo", s:fg_half_dim, "NONE")
 call s:hl("DiagnosticHint", s:fg_half_dim, "NONE")
 
+exec "highlight DiagnosticUnderlineHint gui=NONE"
+exec "highlight DiagnosticUnderlineInfo gui=NONE"
 exec "highlight DiagnosticUnderlineWarn gui=NONE"
-exec "highlight DiagnosticUnderlineError gui=undercurl guisp=" . s:red
+exec "highlight DiagnosticUnderlineError gui=NONE"
 
 " Notifications
 call s:hl("NotifyBackground", s:bg_dim, s:bg_dim)
@@ -190,20 +223,22 @@ call s:hl("GitSignsDelete", s:red, "NONE")
 call s:hl("GitSignsStagedDelete", s:red, "NONE")
 call s:hl("GitSignsStagedDeleteNr", s:red, "NONE")
 
-" Markdown
-call s:hl("Title", s:blue, "NONE")
+" Language:Markdown
 call s:hl("@markup.list.markdown", s:fg_dim, "NONE")
 call s:hl("@markup.list.checked.markdown", s:fg_dim, "NONE")
 call s:hl("@markup.list.unchecked.markdown", s:red, "NONE")
-call s:hl("@markup.raw.markdown_inline", s:purple, "NONE")
-call s:hl("@markup.raw.block.markdown", s:purple, "NONE")
-call s:hl("@label.markdown", s:purple, "NONE")
+call s:hl("@markup.raw.markdown_inline", s:green, "NONE")
+call s:hl("@markup.raw.block.markdown", s:fg_half_dim, "NONE")
+call s:hl("@label.markdown", s:orange, "NONE")
 call s:hl("@markup.quote.markdown", s:fg, "NONE")
 hi @markup.quote.markdown gui=italic
 call s:hl("@punctuation.special.markdown", s:fg_half_dim, "NONE")
-call s:hl("@markup.link.url.markdown_inline", s:blue, "NONE")
-call s:hl("@markup.link.label.markdown_inline", s:purple, "NONE")
+call s:hl("@markup.link.url.markdown_inline", s:fg_half_dim, "NONE")
+call s:hl("@markup.link.label.markdown_inline", s:blue, "NONE")
 hi @markup.link.url.markdown_inline gui=underline
+
+" Language:calendar
+call s:hl("calendarMonth", s:purple, "NONE")
 
 " Plugin:Telescope
 call s:hl("TelescopeNormal", s:fg, s:bg_dim)
@@ -221,7 +256,7 @@ call s:hl("TelescopeSelectionCaret", s:bg_sel, s:bg_sel)
 " Plugin:Noice
 call s:hl("NoiceCmdlinePopup", s:fg, s:bg_dim)
 call s:hl("NoiceCmdlinePopupBorder", s:bg_dim, s:bg_dim)
-call s:hl("NoicePopup", s:bg_dim, s:bg_dim)
+call s:hl("NoicePopup", "NONE", s:bg_dim)
 
 " Plugin:Diagflow
 call s:hl("DiagnosticFloatingError", s:red, s:bg_dim)
@@ -229,3 +264,9 @@ call s:hl("DiagnosticFloatingWarn", s:orange, s:bg_dim)
 call s:hl("DiagnosticFloatingOK", s:fg_half_dim, s:bg_dim)
 call s:hl("DiagnosticFloatingInfo", s:fg_half_dim, s:bg_dim)
 call s:hl("DiagnosticFloatingHint", s:fg_half_dim, s:bg_dim)
+
+" Plugin:LocalHighlight
+call s:hl("LocalHighlight", "NONE", s:bg_sel_hi)
+
+" Plugin:Oil
+call s:hl("OilFile", s:blue, "NONE")

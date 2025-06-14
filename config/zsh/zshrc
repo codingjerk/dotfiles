@@ -21,7 +21,7 @@ alias gcl='git clone --recursive'
 alias gd='git diff --output-indicator-new=" " --output-indicator-old=" "'
 alias gds='gd --staged'
 alias gi='git init'
-alias gl='git log --graph --all --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(blue)  %D%n%s%n"'
+alias gl='git log --graph --all --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(auto)  %D%n%s%n"'
 alias gm='git merge'
 alias gn='git checkout -b'  # new branch
 alias gp='git push'
@@ -119,7 +119,7 @@ man() {
 # Prompt
 PROMPT=$'%{\033[34m%} %2~ %{\033[0m%}'
 PROMPT2=$'%{\033[33m%} ... %{\033[0m%}'
-RPROMPT=$'%(0?..%{\033[31m%}%?%{\033[0m%})'
+RPROMPT=$'%(0?..%(130?..%{\033[31m%}%?%{\033[0m%}))'
 
 # ZLE
 KEYTIMEOUT=1  # 10ms for grouping escape sequences
@@ -207,8 +207,15 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^S' edit-command-line
 
+# Super Ctrl-Z
+fg-ctrl-z () {
+  fg 2> /dev/null
+}
+zle -N fg-ctrl-z
+bindkey '^Z' fg-ctrl-z
+
 # Plugin: zoxide
-export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS --select-1 --exit-0"
+export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS --no-tac --select-1 --exit-0"
 eval "$(zoxide init zsh --no-cmd)"
 alias z='__zoxide_zi'
 alias ~='cd ~'

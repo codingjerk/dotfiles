@@ -6,12 +6,14 @@
 [commit]
     gpgSign = true
     template = ~/.config/git/template
+    verbose = true  # add more context to commit messages
 
 [core]
     autocrlf = input  # keep newlines as in input
     compression = 9  # trade cpu for network
     fsync = none
     whitespace = error  # threat incorrect whitespace as errors
+    preloadindex = true  # preload index for faster status
 
 [advice]  # disable advices
     addEmptyPathspec = false
@@ -28,7 +30,7 @@
     interHunkContext = 10  # merge near hunks in diffs
 
 [init]
-    defaultBranch = main
+    defaultBranch = dev
 
 [log]
     abbrevCommit = true  # short commits
@@ -42,6 +44,7 @@
 
 [pager]
     branch = false  # no need to use pager for git branch
+    tag = false
     diff = diff-so-fancy | $PAGER  # diff-so-fancy as diff pager
 
 [push]
@@ -52,12 +55,35 @@
 
 [pull]
     rebase = true
+    default = current
 
 [submodule]
     fetchJobs = 16
 
 [rebase]
     autoStash = true
+    missingCommitsCheck = warn  # warn if rebasing with missing commits
+
+[pack]
+    threads = 0  # use all available threads
+    windowMemory = 1g  # use 1g of memory for pack window
+    packSizeLimit = 1g  # max size of a packfile
+
+# Integrity
+[transfer]
+    fsckObjects = true
+
+[receive]
+    fsckObjects = true
+
+[fetch]
+    fsckObjects = true
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = -taggerdate
 
 # Colors
 [color "blame"]
@@ -75,6 +101,13 @@
     frag       = magenta
     context    = white
     whitespace = yellow reverse
+    old        = red
+
+[color.decorate]
+    HEAD = red
+    branch = blue
+    tag = yellow
+    remoteBranch = magenta
 
 [interactive]
     diffFilter = diff-so-fancy --patch
@@ -87,6 +120,9 @@
 # URL shortcuts
 [url "git@github.com:"]
     insteadOf = "gh:"
+
+[url "git@github.com:codingjerk/"]
+    insteadOf = "cj:"
 
 [url "ssh://git@git.qrator.net:2202/radar/"]
     insteadOf = "radar:"

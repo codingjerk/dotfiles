@@ -4,7 +4,7 @@
   command = "${home}/dev/simple-completion-language-server/target/release/simple-completion-language-server"
 
   [language-server.buffer.config]
-    max_completion_items = 100
+    max_completion_items = 500
     feature_snippets = false
     feature_unicode_input = false
 

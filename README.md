@@ -18,7 +18,7 @@ Clone repository and install dotfiles as a new user:
 ```sh
 sudo -iu cj
 git clone https://github.com/codingjerk/dotfiles.git
-python ~/dotfiles/tools/render
+python ~/dotfiles/tools/render install
 ```
 
 **WARNING:** it's for me and myself only,

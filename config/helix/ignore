@@ -16,3 +16,7 @@
 # Rust specific
 Cargo.lock
 target/
+
+# Zig specific
+.zig-cache/
+zig-out/
