@@ -1,7 +1,7 @@
 # Programs
 export EDITOR='nvim'
 export TERMINAL='footclient'
-export BROWSER='google-chrome-unstable'
+export BROWSER='firefox'
 export PAGER='less'
 
 export VISUAL="${EDITOR}"
@@ -57,3 +57,7 @@ export LS_COLORS
 # Cleanup environment variables
 unset MAIL
 unset DEBUGINFOD_URLS
+
+# Path: zvm, local binaries, cargo
+export ZVM_INSTALL="$HOME/.zvm/self"
+export PATH="$HOME/.zvm/bin:$ZVM_INSTALL:$HOME/.local/bin:$HOME/.cargo/bin:$PATH"

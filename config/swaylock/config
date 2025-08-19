@@ -1,0 +1,36 @@
+ignore-empty-password
+show-failed-attempts
+clock
+image=${repo}/wallpaper.png
+effect-blur=10x1
+hide-keyboard-layout
+font=Noto Sans Mono Light
+font-size=100
+timestr=%R
+datestr=%d %b
+
+indicator-x-position=300
+
+indicator-idle-visible
+indicator-radius=200
+indicator-thickness=20
+
+inside-color=00000000
+inside-clear-color=00000000
+inside-ver-color=00000000
+inside-wrong-color=00000000
+key-hl-color=${blue}50
+bs-hl-color=${red}50
+line-uses-inside
+
+separator-color=00000000
+
+ring-color=00000000
+ring-ver-color=${blue}50
+ring-wrong-color=${red}80
+ring-clear-color=${green}50
+
+text-color=${fg}
+text-ver=
+text-wrong=
+text-clear=

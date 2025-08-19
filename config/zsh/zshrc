@@ -77,15 +77,16 @@ alias ping='ping -4A'
 alias -g p='2>&1 | less'
 alias sudo='sudo '  # allow aliases with sudo
 
-# Aliases: poetry
-alias pti='poetry install'
-alias ptr='poetry run'
-alias pte='poetry run $EDITOR'
-
 # Aliases: package managers
-alias pi='sudo pacman -S --needed'
-alias pf='pacman -Ss'
-alias pr='sudo pacman -Rs'
+if [[ -n "$TERMUX_VERSION" ]]; then
+  alias pi='pkg install'
+  alias pf='pkg search'
+  alias pr='pkg uninstall'
+else
+  alias pi='sudo pacman -S --needed'
+  alias pf='pacman -Ss'
+  alias pr='sudo pacman -Rs'
+fi
 
 # Recommended kind of update with reduced keyring-related problems
 alias pu='sudo pacman -Sy --needed archlinux-keyring && sudo pacman -Su'
@@ -95,13 +96,23 @@ alias lg='ledger'
 alias lga='ledger accounts'
 alias lgb='ledger balance'
 alias lgr='ledger register'
-alias el='e ~/.ledger/journal.ldg'
-alias cdl='cd ~/.ledger'
 
 # Aliases: when
-alias wi='when ci --future=30'
+alias wi='TZ=Asia/Bangkok when ci --future=30'
+
+# Aliases: editors
 alias ew='when eci'
-alias cdw='cd ~/.when'
+alias en='e ~/notes/'
+alias el='e ~/.ledger/journal.ldg'
+
+# Aliases: git
+alias git-notes='git -C ~/notes'
+alias git-when='git -C ~/.when'
+alias git-ledger='git -C ~/.ledger'
+
+# Aliases: sync everything
+alias cj-pull='pass git pull; git-notes pull; git-when pull; git-ledger pull'
+alias cj-status='pass git status; git-notes status; git-when status; git-ledger status'
 
 # Man colors
 man() {
@@ -225,14 +236,22 @@ ze() {
 }
 
 # Plugin: autosuggestions
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [[ -n "$TERMUX_VERSION" ]]; then
+  source ~/third-party/zsh-autosuggestions/zsh-autosuggestions.zsh
+else
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#606090'
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
 
 # Plugin: syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ -n "$TERMUX_VERSION" ]]; then
+  source ~/third-party/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+else
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 ZSH_HIGHLIGHT_MAXLENGTH=120

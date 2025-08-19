@@ -1,0 +1,151 @@
+# Update user's systemd environment variables
+include /etc/sway/config.d/*
+
+# Startup
+exec foot --server --log-level=none
+exec waybar
+
+# Disable X11 support
+xwayland disable
+
+# Configure outputs
+output "*" {
+  mode "2880x1620@60Hz"
+  background "${repo}/wallpaper.png" fill
+}
+
+seat "*" {
+  xcursor_theme capitaine-cursors-light 32
+  hide_cursor when-typing enable
+}
+
+input type:keyboard {
+  xkb_layout "us,ru"
+  xkb_options "grp:caps_toggle,grp_led:caps,compose:ralt"
+
+  repeat_delay 250
+  repeat_rate 20
+}
+
+input "*" {
+  tap enabled
+
+  pointer_accel 0.25
+  scroll_factor 0.15
+  natural_scroll enabled
+  drag_lock disabled
+  dwt disabled  # do not disable while typing
+}
+
+# Options
+floating_modifier Mod4
+
+# Look and feel
+default_border pixel 2
+smart_borders on
+popup_during_fullscreen ignore
+
+client.focused #${blue} #${blue} #${bg} #${purple}
+client.urgent #${red} #${red} #${bg}
+client.focused_inactive #${bg} #${bg} #${fg_half_dim}
+client.unfocused #${bg} #${bg} #${fg_half_dim}
+
+# Hotkeys: windows
+bindsym --to-code Mod4+w focus up
+bindsym --to-code Mod4+a focus left
+bindsym --to-code Mod4+s focus down
+bindsym --to-code Mod4+d focus right
+
+bindsym --to-code Mod4+Shift+w move up
+bindsym --to-code Mod4+Shift+a move left
+bindsym --to-code Mod4+Shift+s move down
+bindsym --to-code Mod4+Shift+d move right
+
+# Hotkeys: Scratchpads
+bindsym --to-code Mod4+Shift+e mark "scratchpad-e", move scratchpad
+bindsym --to-code Mod4+e [con_mark="scratchpad-e"] scratchpad show
+
+bindsym --to-code Mod4+Shift+tab mark "scratchpad-tab", move scratchpad
+bindsym --to-code Mod4+tab [con_mark="scratchpad-tab"] scratchpad show
+
+bindsym --to-code Mod4+Shift+c mark "scratchpad-c", move scratchpad
+bindsym --to-code Mod4+c [con_mark="scratchpad-c"] scratchpad show
+
+# Hotkeys: control
+
+bindsym --to-code Mod4+f fullscreen toggle
+bindsym --to-code Mod4+g floating toggle
+bindsym --to-code Mod4+q kill
+
+# Hotkeys: split
+bindsym --to-code Mod4+h split h
+bindsym --to-code Mod4+v split v
+
+# Hotkeys: sway
+bindsym --to-code Mod4+Alt+r reload
+bindsym --to-code Mod4+Alt+q exit
+bindsym --to-code Mod4+Alt+x exit
+
+# Hotkeys: workspaces
+bindsym --to-code Mod4+1 workspace 1
+bindsym --to-code Mod4+2 workspace 2
+bindsym --to-code Mod4+3 workspace 3
+bindsym --to-code Mod4+4 workspace 4
+bindsym --to-code Mod4+5 workspace 5
+bindsym --to-code Mod4+6 workspace 6
+bindsym --to-code Mod4+7 workspace 7
+bindsym --to-code Mod4+8 workspace 8
+bindsym --to-code Mod4+9 workspace 9
+bindsym --to-code Mod4+0 workspace 10
+bindsym --to-code Mod4+minus workspace 11
+bindsym --to-code Mod4+equal workspace 12
+
+bindsym --to-code Mod4+Shift+1 move window to workspace 1
+bindsym --to-code Mod4+Shift+2 move window to workspace 2
+bindsym --to-code Mod4+Shift+3 move window to workspace 3
+bindsym --to-code Mod4+Shift+4 move window to workspace 4
+bindsym --to-code Mod4+Shift+5 move window to workspace 5
+bindsym --to-code Mod4+Shift+6 move window to workspace 6
+bindsym --to-code Mod4+Shift+7 move window to workspace 7
+bindsym --to-code Mod4+Shift+8 move window to workspace 8
+bindsym --to-code Mod4+Shift+9 move window to workspace 9
+bindsym --to-code Mod4+Shift+0 move window to workspace 10
+bindsym --to-code Mod4+Shift+minus move window to workspace 11
+bindsym --to-code Mod4+Shift+equal move window to workspace 12
+
+# Hotkeys: applications
+bindsym --to-code Mod4+j exec footclient
+bindsym --to-code Mod4+r exec fuzzel
+bindsym --to-code Mod4+b exec firefox
+bindsym --to-code Mod4+n exec makoctl dismiss --all
+
+# Hotkeys: locking
+bindsym --to-code Mod4+l exec swaylock
+bindsym --no-repeat --release --locked --to-code Mod4+k output eDP-1 dpms toggle
+
+# Hotkeys: audio
+bindsym --locked XF86AudioMute exec wpctl set-mute \@DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume \@DEFAULT_SINK@ 5%-
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume \@DEFAULT_SINK@ 5%+
+
+# Hotkeys: mic
+bindsym --locked XF86AudioMicMute exec wpctl set-mute \@DEFAULT_SOURCE@ toggle
+bindsym --locked F7 exec wpctl set-mute \@DEFAULT_SOURCE@ toggle
+
+# Hotkeys: media
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioPause exec playerctl play-pause
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPrev exec playerctl previous
+
+# Hotkeys: brightness
+bindsym --locked XF86MonBrightnessDown exec brightnessctl -e set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl -e set 5%+
+
+# Hotkeys: screenshots
+bindsym --locked Print exec slurp -b ${fg_dim}20 -c ${fg_dim}30 -w 1 | grim -g - - | wl-copy
+bindsym --locked F12 exec slurp -b ${fg_dim}20 -c ${fg_dim}30 -w 1 | grim -g - - | wl-copy
+
+# Switches. On is closed, off is open
+bindswitch --locked --reload lid:off exec swaymsg "output * dpms on"
+bindswitch --locked --reload lid:on exec swaymsg "output * dpms off"

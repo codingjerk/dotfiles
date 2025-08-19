@@ -16,7 +16,7 @@
   padding: 6px 10px;
 }
 #workspaces {
-  padding-left: 20px;
+  padding-left: 16px;
 }
 
 #clock {
@@ -27,17 +27,22 @@
 
 #workspaces button {
   font-size: 16px;
-  padding: 0 1px;
+  padding: 0 4px;
   color: #${fg_dim};
   border: none;
+  border-radius: 0;
 }
 
-#workspaces button.active {
+#workspaces button.active, #workspaces button.focused {
   color: #${blue};
+  border-top: 2px solid #${bg};
+  border-bottom: 2px solid #${blue};
 }
 
 #workspaces button.urgent {
   color: #${red};
+  border-top: 2px solid #${bg};
+  border-bottom: 2px solid #${red};
 }
 
 #workspaces button:hover {

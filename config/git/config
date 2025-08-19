@@ -34,7 +34,7 @@
 
 [log]
     abbrevCommit = true  # short commits
-    graphColors = blue,yellow,cyan,magenta,green,red
+    graphColors  = blue,yellow,cyan,magenta,green,red
 
 [status]
     branch = true

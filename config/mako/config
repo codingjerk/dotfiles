@@ -7,7 +7,6 @@ max-visible=-1
 width=450
 height=200
 anchor=top-center
-border-radius=24
 outer-margin=0
 margin=12
 padding=24
@@ -16,6 +15,5 @@ format=%s\n%b
 background-color=#${bg}
 text-color=#${fg}
 
-# Imitate shadow
-border-color=#00000040
-border-size=1
+border-radius=16
+border-size=0

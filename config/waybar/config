@@ -2,20 +2,39 @@
   "layer": "top", // don't dim in special workspaces
 
   "modules-left": [
-    "hyprland/workspaces",
+    "sway/workspaces",
   ],
 
-  "modules-center": [],
+  "modules-center": [
+  ],
 
   "modules-right": [
     "battery",
     "pulseaudio",
-    "hyprland/language",
+    "sway/language",
     "clock",
   ],
 
-  "hyprland/workspaces": {
-    "format": "●",
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": false,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "0",
+      "11": "-",
+      "12": "+",
+      "default": "x"
+    },
+    "on-click": "swaymsg workspace {name}",
   },
 
   "battery": {
@@ -44,19 +63,14 @@
 
     "tooltip": false,
     "on-click": "pavucontrol",
-    "on-click-right": "pamixer --default-source --toggle-mute",
+    "on-click-right": "wpctl set-mute @DEFAULT_SINK@ toggle",
   },
 
-  "hyprland/language": {
+  "sway/language": {
     "format": "󰌌 {}",
     "format-en": "us",
     "format-ru": "ru",
     "format-th": "th",
-
-    "keyboard-name": "keyd-virtual-keyboard",
-
-    "on-click": "hyprctl keyword input:kb_layout us,ru",
-    "on-click-right": "hyprctl keyword input:kb_layout us,th",
   },
 
   "clock": {
