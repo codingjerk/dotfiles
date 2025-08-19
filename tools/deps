@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+
+import shutil
+import sys
+from dataclasses import dataclass
+
+
+@dataclass
+class Binary:
+    name: str
+    binary: str
+
+    def exists(self) -> bool:
+        return shutil.which(self.binary) is not None
+
+
+DEPENDENCIES = [
+    Binary(name="SwayWM", binary="sway"),
+    Binary(name="Waybar", binary="waybar"),
+    Binary(name="Fuzzel", binary="fuzzel"),
+    Binary(name="Swaylock", binary="swaylock"),
+]
+
+
+def warn(message: str) -> None:
+    _ = sys.stderr.write(f"× WARNING: {message}\n")  # noqa: RUF001
+
+
+def main() -> None:
+    for dep in DEPENDENCIES:
+        if not dep.exists():
+            warn(
+                f"binary `{dep.binary}` for "
+                f'dependency "{dep.name}" doesn\'t exist'
+            )
+
+
+if __name__ == "__main__":
+    main()

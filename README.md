@@ -52,8 +52,8 @@ git clone <repo> .ledger
 git clone <repo> notes
 ```
 
-4. Install LSPs for `helix`.
-   Check `helix`'s `language.toml` for actual sources
+4. Install LSPs for `neovim`.
+   Check `neovim`'s `init.lua` for actual sources
    and build instructions.
 
 ## Update (re-render configuration files)
