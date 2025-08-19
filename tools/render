@@ -80,6 +80,18 @@ CONFIG_FILES = [
     Config.home(".local/cspell-cj.txt", "cspell/dict-cj.txt"),
     # Paru
     Config.home(".config/paru/paru.conf", "paru/paru.conf"),
+    # Sway
+    Config.home(
+        ".config/sway/config",
+        "sway/config",
+        templated=True,
+    ),
+    # Swaylock
+    Config.home(
+        ".config/swaylock/config",
+        "swaylock/config",
+        templated=True,
+    ),
     # Hyprland
     Config.home(
         ".config/hypr/hyprland.conf",
@@ -117,10 +129,10 @@ CONFIG_FILES = [
     ),
     # Wofi
     Config.home(".config/wofi/config", "wofi/config"),
+    Config.home(".config/wofi/style.css", "wofi/style.css", templated=True),
+    # Fuzzel
     Config.home(
-        ".config/wofi/style.css",
-        "wofi/style.css",
-        templated=True,
+        ".config/fuzzel/fuzzel.ini", "fuzzel/fuzzel.ini", templated=True
     ),
     # Fontconfig
     Config.home(".config/fontconfig/fonts.conf", "fontconfig/fonts.conf"),
