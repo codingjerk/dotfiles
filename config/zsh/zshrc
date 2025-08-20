@@ -72,7 +72,7 @@ mk() {
 alias rf='rm -rf'
 alias py='python3'
 alias ipy='ipython'
-alias ping='ping -4A'
+alias ping='ping -A'
 
 alias -g p='2>&1 | less'
 alias sudo='sudo '  # allow aliases with sudo
