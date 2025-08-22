@@ -60,4 +60,4 @@ unset DEBUGINFOD_URLS
 
 # Path: zvm, local binaries, cargo
 export ZVM_INSTALL="$HOME/.zvm/self"
-export PATH="$HOME/.zvm/bin:$ZVM_INSTALL:$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.zvm/bin:$ZVM_INSTALL:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.npm/bin:$PATH"

@@ -187,6 +187,8 @@ CONFIG_FILES = [
     Config.home(".config/nvim/colors/nuitbleue.vim", "nvim/nuitbleue.vim"),
     # Fd
     Config.home(".config/fd/ignore", "fd/ignore"),
+    # NPM
+    Config.home(".npmrc", "npm/npmrc"),
 ]
 
 
