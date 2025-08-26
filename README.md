@@ -24,8 +24,7 @@ python ~/dotfiles/tools/render install
 **WARNING:** it's for me and myself only,
 I don't recommend to run it on your own machines.
 
-If you're not me (lol), just clone this repository and
-poke into configuration files (it's in `config` directory!).
+If you're not me (lol), just clone this repository and poke into configuration files (it's in `config` directory!).
 
 ### Optional extra steps (on new hosts)
 
@@ -46,15 +45,26 @@ gpg --edit-key <key-id>
 3. Initialize stores:
 
 ```sh
-git clone <repo> .password-store
-git clone <repo> .when
-git clone <repo> .ledger
-git clone <repo> notes
+git clone cj:private-pass .password-store
+git clone cj:when-private .when
+git clone cj:ledger-private .ledger
+git clone cj:notes-private notes
 ```
 
 4. Install LSPs for `neovim`.
    Check `neovim`'s `init.lua` for actual sources
    and build instructions.
+
+5. Install lazy
+
+```sh
+mkdir -p ~/.local/share/nvim/lazy
+cd $$
+git clone https://github.com/folke/lazy.nvim.git
+
+in vim:
+:Lazy Install
+```
 
 ## Update (re-render configuration files)
 
