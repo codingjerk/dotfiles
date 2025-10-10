@@ -189,6 +189,8 @@ CONFIG_FILES = [
     Config.home(".config/fd/ignore", "fd/ignore"),
     # NPM
     Config.home(".npmrc", "npm/npmrc"),
+    # Niri
+    Config.home(".config/niri/config.kdl", "niri/config.kdl"),
 ]
 
 
