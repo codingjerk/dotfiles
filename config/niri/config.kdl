@@ -55,7 +55,7 @@ input {
 }
 
 output "HDMI-A-1" {
-  // mode "2560x1440@60"
+  mode "2560x1440@60"
   scale 1
   variable-refresh-rate
 }
@@ -64,7 +64,7 @@ binds {
   // Spawn
   Super+J repeat=false { spawn "footclient"; }
   Super+B repeat=false { spawn "firefox"; }
-  Super+O repeat=false { spawn "fuzzel"; }
+  Super+R repeat=false { spawn "fuzzel"; }
 
   // Window control
   Super+X repeat=false { close-window; }
@@ -74,8 +74,8 @@ binds {
   Super+Alt+C { center-column; }
 
   // Window size control
-  Super+R { switch-preset-column-width; }
-  Super+Shift+R { switch-preset-window-height; }
+  Super+T { switch-preset-column-width; }
+  Super+Shift+T { switch-preset-window-height; }
 
   Super+F { fullscreen-window; }
   Super+Alt+F { maximize-column; }
@@ -189,6 +189,7 @@ layout {
   focus-ring {
     width 3
     active-color "#92b7ea" // blue
+    inactive-color "#54678c" // fg-half-dim
     urgent-color "#D0879D" // red
   }
 
