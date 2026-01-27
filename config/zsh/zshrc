@@ -28,6 +28,7 @@ alias gp='git push'
 alias gr='git reset'
 alias gs='git status --short'
 alias gu='git pull'
+alias gw='git switch'
 
 gcm() { git commit --message "$*" }
 
@@ -183,9 +184,8 @@ autoload -Uz compinit
 compinit -C  # -C disables security checks on dump file
 
 # _complete is base completer
-# _approximate will fix completion if there is no matches
 # _extensions will complete glob patters with extensions
-zstyle ':completion:*' completer _extensions _complete _approximate
+zstyle ':completion:*' completer _extensions _complete
 
 zstyle ':completion:*' menu select  # menu with selection
 zstyle ':completion:*' increment yes
@@ -225,6 +225,10 @@ fg-ctrl-z () {
 }
 zle -N fg-ctrl-z
 bindkey '^Z' fg-ctrl-z
+
+# Fix for GPG pinentry
+# SOURCE: https://github.com/keybase/keybase-issues/issues/2798
+export GPG_TTY=$(tty)
 
 # Plugin: zoxide
 export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS --no-tac --select-1 --exit-0"
