@@ -3,6 +3,7 @@
   color: #${fg};
   font-family: "Noto Sans Mono Light";
   font-size: 14px;
+  font-feature-settings: "calt";
 }
 
 /* padding */
@@ -23,31 +24,73 @@
   padding-right: 20px;
 }
 
+/* clock */
+
+#clock:hover {
+  color: #AD9BEA;
+}
+
+/* pulseaudio */
+
+#pulseaudio:hover {
+  color: #AD9BEA;
+}
+
 /* workspaces */
 
+#workspaces button.empty {
+  opacity: 0.25;
+  font-size: 0;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding: 0;
+}
+
+#workspaces button.empty.active {
+  opacity: 1.0;
+}
+
 #workspaces button {
-  font-size: 16px;
-  padding: 0 4px;
   color: #${fg_dim};
+
   border: none;
   border-radius: 0;
+
+  font-size: 24px;
+  padding: 0 16px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 #workspaces button.active, #workspaces button.focused {
   color: #${blue};
-  border-top: 2px solid #${bg};
-  border-bottom: 2px solid #${blue};
+  border-bottom: 5px solid #${blue};
+  margin-bottom: -5px;
+
+  padding: 0 16px;
+  font-size: 24px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 #workspaces button.urgent {
   color: #${red};
-  border-top: 2px solid #${bg};
-  border-bottom: 2px solid #${red};
+  border-bottom: 5px solid #${red};
+  margin-bottom: -5px;
+
+  padding: 0 16px;
+  font-size: 24px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 #workspaces button:hover {
   background: none;
   color: #${purple};
+
+  /* SEE https://github.com/Alexays/Waybar/issues/60 */
+  box-shadow: inherit;
+  text-shadow: inherit;
 }
 
 /* battery */

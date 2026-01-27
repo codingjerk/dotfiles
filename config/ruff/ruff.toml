@@ -1,5 +1,9 @@
+# NOTE: to use this configuration with local config file
+#       you'll need to add `extend = "~/.config/ruff/ruff.toml"` there
+#       see https://github.com/astral-sh/ruff/discussions/16516
+
 line-length = 80
-target-version = "py313"
+target-version = "py314"
 
 [format]
   line-ending = "lf"
@@ -24,10 +28,9 @@ target-version = "py313"
 
     # __init__.py
     "INP001",
-    
+
     # Controversial
     "SIM118",  # `key in dict.keys()` is better than `key in dict`
-    "ANN101",  # self doesn't need type annotation
     "T201",    # Yeah it's bad in finished products, but in most scripts and
                # while debugging it's really annoying
     "RET504",  # Naming result before returning can improve readability

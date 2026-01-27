@@ -1,13 +1,13 @@
 \set QUIET 1
 
--- Prompt (current database)
-\set PROMPT1 ' %[%033[34m%]%/%[%033[0m%] '
+-- Prompt (database >)
+\set PROMPT1 ' %[%033[34m%]%/%[%033[37m%] >%[%033[0m%] '
 
 -- Table style
 -- border with outer lines
 \pset border 2
--- unicode borders
-\pset linestyle unicode
+-- ascii borders -- renders well in code blocks and looks okay
+\pset linestyle ascii
 \pset null '∅'
 
 -- Other options

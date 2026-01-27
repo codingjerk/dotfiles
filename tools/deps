@@ -15,11 +15,49 @@ class Binary:
 
 
 DEPENDENCIES = [
+    # Core
+    Binary(name="Z Shell", binary="zsh"),
+    Binary(name="fd", binary="fd"),
+    Binary(name="eza", binary="eza"),
+
+    # CLI Tools
+    Binary(name="Git", binary="git"),
+    Binary(name="diff-so-fancy", binary="diff-so-fancy"),
+
+    Binary(name="Less", binary="less"),
+    Binary(name="Curl", binary="curl"),
+    Binary(name="OpenSSH", binary="ssh"),
+    Binary(name="OpenGPG", binary="gpg"),
+    Binary(name="Tmux", binary="tmux"),
+    Binary(name="Htop", binary="htop"),
+    Binary(name="psql", binary="psql"),
+
+    # Development
+    Binary(name="Ruff", binary="ruff"),
+    Binary(name="Cargo", binary="cargo"),
+    Binary(name="Poetry", binary="poetry"),
+    Binary(name="UV", binary="uv"),
+    Binary(name="CSpell", binary="cspell"),
+
+    # LSP Servers
+    Binary(name="Taplo (TOML LSP)", binary="taplo"),
+
+    # Arch linux
+    Binary(name="paru", binary="paru"),
+
+    # WM
     Binary(name="NiriWM", binary="niri"),
+    Binary(name="Foot Terminal", binary="foot"),
+    Binary(name="Mako", binary="mako"),
     Binary(name="Waybar", binary="waybar"),
     Binary(name="Fuzzel", binary="fuzzel"),
     Binary(name="Hyprlock", binary="hyprlock"),
     Binary(name="Hypridle", binary="hypridle"),
+
+    # GUI Apps
+    Binary(name="Google Chrome (unstable)", binary="google-chrome-unstable"),
+    Binary(name="Zathura", binary="zathura"),
+    Binary(name="MPV", binary="mpv"),
 ]
 
 

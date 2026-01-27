@@ -86,19 +86,6 @@ CONFIG_FILES = [
     Config.home(".gnupg/gpg-agent.conf", "gnupg/gpg-agent.conf"),
     # Tmux
     Config.home(".tmux.conf", "tmux/tmux.conf"),
-    # Helix
-    Config.home(".config/helix/config.toml", "helix/config.toml"),
-    Config.home(
-        ".config/helix/languages.toml",
-        "helix/languages.toml",
-        templated=True,
-    ),
-    Config.home(".config/helix/ignore", "helix/ignore"),
-    Config.home(
-        ".config/helix/themes/cj.toml",
-        "helix/theme.toml",
-        templated=True,
-    ),
     # Ruff
     Config.home(".config/ruff/ruff.toml", "ruff/ruff.toml"),
     # Cspell
@@ -106,24 +93,7 @@ CONFIG_FILES = [
     Config.home(".local/cspell-cj.txt", "cspell/dict-cj.txt"),
     # Paru
     Config.home(".config/paru/paru.conf", "paru/paru.conf"),
-    # Sway
-    Config.home(
-        ".config/sway/config",
-        "sway/config",
-        templated=True,
-    ),
-    # Swaylock
-    Config.home(
-        ".config/swaylock/config",
-        "swaylock/config",
-        templated=True,
-    ),
     # Hyprland
-    Config.home(
-        ".config/hypr/hyprland.conf",
-        "hypr/hyprland.conf",
-        templated=True,
-    ),
     Config.home(
         ".config/hypr/hyprlock.conf",
         "hypr/hyprlock.conf",
@@ -153,9 +123,6 @@ CONFIG_FILES = [
         "mako/config",
         templated=True,
     ),
-    # Wofi
-    Config.home(".config/wofi/config", "wofi/config"),
-    Config.home(".config/wofi/style.css", "wofi/style.css", templated=True),
     # Fuzzel
     Config.home(
         ".config/fuzzel/fuzzel.ini", "fuzzel/fuzzel.ini", templated=True
@@ -221,6 +188,44 @@ CONFIG_FILES = [
     # XKB
     Config.home(".config/xkb/symbols/group", "xkb/symbols/group"),
     Config.home(".config/xkb/rules/evdev", "xkb/rules/evdev"),
+]
+
+
+LEGACY_CONFIG_FILES = [
+    # Helix
+    Config.home(".config/helix/config.toml", "helix/config.toml"),
+    Config.home(
+        ".config/helix/languages.toml",
+        "helix/languages.toml",
+        templated=True,
+    ),
+    Config.home(".config/helix/ignore", "helix/ignore"),
+    Config.home(
+        ".config/helix/themes/cj.toml",
+        "helix/theme.toml",
+        templated=True,
+    ),
+    # Wofi
+    Config.home(".config/wofi/config", "wofi/config"),
+    Config.home(".config/wofi/style.css", "wofi/style.css", templated=True),
+    # Sway
+    Config.home(
+        ".config/sway/config",
+        "sway/config",
+        templated=True,
+    ),
+    # Swaylock
+    Config.home(
+        ".config/swaylock/config",
+        "swaylock/config",
+        templated=True,
+    ),
+    # Hyprland
+    Config.home(
+        ".config/hypr/hyprland.conf",
+        "hypr/hyprland.conf",
+        templated=True,
+    ),
 ]
 
 

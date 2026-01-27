@@ -124,5 +124,8 @@
 [url "git@github.com:codingjerk/"]
     insteadOf = "cj:"
 
+[url "ssh://git@git.qrator.net:2202/"]
+    insteadOf = "qrator:"
+
 [url "ssh://git@git.qrator.net:2202/radar/"]
     insteadOf = "radar:"

@@ -1,7 +1,5 @@
 // vim: set ts=2 sw=2:
 
-// TODO: cleanup
-
 // Startup
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
@@ -9,8 +7,12 @@ spawn-at-startup "swaybg" "--image" "/home/cj/dotfiles/wallpaper.png" "--mode" "
 spawn-at-startup "foot" "--server" "--log-level=none"
 
 environment {
-  QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
   QT_QPA_PLATFORM "wayland"
+  ELECTRON_OZONE_PLATFORM_HINT "wayland"
+
+  QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+
+  GDK_DPI_SCALE "1.5"
 }
 
 cursor {
@@ -30,17 +32,19 @@ input {
   disable-power-key-handling
   focus-follows-mouse max-scroll-amount="25%"
   workspace-auto-back-and-forth // for tab workspace
+  warp-mouse-to-focus mode="center-xy"
 
   mod-key "Super"
 
   keyboard {
     xkb {
-      layout "us,ru"
-      options "grp:caps_toggle,grp_led:caps,compose:ralt"
+      layout "us,ru,th"
+      options "grp:caps_toggle12,grp_led:caps,compose:ralt"
     }
 
     repeat-delay 300
     repeat-rate 15
+    track-layout "window"
   }
 
   touchpad {
@@ -50,7 +54,6 @@ input {
     scroll-factor 0.15
   }
 
-  // TODO: mouse
   // TODO: trackpoint
 }
 
@@ -63,7 +66,7 @@ output "HDMI-A-1" {
 binds {
   // Spawn
   Super+J repeat=false { spawn "footclient"; }
-  Super+B repeat=false { spawn "firefox"; }
+  Super+B repeat=false { spawn "google-chrome-unstable"; }
   Super+R repeat=false { spawn "fuzzel"; }
 
   // Window control
@@ -72,6 +75,10 @@ binds {
   Super+Space repeat=false { switch-focus-between-floating-and-tiling; }
 
   Super+Alt+C { center-column; }
+
+  // Tabs
+  Super+Alt+T { toggle-column-tabbed-display; }
+  Super+G { toggle-column-tabbed-display; }
 
   // Window size control
   Super+T { switch-preset-column-width; }
@@ -99,8 +106,8 @@ binds {
   // Window movement
   Super+Shift+A { move-column-left; }
   Super+Shift+D { move-column-right; }
-  Super+Shift+W { move-window-up; }
-  Super+Shift+S { move-window-down; }
+  Super+Shift+W { move-window-up-or-to-workspace-up; }
+  Super+Shift+S { move-window-down-or-to-workspace-down; }
 
   Super+Alt+A { consume-or-expel-window-left; }
   Super+Alt+D { consume-or-expel-window-right; }
@@ -109,26 +116,46 @@ binds {
   Super+Shift+E { move-column-to-last; }
 
   // Workspaces
-  Super+1 { focus-workspace "[1 etc]"; }
-  Super+2 { focus-workspace "[2 dev]"; }
-  Super+3 { focus-workspace "[3 www]"; }
+  Super+1 { focus-workspace "1"; }
+  Super+2 { focus-workspace "2"; }
+  Super+3 { focus-workspace "3"; }
+  Super+4 { focus-workspace "4"; }
+  Super+5 { focus-workspace "5"; }
+  Super+6 { focus-workspace "6"; }
+  Super+7 { focus-workspace "7"; }
+  Super+8 { focus-workspace "8"; }
+  Super+9 { focus-workspace "9"; }
 
-  Super+9 { focus-workspace "[9 obs]"; }
-  Super+C { focus-workspace "[msg]"; }
-  Super+Tab { focus-workspace "[tab]"; }
+  Super+0 { focus-workspace "obs"; }
+  Super+C { focus-workspace "msg"; }
+  Super+Tab { focus-workspace "tab"; }
 
-  Super+Shift+1 { move-window-to-workspace "[1 etc]"; }
-  Super+Shift+2 { move-window-to-workspace "[2 dev]"; }
-  Super+Shift+3 { move-window-to-workspace "[3 www]"; }
+  Super+Shift+1 { move-window-to-workspace "1"; }
+  Super+Shift+2 { move-window-to-workspace "2"; }
+  Super+Shift+3 { move-window-to-workspace "3"; }
+  Super+Shift+4 { move-window-to-workspace "4"; }
+  Super+Shift+5 { move-window-to-workspace "5"; }
+  Super+Shift+6 { move-window-to-workspace "6"; }
+  Super+Shift+7 { move-window-to-workspace "7"; }
+  Super+Shift+8 { move-window-to-workspace "8"; }
+  Super+Shift+9 { move-window-to-workspace "9"; }
 
-  Super+Shift+9 { move-window-to-workspace "[9 obs]"; }
-  Super+Shift+C { move-window-to-workspace "[msg]"; }
-  Super+Shift+Tab { move-window-to-workspace "[tab]"; }
+  Super+Shift+0 { move-window-to-workspace "obs"; }
+  Super+Shift+C { move-window-to-workspace "msg"; }
+  Super+Shift+Tab { move-window-to-workspace "tab"; }
+
+  // Moving workspaces
+  Super+Alt+W { move-workspace-up; }
+  Super+Alt+S { move-workspace-down; }
 
   // Niri control
   Super+Alt+X repeat=false { quit skip-confirmation=true; }
-  Super+Alt+O repeat=false { toggle-overview; }
+  Super+O repeat=false { toggle-overview; }
+  Super+Z repeat=false { toggle-overview; }
   Super+Alt+H repeat=false { show-hotkey-overlay; }
+
+  // Waybar
+  Super+Alt+B repeat=false { spawn "pkill" "-SIGUSR1" "waybar"; }
 
   // Monitor control
   Super+L repeat=false { spawn "hyprlock"; }
@@ -137,6 +164,7 @@ binds {
 
   // Notifications
   Super+N repeat=false { spawn "makoctl" "dismiss" "--all"; }
+  Super+Alt+N repeat=false { spawn "systemctl" "--user" "restart" "mako"; }
 
   // Media
   XF86AudioMute allow-when-locked=true repeat=false { spawn "wpctl" "set-mute" "@DEFAULT_SINK@" "toggle"; }
@@ -152,10 +180,19 @@ binds {
 
   // Print screen
   Print repeat=false { spawn "flameshot" "gui"; }
+
+  // Language
+  Super+Backspace repeat=false { switch-layout "2"; }
 }
 
 switch-events {
   // TODO: lid-close / lid-open
+}
+
+gestures {
+  hot-corners {
+    top-left
+  }
 }
 
 layout {
@@ -169,6 +206,7 @@ layout {
   }
 
   center-focused-column "never" // "on-overflow"
+  always-center-single-column
 
   preset-column-widths {
     proportion 0.5
@@ -200,18 +238,43 @@ layout {
     softness 50
   }
 
-  // TODO: tab-indicator
-  // TODO: tabs
+  tab-indicator {
+    on
+    hide-when-single-tab
+    place-within-column
+
+    gap 12
+    width 12
+    length total-proportion=0.25
+    position "left"
+    gaps-between-tabs 16
+    corner-radius 16
+    active-color "#AD9BEA" // purple
+
+    inactive-color "#54678c90" // fg-half-dim with alpha
+    urgent-color "#E0778D" // reder (brighter red)
+  }
+
+  insert-hint {
+    on
+    color "#92b7ea90" // blue with alpha
+  }
 }
 
 // Workspaces
-workspace "[1 etc]" {}
-workspace "[2 dev]" {}
-workspace "[3 www]" {}
+workspace "1" {}
+workspace "2" {}
+workspace "3" {}
+workspace "4" {}
+workspace "5" {}
+workspace "6" {}
+workspace "7" {}
+workspace "8" {}
+workspace "9" {}
 
-workspace "[9 obs]" {}
-workspace "[msg]" {}
-workspace "[tab]" {}
+workspace "obs" {}
+workspace "msg" {}
+workspace "tab" {}
 
 // Window rules
 window-rule {
@@ -224,41 +287,86 @@ window-rule {
 }
 
 window-rule {
+  match app-id="^google-chrome-unstable$"
+  focus-ring {
+    active-color "#d3e3fd" // color of chrome window theme
+  }
+}
+
+window-rule {
   match app-id="^foot(client)?$"
   default-column-width { proportion 0.5; }
 }
 
 window-rule {
   match app-id="^org.telegram.desktop|Element$"
-  open-on-workspace "[msg]"
+  exclude title="^Media viewer$"
+  open-on-workspace "msg"
   open-focused false
-  // prevent telegram image/video viewer from going fullscreen
-  open-fullscreen false
   default-column-width { proportion 0.5; }
 }
 
 window-rule {
   match app-id="^com.obsproject.Studio$"
-  open-on-workspace "[9 obs]"
+  open-on-workspace "obs"
 }
 
 window-rule {
   match app-id="^steam$"
-  open-on-workspace "[tab]"
+  open-on-workspace "tab"
 }
 
 layer-rule {
   match namespace="^notifications$"
 
-  // block-out-from "screencast"
+  block-out-from "screencast"
   baba-is-float true
 }
 
+layer-rule {
+  match namespace="^launcher$"
+
+  baba-is-float true
+  shadow {
+    on
+  }
+
+  geometry-corner-radius 24
+}
+
 animations {
-  // TODO
+  window-open {
+    off
+  }
 }
 
 // Other options
 prefer-no-csd
 
-// TODO: hotkey helper
+hotkey-overlay {
+  skip-at-startup
+  hide-not-bound
+}
+
+// Recent windows
+recent-windows {
+  debounce-ms 0
+  open-delay-ms 0
+
+  highlight {
+    active-color "#92b7ea" // blue
+    urgent-color "#D0879D" // red
+    padding 64
+    corner-radius 24
+  }
+
+  previews {
+    max-height 9999
+    max-scale 0.66
+  }
+
+  binds {
+    Super+BracketLeft  { previous-window; }
+    Super+BracketRight { next-window; }
+  }
+}

@@ -1,23 +1,20 @@
 {
   "layer": "top", // don't dim in special workspaces
 
-  "modules-left": [
-    "sway/workspaces",
-  ],
+  "modules-left": [],
 
   "modules-center": [
+    "niri/workspaces",
   ],
 
   "modules-right": [
     "battery",
     "pulseaudio",
-    "sway/language",
+    "niri/language",
     "clock",
   ],
 
-  "sway/workspaces": {
-    "disable-scroll": true,
-    "all-outputs": false,
+  "niri/workspaces": {
     "format": "{icon}",
     "format-icons": {
       "1": "1",
@@ -28,13 +25,13 @@
       "6": "6",
       "7": "7",
       "8": "8",
-      "9": "9",
-      "10": "0",
-      "11": "-",
-      "12": "+",
-      "default": "x"
-    },
-    "on-click": "swaymsg workspace {name}",
+      "9": "",
+      "13": "", // no icon for default empty workspace
+
+      "obs": "󰕧",
+      "msg": "",
+      "tab": "",
+    }
   },
 
   "battery": {
@@ -66,11 +63,13 @@
     "on-click-right": "wpctl set-mute @DEFAULT_SINK@ toggle",
   },
 
-  "sway/language": {
+  "niri/language": {
     "format": "󰌌 {}",
     "format-en": "us",
     "format-ru": "ru",
     "format-th": "th",
+
+    "keyboard-name": "keyd-virtual-keyboard",
   },
 
   "clock": {
