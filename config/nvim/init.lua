@@ -15,12 +15,21 @@
 -- File types --
 ----------------
 
+-- 2-space indent for some file types
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "yaml,toml,markdown",
+    pattern = "yaml,toml,markdown,html,css",
     callback = function()
         vim.opt_local.tabstop = 2
         vim.opt_local.softtabstop = 2
         vim.opt_local.shiftwidth = 2
+    end
+})
+
+-- Enable soft wrapping for some file types
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "markdown",
+    callback = function()
+        vim.opt_local.wrap = true
     end
 })
 
@@ -40,6 +49,7 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 vim.opt.rtp:prepend(lazypath)
 
 vim.cmd.colorscheme("nuitbleue")
+vim.opt.termguicolors = true
 
 require("lazy").setup({
     local_spec = false,
@@ -121,7 +131,6 @@ require("lazy").setup({
             event = "VeryLazy",
             config = function()
                 require("copilot").setup({
-                    copilot_model = "gpt-4o-copilot",
                     panel = {
                         enabled = false,
                     },
@@ -539,7 +548,7 @@ require("lazy").setup({
 
                 -- HTML
                 lsp.emmet_language_server.setup({
-                    filetypes = { "python" },
+                    filetypes = { "python", "html" },
                     preferences = {
                         caniuse = {
                             enabled = false,
@@ -548,6 +557,9 @@ require("lazy").setup({
                 })
                 -- lsp.html.setup({}) -- vscode shit, doesn't provide autocomplete anyway
                 lsp.superhtml.setup({})
+
+                -- Bash
+                lsp.bashls.setup({})
 
                 -- Typst
                 lsp.tinymist.setup({
@@ -636,6 +648,9 @@ require("lazy").setup({
 
                 -- JavaScript
                 lsp.ts_ls.setup({})
+
+                -- Go
+                lsp.gopls.setup({})
             end,
         },
 
@@ -649,7 +664,33 @@ require("lazy").setup({
                 local configs = require("nvim-treesitter.configs")
 
                 configs.setup({
-                    ensure_installed = { "lua", "python", "rust" },
+                    ensure_installed = {
+                        -- Programming
+                        "python",
+                        "rust",
+                        "zig",
+                        "javascript",
+                        "typescript",
+
+                        -- Scripting
+                        "lua",
+                        "bash",
+
+                        -- Markup & Web
+                        "markdown",
+                        "html",
+                        "css",
+
+                        -- Configuration
+                        "toml",
+                        "yaml",
+                        "json",
+                        "ini",
+                        "kdl",
+
+                        -- Other
+                        "git_config",
+                    },
                     sync_install = false,
                     highlight = {
                         enable = true,
@@ -835,6 +876,11 @@ require("lazy").setup({
                         lsp_references = {
                             prompt_title = "",
                         },
+                        -- FIXME: todo-comments picker doesn't respect these settings
+                        ["todo-comments"] = {
+                            preview_title = "",
+                            prompt_title = "",
+                        },
                     },
                 })
             end,
@@ -922,12 +968,6 @@ require("lazy").setup({
                     },
                 },
             },
-        },
-
-        -- Wakatime
-        {
-            "wakatime/vim-wakatime",
-            lazy = false, -- As in official install
         },
     }
 })
@@ -1035,7 +1075,7 @@ vim.diagnostic.config({
 -- Leader key
 vim.g.mapleader = " "
 
-vim.keymap.set({ "n", "v" }, "<leader>t", "<cmd> TodoTelescope <cr>", {})
+vim.keymap.set({ "n", "v" }, "<leader>t", "<cmd> Telescope todo-comments <cr>", {})
 vim.keymap.set({ "n", "v" }, "<leader>f", "<cmd> Telescope find_files <cr>", {})
 vim.keymap.set({ "n", "v" }, "<leader>k", "<cmd> Telescope keymaps <cr>", {})
 vim.keymap.set({ "n", "v" }, "<leader>b", "<cmd> Telescope buffers <cr>", {})
@@ -1099,7 +1139,7 @@ vim.keymap.set({ "n", "v" }, "gl", "<cmd> Telescope git_bcommits <cr>", {})
 -- Save
 vim.keymap.set({ "n", "v", "i" }, "<c-s>", "<cmd> w <cr>", {})
 
--- Selections
+-- Surround: selections
 vim.keymap.set({ "n", "v" }, "mw", "viw", {})
 vim.keymap.set({ "n", "v" }, "mb", "vib", {})
 vim.keymap.set({ "n", "v" }, "m(", "vib", {})
@@ -1113,7 +1153,9 @@ vim.keymap.set({ "n" }, "{", "vi{", {})
 vim.keymap.set({ "n" }, "[", "vi[", {})
 vim.keymap.set({ "n" }, "<", "vi<", {})
 vim.keymap.set({ "n" }, ">", "vit", {})
+vim.keymap.set({ "n" }, "`", "vi`", {})
 
+-- Surround: wrapping
 vim.keymap.set({ "v" }, "(", "<Plug>(nvim-surround-visual))", { remap = true, silent = true })
 vim.keymap.set({ "v" }, ")", "<Plug>(nvim-surround-visual))", { remap = true, silent = true })
 vim.keymap.set({ "v" }, "[", "<Plug>(nvim-surround-visual)]", { remap = true, silent = true })
@@ -1122,6 +1164,9 @@ vim.keymap.set({ "v" }, "{", "<Plug>(nvim-surround-visual)}", { remap = true, si
 vim.keymap.set({ "v" }, "}", "<Plug>(nvim-surround-visual)}", { remap = true, silent = true })
 vim.keymap.set({ "v" }, "\"", "<Plug>(nvim-surround-visual)\"", { remap = true, silent = true })
 vim.keymap.set({ "v" }, "\'", "<Plug>(nvim-surround-visual)\'", { remap = true, silent = true })
+vim.keymap.set({ "v" }, "`", "<Plug>(nvim-surround-visual)`", { remap = true, silent = true })
+vim.keymap.set({ "n" }, "t", "<Plug>(nvim-surround-change)t", { remap = true, silent = true })
+vim.keymap.set({ "v" }, "t", "<Plug>(nvim-surround-visual)t", { remap = true, silent = true })
 
 -- Select all
 vim.keymap.set({ "n", "v" }, "%", "ggVG", {})
@@ -1137,21 +1182,6 @@ vim.keymap.set({ "n", "v" }, "<c-f>", vim.lsp.buf.format, {})
 -- Commenting
 vim.keymap.set({ "v", "x" }, "<c-c>", "gcgv", { remap = true })
 vim.keymap.set({ "n" }, "<c-c>", "gcc", { remap = true })
-
--- AI
-function toggle_copilot()
-    local chat = require("CopilotChat")
-    local select = require("CopilotChat.select")
-
-    local selection = false
-    if vim.api.nvim_get_mode().mode ~= "n" then
-        selection = select.visual
-    end
-
-    chat.toggle({ selection = selection })
-end
-
-vim.keymap.set({ "n", "v" }, "<leader>c", toggle_copilot, {})
 
 -- Completion
 -- Some advanced but very practical and easy to use logic:
