@@ -15,10 +15,11 @@ class Binary:
 
 
 DEPENDENCIES = [
-    Binary(name="SwayWM", binary="sway"),
+    Binary(name="NiriWM", binary="niri"),
     Binary(name="Waybar", binary="waybar"),
     Binary(name="Fuzzel", binary="fuzzel"),
-    Binary(name="Swaylock", binary="swaylock"),
+    Binary(name="Hyprlock", binary="hyprlock"),
+    Binary(name="Hypridle", binary="hypridle"),
 ]
 
 

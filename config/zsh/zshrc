@@ -102,7 +102,7 @@ alias wi='TZ=Asia/Bangkok when ci --future=30'
 
 # Aliases: editors
 alias ew='when eci'
-alias en='e ~/notes/'
+alias en='cd ~/notes && e'
 alias el='e ~/.ledger/journal.ldg'
 
 # Aliases: git

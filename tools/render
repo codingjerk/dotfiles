@@ -36,6 +36,32 @@ class Config:
         )
 
 
+@dataclass
+class Directory:
+    path: Path
+    mode: int
+
+    @classmethod
+    def home(
+        cls: type[Self],
+        partial_path: str,
+        mode: int = 0o755,
+    ) -> Self:
+        return cls(
+            path=HOST_ROOT / partial_path,
+            mode=mode,
+        )
+
+    def ensure(self) -> None:
+        self.path.mkdir(parents=True, exist_ok=True, mode=self.mode)
+        self.path.chmod(self.mode)
+
+
+DIRECTORIES = [
+    Directory.home(".ssh/control", mode=0o700),
+]
+
+
 CONFIG_FILES = [
     # Zsh
     Config.home(".zshrc", "zsh/zshrc"),
@@ -147,6 +173,7 @@ CONFIG_FILES = [
     ),
     # XDG
     Config.home(".config/user-dirs.dirs", "xdg/user-dirs.dirs"),
+    Config.home(".config/mimeapps.list", "xdg/mimeapps.list"),
     # IPython
     Config.home(
         ".ipython/profile_default/ipython_config.py",
@@ -222,6 +249,7 @@ def main() -> None:
         sys.exit(1)
 
     if action == "install":
+        ensure_directories()
         render_all(reverse=False)
     elif action == "sync-repo":
         render_all(reverse=True)
@@ -230,6 +258,12 @@ def main() -> None:
             f"× CRIT: unknown action `{action}`. Should be `install` or `sync-repo`\n"
         )
         sys.exit(1)
+
+
+def ensure_directories() -> None:
+    for dir in DIRECTORIES:
+        sys.stderr.write(f"× INFO: ensure directory {dir.path} exists\n")
+        dir.ensure()
 
 
 def render_all(reverse: bool) -> None:

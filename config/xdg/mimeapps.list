@@ -1,0 +1,13 @@
+[Default Applications]
+x-scheme-handler/http=google-chrome-unstable.desktop
+x-scheme-handler/https=google-chrome-unstable.desktop
+x-scheme-handler/chrome=google-chrome-unstable.desktop
+text/html=google-chrome-unstable.desktop
+application/x-extension-htm=google-chrome-unstable.desktop
+application/x-extension-html=google-chrome-unstable.desktop
+application/x-extension-shtml=google-chrome-unstable.desktop
+application/xhtml+xml=google-chrome-unstable.desktop
+application/x-extension-xhtml=google-chrome-unstable.desktop
+application/x-extension-xht=google-chrome-unstable.desktop
+
+application/pdf=org.pwmt.zathura.desktop
