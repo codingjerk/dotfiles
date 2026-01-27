@@ -247,8 +247,11 @@ def load_settings() -> dict[str, str]:
         settings = tomllib.load(settings_file)
 
     # Add builtin variables
-    settings["home"] = str(Path.home())
-    settings["repo"] = str(REPO_ROOT)
+    builtin_vars = {
+        "home": str(Path.home()),
+        "repo": str(REPO_ROOT),
+    }
+    settings.update(builtin_vars)
 
     return settings
 
