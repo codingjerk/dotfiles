@@ -1,0 +1,8 @@
+partial xkb_symbols "caps_will_switch_to_first_layout" {
+  replace key <CAPS> { [ ISO_First_Group ] };
+};
+
+partial xkb_symbols "caps_will_switch_to_second_layout" {
+  // NOTE: name is ISO_Last_Group but it maps to the second group
+  replace key <CAPS> { [ ISO_Last_Group ] };
+};

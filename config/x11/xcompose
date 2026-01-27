@@ -40,29 +40,41 @@ include "%L"
 
 # === Esperanto ===
 <Multi_key> <c> <asciicircum> : "ĉ"
+<Multi_key> <c> <x>           : "ĉ"
 <Multi_key> <g> <asciicircum> : "ĝ"
+<Multi_key> <g> <x>           : "ĝ"
 <Multi_key> <j> <asciicircum> : "ĵ"
+<Multi_key> <j> <x>           : "ĵ"
 <Multi_key> <s> <asciicircum> : "ŝ"
+<Multi_key> <s> <x>           : "ŝ"
 <Multi_key> <u> <asciicircum> : "û"
+<Multi_key> <u> <x>           : "û"
 
 <Multi_key> <C> <asciicircum> : "Ĉ"
+<Multi_key> <C> <x>           : "Ĉ"
 <Multi_key> <G> <asciicircum> : "Ĝ"
+<Multi_key> <G> <x>           : "Ĝ"
 <Multi_key> <J> <asciicircum> : "Ĵ"
+<Multi_key> <J> <x>           : "Ĵ"
 <Multi_key> <S> <asciicircum> : "Ŝ"
+<Multi_key> <S> <x>           : "Ŝ"
 <Multi_key> <U> <asciicircum> : "Û"
+<Multi_key> <U> <x>           : "Û"
 
 # === French ===
 <Multi_key> <asciicircum> <o> : "ô"
 <Multi_key> <o> <asciicircum> : "ô"
+<Multi_key> <o> <x>           : "ô"
 
 <Multi_key> <asciicircum> <O> : "Ô"
 <Multi_key> <O> <asciicircum> : "Ô"
+<Multi_key> <O> <x>           : "Ô"
 
 # === Bullets ===
 <Multi_key> <minus> <v> : "✓"
 <Multi_key> <minus> <x> : "✗"
 <Multi_key> <minus> <o> : "•"
-<Multi_key> <minus> <bracketleft> <bracketright> : "□"
+<Multi_key> <minus> <bracketleft> : "□"
 
 <Multi_key> <bracketleft>     <bracketright> : "☐"
 <Multi_key> <bracketleft> <v> <bracketright> : "☑"

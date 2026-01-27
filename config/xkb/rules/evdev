@@ -1,0 +1,10 @@
+! include %S/evdev
+
+! layout[1] option = symbols
+* grp:caps_toggle12 = +group(caps_will_switch_to_second_layout):1
+
+! layout[2] option = symbols
+* grp:caps_toggle12 = +group(caps_will_switch_to_first_layout):2
+
+! layout[3] option = symbols
+* grp:caps_toggle12 = +group(caps_will_switch_to_first_layout):3

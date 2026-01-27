@@ -191,6 +191,9 @@ CONFIG_FILES = [
     Config.home(".npmrc", "npm/npmrc"),
     # Niri
     Config.home(".config/niri/config.kdl", "niri/config.kdl"),
+    # XKB
+    Config.home(".config/xkb/symbols/group", "xkb/symbols/group"),
+    Config.home(".config/xkb/rules/evdev", "xkb/rules/evdev"),
 ]
 
 
