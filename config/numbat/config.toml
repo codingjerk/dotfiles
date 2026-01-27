@@ -1,5 +1,5 @@
 intro-banner = "off"
-prompt = "\u001B[0;36m @ \u001B[0m"
+prompt = "\u001B[0;32m 󰪚\u001B[0;37m ❯ \u001B[0m"
 pretty-print = "auto"
 
 [exchange-rates]

@@ -1,1 +1,9 @@
-.git
+.git/
+node_modules/
+target/
+dist/
+__pycache__/
+.mypy_cache/
+.venv/
+.zig-cache/
+zig-out/

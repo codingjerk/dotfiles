@@ -1,7 +1,7 @@
 \set QUIET 1
 
--- Prompt (database >)
-\set PROMPT1 ' %[%033[34m%]%/%[%033[37m%] >%[%033[0m%] '
+-- Prompt (database ❯)
+\set PROMPT1 ' %[%033[34m%]%/%[%033[37m%] ❯%[%033[0m%] '
 
 -- Table style
 -- border with outer lines

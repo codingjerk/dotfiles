@@ -1,3 +1,5 @@
+# vim: set ft=sshconfig
+
 Host lambda lambda.cj.dog
     User cj
     Port 1022
@@ -12,7 +14,10 @@ Host *
     # If user is unspecified, connect as root
     User root
     ExitOnForwardFailure yes
+
+    # Security
     StrictHostKeyChecking accept-new
+    HashKnownHosts yes
 
     # Avoid unnecessary output
     LogLevel QUIET

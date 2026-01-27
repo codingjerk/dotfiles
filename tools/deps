@@ -37,10 +37,10 @@ DEPENDENCIES = [
     Binary(name="Cargo", binary="cargo"),
     Binary(name="Poetry", binary="poetry"),
     Binary(name="UV", binary="uv"),
-    Binary(name="CSpell", binary="cspell"),
 
     # LSP Servers
     Binary(name="Taplo (TOML LSP)", binary="taplo"),
+    Binary(name="Codebook (spell checking LSP)", binary="codebook-lsp"),
 
     # Arch linux
     Binary(name="paru", binary="paru"),

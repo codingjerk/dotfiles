@@ -31,6 +31,7 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS_ARR"
 
 # Settings: less
 export LESS='-cigRS -j4 -x4 -#5 -z-10'
+export LESSHISTFILE="-"
 
 # Settings: pass
 export PASSWORD_STORE_CLIP_TIME=8

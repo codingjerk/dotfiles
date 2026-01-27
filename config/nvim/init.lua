@@ -651,6 +651,10 @@ require("lazy").setup({
 
                 -- Go
                 lsp.gopls.setup({})
+
+                -- Codebook (spell checking)
+                lsp.codebook.setup({})
+                vim.lsp.enable("codebook")
             end,
         },
 
@@ -1038,8 +1042,11 @@ vim.opt.listchars = { tab = '» ', trail = '•', nbsp = '␣' }
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 
--- Minimal number of screen lines to keep above and below the cursor.
+-- Minimal number of screen lines to keep above and below the cursor
 vim.opt.scrolloff = 6
+
+-- Minimal number of screen columns to keep to the left and right of the cursor
+vim.opt.sidescrolloff = 20
 
 -- Hide status line
 vim.opt.laststatus = 0

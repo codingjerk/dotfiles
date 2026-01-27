@@ -88,9 +88,6 @@ CONFIG_FILES = [
     Config.home(".tmux.conf", "tmux/tmux.conf"),
     # Ruff
     Config.home(".config/ruff/ruff.toml", "ruff/ruff.toml"),
-    # Cspell
-    Config.home(".cspell.yml", "cspell/cspell.yml"),
-    Config.home(".local/cspell-cj.txt", "cspell/dict-cj.txt"),
     # Paru
     Config.home(".config/paru/paru.conf", "paru/paru.conf"),
     # Hyprland
@@ -192,7 +189,7 @@ CONFIG_FILES = [
 
 
 LEGACY_CONFIG_FILES = [
-    # Helix
+    # Helix (replaced by neovim)
     Config.home(".config/helix/config.toml", "helix/config.toml"),
     Config.home(
         ".config/helix/languages.toml",
@@ -205,27 +202,30 @@ LEGACY_CONFIG_FILES = [
         "helix/theme.toml",
         templated=True,
     ),
-    # Wofi
+    # Wofi (replaced by fuzzel)
     Config.home(".config/wofi/config", "wofi/config"),
     Config.home(".config/wofi/style.css", "wofi/style.css", templated=True),
-    # Sway
+    # Sway (replaced by niri)
     Config.home(
         ".config/sway/config",
         "sway/config",
         templated=True,
     ),
-    # Swaylock
+    # Swaylock (replaced by hyprlock)
     Config.home(
         ".config/swaylock/config",
         "swaylock/config",
         templated=True,
     ),
-    # Hyprland
+    # Hyprland (replaced by niri)
     Config.home(
         ".config/hypr/hyprland.conf",
         "hypr/hyprland.conf",
         templated=True,
     ),
+    # Cspell (replaced by codebook)
+    Config.home(".cspell.yml", "cspell/cspell.yml"),
+    Config.home(".local/cspell-cj.txt", "cspell/dict-cj.txt"),
 ]
 
 
