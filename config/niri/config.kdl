@@ -175,8 +175,8 @@ binds {
   F7 allow-when-locked=true repeat=false { spawn "wpctl" "set-mute" "@DEFAULT_SOURCE@" "toggle"; }
 
   // Brightness
-  XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "set" "+5%"; }
-  XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "5%-"; }
+  XF86MonBrightnessUp allow-when-locked=true {   spawn "brightnessctl" "-e" "set" "5%+"; }
+  XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "-e" "set" "5%-"; }
 
   // Print screen
   Print repeat=false { spawn "flameshot" "gui"; }
@@ -299,7 +299,7 @@ window-rule {
 }
 
 window-rule {
-  match app-id="^org.telegram.desktop|Element$"
+  match app-id="^org.telegram.desktop|Element|discord$"
   exclude title="^Media viewer$"
   open-on-workspace "msg"
   open-focused false
