@@ -106,3 +106,7 @@
 #battery.low {
   color: #${yellow};
 }
+
+#battery.charging {
+  color: #${green};
+}

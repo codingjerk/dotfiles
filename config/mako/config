@@ -6,7 +6,7 @@ max-visible=-1
 
 width=450
 height=200
-anchor=top-center
+anchor=top-right
 outer-margin=0
 margin=12
 padding=24
