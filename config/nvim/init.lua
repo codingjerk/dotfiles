@@ -1351,10 +1351,13 @@ vim.keymap.set({ "v", "x" }, "<c-c>", "gcgv", { remap = true })
 vim.keymap.set({ "n" }, "<c-c>", "gcc", { remap = true })
 
 -- Journaling
-vim.keymap.set({ "i" }, "<c-d>", function()
+function insert_date()
     local date = os.date("%Y-%m-%d")
     vim.api.nvim_put({ date }, "c", true, true)
-end, {})
+end
+
+vim.keymap.set({ "n", "v" }, "T", insert_date, {})
+vim.keymap.set({ "n", "v", "i" }, "<c-s-t>", insert_date, {})
 
 -- Completion
 -- Some advanced but very practical and easy to use logic:
@@ -1425,3 +1428,60 @@ vim.keymap.set({ "n", "v" }, ";", ":", {})
 
 -- Enable reading local .nvimrc files
 vim.opt.exrc = true
+
+----------------------------------
+--- Smart TODO-list checkboxes ---
+----------------------------------
+
+function insert_todo()
+    local todo_prefix = "- [ ] "
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    local row = cursor[1]
+    local col = cursor[2]
+    local line = vim.api.nvim_get_current_line()
+
+    local insert_at_eol
+
+    if line:sub(1, col):match("^%s*$") then
+        local suffix = line:sub(col + 1)
+
+        vim.api.nvim_set_current_line(todo_prefix .. suffix)
+        insert_at_eol = suffix == ""
+    else
+        vim.api.nvim_buf_set_lines(0, row, row, false, { todo_prefix })
+        row = row + 1
+        insert_at_eol = true
+    end
+
+    if insert_at_eol then
+        -- Normal-mode cursor must remain on the final space.
+        vim.api.nvim_win_set_cursor(0, { row, #todo_prefix - 1 })
+
+        -- Behaves like "A": enters Insert mode after the final space.
+        vim.cmd("startinsert!")
+    else
+        -- Cursor can point at the first suffix character.
+        vim.api.nvim_win_set_cursor(0, { row, #todo_prefix })
+        vim.cmd.startinsert()
+    end
+end
+
+vim.keymap.set({ "n" }, "t", insert_todo, {})
+vim.keymap.set({ "n", "i", "v" }, "<c-t>", insert_todo, {})
+
+--------------------------------
+--- Termux specific settings ---
+--------------------------------
+
+local is_termux = vim.fn.has("termux") == 1
+  or vim.env.TERMUX_VERSION ~= nil
+
+if is_termux then
+  vim.opt.number = false
+  vim.opt.relativenumber = false
+  vim.opt.signcolumn = "no"
+
+  vim.opt.wrap = true
+  vim.opt.linebreak = true
+  vim.opt.breakindent = true
+end
