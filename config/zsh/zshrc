@@ -92,29 +92,32 @@ fi
 # Recommended kind of update with reduced keyring-related problems
 alias pu='sudo pacman -Sy --needed archlinux-keyring && sudo pacman -Su'
 
-# Aliases: ledger
-alias lg='ledger'
-alias lga='ledger accounts'
-alias lgb='ledger balance'
-alias lgr='ledger register'
-
-# Aliases: when
-alias wi='TZ=Asia/Bangkok when ci --future=30'
-
 # Aliases: editors
-alias ew='when eci'
 alias en='cd ~/notes && e'
-alias el='e ~/.ledger/journal.ldg'
+alias el='cd ~/.ledger && e'
+
+alias ne='cd ~/notes && e'
+alias le='cd ~/.ledger && e'
 
 # Aliases: git
 alias git-notes='git -C ~/notes'
-alias git-when='git -C ~/.when'
 alias git-ledger='git -C ~/.ledger'
 
 alias sync-commit-notes='git-notes add --all; git-notes commit --message sync; git-notes pull; git-notes push'
 
-alias cj-pull='pass git pull; git-notes pull; git-when pull; git-ledger pull'
-alias cj-status='pass git status; git-notes status; git-when status; git-ledger status'
+alias cj-pull='pass git pull; git-notes pull; git-ledger pull'
+alias cj-status='pass git status; git-notes status; git-ledger status'
+
+# Aliases: pomodoro
+alias pomo-notify='notify-send -i /usr/share/icons/breeze/apps/48/kalarm.svg Pomodoro'
+alias pomo-work='termdown 25m; pomo-notify "Take a break"'
+alias pomo-break='termdown 5m; pomo-notify "Back to work"'
+alias pomo-long-break='termdown 30m; pomo-notify "Back to work"'
+
+alias pomo-5='termdown 5m; pomo-notify "Pomo stop"'
+alias pomo-10='termdown 10m; pomo-notify "Pomo stop"'
+alias pomo-15='termdown 25m; pomo-notify "Pomo stop"'
+alias pomo-20='termdown 20m; pomo-notify "Pomo stop"'
 
 # Man colors
 man() {

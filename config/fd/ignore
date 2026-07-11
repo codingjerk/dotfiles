@@ -1,9 +1,18 @@
 .git/
-node_modules/
-target/
-dist/
+
+# Python
 __pycache__/
 .mypy_cache/
 .venv/
+
+# Zig
 .zig-cache/
 zig-out/
+
+# Rust
+Cargo.lock
+target/
+
+# JavaScript
+node_modules/
+dist/

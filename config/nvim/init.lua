@@ -5,12 +5,6 @@
 -- TODO --
 ----------
 
--- - clipboard manager (prbly for wayland)
--- - markdown wrapping
--- - 2-space indent for html, css, md
--- - Autoformatting for html and css
--- - Better help in python (like in Helix)
-
 ----------------
 -- File types --
 ----------------
@@ -25,12 +19,13 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 })
 
--- Enable soft wrapping for some file types
+-- Tree Sitter
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "markdown",
+    pattern = { "lua", "python", "rust", "sql", "kdl", "bash", "zig", "dockerfile", "html" },
     callback = function()
-        vim.opt_local.wrap = true
-    end
+        vim.treesitter.start()
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end,
 })
 
 -- Disable comment continuation
@@ -39,6 +34,92 @@ vim.api.nvim_create_autocmd("BufEnter", {
     callback = function()
         vim.opt.formatoptions = "jql"
     end,
+})
+
+-----------------------
+-- Markdown wrapping --
+-----------------------
+
+do
+  local group = vim.api.nvim_create_augroup(
+    "UserMarkdownUI",
+    { clear = true }
+  )
+
+  local restore_columns = nil
+
+  local function is_markdown()
+    return vim.bo.filetype == "markdown"
+  end
+
+  local function clamp_markdown_columns()
+    if not is_markdown() then
+      return
+    end
+
+    -- Get total width of the instance (not columns)
+    local width = vim.api.nvim_list_uis()[1].width
+
+    if width > 120 then
+      vim.o.columns = 100
+    elseif width > 80 then
+      vim.o.columns = 80
+    else
+      vim.o.columns = 70
+    end
+  end
+
+  local function set_markdown_wrap()
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+    vim.opt_local.breakindent = true
+
+    -- Soft wrap only; do not insert real newlines.
+    vim.opt_local.textwidth = 0
+    vim.opt_local.wrapmargin = 0
+  end
+
+  local function disable_scrollbar()
+    -- Call ScrollbarHide command (quiet) with delay
+    vim.defer_fn(function()
+      if vim.fn.exists(":ScrollbarHide") == 2 then
+        vim.cmd("silent! ScrollbarHide")
+      end
+    end, 100)
+  end
+
+  vim.api.nvim_create_autocmd("FileType", {
+    group = group,
+    pattern = "markdown",
+    callback = function()
+      set_markdown_wrap()
+      disable_scrollbar()
+
+      clamp_markdown_columns()
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({
+    "BufEnter",
+    "WinEnter",
+    "WinResized",
+  }, {
+    group = group,
+    callback = clamp_markdown_columns,
+  })
+end
+
+-----------------------
+-- Highlight on Yank --
+-----------------------
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    vim.highlight.on_yank({
+      higroup = "LocalHighlight",
+      timeout = 200,
+    })
+  end,
 })
 
 -------------
@@ -62,9 +143,8 @@ require("lazy").setup({
             version = "*", -- Use for stability; omit to use `main` branch for the latest features
             event = "VeryLazy",
             config = function()
-                require("nvim-surround").setup({
-                    keymaps = {},
-                })
+                vim.g.nvim_surround_no_normal_mappings = true
+                require("nvim-surround").setup({})
 
                 -- HACK: restore an "S" overwritten by plugin. Fuck nvim-surround
                 vim.keymap.set({ "n", "v" }, "S", "5j", {})
@@ -224,6 +304,14 @@ require("lazy").setup({
                     lsp = {
                         progress = {
                             enabled = false,
+                        },
+                        -- Auto-open signature help while typing inside a call
+                        signature = {
+                            enabled = true,
+                            auto_open = {
+                                enabled = true,
+                                trigger = true,
+                            },
                         },
                     },
                     presets = {
@@ -401,14 +489,19 @@ require("lazy").setup({
             config = function()
                 local mc = require("multicursor-nvim")
 
-                mc.setup()
+                mc.setup({
+                    signs = { "┆", "▍", "┃", "↑", "↓", "⇡", "⇣" },
+                })
 
                 vim.keymap.set({ "n", "v" }, "C", function() mc.lineAddCursor(1) end)
                 vim.keymap.set({ "n" }, "<c-d>", function()
                     vim.cmd('normal! viw')
                 end)
                 vim.keymap.set({ "v" }, "<c-d>", function() mc.matchAddCursor(1) end)
-                vim.keymap.set({ "v" }, "l", function() mc.splitCursors("\n") end)
+                vim.keymap.set({ "v" }, "l", function() mc.splitCursors("$") end)
+                vim.keymap.set({ "v" }, ",", function() mc.splitCursors(",") end)
+                vim.keymap.set({ "v" }, "L", function() mc.splitCursors() end)
+                vim.keymap.set({ "v" }, "m", function() mc.matchCursors() end)
 
                 vim.keymap.set("n", "<esc>", function()
                     if not mc.cursorsEnabled() then
@@ -434,8 +527,8 @@ require("lazy").setup({
         -- LSP
         {
             "neovim/nvim-lspconfig",
+            version = "*",
             config = function()
-                local lsp = require("lspconfig")
                 local border = {
                     { "┌", "FloatBorder" },
                     { "─", "FloatBorder" },
@@ -454,38 +547,8 @@ require("lazy").setup({
                     return orig_util_open_floating_preview(contents, syntax, opts, ...)
                 end
 
-                -- General
-                -- lsp.harper_ls.setup({
-                --     settings = {
-                --         ["harper-ls"] = {
-                --             diagnosticSeverity = "warning",
-                --             linters = {
-                --                 AvoidCurses = false,
-                --             },
-                --         }
-                --     },
-                -- })
-
-                -- LanguageTool
-                -- lsp.ltex.setup({})
-                -- lsp.ltex_plus.setup({
-                --     settings = {
-                --         ltex = {
-                --             diagnosticSeverity = "hint",
-                --             checkFrequency = "save",
-                --             dictionary = {
-                --                 ["en-US"] = {
-                --                     "zig",
-                --                     "Zig",
-                --                     "inlining",
-                --                 },
-                --             },
-                --         }
-                --     }
-                -- })
-
                 -- LUA
-                lsp.lua_ls.setup({
+                vim.lsp.config("lua_ls", {
                     settings = {
                         Lua = {
                             diagnostics = {
@@ -499,10 +562,11 @@ require("lazy").setup({
                         },
                     },
                 })
+                vim.lsp.enable("lua_ls")
 
                 -- Python
                 -- Autocomplete, Imports, Type checking
-                lsp.pyright.setup({
+                vim.lsp.config("pyright", {
                     settings = {
                         python = {
                             analysis = {
@@ -536,41 +600,76 @@ require("lazy").setup({
                         },
                     },
                 })
+                vim.lsp.enable("pyright")
 
                 -- Linting / formatting
-                lsp.ruff.setup({})
+                vim.lsp.config("ruff", {
+                    settings = {
+                        ruff = {
+                            -- Enable all rules, since we can filter them with `# noqa` comments
+                            enabled = true,
+                            -- Don't show warnings about missing type hints, since it's not critical and usually requires manual work to fix
+                            ignore = { "ANN" },
+                        },
+                    },
+                })
+                vim.lsp.enable("ruff")
 
                 -- YAML
-                lsp.yamlls.setup({})
+                vim.lsp.config("yamlls", {
+                    settings = {
+                        yaml = {
+                            schemas = {
+                                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                                ["https://json.schemastore.org/prettierrc.json"] = "/.prettierrc*",
+                                ["https://json.schemastore.org/stylelintrc.json"] = "/.stylelintrc*",
+                                -- TODO: add .gitlab-ci.yml
+                                -- TODO: add docker-compose
+                            },
+                        },
+                    },
+                })
+                vim.lsp.enable("yamlls")
 
                 -- TOML
-                lsp.taplo.setup({})
+                vim.lsp.config("taplo", {
+                    settings = {
+                        taplo = {
+                        },
+                    },
+                })
+                vim.lsp.enable("taplo")
 
                 -- HTML
-                lsp.emmet_language_server.setup({
-                    filetypes = { "python", "html" },
+                vim.lsp.config("emmet_language_server", {
+                    filetypes = { "python", "html", "markdown" },
                     preferences = {
                         caniuse = {
                             enabled = false,
                         },
                     },
                 })
-                -- lsp.html.setup({}) -- vscode shit, doesn't provide autocomplete anyway
-                lsp.superhtml.setup({})
+                vim.lsp.enable("emmet_language_server")
 
-                -- Bash
-                lsp.bashls.setup({})
+                -- lsp.html.setup({}) -- vscode shit, doesn't provide autocomplete anyway
+                vim.lsp.config("superhtml", {
+                    settings = {
+                        superhtml = {},
+                    },
+                })
+                vim.lsp.enable("superhtml")
 
                 -- Typst
-                lsp.tinymist.setup({
+                vim.lsp.config("tinymist", {
                     settings = {
                         formatterMode = "typstyle",
                         exportPdf = "onType",
                     },
                 })
+                vim.lsp.enable("tinymist")
 
                 -- Zig
-                lsp.zls.setup({
+                vim.lsp.config("zls", {
                     settings = {
                         zls = {
                             enable_autofix = true,
@@ -586,9 +685,10 @@ require("lazy").setup({
                         },
                     },
                 })
+                vim.lsp.enable("zls")
 
                 -- Rust
-                lsp.rust_analyzer.setup({
+                vim.lsp.config("rust_analyzer", {
                     settings = {
                         ["rust-analyzer"] = {
                             cachePriming = {
@@ -645,62 +745,106 @@ require("lazy").setup({
                         },
                     },
                 })
+                vim.lsp.enable("rust_analyzer")
 
                 -- JavaScript
-                lsp.ts_ls.setup({})
-
-                -- Go
-                lsp.gopls.setup({})
+                vim.lsp.config("ts_ls", {
+                    settings = {
+                        ts_ls = {
+                        },
+                    },
+                })
+                vim.lsp.enable("ts_ls")
 
                 -- Codebook (spell checking)
-                lsp.codebook.setup({})
+                vim.lsp.config("codebook", {
+                    init_options = {
+                        diagnosticSeverity = "hint",
+                    },
+                    -- if ready, run setup function
+                    on_attach = function(server)
+                        -- Special config for spellchecking with codebook
+                        -- No signs, but yes underlines
+                        -- HACK: we have to set up a delay here, so diagnostic namespace is created
+                        vim.defer_fn(function()
+                            -- FIXME: looks like the exact namespace name is dynamic, so replace it with search
+                            local codebook_ns_1 = vim.api.nvim_get_namespaces()["vim.lsp.codebook.1"]
+                            local codebook_ns_2 = vim.api.nvim_get_namespaces()["vim.lsp.codebook.2"]
+                            local codebook_ns_3 = vim.api.nvim_get_namespaces()["vim.lsp.codebook.3"]
+                            local codebook_ns_4 = vim.api.nvim_get_namespaces()["vim.lsp.codebook.4"]
+                            local codebook_ns_5 = vim.api.nvim_get_namespaces()["vim.lsp.codebook.5"]
+                            local codebook_ns_1_nvim = vim.api.nvim_get_namespaces()["nvim.lsp.codebook.1"]
+                            local codebook_ns_2_nvim = vim.api.nvim_get_namespaces()["nvim.lsp.codebook.2"]
+                            local codebook_ns_3_nvim = vim.api.nvim_get_namespaces()["nvim.lsp.codebook.3"]
+                            local codebook_ns_4_nvim = vim.api.nvim_get_namespaces()["nvim.lsp.codebook.4"]
+                            local codebook_ns_5_nvim = vim.api.nvim_get_namespaces()["nvim.lsp.codebook.5"]
+                            local codebook_ns = codebook_ns_1 or codebook_ns_2 or codebook_ns_3 or codebook_ns_4 or codebook_ns_5 or codebook_ns_1_nvim or codebook_ns_2_nvim or codebook_ns_3_nvim or codebook_ns_4_nvim or codebook_ns_5_nvim
+                            assert(codebook_ns ~= nil, "Codebook namespace not found")
+                            vim.diagnostic.config({
+                                underline = true,
+                                  signs = {
+                                    text = {
+                                      [vim.diagnostic.severity.HINT]  = "󰓆",
+                                    },
+                                  },
+                            }, codebook_ns)
+                        end, 250)
+                    end,
+                })
                 vim.lsp.enable("codebook")
             end,
+        },
+
+        -- Formatting for html/css; falls back to LSP formatting elsewhere
+        {
+            "stevearc/conform.nvim",
+            event = "VeryLazy",
+            opts = {
+                formatters_by_ft = {
+                    html = { "prettierd" },
+                    css = { "prettierd" },
+                },
+                default_format_opts = {
+                    lsp_format = "fallback",
+                },
+            },
         },
 
         -- Treesitter
         {
             "nvim-treesitter/nvim-treesitter",
-            version = false, -- Last release is way too old
+            branch = "main",
             event = "VeryLazy",
             build = ":TSUpdate",
             config = function()
-                local configs = require("nvim-treesitter.configs")
+                require("nvim-treesitter").install({
+                    -- Programming
+                    "python",
+                    "rust",
+                    "zig",
+                    "javascript",
+                    "typescript",
 
-                configs.setup({
-                    ensure_installed = {
-                        -- Programming
-                        "python",
-                        "rust",
-                        "zig",
-                        "javascript",
-                        "typescript",
+                    -- Markup
+                    "html",
+                    "markdown",
+                    "css",
 
-                        -- Scripting
-                        "lua",
-                        "bash",
+                    -- Scripting
+                    "bash",
+                    "lua",
+                    "sql",
 
-                        -- Markup & Web
-                        "markdown",
-                        "html",
-                        "css",
+                    -- Configuration
+                    "toml",
+                    "yaml",
+                    "json",
+                    "ini",
+                    "kdl",
 
-                        -- Configuration
-                        "toml",
-                        "yaml",
-                        "json",
-                        "ini",
-                        "kdl",
-
-                        -- Other
-                        "git_config",
-                    },
-                    sync_install = false,
-                    highlight = {
-                        enable = true,
-                        additional_vim_regex_highlighting = false,
-                    },
-                    indent = { enable = true },
+                    -- Other
+                    "git_config",
+                    "dockerfile",
                 })
             end,
         },
@@ -708,37 +852,13 @@ require("lazy").setup({
         -- Treesitter text objects
         {
             "nvim-treesitter/nvim-treesitter-textobjects",
+            branch = "main",
             event = "VeryLazy",
             keys = {
                 {
-                    "mf",
+                    "F",
                     function()
-                        vim.cmd("normal! v")
-                        require("nvim-treesitter.textobjects.select").select_textobject("@function.inner")
-                    end,
-                    mode = "n",
-                },
-                {
-                    "ma",
-                    function()
-                        vim.cmd("normal! v")
-                        require("nvim-treesitter.textobjects.select").select_textobject("@parameter.inner")
-                    end,
-                    mode = "n",
-                },
-                {
-                    "mm",
-                    function()
-                        vim.cmd("normal! v")
-                        require("nvim-treesitter.textobjects.select").select_textobject("@call.inner")
-                    end,
-                    mode = "n",
-                },
-                {
-                    "Mf",
-                    function()
-                        vim.cmd("normal! v")
-                        require("nvim-treesitter.textobjects.select").select_textobject("@function.outer")
+                        require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
                     end,
                     mode = "n",
                 },
@@ -759,11 +879,16 @@ require("lazy").setup({
                     untracked    = { text = '┆' },
                 }
 
-                require("gitsigns").setup({
+                local gitsigns = require("gitsigns")
+
+                gitsigns.setup({
                     signs = signs,
                     signs_staged = signs,
                     numhl = false,
                 })
+
+                vim.keymap.set("n", "gp", gitsigns.preview_hunk, {})
+                vim.keymap.set("n", "ga", gitsigns.stage_hunk, {})
             end,
         },
 
@@ -917,13 +1042,16 @@ require("lazy").setup({
                 local todos = require("todo-comments")
                 todos.setup({
                     keywords = {
-                        FIX = { icon = " ", color = "error", alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
-                        TODO = { icon = " ", color = "info" },
+                        SEE  = { icon = "󰈙 ", color = "hint", alt = { "DOC", "SOURCE", "URL", "REF" } },
+                        NOTE = { icon = "󰀧 ", color = "hint", alt = { "INFO" } },
+                        TODO = { icon = " ", color = "info", alt = { "Todo", "ToDo" } },
+                        PERF = { icon = " ", color = "info", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+                        TEST = { icon = "󰙨 ", color = "warning", alt = { "TESTING", "PASSED", "FAILED" } },
                         HACK = { icon = "󰈸 ", color = "warning" },
                         WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-                        PERF = { icon = " ", color = "info", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-                        NOTE = { icon = " ", color = "info", alt = { "INFO" } },
-                        TEST = { icon = "󰙨 ", color = "warning", alt = { "TESTING", "PASSED", "FAILED" } },
+                        FIX  = { icon = " ", color = "error", alt = { "FIXME", "BUG", "FIXIT", "ISSUE", "ERR", "ERROR" } },
+                        -- FIX: create additional level for these
+                        INOTE = { icon = "󰀧 ", color = "error" },
                     },
                     highlight = {
                         multiline = false,
@@ -972,6 +1100,31 @@ require("lazy").setup({
                     },
                 },
             },
+        },
+
+        -- Floating filename per window (statusline stays hidden)
+        {
+            "b0o/incline.nvim",
+            event = "VeryLazy",
+            config = function()
+                require("incline").setup({
+                    window = {
+                        margin = { vertical = 0, horizontal = 1 },
+                    },
+                    render = function(props)
+                        local path = vim.api.nvim_buf_get_name(props.buf)
+                        local filename = path == "" and "[no name]" or vim.fn.fnamemodify(path, ":t")
+                        local modified = vim.bo[props.buf].modified and " •" or ""
+                        return { filename .. modified }
+                    end,
+                })
+            end,
+        },
+
+        -- Wakatime
+        {
+            "wakatime/vim-wakatime",
+            lazy = false, -- As in official install
         },
     }
 })
@@ -1042,11 +1195,20 @@ vim.opt.listchars = { tab = '» ', trail = '•', nbsp = '␣' }
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 
--- Minimal number of screen lines to keep above and below the cursor
+-- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 6
 
 -- Minimal number of screen columns to keep to the left and right of the cursor
 vim.opt.sidescrolloff = 20
+
+-- Scroll by screen line instead of jumping over wrapped lines
+vim.opt.smoothscroll = true
+
+-- Browser-like back/forward for the jumplist (see j/J keymaps)
+vim.opt.jumpoptions = "stack"
+
+-- Ask to save instead of erroring on :q with unsaved changes
+vim.opt.confirm = true
 
 -- Hide status line
 vim.opt.laststatus = 0
@@ -1061,18 +1223,17 @@ vim.opt.shortmess:append("s") -- Search wrap without message
 vim.opt.shortmess:append("c") -- Unsuccessful search without prompt
 
 -- Diagnostics
-vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "Error" })
-vim.fn.sign_define("DiagnosticSignWarn", { text = "󰈸", texthl = "Warn" })
-vim.fn.sign_define("DiagnosticSignSpell", { text = "X", texthl = "Warn" })
-vim.fn.sign_define("DiagnosticSignInfo", { text = "󰋽", texthl = "Info" })
-vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "Hint" })
-
 vim.diagnostic.config({
-    underline = {
-        min = vim.diagnostic.severity.ERROR,
-        max = vim.diagnostic.severity.ERROR,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN]  = "󰈸",
+      [vim.diagnostic.severity.INFO]  = "󰋽",
+      [vim.diagnostic.severity.HINT]  = "",
     },
-    severity_sort = true,
+  },
+  underline = false,
+  severity_sort = true,
 })
 
 -----------------
@@ -1082,7 +1243,7 @@ vim.diagnostic.config({
 -- Leader key
 vim.g.mapleader = " "
 
-vim.keymap.set({ "n", "v" }, "<leader>t", "<cmd> Telescope todo-comments <cr>", {})
+vim.keymap.set({ "n", "v" }, "<leader>t", "<cmd> TodoTelescope <cr>", {})
 vim.keymap.set({ "n", "v" }, "<leader>f", "<cmd> Telescope find_files <cr>", {})
 vim.keymap.set({ "n", "v" }, "<leader>k", "<cmd> Telescope keymaps <cr>", {})
 vim.keymap.set({ "n", "v" }, "<leader>b", "<cmd> Telescope buffers <cr>", {})
@@ -1098,16 +1259,16 @@ vim.keymap.set({ "n", "v" }, "<leader>p", "<cmd> SessionSearch <cr>", {})
 vim.keymap.set({ "n", "v" }, "<leader>o", function() require("oil").toggle_float() end, {})
 
 -- WASD
-vim.keymap.set({ "n", "v" }, "w", "k", {})
-vim.keymap.set({ "n", "v" }, "s", "j", {})
+vim.keymap.set({ "n", "v" }, "w", "gk", {})
+vim.keymap.set({ "n", "v" }, "s", "gj", {})
 vim.keymap.set({ "n", "v" }, "a", "h", {})
 vim.keymap.set({ "n", "v" }, "d", "l", {})
 
 vim.keymap.set({ "n", "v", "o" }, "q", "^", {})
 vim.keymap.set({ "n", "v", "o" }, "e", "$", {})
 
-vim.keymap.set({ "n", "v" }, "W", "5k", {})
-vim.keymap.set({ "n", "v" }, "S", "5j", {})
+vim.keymap.set({ "n", "v" }, "W", "5gk", {})
+vim.keymap.set({ "n", "v" }, "S", "5gj", {})
 vim.keymap.set({ "n", "v", "o" }, "A", "b", {})
 vim.keymap.set({ "n", "v", "o" }, "D", "w", {})
 
@@ -1146,7 +1307,7 @@ vim.keymap.set({ "n", "v" }, "gl", "<cmd> Telescope git_bcommits <cr>", {})
 -- Save
 vim.keymap.set({ "n", "v", "i" }, "<c-s>", "<cmd> w <cr>", {})
 
--- Surround: selections
+-- Selections
 vim.keymap.set({ "n", "v" }, "mw", "viw", {})
 vim.keymap.set({ "n", "v" }, "mb", "vib", {})
 vim.keymap.set({ "n", "v" }, "m(", "vib", {})
@@ -1162,7 +1323,6 @@ vim.keymap.set({ "n" }, "<", "vi<", {})
 vim.keymap.set({ "n" }, ">", "vit", {})
 vim.keymap.set({ "n" }, "`", "vi`", {})
 
--- Surround: wrapping
 vim.keymap.set({ "v" }, "(", "<Plug>(nvim-surround-visual))", { remap = true, silent = true })
 vim.keymap.set({ "v" }, ")", "<Plug>(nvim-surround-visual))", { remap = true, silent = true })
 vim.keymap.set({ "v" }, "[", "<Plug>(nvim-surround-visual)]", { remap = true, silent = true })
@@ -1184,11 +1344,17 @@ vim.keymap.set({ "n", "v" }, "gr", "<cmd> Telescope lsp_references <cr>", {})
 vim.keymap.set({ "n", "v" }, "h", vim.lsp.buf.hover, {})
 vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, {})
 vim.keymap.set({ "n", "v" }, "<leader>r", vim.lsp.buf.rename, {})
-vim.keymap.set({ "n", "v" }, "<c-f>", vim.lsp.buf.format, {})
+vim.keymap.set({ "n", "v" }, "<c-f>", function() require("conform").format() end, {})
 
 -- Commenting
 vim.keymap.set({ "v", "x" }, "<c-c>", "gcgv", { remap = true })
 vim.keymap.set({ "n" }, "<c-c>", "gcc", { remap = true })
+
+-- Journaling
+vim.keymap.set({ "i" }, "<c-d>", function()
+    local date = os.date("%Y-%m-%d")
+    vim.api.nvim_put({ date }, "c", true, true)
+end, {})
 
 -- Completion
 -- Some advanced but very practical and easy to use logic:
@@ -1253,3 +1419,9 @@ vim.keymap.set({ "n", "v" }, "c", '"_c', {})
 vim.keymap.set({ "x", "v" }, "p", 'P', {})
 vim.keymap.set({ "x", "v" }, "P", 'P', {})
 vim.keymap.set({ "n" }, "V", '"_V', {})
+
+-- Semicolon to colon
+vim.keymap.set({ "n", "v" }, ";", ":", {})
+
+-- Enable reading local .nvimrc files
+vim.opt.exrc = true

@@ -9,6 +9,8 @@ include "%L"
 
 <Multi_key> <slash> <equal> : "≠"
 <Multi_key> <equal> <slash> : "≠"
+<Multi_key> <exclam> <equal> : "≠"
+<Multi_key> <equal> <exclam> : "≠"
 
 <Multi_key> <asciitilde> <asciitilde> : "≈"
 <Multi_key> <asciitilde> <equal>      : "≈"
@@ -17,10 +19,10 @@ include "%L"
 <Multi_key> <asciitilde> <slash> : "≉"
 
 <Multi_key> <less> <equal> : "≤"
-<Multi_key> <equal> <less> : "≤"
-
 <Multi_key> <greater> <equal> : "≥"
-<Multi_key> <equal> <greater> : "≥"
+
+<Multi_key> <equal> <less> : "⇐"
+<Multi_key> <equal> <greater> : "⇒"
 
 <Multi_key> <0> <0> : "∞"
 <Multi_key> <o> <o> : "∞"
@@ -30,6 +32,8 @@ include "%L"
 
 <Multi_key> <p> <r> <o> <d> : "∏"
 <Multi_key> <s> <u> <m> : "∑"
+
+<Multi_key> <i> <n> : "∈"
 
 # === Arrows ===
 <Multi_key> <asciicircum> <bar> : "↑"
@@ -70,11 +74,19 @@ include "%L"
 <Multi_key> <O> <asciicircum> : "Ô"
 <Multi_key> <O> <x>           : "Ô"
 
+# === Greek ===
+<Multi_key> <p> <i> : "π"
+<Multi_key> <a> <l> : "α"
+<Multi_key> <b> <e> : "β"
+<Multi_key> <g> <a> : "γ"
+<Multi_key> <d> <e> : "δ"
+<Multi_key> <e> <p> : "ε"
+
 # === Bullets ===
 <Multi_key> <minus> <v> : "✓"
 <Multi_key> <minus> <x> : "✗"
 <Multi_key> <minus> <o> : "•"
-<Multi_key> <minus> <bracketleft> : "□"
+<Multi_key> <minus> <bracketleft> <bracketright> : "□"
 
 <Multi_key> <bracketleft>     <bracketright> : "☐"
 <Multi_key> <bracketleft> <v> <bracketright> : "☑"

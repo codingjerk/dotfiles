@@ -18,6 +18,7 @@ let s:orange="#D0B1A2"
 let s:yellow="#CDD2AF"
 let s:green="#9FD6B6"
 let s:blue="#92b7ea"
+let s:cyan="#acd9ec"
 let s:purple="#AD9BEA"
 let s:pink="#CD9BCC"
 
@@ -173,10 +174,10 @@ exec "highlight SpellBad" . " guisp=" . s:orange
 call s:hl("DiagnosticInfo", s:fg_half_dim, "NONE")
 call s:hl("DiagnosticHint", s:fg_half_dim, "NONE")
 
-exec "highlight DiagnosticUnderlineHint gui=NONE"
-exec "highlight DiagnosticUnderlineInfo gui=NONE"
-exec "highlight DiagnosticUnderlineWarn gui=NONE"
-exec "highlight DiagnosticUnderlineError gui=NONE"
+exec "highlight DiagnosticUnderlineHint gui=undercurl guisp=" . s:fg_half_dim
+exec "highlight DiagnosticUnderlineInfo gui=undercurl guisp=" . s:fg_half_dim
+exec "highlight DiagnosticUnderlineWarn gui=undercurl guisp=" . s:orange
+exec "highlight DiagnosticUnderlineError gui=undercurl guisp=" . s:red
 
 " Notifications
 call s:hl("NotifyBackground", s:bg_dim, s:bg_dim)

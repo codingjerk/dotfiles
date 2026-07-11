@@ -13,14 +13,12 @@ Host voyager
 Host *
     # If user is unspecified, connect as root
     User root
+
     ExitOnForwardFailure yes
 
     # Security
     StrictHostKeyChecking accept-new
     HashKnownHosts yes
-
-    # Avoid unnecessary output
-    LogLevel QUIET
 
     # Network options
     ConnectTimeout 5
@@ -32,7 +30,7 @@ Host *
 
     # Multiplexing
     ControlMaster auto
-    ControlPersist 15m
+    ControlPersist 30m
     ControlPath ~/.ssh/control/%h-%p-%r
 
     # Keepalive
