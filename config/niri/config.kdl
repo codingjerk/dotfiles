@@ -1,19 +1,24 @@
 // vim: set ts=2 sw=2:
 
+environment {
+  ELECTRON_OZONE_PLATFORM_HINT "wayland"
+
+  QT_QPA_PLATFORM "wayland"
+  QT_QPA_PLATFORMTHEME "qt5ct"  // hide telegram title bar
+  QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+
+  GDK_DPI_SCALE "1.5"
+  STEAM_FORCE_DESKTOPUI_SCALING "1.5"
+
+  SSH_AUTH_SOCK "/run/user/$UID/ssh-agent.socket"
+}
+
 // Startup
+spawn-sh-at-startup "rm -f $SSH_AUTH_SOCK; ssh-agent -D -a $SSH_AUTH_SOCK"
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
 spawn-at-startup "swaybg" "--image" "/home/cj/dotfiles/wallpaper.png" "--mode" "fill"
 spawn-at-startup "foot" "--server" "--log-level=none"
-
-environment {
-  QT_QPA_PLATFORM "wayland"
-  ELECTRON_OZONE_PLATFORM_HINT "wayland"
-
-  QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
-
-  GDK_DPI_SCALE "1.5"
-}
 
 cursor {
   xcursor-theme "capitaine-cursors-light"
