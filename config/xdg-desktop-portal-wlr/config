@@ -1,3 +1,5 @@
+; vi: ft=ini
+
 [screencast]
-output_name=eDP-1
-chooser_type=none
+chooser_type=dmenu
+chooser_cmd=fuzzel --dmenu

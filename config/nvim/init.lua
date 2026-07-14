@@ -11,7 +11,7 @@
 
 -- 2-space indent for some file types
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "yaml,toml,markdown,html,css",
+    pattern = { "yaml", "toml", "markdown", "html", "css" },
     callback = function()
         vim.opt_local.tabstop = 2
         vim.opt_local.softtabstop = 2
@@ -45,8 +45,6 @@ do
     "UserMarkdownUI",
     { clear = true }
   )
-
-  local restore_columns = nil
 
   local function is_markdown()
     return vim.bo.filetype == "markdown"

@@ -30,7 +30,7 @@ DEPENDENCIES = [
     Binary(name="Less", binary="less"),
     Binary(name="Curl", binary="curl"),
     Binary(name="OpenSSH", binary="ssh"),
-    Binary(name="OpenGPG", binary="gpg"),
+    Binary(name="GnuPG", binary="gpg"),
     Binary(name="Tmux", binary="tmux"),
     Binary(name="Htop", binary="htop"),
     Binary(name="psql", binary="psql"),

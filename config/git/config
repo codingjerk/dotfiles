@@ -114,7 +114,7 @@
     whitespace = yellow reverse
     old        = red
 
-[color.decorate]
+[color "decorate"]
     HEAD = red
     branch = blue
     tag = yellow

@@ -20,6 +20,8 @@ progress-color=over #${pink}A0
 border-radius=16
 border-size=0
 
+group-by=summary
+
 [urgency=critical]
 default-timeout=0
 

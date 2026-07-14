@@ -344,10 +344,10 @@ window-rule {
 
 // Smaller floating pavucontrol
 window-rule {
-    match app-id=r#"^org\.pulseaudio\.pavucontrol$$"#
-    open-floating true
-    default-column-width { proportion 0.5; }
-    default-window-height { proportion 0.5; }
+  match app-id=r#"^org\.pulseaudio\.pavucontrol$$"#
+  open-floating true
+  default-column-width { proportion 0.5; }
+  default-window-height { proportion 0.5; }
 }
 
 // Foot popups
