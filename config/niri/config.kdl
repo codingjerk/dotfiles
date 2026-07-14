@@ -11,14 +11,14 @@ environment {
   QT_SCALE_FACTOR "1.5"
   STEAM_FORCE_DESKTOPUI_SCALING "1.5"
 
-  SSH_AUTH_SOCK "/run/user/$UID/ssh-agent.socket"
+  SSH_AUTH_SOCK "/run/user/$$UID/ssh-agent.socket"
 }
 
 // Startup
-spawn-sh-at-startup "rm -f $SSH_AUTH_SOCK; ssh-agent -D -a $SSH_AUTH_SOCK"
+spawn-sh-at-startup "rm -f $$SSH_AUTH_SOCK; ssh-agent -D -a $$SSH_AUTH_SOCK"
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
-spawn-at-startup "swaybg" "--image" "/home/cj/dotfiles/wallpaper.png" "--mode" "fill"
+spawn-at-startup "swaybg" "--image" "${repo}/wallpaper.png" "--mode" "fill"
 spawn-at-startup "foot" "--server" "--log-level=none"
 
 // Clipboard history
@@ -34,7 +34,7 @@ cursor {
 
 overview {
   zoom 0.5
-  backdrop-color "#171c29" // bg-dim-more
+  backdrop-color "#${bg_dim_more}"
 }
 
 input {
@@ -159,7 +159,6 @@ binds {
 
   // Niri control
   Super+Alt+X repeat=false { quit skip-confirmation=true; }
-  Super+O repeat=false { toggle-overview; }
   Super+Z repeat=false { toggle-overview; }
   Super+Alt+H repeat=false { show-hotkey-overlay; }
 
@@ -176,24 +175,24 @@ binds {
   Super+Alt+N repeat=false { spawn "systemctl" "--user" "restart" "mako"; }
 
   // Sound
-  XF86AudioMute allow-when-locked=true repeat=false { spawn "bash" "/home/cj/dotfiles/scripts/volume.sh" "mute"; }
-  XF86AudioLowerVolume allow-when-locked=true { spawn "bash" "/home/cj/dotfiles/scripts/volume.sh" "down"; }
-  XF86AudioRaiseVolume allow-when-locked=true { spawn "bash" "/home/cj/dotfiles/scripts/volume.sh" "up"; }
+  XF86AudioMute allow-when-locked=true repeat=false { spawn "bash" "${repo}/scripts/volume.sh" "mute"; }
+  XF86AudioLowerVolume allow-when-locked=true { spawn "bash" "${repo}/scripts/volume.sh" "down"; }
+  XF86AudioRaiseVolume allow-when-locked=true { spawn "bash" "${repo}/scripts/volume.sh" "up"; }
 
   // Microphone
-  XF86AudioMicMute allow-when-locked=true repeat=false { spawn "bash" "/home/cj/dotfiles/scripts/volume.sh" "micmute"; }
-  F7 allow-when-locked=true repeat=false { spawn "bash" "/home/cj/dotfiles/scripts/volume.sh" "micmute"; }
+  XF86AudioMicMute allow-when-locked=true repeat=false { spawn "bash" "${repo}/scripts/volume.sh" "micmute"; }
+  F7 allow-when-locked=true repeat=false { spawn "bash" "${repo}/scripts/volume.sh" "micmute"; }
 
   // Media
-  XF86AudioPlay allow-when-locked=true repeat=false { spawn "bash" "/home/cj/dotfiles/scripts/media.sh" "toggle"; }
-  XF86AudioPause allow-when-locked=true repeat=false { spawn "bash" "/home/cj/dotfiles/scripts/media.sh" "pause"; }
-  XF86AudioNext allow-when-locked=true repeat=false { spawn "bash" "/home/cj/dotfiles/scripts/media.sh" "next"; }
-  XF86AudioPrev allow-when-locked=true repeat=false { spawn "bash" "/home/cj/dotfiles/scripts/media.sh" "prev"; }
-  XF86AudioStop allow-when-locked=true repeat=false { spawn "bash" "/home/cj/dotfiles/scripts/media.sh" "stop"; }
+  XF86AudioPlay allow-when-locked=true repeat=false { spawn "bash" "${repo}/scripts/media.sh" "toggle"; }
+  XF86AudioPause allow-when-locked=true repeat=false { spawn "bash" "${repo}/scripts/media.sh" "pause"; }
+  XF86AudioNext allow-when-locked=true repeat=false { spawn "bash" "${repo}/scripts/media.sh" "next"; }
+  XF86AudioPrev allow-when-locked=true repeat=false { spawn "bash" "${repo}/scripts/media.sh" "prev"; }
+  XF86AudioStop allow-when-locked=true repeat=false { spawn "bash" "${repo}/scripts/media.sh" "stop"; }
 
   // Brightness
-  XF86MonBrightnessUp allow-when-locked=true { spawn "bash" "/home/cj/dotfiles/scripts/brightness.sh" "up"; }
-  XF86MonBrightnessDown allow-when-locked=true { spawn "bash" "/home/cj/dotfiles/scripts/brightness.sh" "down"; }
+  XF86MonBrightnessUp allow-when-locked=true { spawn "bash" "${repo}/scripts/brightness.sh" "up"; }
+  XF86MonBrightnessDown allow-when-locked=true { spawn "bash" "${repo}/scripts/brightness.sh" "down"; }
 
   // Print screen
   Print repeat=false { spawn "flameshot" "gui"; }
@@ -205,8 +204,8 @@ binds {
   Super+Y repeat=false { spawn-sh "cliphist list | fuzzel --with-nth 2 --dmenu | cliphist decode | wl-copy"; }
 
   // Pass picker
-  Super+P { spawn "sh" "-c" "pass show -c \"$(find ~/.password-store -name '*.gpg' | sed -e \"s|^$HOME/.password-store/||\" -e 's|\\.gpg$||' | fuzzel --dmenu)\""; }
-  Super+O { spawn "sh" "-c" "pass otp -c \"$(find ~/.password-store -name '*.gpg' | sed -e \"s|^$HOME/.password-store/||\" -e 's|\\.gpg$||' | fuzzel --dmenu)\""; }
+  Super+P { spawn "sh" "-c" "pass show -c \"$$(find ~/.password-store -name '*.gpg' | sed -e \"s|^$$HOME/.password-store/||\" -e 's|\\.gpg$$||' | fuzzel --dmenu)\""; }
+  Super+O { spawn "sh" "-c" "pass otp -c \"$$(find ~/.password-store -name '*.gpg' | sed -e \"s|^$$HOME/.password-store/||\" -e 's|\\.gpg$$||' | fuzzel --dmenu)\""; }
 
   // Calculator
   Super+grave repeat=false { spawn "footclient" "--app-id" "footpopup" "-e" "numbat"; }
@@ -253,9 +252,9 @@ layout {
 
   focus-ring {
     width 3
-    active-color "#92b7ea" // blue
-    inactive-color "#54678c" // fg-half-dim
-    urgent-color "#D0879D" // red
+    active-color "#${blue}"
+    inactive-color "#${fg_half_dim}"
+    urgent-color "#${red}"
   }
 
   shadow {
@@ -276,15 +275,15 @@ layout {
     position "left"
     gaps-between-tabs 16
     corner-radius 16
-    active-color "#AD9BEA" // purple
+    active-color "#${purple}"
 
-    inactive-color "#54678c90" // fg-half-dim with alpha
+    inactive-color "#${fg_half_dim}90"
     urgent-color "#E0778D" // reder (brighter red)
   }
 
   insert-hint {
     on
-    color "#92b7ea90" // blue with alpha
+    color "#${blue}90"
   }
 }
 
@@ -397,8 +396,8 @@ recent-windows {
   open-delay-ms 0
 
   highlight {
-    active-color "#92b7ea" // blue
-    urgent-color "#D0879D" // red
+    active-color "#${blue}"
+    urgent-color "#${red}"
     padding 64
     corner-radius 24
   }

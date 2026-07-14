@@ -955,7 +955,7 @@ require("lazy").setup({
             event = "VeryLazy",
             dependencies = { 'nvim-lua/plenary.nvim' },
             config = function()
-                local actions = require("telescope.actions");
+                local actions = require("telescope.actions")
                 local actions_layout = require("telescope.actions.layout")
                 local themes = require("telescope.themes")
 
@@ -1391,7 +1391,7 @@ vim.keymap.set({ "v", "x" }, "<c-c>", "gcgv", { remap = true })
 vim.keymap.set({ "n" }, "<c-c>", "gcc", { remap = true })
 
 -- Journaling
-function insert_date()
+local function insert_date()
     local date = os.date("%Y-%m-%d")
     vim.api.nvim_put({ date }, "c", true, true)
 end
@@ -1405,7 +1405,7 @@ vim.keymap.set({ "n", "v", "i" }, "<c-s-t>", insert_date, {})
 --   Accept copilot suggestion, if any
 --   Use nvim-cmp, if any
 --   If in insert mode, insert tab
-function tab_complete()
+local function tab_complete()
     local copilot = require("copilot.suggestion")
     local cmp = require("cmp")
 
@@ -1431,7 +1431,7 @@ end
 -- Again, some advanced logic to simplify completion usage
 --   If there is SELECTED completion, accept it
 --   Feed enter key otherwise
-function enter_complete()
+local function enter_complete()
     local cmp = require("cmp")
 
     if cmp.get_selected_index() ~= nil then
@@ -1441,7 +1441,7 @@ function enter_complete()
     vim.fn.feedkeys("\n")
 end
 
-function esc_complete()
+local function esc_complete()
     local cmp = require("cmp")
     local copilot = require("copilot.suggestion")
 
@@ -1473,7 +1473,7 @@ vim.opt.exrc = true
 --- Smart TODO-list checkboxes ---
 ----------------------------------
 
-function insert_todo()
+local function insert_todo()
     local todo_prefix = "- [ ] "
     local cursor = vim.api.nvim_win_get_cursor(0)
     local row = cursor[1]

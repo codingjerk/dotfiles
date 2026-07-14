@@ -28,13 +28,13 @@
 /* clock */
 
 #clock:hover {
-  color: #AD9BEA;
+  color: #${purple};
 }
 
 /* pulseaudio */
 
 #pulseaudio:hover {
-  color: #AD9BEA;
+  color: #${purple};
 }
 
 /* workspaces */
@@ -114,5 +114,5 @@
 
 /* Privacy */
 #privacy-item {
-    color: #D0879D;
+  color: #${red};
 }

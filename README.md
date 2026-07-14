@@ -7,24 +7,35 @@
 
 ## Install
 
-Add user:
+1. Add user:
 
 ```sh
 useradd -m -G docker,systemd-journal,users,wheel -k /dev/null -s /usr/bin/zsh cj
+sudo -iu cj
 ```
 
-Clone repository and install dotfiles as a new user:
+2. Clone the repository
 
 ```sh
-sudo -iu cj
 git clone https://github.com/codingjerk/dotfiles.git
+```
+
+3. Install the config files into your system
+
+```sh
 python ~/dotfiles/tools/render install
 ```
 
-**WARNING:** it's for me and myself only,
-I don't recommend to run it on your own machines.
+4. Check for missing dependencies:
 
-If you're not me (lol), just clone this repository and poke into configuration files (it's in `config` directory!).
+```sh
+python ~/dotfiles/tools/doctor
+```
+
+**WARNING:** This repository is tailored for my personal use.
+I don't recommend installing it on your machine.
+
+If you're not me (lol), just clone this repository and browse the configuration files.
 
 ### Optional extra steps (on new hosts)
 
@@ -50,25 +61,17 @@ git clone cj:ledger-private .ledger
 git clone cj:notes-private notes
 ```
 
-4. Install LSPs for `neovim`.
-   Check `neovim`'s `init.lua` for actual sources
-   and build instructions.
+4. Install LSPs for `neovim`
 
-5. Install lazy
+5. Install `lazy.nvim`:
 
 ```sh
 mkdir -p ~/.local/share/nvim/lazy
 cd $_
 git clone https://github.com/folke/lazy.nvim.git
 
-# in vim:
+nvim
 :Lazy Install
-```
-
-6. Check if all dependencies are installed:
-
-```sh
-python ~/dotfiles/tools/doctor
 ```
 
 ## Update (re-render configuration files)
@@ -80,18 +83,18 @@ git pull
 python ~/dotfiles/tools/render install
 ```
 
-## How it works?
+## How it works
 
 This repository contains:
 
-- `config` -- a bunch of configuration files and templates. Main directory here
-- `settings.toml` -- configurable settings (color palette, font, etc.), used by templates
+- `config` -- configuration files and templates
+- `settings.toml` -- color palette and per-host settings
 - `wallpaper.png` -- a wallpaper
 - `tools`
    - `render` -- tool to render templates into configuration files
-   - `doctor` -- tool to check if all dependencies are installed
-- `scripts` -- a bunch of scripts for various tasks
+   - `doctor` -- tool to report missing dependencies
+- `scripts` -- helper scripts
 
-Itself, repository should be placed somewhere in your home directory,
-and after running `update` it will place rendered configuration files
-into your home directory.
+The repository can be placed anywhere in your home directory.
+
+Running `python <DOTFILES>/tools/render install` will render the configuration files and place it to the correct locations under your home directory.

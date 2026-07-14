@@ -56,6 +56,7 @@ DEPENDENCIES = [
 
     # Sound
     Binary(name="wpctl", binary="wpctl"),
+    Binary(name="playerctl", binary="playerctl"),
     Binary(name="pavucontrol", binary="pavucontrol"),
 
     # WM
