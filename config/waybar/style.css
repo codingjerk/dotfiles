@@ -13,7 +13,8 @@
 #battery,
 #pulseaudio,
 #language,
-#clock {
+#clock,
+#privacy {
   padding: 6px 10px;
 }
 #workspaces {
@@ -109,4 +110,9 @@
 
 #battery.charging {
   color: #${green};
+}
+
+/* Privacy */
+#privacy-item {
+    color: #D0879D;
 }

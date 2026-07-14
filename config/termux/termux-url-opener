@@ -1,0 +1,56 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+url="$1"
+dir="$HOME/storage/shared/Documents"
+
+choice=$(termux-dialog radio -v "To read,To watch,yt-dlp,aria2c" | jq -r '.text')
+
+case "$choice" in
+    "To read"|"To watch")
+        # Fetch page title; fall back to URL if it fails
+        title=$(curl -sL --max-time 8 "$url" \
+            | grep -oP '(?<=<title)[^>]*>[^<]*' \
+            | head -1 \
+            | sed 's/^[^>]*>//' \
+            | sed -e 's/&amp;/\&/g' -e "s/&#39;/'/g" -e 's/&quot;/"/g' -e 's/&lt;/</g' -e 's/&gt;/>/g' \
+            | tr -s '[:space:]' ' ' \
+            | sed -e 's/^ //' -e 's/ $//')
+
+        if [ "$choice" = "To watch" ]; then
+            yt_title=$(yt-dlp --get-title --no-playlist --socket-timeout 8 "$url" 2>/dev/null)
+            [ -n "$yt_title" ] && title="$yt_title"
+            file="$dir/to-watch.md"
+        else
+            file="$dir/to-read.md"
+        fi
+
+        [ -n "$title" ] || title="$url"
+
+        printf '\n# %s\n\n%s\n' "$title" "$url" >> "$file"
+        termux-toast -g bottom "Saved: $title"
+        ;;
+
+    "yt-dlp")
+        termux-wake-lock
+        termux-toast -g bottom "Downloading video..."
+        yt-dlp --no-playlist \
+            -o "$HOME/storage/shared/Movies/%(title)s.%(ext)s" \
+            "$url" \
+            && termux-notification -t "yt-dlp" -c "Done: $url" \
+            || termux-notification -t "yt-dlp" -c "FAILED: $url"
+        termux-wake-unlock
+        ;;
+
+    "aria2c")
+        termux-wake-lock
+        termux-toast -g bottom "Downloading file..."
+        aria2c -x8 -s8 --dir="$HOME/storage/shared/Download" "$url" \
+            && termux-notification -t "aria2c" -c "Done: $url" \
+            || termux-notification -t "aria2c" -c "FAILED: $url"
+        termux-wake-unlock
+        ;;
+
+    *)
+        termux-toast -g bottom "Cancelled"
+        ;;
+esac

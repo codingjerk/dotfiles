@@ -210,6 +210,40 @@ require("lazy").setup({
             "zbirenbaum/copilot.lua",
             event = "VeryLazy",
             config = function()
+                local function is_buffer_share_safe(bufnr, bufname)
+                    -- Unlisted buffers
+                    if not vim.bo[bufnr].buflisted then
+                        return false
+                    end
+
+                    -- Unnamed buffers
+                    if vim.bo[bufnr].buftype ~= "" then
+                        return false
+                    end
+
+                    local path = vim.fs.normalize(bufname)
+                    local parent = vim.fs.dirname(path)
+                    local basename = vim.fs.basename(path)
+
+                    -- Env files
+                    if vim.startswith(basename, ".env") then
+                        return false
+                    end
+
+                    -- Password store files
+                    local password_store_path = vim.fs.normalize(vim.fs.joinpath(vim.env.HOME, ".password-store"))
+
+                    if vim.startswith(path, password_store_path) then
+                        return false
+                    end
+
+                    if vim.fs.basename(parent):match("^pass%.[^/]+$") then
+                        return false
+                    end
+
+                    return true
+                end
+
                 require("copilot").setup({
                     panel = {
                         enabled = false,
@@ -218,6 +252,7 @@ require("lazy").setup({
                         auto_trigger = true,
                         debounce = 25,
                     },
+                    should_attach = is_buffer_share_safe,
                     filetypes = {
                         markdown = true,
                         yaml = true,
@@ -757,39 +792,44 @@ require("lazy").setup({
                 vim.lsp.enable("ts_ls")
 
                 -- Codebook (spell checking)
+                -- NOTE: this is a custom autocmd to wait until codebook attach
+                --       and change it's diagnostic sign to custom one.
+                --       Needed, because namespace is created dynamically
+                vim.api.nvim_create_autocmd("LspAttach", {
+                    group = vim.api.nvim_create_augroup("CodebookDiagnostics", { clear = true }),
+                    callback = function(event)
+                        local client_id = event.data and event.data.client_id
+                        local client = client_id and vim.lsp.get_client_by_id(client_id)
+                        if not client or client.name ~= "codebook" then
+                            return
+                        end
+
+                        local ok, codebook_ns = pcall(vim.lsp.diagnostic.get_namespace, client_id)
+                        if not ok or not codebook_ns then
+                            local reason = ok and "no namespace was returned" or tostring(codebook_ns)
+                            vim.notify(
+                                ("Unable to configure Codebook diagnostics for client %d: %s")
+                                    :format(client_id, reason),
+                                vim.log.levels.WARN
+                            )
+                            return
+                        end
+
+                        vim.diagnostic.config({
+                            underline = true,
+                            signs = {
+                                text = {
+                                    [vim.diagnostic.severity.HINT] = "󰓆",
+                                },
+                            },
+                        }, codebook_ns)
+                    end,
+                })
+
                 vim.lsp.config("codebook", {
                     init_options = {
                         diagnosticSeverity = "hint",
                     },
-                    -- if ready, run setup function
-                    on_attach = function(server)
-                        -- Special config for spellchecking with codebook
-                        -- No signs, but yes underlines
-                        -- HACK: we have to set up a delay here, so diagnostic namespace is created
-                        vim.defer_fn(function()
-                            -- FIXME: looks like the exact namespace name is dynamic, so replace it with search
-                            local codebook_ns_1 = vim.api.nvim_get_namespaces()["vim.lsp.codebook.1"]
-                            local codebook_ns_2 = vim.api.nvim_get_namespaces()["vim.lsp.codebook.2"]
-                            local codebook_ns_3 = vim.api.nvim_get_namespaces()["vim.lsp.codebook.3"]
-                            local codebook_ns_4 = vim.api.nvim_get_namespaces()["vim.lsp.codebook.4"]
-                            local codebook_ns_5 = vim.api.nvim_get_namespaces()["vim.lsp.codebook.5"]
-                            local codebook_ns_1_nvim = vim.api.nvim_get_namespaces()["nvim.lsp.codebook.1"]
-                            local codebook_ns_2_nvim = vim.api.nvim_get_namespaces()["nvim.lsp.codebook.2"]
-                            local codebook_ns_3_nvim = vim.api.nvim_get_namespaces()["nvim.lsp.codebook.3"]
-                            local codebook_ns_4_nvim = vim.api.nvim_get_namespaces()["nvim.lsp.codebook.4"]
-                            local codebook_ns_5_nvim = vim.api.nvim_get_namespaces()["nvim.lsp.codebook.5"]
-                            local codebook_ns = codebook_ns_1 or codebook_ns_2 or codebook_ns_3 or codebook_ns_4 or codebook_ns_5 or codebook_ns_1_nvim or codebook_ns_2_nvim or codebook_ns_3_nvim or codebook_ns_4_nvim or codebook_ns_5_nvim
-                            assert(codebook_ns ~= nil, "Codebook namespace not found")
-                            vim.diagnostic.config({
-                                underline = true,
-                                  signs = {
-                                    text = {
-                                      [vim.diagnostic.severity.HINT]  = "󰓆",
-                                    },
-                                  },
-                            }, codebook_ns)
-                        end, 250)
-                    end,
                 })
                 vim.lsp.enable("codebook")
             end,

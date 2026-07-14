@@ -46,7 +46,6 @@ gpg --edit-key <key-id>
 
 ```sh
 git clone cj:private-pass .password-store
-git clone cj:when-private .when
 git clone cj:ledger-private .ledger
 git clone cj:notes-private notes
 ```
@@ -59,11 +58,17 @@ git clone cj:notes-private notes
 
 ```sh
 mkdir -p ~/.local/share/nvim/lazy
-cd $$
+cd $_
 git clone https://github.com/folke/lazy.nvim.git
 
-in vim:
+# in vim:
 :Lazy Install
+```
+
+6. Check if all dependencies are installed:
+
+```sh
+python ~/dotfiles/tools/doctor
 ```
 
 ## Update (re-render configuration files)
@@ -84,6 +89,8 @@ This repository contains:
 - `wallpaper.png` -- a wallpaper
 - `tools`
    - `render` -- tool to render templates into configuration files
+   - `doctor` -- tool to check if all dependencies are installed
+- `scripts` -- a bunch of scripts for various tasks
 
 Itself, repository should be placed somewhere in your home directory,
 and after running `update` it will place rendered configuration files

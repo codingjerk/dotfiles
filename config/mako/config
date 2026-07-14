@@ -2,7 +2,8 @@ font=Noto Sans Mono Light 11
 
 max-history=0
 ignore-timeout=1
-max-visible=-1
+default-timeout=5000
+max-visible=20
 
 width=450
 height=200
@@ -14,6 +15,50 @@ format=%s\n%b
 
 background-color=#${bg}
 text-color=#${fg}
+progress-color=over #${pink}A0
 
 border-radius=16
 border-size=0
+
+[urgency=critical]
+default-timeout=0
+
+[category=volume]
+group-by=category
+default-timeout=1500
+height=50
+width=500
+padding=0,32
+
+[grouped category=volume]
+format=%s\n%b
+
+[category=mic]
+group-by=category
+default-timeout=1500
+height=50
+width=500
+padding=0,32
+
+[grouped category=mic]
+format=%s\n%b
+
+[category=brightness]
+group-by=category
+default-timeout=1500
+height=50
+width=500
+padding=0,32
+
+[grouped category=brightness]
+format=%s\n%b
+
+[category=media]
+group-by=category
+default-timeout=1500
+height=50
+width=500
+padding=0,32
+
+[grouped category=media]
+format=%s\n%b

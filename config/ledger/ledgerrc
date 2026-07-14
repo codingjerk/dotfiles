@@ -1,2 +1,8 @@
 --file ~/.ledger/journal.ldg
+
+--date-format %Y-%m-%d
+--strict
+--check-payees
+
 --no-pager
+--color

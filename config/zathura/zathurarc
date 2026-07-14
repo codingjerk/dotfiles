@@ -27,7 +27,7 @@ set database plain
 set dbus-service false
 set page-cache-size 32
 set show-recent false
-set selection-clipboard secondary
+set selection-clipboard clipboard
 set sandbox strict
 set page-padding 16
 

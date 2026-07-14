@@ -19,6 +19,7 @@ Host *
     # Security
     StrictHostKeyChecking accept-new
     HashKnownHosts yes
+    AddKeysToAgent yes
 
     # Network options
     ConnectTimeout 5

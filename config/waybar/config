@@ -8,6 +8,7 @@
   ],
 
   "modules-right": [
+    "privacy",
     "battery",
     "pulseaudio",
     "niri/language",
@@ -72,6 +73,9 @@
     "format-th": "th",
 
     "keyboard-name": "keyd-virtual-keyboard",
+
+    "on-click": "niri msg action switch-layout 2",
+    "on-click-right": "niri msg action switch-layout 2"
   },
 
   "clock": {
@@ -81,6 +85,16 @@
     "tooltip": true,
     "tooltip-format": "{:%e %B, %A}",  // 2 April, Saturday
 
-    "on-click": "footclient --hold when ci"
+    "on-click": "footclient --hold --app-id footpopup cal -3"
   },
+
+  "privacy": {
+    "icon-spacing": 16,
+    "icon-size": 16,
+    "transition-duration": 250,
+    "modules": [
+      { "type": "screenshare" },
+      { "type": "audio-in" }
+    ]
+  }
 }

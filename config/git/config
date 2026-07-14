@@ -12,7 +12,6 @@
     autocrlf = input  # keep newlines as in input
     compression = 9  # trade cpu for network
     fsync = none
-    whitespace = error  # threat incorrect whitespace as errors
     preloadindex = true  # preload index for faster status
 
 [advice]  # disable advices
@@ -25,9 +24,11 @@
     date = relative
 
 [diff]
+    algorithm = histogram  # better diff algorithm
     context = 3  # less context in diffs
     renames = copies  # detect copies as renames in diffs
     interHunkContext = 10  # merge near hunks in diffs
+    wsErrorHighlight = all  # highlight all whitespace errors in diffs
 
 [init]
     defaultBranch = dev
@@ -53,15 +54,25 @@
     followTags = true  # push also tags
     gpgSign = false  # my remotes doesn't support sign pushes
 
+    useForceIfIncludes = true  # way safer force pushes by default,
+                               # disable with `--no-force-if-includes`
+
 [pull]
     rebase = true
-    default = current
+
+[rerere]
+    enabled = true  # enable reuse recorded resolution
+                    # (simplifies conflict resolution)
+
+[merge]
+    conflictStyle = zdiff3  # show all versions in conflicts
 
 [submodule]
     fetchJobs = 16
 
 [rebase]
     autoStash = true
+    autoSquash = true  # automatically squash fixup! and squash! commits
     missingCommitsCheck = warn  # warn if rebasing with missing commits
 
 [pack]
@@ -112,6 +123,9 @@
 [interactive]
     diffFilter = diff-so-fancy --patch
     singlekey = true
+
+[help]
+    autoCorrect = true  # auto-correct typos in git commands
 
 # Third-party: diff-so-fancy
 [diff-so-fancy]

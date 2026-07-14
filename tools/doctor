@@ -24,6 +24,9 @@ DEPENDENCIES = [
     Binary(name="Git", binary="git"),
     Binary(name="diff-so-fancy", binary="diff-so-fancy"),
 
+    Binary(name="fzf", binary="fzf"),
+    Binary(name="zoxide", binary="zoxide"),
+
     Binary(name="Less", binary="less"),
     Binary(name="Curl", binary="curl"),
     Binary(name="OpenSSH", binary="ssh"),
@@ -31,6 +34,11 @@ DEPENDENCIES = [
     Binary(name="Tmux", binary="tmux"),
     Binary(name="Htop", binary="htop"),
     Binary(name="psql", binary="psql"),
+    Binary(name="pass", binary="pass"),
+    Binary(name="termdown", binary="termdown"),
+    Binary(name="rg", binary="rg"),
+    Binary(name="pinentry-tty", binary="pinentry-tty"),
+    Binary(name="watchexec", binary="watchexec"),
 
     # Development
     Binary(name="Ruff", binary="ruff"),
@@ -41,9 +49,14 @@ DEPENDENCIES = [
     # LSP Servers
     Binary(name="Taplo (TOML LSP)", binary="taplo"),
     Binary(name="Codebook (spell checking LSP)", binary="codebook-lsp"),
+    Binary(name="prettierd", binary="prettierd"),
 
     # Arch linux
     Binary(name="paru", binary="paru"),
+
+    # Sound
+    Binary(name="wpctl", binary="wpctl"),
+    Binary(name="pavucontrol", binary="pavucontrol"),
 
     # WM
     Binary(name="NiriWM", binary="niri"),
@@ -58,6 +71,15 @@ DEPENDENCIES = [
     Binary(name="Google Chrome (unstable)", binary="google-chrome-unstable"),
     Binary(name="Zathura", binary="zathura"),
     Binary(name="MPV", binary="mpv"),
+
+    # Gui Utils
+    Binary(name="brightnessctl", binary="brightnessctl"),
+    Binary(name="flameshot", binary="flameshot"),
+    Binary(name="swaybg", binary="swaybg"),
+    Binary(name="libnotify", binary="notify-send"),
+    Binary(name="wl-clipboard", binary="wl-copy"),
+    Binary(name="cliphist", binary="cliphist"),
+    Binary(name="wtype", binary="wtype"),
 ]
 
 

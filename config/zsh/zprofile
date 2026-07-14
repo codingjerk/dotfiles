@@ -29,6 +29,13 @@ FZF_DEFAULT_OPTS_ARR=(
 )
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS_ARR"
 
+FZF_DEFAULT_COMMAND_ARR=(
+  fd
+  --type f
+  --follow
+)
+export FZF_DEFAULT_COMMAND="$FZF_DEFAULT_COMMAND_ARR"
+
 # Settings: less
 export LESS='-cigRS -j4 -x4 -#5 -z-10'
 export LESSHISTFILE="-"

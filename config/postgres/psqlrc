@@ -3,6 +3,9 @@
 -- Prompt (database ❯)
 \set PROMPT1 ' %[%033[34m%]%/%[%033[37m%] ❯%[%033[0m%] '
 
+-- Transpose long rows automatically
+\x auto
+
 -- Table style
 -- border with outer lines
 \pset border 2
@@ -21,3 +24,9 @@ set application_name to psql;
 \timing on
 
 \unset QUIET
+
+-- Cleaner history
+\set HISTCONTROL ignoredups
+
+-- Uppercase keywords in autocompletion
+\set COMP_KEYWORD_CASE upper

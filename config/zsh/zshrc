@@ -83,14 +83,15 @@ if [[ -n "$TERMUX_VERSION" ]]; then
   alias pi='pkg install'
   alias pf='pkg search'
   alias pr='pkg uninstall'
+  alias pu='pkg update && pkg upgrade'
 else
   alias pi='sudo pacman -S --needed'
   alias pf='pacman -Ss'
   alias pr='sudo pacman -Rs'
-fi
 
-# Recommended kind of update with reduced keyring-related problems
-alias pu='sudo pacman -Sy --needed archlinux-keyring && sudo pacman -Su'
+  # Recommended kind of update with reduced keyring-related problems
+  alias pu='sudo pacman -Sy --needed archlinux-keyring && sudo pacman -Su'
+fi
 
 # Aliases: editors
 alias en='cd ~/notes && e'
@@ -99,27 +100,13 @@ alias el='cd ~/.ledger && e'
 alias ne='cd ~/notes && e'
 alias le='cd ~/.ledger && e'
 
-# Aliases: git
-alias git-notes='git -C ~/notes'
-alias git-ledger='git -C ~/.ledger'
+# Aliases: disable globbing to simplify passing URLs
+alias curl='noglob curl'
+alias wget='noglob wget'
+alias yt='noglob yt-dlp'
+alias mpv='noglob mpv'
 
-alias sync-commit-notes='git-notes add --all; git-notes commit --message sync; git-notes pull; git-notes push'
-
-alias cj-pull='pass git pull; git-notes pull; git-ledger pull'
-alias cj-status='pass git status; git-notes status; git-ledger status'
-
-# Aliases: pomodoro
-alias pomo-notify='notify-send -i /usr/share/icons/breeze/apps/48/kalarm.svg Pomodoro'
-alias pomo-work='termdown 25m; pomo-notify "Take a break"'
-alias pomo-break='termdown 5m; pomo-notify "Back to work"'
-alias pomo-long-break='termdown 30m; pomo-notify "Back to work"'
-
-alias pomo-5='termdown 5m; pomo-notify "Pomo stop"'
-alias pomo-10='termdown 10m; pomo-notify "Pomo stop"'
-alias pomo-15='termdown 25m; pomo-notify "Pomo stop"'
-alias pomo-20='termdown 20m; pomo-notify "Pomo stop"'
-
-# Man colors
+# Man
 man() {
   GROFF_NO_SGR=1 \
   LESS_TERMCAP_mb=$'\e[31m' \
@@ -132,6 +119,8 @@ man() {
   command man "$@"
 }
 
+export MANWIDTH=100
+
 # Prompt
 PROMPT=$'%{\033[34m%} %2~ %{\033[37m%}❯ %{\033[0m%}'
 PROMPT2=$'%{\033[33m%} ... %{\033[0m%}'
@@ -143,10 +132,27 @@ WORDCHARS='-_:'
 
 setopt interactive_comments
 
+# Safety nets
+setopt no_clobber  # prevent overwriting files with >
+
+# Command-not-found hooks
+if [[ -z "$TERMUX_VERSION" ]]; then
+  source /usr/share/doc/pkgfile/command-not-found.zsh
+fi
+
+# Precommand marks
+# Useful in combination with foot hotkeys to jump between commands in buffer
+# <c-s-z> and <c-s-x> by default
+precmd() { print -Pn '\e]133;A\e\' }
+
 # Jobs
 setopt auto_continue  # continue jobs on disown
 setopt check_jobs  # do not exit shell with jobs
 setopt check_running_jobs
+
+# Time report for long-running commands
+REPORTTIME=5  # report if command takes more than 5 seconds
+TIMEFMT=$'\n\033[34m󰔛 \033[37m%*E\033[0m \033[90m(user %U · sys %S · cpu %P)\033[0m'
 
 # History
 HISTFILE="$HOME/.zsh_history"
@@ -154,8 +160,6 @@ HISTSIZE=10000
 SAVEHIST="$HISTSIZE"
 
 setopt extended_history
-setopt inc_append_history
-setopt inc_append_history_time
 setopt share_history
 setopt hist_fcntl_lock
 

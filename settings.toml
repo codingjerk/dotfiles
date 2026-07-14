@@ -1,4 +1,4 @@
-# Colors
+[colors]
 bg          = "1d2433"
 bg_dim      = "1a202e"
 bg_dim_more = "171c29"
@@ -16,3 +16,9 @@ cyan        = "acd9ec"
 blue        = "92b7ea"
 purple      = "AD9BEA"
 pink        = "CD9BCC"
+
+[hosts.iota]
+
+[hosts.zeta]
+
+[hosts.termux]

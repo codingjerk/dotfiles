@@ -8,6 +8,7 @@ environment {
   QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
 
   GDK_DPI_SCALE "1.5"
+  QT_SCALE_FACTOR "1.5"
   STEAM_FORCE_DESKTOPUI_SCALING "1.5"
 
   SSH_AUTH_SOCK "/run/user/$UID/ssh-agent.socket"
@@ -19,6 +20,9 @@ spawn-at-startup "waybar"
 spawn-at-startup "mako"
 spawn-at-startup "swaybg" "--image" "/home/cj/dotfiles/wallpaper.png" "--mode" "fill"
 spawn-at-startup "foot" "--server" "--log-level=none"
+
+// Clipboard history
+spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 cursor {
   xcursor-theme "capitaine-cursors-light"
@@ -171,23 +175,41 @@ binds {
   Super+N repeat=false { spawn "makoctl" "dismiss" "--all"; }
   Super+Alt+N repeat=false { spawn "systemctl" "--user" "restart" "mako"; }
 
-  // Media
-  XF86AudioMute allow-when-locked=true repeat=false { spawn "wpctl" "set-mute" "@DEFAULT_SINK@" "toggle"; }
-  XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_SINK@" "5%-"; }
-  XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_SINK@" "5%+"; }
+  // Sound
+  XF86AudioMute allow-when-locked=true repeat=false { spawn "bash" "/home/cj/dotfiles/scripts/volume.sh" "mute"; }
+  XF86AudioLowerVolume allow-when-locked=true { spawn "bash" "/home/cj/dotfiles/scripts/volume.sh" "down"; }
+  XF86AudioRaiseVolume allow-when-locked=true { spawn "bash" "/home/cj/dotfiles/scripts/volume.sh" "up"; }
 
-  XF86AudioMicMute allow-when-locked=true repeat=false { spawn "wpctl" "set-mute" "@DEFAULT_SOURCE@" "toggle"; }
-  F7 allow-when-locked=true repeat=false { spawn "wpctl" "set-mute" "@DEFAULT_SOURCE@" "toggle"; }
+  // Microphone
+  XF86AudioMicMute allow-when-locked=true repeat=false { spawn "bash" "/home/cj/dotfiles/scripts/volume.sh" "micmute"; }
+  F7 allow-when-locked=true repeat=false { spawn "bash" "/home/cj/dotfiles/scripts/volume.sh" "micmute"; }
+
+  // Media
+  XF86AudioPlay allow-when-locked=true repeat=false { spawn "bash" "/home/cj/dotfiles/scripts/media.sh" "toggle"; }
+  XF86AudioPause allow-when-locked=true repeat=false { spawn "bash" "/home/cj/dotfiles/scripts/media.sh" "pause"; }
+  XF86AudioNext allow-when-locked=true repeat=false { spawn "bash" "/home/cj/dotfiles/scripts/media.sh" "next"; }
+  XF86AudioPrev allow-when-locked=true repeat=false { spawn "bash" "/home/cj/dotfiles/scripts/media.sh" "prev"; }
+  XF86AudioStop allow-when-locked=true repeat=false { spawn "bash" "/home/cj/dotfiles/scripts/media.sh" "stop"; }
 
   // Brightness
-  XF86MonBrightnessUp allow-when-locked=true {   spawn "brightnessctl" "-e" "set" "5%+"; }
-  XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "-e" "set" "5%-"; }
+  XF86MonBrightnessUp allow-when-locked=true { spawn "bash" "/home/cj/dotfiles/scripts/brightness.sh" "up"; }
+  XF86MonBrightnessDown allow-when-locked=true { spawn "bash" "/home/cj/dotfiles/scripts/brightness.sh" "down"; }
 
   // Print screen
   Print repeat=false { spawn "flameshot" "gui"; }
 
   // Language
   Super+Backspace repeat=false { switch-layout "2"; }
+
+  // Clipboard history
+  Super+Y repeat=false { spawn-sh "cliphist list | fuzzel --with-nth 2 --dmenu | cliphist decode | wl-copy"; }
+
+  // Pass picker
+  Super+P { spawn "sh" "-c" "pass show -c \"$(find ~/.password-store -name '*.gpg' | sed -e \"s|^$HOME/.password-store/||\" -e 's|\\.gpg$||' | fuzzel --dmenu)\""; }
+  Super+O { spawn "sh" "-c" "pass otp -c \"$(find ~/.password-store -name '*.gpg' | sed -e \"s|^$HOME/.password-store/||\" -e 's|\\.gpg$||' | fuzzel --dmenu)\""; }
+
+  // Calculator
+  Super+grave repeat=false { spawn "footclient" "--app-id" "footpopup" "-e" "numbat"; }
 }
 
 switch-events {
@@ -319,6 +341,22 @@ window-rule {
 window-rule {
   match app-id="^steam$"
   open-on-workspace "tab"
+}
+
+// Smaller floating pavucontrol
+window-rule {
+    match app-id=r#"^org\.pulseaudio\.pavucontrol$"#
+    open-floating true
+    default-column-width { proportion 0.5; }
+    default-window-height { proportion 0.5; }
+}
+
+// Foot popups
+window-rule {
+  match app-id="^footpopup$"
+  open-floating true
+  default-column-width { proportion 0.5; }
+  default-window-height { proportion 0.5; }
 }
 
 layer-rule {
