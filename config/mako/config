@@ -13,7 +13,7 @@ margin=12
 padding=24
 format=%s\n%b
 
-background-color=#${bg}
+background-color=#${bg_dim_more}
 text-color=#${fg}
 progress-color=over #${pink}A0
 

@@ -166,7 +166,7 @@ binds {
   Super+Alt+B repeat=false { spawn "pkill" "-SIGUSR1" "waybar"; }
 
   // Monitor control
-  Super+L repeat=false { spawn "hyprlock"; }
+  Super+L repeat=false { spawn-sh "hyprlock; makoctl reload"; }
   Super+Alt+K repeat=false { power-off-monitors; }
   Super+Alt+Shift+K repeat=false { power-on-monitors; }
 
@@ -313,19 +313,19 @@ window-rule {
 }
 
 window-rule {
-  match app-id="^google-chrome-unstable$"
+  match app-id="^google-chrome-unstable$$"
   focus-ring {
     active-color "#d3e3fd" // color of chrome window theme
   }
 }
 
 window-rule {
-  match app-id="^foot(client)?$"
+  match app-id="^foot(client)?$$"
   default-column-width { proportion 0.5; }
 }
 
 window-rule {
-  match app-id="^org.telegram.desktop|Element|discord$"
+  match app-id="^org.telegram.desktop|Element|discord$$"
   exclude title="^Media viewer$"
   open-on-workspace "msg"
   open-focused false
@@ -333,18 +333,18 @@ window-rule {
 }
 
 window-rule {
-  match app-id="^com.obsproject.Studio$"
+  match app-id="^com.obsproject.Studio$$"
   open-on-workspace "obs"
 }
 
 window-rule {
-  match app-id="^steam$"
+  match app-id="^steam$$"
   open-on-workspace "tab"
 }
 
 // Smaller floating pavucontrol
 window-rule {
-    match app-id=r#"^org\.pulseaudio\.pavucontrol$"#
+    match app-id=r#"^org\.pulseaudio\.pavucontrol$$"#
     open-floating true
     default-column-width { proportion 0.5; }
     default-window-height { proportion 0.5; }
@@ -352,25 +352,32 @@ window-rule {
 
 // Foot popups
 window-rule {
-  match app-id="^footpopup$"
+  match app-id="^footpopup$$"
   open-floating true
   default-column-width { proportion 0.5; }
   default-window-height { proportion 0.5; }
 }
 
 layer-rule {
-  match namespace="^notifications$"
+  match namespace="^notifications$$"
 
   block-out-from "screencast"
   baba-is-float true
 }
 
 layer-rule {
-  match namespace="^launcher$"
+  match namespace="^launcher$$"
 
   baba-is-float true
   shadow {
     on
+  }
+
+  opacity 0.8
+
+  background-effect {
+    blur true
+    xray false
   }
 
   geometry-corner-radius 24

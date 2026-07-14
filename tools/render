@@ -333,7 +333,7 @@ def de_render(
     Copies file from host back to config directory
     """
 
-    if file.host_path.exists():
+    if not file.host_path.exists():
         sys.stderr.write(
             f"× WARNING: file {file.host_path} doesn't exist. Skipping\n"
         )
@@ -354,7 +354,7 @@ def de_render(
     if file.templated:
         config = un_template_config(config, variables)
 
-    with file.repo.open("w") as repo_file:
+    with file.repo_path.open("w") as repo_file:
         repo_file.write(config)
 
 

@@ -1304,16 +1304,16 @@ vim.keymap.set({ "n", "v" }, "s", "gj", {})
 vim.keymap.set({ "n", "v" }, "a", "h", {})
 vim.keymap.set({ "n", "v" }, "d", "l", {})
 
-vim.keymap.set({ "n", "v", "o" }, "q", "^", {})
-vim.keymap.set({ "n", "v", "o" }, "e", "$", {})
+vim.keymap.set({ "n", "v", "o" }, "q", "g^", {})
+vim.keymap.set({ "n", "v", "o" }, "e", "g$", {})
 
 vim.keymap.set({ "n", "v" }, "W", "5gk", {})
 vim.keymap.set({ "n", "v" }, "S", "5gj", {})
 vim.keymap.set({ "n", "v", "o" }, "A", "b", {})
 vim.keymap.set({ "n", "v", "o" }, "D", "w", {})
 
-vim.keymap.set({ "n", "v" }, "Q", "I", {})
-vim.keymap.set({ "n", "v" }, "E", "A", {})
+vim.keymap.set("n", "Q", "g^i", {})
+vim.keymap.set("n", "E", "g$a", {})
 
 -- Movements
 vim.keymap.set({ "n", "v" }, "ge", "G", {})
