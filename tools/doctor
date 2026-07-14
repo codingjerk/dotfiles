@@ -19,6 +19,7 @@ DEPENDENCIES = [
     Binary(name="Z Shell", binary="zsh"),
     Binary(name="fd", binary="fd"),
     Binary(name="eza", binary="eza"),
+    Binary(name="awk", binary="awk"),
 
     # CLI Tools
     Binary(name="Git", binary="git"),

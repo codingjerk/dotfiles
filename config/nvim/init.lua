@@ -656,8 +656,8 @@ require("lazy").setup({
                                 ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
                                 ["https://json.schemastore.org/prettierrc.json"] = "/.prettierrc*",
                                 ["https://json.schemastore.org/stylelintrc.json"] = "/.stylelintrc*",
-                                -- TODO: add .gitlab-ci.yml
-                                -- TODO: add docker-compose
+                                ["https://gitlab.com/gitlab-org/gitlab-foss/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "/.gitlab-ci.yml",
+                                ["https://raw.githubusercontent.com/compose-spec/compose-go/master/schema/compose-spec.json"] = {"docker-compose*.yml", "docker-compose*.yaml", "compose*.yml", "compose*.yaml"},
                             },
                         },
                     },
