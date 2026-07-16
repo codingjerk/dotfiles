@@ -74,14 +74,14 @@ output "HDMI-A-1" {
 
 binds {
   // Spawn
-  Super+J repeat=false { spawn "footclient"; }
-  Super+B repeat=false { spawn "google-chrome-unstable"; }
-  Super+R repeat=false { spawn "fuzzel"; }
+  Super+J repeat=false hotkey-overlay-title="Terminal" { spawn "footclient"; }
+  Super+B repeat=false hotkey-overlay-title="Browser" { spawn "google-chrome-unstable"; }
+  Super+R repeat=false hotkey-overlay-title="App Runner" { spawn "fuzzel"; }
 
   // Window control
-  Super+X repeat=false { close-window; }
-  Super+V repeat=false { toggle-window-floating; }
-  Super+Space repeat=false { switch-focus-between-floating-and-tiling; }
+  Super+X repeat=false hotkey-overlay-title="Close Window" { close-window; }
+  Super+V repeat=false hotkey-overlay-title="Toggle Floating" { toggle-window-floating; }
+  Super+Space repeat=false hotkey-overlay-title="Focus Floating" { switch-focus-between-floating-and-tiling; }
 
   Super+Alt+C { center-column; }
 
@@ -208,7 +208,23 @@ binds {
   Super+O { spawn "sh" "-c" "pass otp -c \"$$(find ~/.password-store -name '*.gpg' | sed -e \"s|^$$HOME/.password-store/||\" -e 's|\\.gpg$$||' | fuzzel --dmenu)\""; }
 
   // Calculator
-  Super+grave repeat=false { spawn "footclient" "--app-id" "footpopup" "-e" "numbat"; }
+  Super+grave repeat=false cooldown-ms=1500 { spawn "footclient" "--app-id" "footpopup" "-e" "numbat"; }
+
+  // Scroll binds
+  Super+WheelScrollDown cooldown-ms=150         { focus-workspace-down; }
+  Super+WheelScrollUp   cooldown-ms=150         { focus-workspace-up; }
+
+  Super+WheelScrollRight                        { focus-column-right; }
+  Super+WheelScrollLeft                         { focus-column-left; }
+  Super+Shift+WheelScrollDown cooldown-ms=150   { focus-column-right; }
+  Super+Shift+WheelScrollUp  cooldown-ms=150    { focus-column-left; }
+
+  // Touchpad binds
+  Super+TouchpadScrollDown cooldown-ms=150      { focus-workspace-down; }
+  Super+TouchpadScrollUp   cooldown-ms=150      { focus-workspace-up; }
+
+  Super+TouchpadScrollRight                     { focus-column-right; }
+  Super+TouchpadScrollLeft                      { focus-column-left; }
 }
 
 switch-events {
