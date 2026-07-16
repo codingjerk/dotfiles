@@ -44,6 +44,8 @@ systemctl --user add-wants niri.service \
   foot-server.service \
   cliphist.service \
   swaybg.service
+
+systemctl --user enable --now ssh-agent.socket
 ```
 
 **WARNING:** This repository is tailored for my personal use.

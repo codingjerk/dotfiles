@@ -14,9 +14,6 @@ environment {
   SSH_AUTH_SOCK "/run/user/$$UID/ssh-agent.socket"
 }
 
-// Startup
-spawn-sh-at-startup "rm -f $$SSH_AUTH_SOCK; ssh-agent -D -a $$SSH_AUTH_SOCK"
-
 cursor {
   xcursor-theme "capitaine-cursors-light"
   xcursor-size 48
