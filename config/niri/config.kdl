@@ -16,13 +16,6 @@ environment {
 
 // Startup
 spawn-sh-at-startup "rm -f $$SSH_AUTH_SOCK; ssh-agent -D -a $$SSH_AUTH_SOCK"
-spawn-at-startup "waybar"
-spawn-at-startup "mako"
-spawn-at-startup "swaybg" "--image" "${repo}/wallpaper.png" "--mode" "fill"
-spawn-at-startup "foot" "--server" "--log-level=none"
-
-// Clipboard history
-spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 cursor {
   xcursor-theme "capitaine-cursors-light"

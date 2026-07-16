@@ -1,0 +1,9 @@
+[Unit]
+Description=Wallpaper daemon
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/swaybg --image "${repo}/wallpaper.png" --mode fill
+Restart=on-failure

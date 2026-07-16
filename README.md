@@ -32,6 +32,20 @@ python ~/dotfiles/tools/render install
 python ~/dotfiles/tools/doctor
 ```
 
+5. Enable systemd services and timers:
+
+```sh
+systemctl --user daemon-reload
+systemctl --user add-wants niri.service \
+  gammastep.service \
+  hypridle.service \
+  waybar.service \
+  mako.service \
+  foot-server.service \
+  cliphist.service \
+  swaybg.service
+```
+
 **WARNING:** This repository is tailored for my personal use.
 I don't recommend installing it on your machine.
 

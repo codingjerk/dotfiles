@@ -188,6 +188,12 @@ CONFIG_FILES = [
         "niri/config.kdl",
         templated=True,
     ),
+    # Systemd user services
+    Config.home(
+        ".config/systemd/user/swaybg.service",
+        "systemd/user/swaybg.service",
+        templated=True,
+    ),
     # XKB
     Config.home(".config/xkb/symbols/group", "xkb/symbols/group"),
     Config.home(".config/xkb/rules/evdev", "xkb/rules/evdev"),
