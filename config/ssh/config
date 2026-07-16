@@ -32,7 +32,7 @@ Host *
     # Multiplexing
     ControlMaster auto
     ControlPersist 30m
-    ControlPath ~/.ssh/control/%h-%p-%r
+    ControlPath ~/.ssh/control/%h-%C
 
     # Keepalive
     TCPKeepAlive yes
