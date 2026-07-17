@@ -194,6 +194,15 @@ CONFIG_FILES = [
         "systemd/user/swaybg.service",
         templated=True,
     ),
+    Config.home(
+        ".config/systemd/user/battery.service",
+        "systemd/user/battery.service",
+        templated=True,
+    ),
+    Config.home(
+        ".config/systemd/user/battery.timer",
+        "systemd/user/battery.timer",
+    ),
     # XKB
     Config.home(".config/xkb/symbols/group", "xkb/symbols/group"),
     Config.home(".config/xkb/rules/evdev", "xkb/rules/evdev"),

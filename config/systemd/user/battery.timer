@@ -1,0 +1,9 @@
+[Unit]
+Description=Check battery charge level every 5 minutes
+
+[Timer]
+OnActiveSec=5min
+OnUnitActiveSec=5min
+
+[Install]
+WantedBy=timers.target

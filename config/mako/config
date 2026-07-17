@@ -64,3 +64,15 @@ padding=0,32
 
 [grouped category=media]
 format=%s\n%b
+
+[category=battery]
+group-by=category
+width=500
+padding=24,32
+format=<span foreground="#${red}">%s</span>\n%b
+progress-color=over #${fg_dim}A0
+border-size=3
+border-color=#${red}
+
+[grouped category=battery]
+format=<span foreground="#${red}">%s</span>\n%b

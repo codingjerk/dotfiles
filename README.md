@@ -46,6 +46,7 @@ systemctl --user add-wants niri.service \
   swaybg.service
 
 systemctl --user enable --now ssh-agent.socket
+systemctl --user enable --now battery.timer
 ```
 
 **WARNING:** This repository is tailored for my personal use.
