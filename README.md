@@ -43,7 +43,8 @@ systemctl --user add-wants niri.service \
   mako.service \
   foot-server.service \
   cliphist.service \
-  swaybg.service
+  swaybg.service \
+  remind.service
 
 systemctl --user enable --now ssh-agent.socket
 systemctl --user enable --now battery.timer

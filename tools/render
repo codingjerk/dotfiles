@@ -69,6 +69,8 @@ CONFIG_FILES = [
     # Zsh
     Config.home(".zshrc", "zsh/zshrc"),
     Config.home(".zprofile", "zsh/zprofile"),
+    # Remind
+    Config.home(".reminders", "remind/reminders"),
     # Ssh
     Config.home(".ssh/config", "ssh/config", mode=0o600),
     Config.home(".ssh/authorized_keys", "ssh/authorized_keys", mode=0o600),
@@ -238,6 +240,10 @@ CONFIG_FILES = [
     Config.home(
         ".config/systemd/user/network-status.timer",
         "systemd/user/network-status.timer",
+    ),
+    Config.home(
+        ".config/systemd/user/remind.service",
+        "systemd/user/remind.service",
     ),
     # XKB
     Config.home(".config/xkb/symbols/group", "xkb/symbols/group"),

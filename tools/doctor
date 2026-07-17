@@ -36,6 +36,7 @@ DEPENDENCIES = [
     Binary(name="Htop", binary="htop"),
     Binary(name="psql", binary="psql"),
     Binary(name="pass", binary="pass"),
+    Binary(name="Remind", binary="remind"),
     Binary(name="termdown", binary="termdown"),
     Binary(name="rg", binary="rg"),
     Binary(name="pinentry-tty", binary="pinentry-tty"),

@@ -1,0 +1,10 @@
+[Unit]
+Description=Reminder daemon
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+Environment=TZ=Asia/Bangkok
+ExecStart=/usr/bin/remind -z "-k/usr/bin/notify-send -a remind -c remind %%s" %h/.reminders
+Restart=on-failure
