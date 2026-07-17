@@ -203,6 +203,15 @@ CONFIG_FILES = [
         ".config/systemd/user/battery.timer",
         "systemd/user/battery.timer",
     ),
+    Config.home(
+        ".config/systemd/user/disk.service",
+        "systemd/user/disk.service",
+        templated=True,
+    ),
+    Config.home(
+        ".config/systemd/user/disk.timer",
+        "systemd/user/disk.timer",
+    ),
     # XKB
     Config.home(".config/xkb/symbols/group", "xkb/symbols/group"),
     Config.home(".config/xkb/rules/evdev", "xkb/rules/evdev"),

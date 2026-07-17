@@ -47,6 +47,7 @@ systemctl --user add-wants niri.service \
 
 systemctl --user enable --now ssh-agent.socket
 systemctl --user enable --now battery.timer
+systemctl --user enable --now disk.timer
 ```
 
 **WARNING:** This repository is tailored for my personal use.

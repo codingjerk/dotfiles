@@ -1,0 +1,8 @@
+[Unit]
+Description=Check available disk space
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sh "${repo}/scripts/disk.sh"

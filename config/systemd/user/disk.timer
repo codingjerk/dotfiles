@@ -1,0 +1,9 @@
+[Unit]
+Description=Check available disk space every 10 minutes
+
+[Timer]
+OnActiveSec=10min
+OnUnitActiveSec=10min
+
+[Install]
+WantedBy=timers.target
