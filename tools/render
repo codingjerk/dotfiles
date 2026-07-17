@@ -245,6 +245,15 @@ CONFIG_FILES = [
         ".config/systemd/user/remind.service",
         "systemd/user/remind.service",
     ),
+    Config.home(
+        ".config/systemd/user/random-thai-word.service",
+        "systemd/user/random-thai-word.service",
+        templated=True,
+    ),
+    Config.home(
+        ".config/systemd/user/random-thai-word.timer",
+        "systemd/user/random-thai-word.timer",
+    ),
     # XKB
     Config.home(".config/xkb/symbols/group", "xkb/symbols/group"),
     Config.home(".config/xkb/rules/evdev", "xkb/rules/evdev"),

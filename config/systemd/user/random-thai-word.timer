@@ -1,0 +1,8 @@
+[Unit]
+Description=Show a random Thai word every 4 daytime hours
+
+[Timer]
+OnCalendar=*-*-* 10,14,18,22:00:00 Asia/Bangkok
+
+[Install]
+WantedBy=timers.target

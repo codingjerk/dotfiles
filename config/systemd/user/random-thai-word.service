@@ -1,0 +1,8 @@
+[Unit]
+Description=Show a random Thai word
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 "${repo}/scripts/random-thai-word.py"
