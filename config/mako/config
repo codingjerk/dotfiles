@@ -88,3 +88,28 @@ border-color=#${red}
 
 [grouped category=disk]
 format=<span foreground="#${red}">%s</span>\n%b
+
+[category=systemd]
+group-by=category
+width=700
+padding=32,32
+
+[grouped category=systemd]
+format=%s\n%b
+
+[category=network]
+group-by=category
+width=700
+padding=32,32
+
+[grouped category=network]
+format=%s\n%b
+
+[category=break]
+group-by=category
+anchor=center
+width=700
+padding=32,32
+
+[grouped category=break]
+format=%s\n%b

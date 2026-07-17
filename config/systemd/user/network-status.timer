@@ -1,0 +1,9 @@
+[Unit]
+Description=Check connectivity and public IP status every minute
+
+[Timer]
+OnActiveSec=1min
+OnUnitActiveSec=1min
+
+[Install]
+WantedBy=timers.target

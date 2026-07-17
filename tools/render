@@ -212,6 +212,33 @@ CONFIG_FILES = [
         ".config/systemd/user/disk.timer",
         "systemd/user/disk.timer",
     ),
+    Config.home(
+        ".config/systemd/user/break-reminder.service",
+        "systemd/user/break-reminder.service",
+        templated=True,
+    ),
+    Config.home(
+        ".config/systemd/user/break-reminder.timer",
+        "systemd/user/break-reminder.timer",
+    ),
+    Config.home(
+        ".config/systemd/user/systemd-status.service",
+        "systemd/user/systemd-status.service",
+        templated=True,
+    ),
+    Config.home(
+        ".config/systemd/user/systemd-status.timer",
+        "systemd/user/systemd-status.timer",
+    ),
+    Config.home(
+        ".config/systemd/user/network-status.service",
+        "systemd/user/network-status.service",
+        templated=True,
+    ),
+    Config.home(
+        ".config/systemd/user/network-status.timer",
+        "systemd/user/network-status.timer",
+    ),
     # XKB
     Config.home(".config/xkb/symbols/group", "xkb/symbols/group"),
     Config.home(".config/xkb/rules/evdev", "xkb/rules/evdev"),

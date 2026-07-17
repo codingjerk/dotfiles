@@ -1,0 +1,9 @@
+[Unit]
+Description=Send a break reminder every hour
+
+[Timer]
+OnActiveSec=1h
+OnUnitActiveSec=1h
+
+[Install]
+WantedBy=timers.target

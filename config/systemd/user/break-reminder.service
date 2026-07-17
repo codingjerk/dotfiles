@@ -1,0 +1,8 @@
+[Unit]
+Description=Send an activity-aware break reminder
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sh "${repo}/scripts/break-reminder.sh"
