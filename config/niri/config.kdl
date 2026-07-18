@@ -58,7 +58,8 @@ input {
 
 output "${output_name}" {
   mode "${output_mode}"
-  scale 1
+  scale 1  // NOTE: this is intentional to keep everything sharp
+           //       actual scaling is done via env vars and configuration
   variable-refresh-rate
 }
 
