@@ -23,7 +23,7 @@ git clone https://github.com/codingjerk/dotfiles.git
 3. Install the config files into your system
 
 ```sh
-python ~/dotfiles/tools/render install
+python ~/dotfiles/tools/install repo-to-home ALL
 ```
 
 4. Check for missing dependencies:
@@ -103,7 +103,7 @@ Pull sources and re-render configs:
 
 ```sh
 git pull
-python ~/dotfiles/tools/render install
+python ~/dotfiles/tools/install repo-to-home ALL
 ```
 
 ## How it works
@@ -114,10 +114,30 @@ This repository contains:
 - `settings.toml` -- color palette and per-host settings
 - `wallpaper.png` -- a wallpaper
 - `tools`
-   - `render` -- tool to render templates into configuration files
+   - `install` -- tool to copy and render configuration files
    - `doctor` -- tool to report missing dependencies
 - `scripts` -- helper scripts
 
 The repository can be placed anywhere in your home directory.
 
-Running `python <DOTFILES>/tools/render install` will render the configuration files and place it to the correct locations under your home directory.
+The install tool has two directional actions:
+
+- `repo-to-home` renders the repository's configuration files and writes them to
+  the correct locations under your home directory.
+- `home-to-repo` copies configuration files from your home directory back into
+  the repository, restoring template placeholders where needed.
+
+Both actions require a file selector. Use a configured path relative to your
+home directory to process one file:
+
+```sh
+python ~/dotfiles/tools/install repo-to-home .config/niri/config.kdl
+python ~/dotfiles/tools/install home-to-repo .config/niri/config.kdl
+```
+
+Use the uppercase selector `ALL` to process every configured file:
+
+```sh
+python ~/dotfiles/tools/install repo-to-home ALL
+python ~/dotfiles/tools/install home-to-repo ALL
+```

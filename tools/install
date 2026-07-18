@@ -15,6 +15,8 @@ CONFIG_ROOT: Path = REPO_ROOT / "config"
 
 OS_IS_TERMUX = "com.termux" in os.environ.get("PREFIX", "")
 
+ALL_FILES = "ALL"
+
 
 @dataclass
 class Config:
@@ -276,7 +278,7 @@ for suffix in ["-dev", "-beta", "-stable", ""]:
     CONFIG_FILES.append(
         Config.home(
             f".config/chrome{suffix}-flags.conf",
-            "chrome/chrome-flags.conf",
+            "chrome/flags.conf",
         )
     )
 
@@ -306,22 +308,55 @@ def main() -> None:
         action = sys.argv[1]
     except IndexError:
         sys.stderr.write(
-            "× CRIT: action is not specified. Should be `install` or `sync-repo`\n"
+            "× CRIT: action is not specified. Should be `repo-to-home` "
+            "or `home-to-repo`\n"
         )
         sys.exit(1)
 
+    if action not in {"repo-to-home", "home-to-repo"}:
+        sys.stderr.write(
+            f"× CRIT: unknown action `{action}`. Should be `repo-to-home` "
+            "or `home-to-repo`\n"
+        )
+        sys.exit(1)
+
+    try:
+        file_selector = sys.argv[2]
+    except IndexError:
+        sys.stderr.write(
+            "× CRIT: file is not specified. Should be a configured path "
+            f"relative to home or `{ALL_FILES}`\n"
+        )
+        sys.exit(1)
+
+    files = select_config_files(file_selector)
     variables = load_variables()
 
-    if action == "install":
-        ensure_directories()
-        render_all(variables)
-    elif action == "sync-repo":
-        de_render_all(variables)
+    if action == "repo-to-home":
+        if file_selector == ALL_FILES:
+            ensure_directories()
+        render_files(files, variables)
     else:
+        de_render_files(files, variables)
+
+
+def select_config_files(file_selector: str) -> list[Config]:
+    if file_selector == ALL_FILES:
+        return CONFIG_FILES
+
+    host_path = Path(file_selector).expanduser()
+    if not host_path.is_absolute():
+        host_path = HOST_ROOT / host_path
+
+    files = [file for file in CONFIG_FILES if file.host_path == host_path]
+    if not files:
         sys.stderr.write(
-            f"× CRIT: unknown action `{action}`. Should be `install` or `sync-repo`\n"
+            f"× CRIT: unknown file `{file_selector}`. Should be a configured "
+            f"path relative to home or `{ALL_FILES}`\n"
         )
         sys.exit(1)
+
+    return files
 
 
 def ensure_directories() -> None:
@@ -332,13 +367,19 @@ def ensure_directories() -> None:
         directory.ensure()
 
 
-def de_render_all(variables: dict[str, str]) -> None:
-    for file in CONFIG_FILES:
+def de_render_files(
+    files: list[Config],
+    variables: dict[str, str],
+) -> None:
+    for file in files:
         de_render(file, variables)
 
 
-def render_all(variables: dict[str, str]) -> None:
-    for file in CONFIG_FILES:
+def render_files(
+    files: list[Config],
+    variables: dict[str, str],
+) -> None:
+    for file in files:
         render(file, variables)
 
 
