@@ -120,6 +120,25 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+--------------------
+-- Battery tuning --
+--------------------
+
+local function get_is_on_battery()
+    vim.fn.system("grep -qs '^Discharging$' /sys/class/power_supply/BAT*/status")
+    return vim.v.shell_error == 0
+end
+
+local is_on_battery = get_is_on_battery()
+
+local function based_on_power(ac_value, battery_value)
+    if is_on_battery then
+        return battery_value
+    else
+        return ac_value
+    end
+end
+
 -------------
 -- Plugins --
 -------------
@@ -158,6 +177,7 @@ require("lazy").setup({
             event = "VeryLazy",
             opts = {
                 columns = { "icon", "permissions", "size" },
+                watch_for_changes = based_on_power(true, false),
 
                 delete_to_trash = true,
                 skip_confirm_for_simple_edits = true,
@@ -193,7 +213,7 @@ require("lazy").setup({
                     max_match_len = 30,
                     cw_hlgroup = "LocalHighlight",
                     highlight_single_match = true,
-                    debounce_timeout = 50,
+                    debounce_timeout = based_on_power(50, 500),
                     animate = {
                         enabled = false,
                     },
@@ -248,7 +268,7 @@ require("lazy").setup({
                     },
                     suggestion = {
                         auto_trigger = true,
-                        debounce = 25,
+                        debounce = based_on_power(25, 500),
                     },
                     should_attach = is_buffer_share_safe,
                     filetypes = {
@@ -268,12 +288,14 @@ require("lazy").setup({
                 timeout = 2000,
                 stages = "static",
                 render = "minimal",
+                fps = based_on_power(60, 5),
             },
         },
 
         -- Better UI
         {
             "folke/noice.nvim",
+            enabled = based_on_power(true, false),
             event = "VeryLazy",
             config = function()
                 require("noice").setup({
@@ -420,6 +442,10 @@ require("lazy").setup({
             opts = {},
             config = function()
                 require("ibl").setup({
+                    debounce = based_on_power(200, 1000),
+                    viewport_buffer = {
+                        min = based_on_power(20, 10),
+                    },
                     indent = { char = "¦" },
                     scope = {
                         enabled = true,
@@ -505,6 +531,10 @@ require("lazy").setup({
                             return vim_item
                         end,
                     },
+                    performance = {
+                        debounce = based_on_power(60, 500),
+                        throttle = based_on_power(30, 100),
+                    },
                 })
             end,
         },
@@ -562,6 +592,10 @@ require("lazy").setup({
             "neovim/nvim-lspconfig",
             version = "*",
             config = function()
+                local common_lsp_flags = {
+                    debounce_text_changes = based_on_power(50, 500),
+                }
+
                 local border = {
                     { "┌", "FloatBorder" },
                     { "─", "FloatBorder" },
@@ -582,6 +616,7 @@ require("lazy").setup({
 
                 -- LUA
                 vim.lsp.config("lua_ls", {
+                    flags = common_lsp_flags,
                     settings = {
                         Lua = {
                             diagnostics = {
@@ -600,10 +635,13 @@ require("lazy").setup({
                 -- Python
                 -- Autocomplete, Imports, Type checking
                 vim.lsp.config("pyright", {
+                    flags = common_lsp_flags,
                     settings = {
                         python = {
                             analysis = {
                                 typeCheckingMode = "strict",
+
+                                diagnosticMode = based_on_power("workspace", "openFilesOnly"),
 
                                 diagnosticSeverityOverrides = {
                                     -- Fix diagnostics level
@@ -637,6 +675,7 @@ require("lazy").setup({
 
                 -- Linting / formatting
                 vim.lsp.config("ruff", {
+                    flags = common_lsp_flags,
                     settings = {
                         ruff = {
                             -- Enable all rules, since we can filter them with `# noqa` comments
@@ -675,7 +714,7 @@ require("lazy").setup({
 
                 -- HTML
                 vim.lsp.config("emmet_language_server", {
-                    filetypes = { "python", "html", "markdown" },
+                    filetypes = { "html", "markdown" },
                     preferences = {
                         caniuse = {
                             enabled = false,
@@ -696,7 +735,7 @@ require("lazy").setup({
                 vim.lsp.config("tinymist", {
                     settings = {
                         formatterMode = "typstyle",
-                        exportPdf = "onType",
+                        exportPdf = based_on_power("onType", "onSave"),
                     },
                 })
                 vim.lsp.enable("tinymist")
@@ -710,7 +749,7 @@ require("lazy").setup({
                             enable_argument_placeholders = false,
                             semantic_tokens = "partial",
 
-                            enable_build_on_save = true,
+                            enable_build_on_save = based_on_power(true, false),
                             build_on_save_args = { "check" },
 
                             -- Mostly annoying
@@ -722,6 +761,7 @@ require("lazy").setup({
 
                 -- Rust
                 vim.lsp.config("rust_analyzer", {
+                    flags = common_lsp_flags,
                     settings = {
                         ["rust-analyzer"] = {
                             cachePriming = {
@@ -825,6 +865,7 @@ require("lazy").setup({
                 })
 
                 vim.lsp.config("codebook", {
+                    flags = common_lsp_flags,
                     init_options = {
                         diagnosticSeverity = "hint",
                     },
@@ -923,6 +964,11 @@ require("lazy").setup({
                     signs = signs,
                     signs_staged = signs,
                     numhl = false,
+                    update_debounce = based_on_power(100, 1000),
+                    watch_gitdir = {
+                        interval = based_on_power(1000, 10000),
+                        follow_files = true,
+                    },
                 })
 
                 vim.keymap.set("n", "gp", gitsigns.preview_hunk, {})
@@ -935,6 +981,7 @@ require("lazy").setup({
             "petertriho/nvim-scrollbar",
             event = "VeryLazy",
             opts = {
+                throttle_ms = based_on_power(50, 250),
                 handle = {
                     -- highlight = "Visual",
                 },
@@ -1146,6 +1193,10 @@ require("lazy").setup({
             event = "VeryLazy",
             config = function()
                 require("incline").setup({
+                    debounce_threshold = {
+                        falling = based_on_power(50, 250),
+                        rising = based_on_power(10, 100),
+                    },
                     window = {
                         margin = { vertical = 0, horizontal = 1 },
                     },
@@ -1221,7 +1272,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- Decrease update time. Used for swapfile and by gitsigns and local-highlight
-vim.opt.updatetime = 25
+vim.opt.updatetime = based_on_battery(10000, 25)
 
 -- Decrease mapped sequence wait time
 vim.opt.timeoutlen = 300
@@ -1231,7 +1282,7 @@ vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '•', nbsp = '␣' }
 
 -- Show which line your cursor is on
-vim.opt.cursorline = true
+vim.opt.cursorline = based_on_power(true, false)
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 6
@@ -1240,7 +1291,7 @@ vim.opt.scrolloff = 6
 vim.opt.sidescrolloff = 20
 
 -- Scroll by screen line instead of jumping over wrapped lines
-vim.opt.smoothscroll = true
+vim.opt.smoothscroll = based_on_power(true, false)
 
 -- Browser-like back/forward for the jumplist (see j/J keymaps)
 vim.opt.jumpoptions = "stack"
@@ -1262,6 +1313,7 @@ vim.opt.shortmess:append("c") -- Unsuccessful search without prompt
 
 -- Diagnostics
 vim.diagnostic.config({
+  update_in_insert = based_on_power(true, false),
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = "",
