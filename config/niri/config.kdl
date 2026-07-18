@@ -56,8 +56,8 @@ input {
   // TODO: trackpoint
 }
 
-output "HDMI-A-1" {
-  mode "2560x1440@60"
+output "${output_name}" {
+  mode "${output_mode}"
   scale 1
   variable-refresh-rate
 }
@@ -228,6 +228,8 @@ gestures {
 }
 
 layout {
+  background-color "#${bg_dim_more}"
+
   gaps 16
 
   struts {
@@ -237,7 +239,7 @@ layout {
     bottom 16
   }
 
-  center-focused-column "never" // "on-overflow"
+  center-focused-column "never"
   always-center-single-column
 
   preset-column-widths {

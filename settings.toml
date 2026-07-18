@@ -1,23 +1,25 @@
 [colors]
-bg          = "1d2433"
-bg_dim      = "1a202e"
-bg_dim_more = "171c29"
-bg_sel      = "293145"
+  bg          = "1d2433"
+  bg_dim      = "1a202e"
+  bg_dim_more = "171c29"
+  bg_sel      = "293145"
 
-fg          = "bfd3ff"
-fg_half_dim = "54678c"
-fg_dim      = "3d4a66"
+  fg          = "bfd3ff"
+  fg_half_dim = "54678c"
+  fg_dim      = "3d4a66"
 
-red         = "D0879D"
-orange      = "D0B1A2"
-yellow      = "CDD2AF"
-green       = "9FD6B6"
-cyan        = "acd9ec"
-blue        = "92b7ea"
-purple      = "AD9BEA"
-pink        = "CD9BCC"
+  red         = "D0879D"
+  orange      = "D0B1A2"
+  yellow      = "CDD2AF"
+  green       = "9FD6B6"
+  cyan        = "acd9ec"
+  blue        = "92b7ea"
+  purple      = "AD9BEA"
+  pink        = "CD9BCC"
 
 [hosts.iota]
+  output_name = "HDMI-A-1"
+  output_mode = "2560x1440@99.946"
 
 [hosts.zeta]
 
