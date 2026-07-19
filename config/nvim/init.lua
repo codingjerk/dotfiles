@@ -120,11 +120,30 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+----------------------------
+-- Termux specific tuning --
+----------------------------
+
+local is_termux = vim.fn.has("termux") == 1
+  or vim.env.TERMUX_VERSION ~= nil
+
+local function normal_or_termux(value, termux_value)
+    if is_termux then
+        return termux_value
+    else
+        return value
+    end
+end
+
 --------------------
 -- Battery tuning --
 --------------------
 
 local function get_is_on_battery()
+    if is_termux then
+        return true
+    end
+
     vim.fn.system("grep -qs '^Discharging$' /sys/class/power_supply/BAT*/status")
     return vim.v.shell_error == 0
 end
@@ -1234,7 +1253,7 @@ vim.opt.statuscolumn = "%s%=%l  "
 vim.opt.mouse = "nv"
 
 -- Show line numbers
-vim.opt.number = true
+vim.opt.number = normal_or_termux(true, false)
 
 -- Disable fill character (in gutter)
 vim.opt.fillchars = "eob: ,vert:¦"
@@ -1244,7 +1263,9 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Disable soft wrapping
-vim.opt.wrap = false
+vim.opt.wrap = normal_or_termux(false, true)
+vim.opt.linebreak = normal_or_termux(false, true)
+vim.opt.breakindent = normal_or_termux(false, true)
 
 -- Merge command line and status line
 vim.opt.cmdheight = 0
@@ -1256,7 +1277,7 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 
 -- Always keep sign column on
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = normal_or_termux("yes", "no")
 
 -- Copy to system's clipboard
 vim.schedule(function()
@@ -1557,20 +1578,3 @@ end
 
 vim.keymap.set({ "n" }, "t", insert_todo, {})
 vim.keymap.set({ "n", "i", "v" }, "<c-t>", insert_todo, {})
-
---------------------------------
---- Termux specific settings ---
---------------------------------
-
-local is_termux = vim.fn.has("termux") == 1
-  or vim.env.TERMUX_VERSION ~= nil
-
-if is_termux then
-  vim.opt.number = false
-  vim.opt.relativenumber = false
-  vim.opt.signcolumn = "no"
-
-  vim.opt.wrap = true
-  vim.opt.linebreak = true
-  vim.opt.breakindent = true
-end
