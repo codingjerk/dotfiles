@@ -1,5 +1,6 @@
 [Unit]
 Description=Check connectivity and public IP status every minute
+ConditionACPower=true
 
 [Timer]
 OnActiveSec=1min

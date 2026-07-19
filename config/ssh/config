@@ -1,8 +1,11 @@
 # vim: set ft=sshconfig
 
-Host lambda lambda.cj.dog
-    User cj
-    Port 1022
+# Less keepalive packets on battery power
+Match exec "! systemd-ac-power"
+    ServerAliveInterval 30
+    ServerAliveCountMax 3
+    ControlPersist 5m
+    TCPKeepAlive no
 
 Host *.cj.dog
     User cj

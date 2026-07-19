@@ -4,6 +4,7 @@ Description=Check for failed systemd units every 10 minutes
 [Timer]
 OnActiveSec=10min
 OnUnitActiveSec=10min
+AccuracySec=5min
 
 [Install]
 WantedBy=timers.target

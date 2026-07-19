@@ -181,7 +181,6 @@ require("lazy").setup({
 
                 delete_to_trash = true,
                 skip_confirm_for_simple_edits = true,
-                watch_for_changes = true,
                 view_options = {
                     show_hidden = true,
                     show_column_number = false,
@@ -1272,7 +1271,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- Decrease update time. Used for swapfile and by gitsigns and local-highlight
-vim.opt.updatetime = based_on_battery(10000, 25)
+vim.opt.updatetime = based_on_power(10000, 25)
 
 -- Decrease mapped sequence wait time
 vim.opt.timeoutlen = 300

@@ -4,6 +4,7 @@ Description=Send a break reminder every hour
 [Timer]
 OnActiveSec=1h
 OnUnitActiveSec=1h
+AccuracySec=10min
 
 [Install]
 WantedBy=timers.target
