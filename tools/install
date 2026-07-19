@@ -1,13 +1,15 @@
 #!/usr/bin/env python
 
 import os
+import re
 import shutil
 import sys
 import tomllib
 from dataclasses import dataclass
+from decimal import ROUND_HALF_UP, Decimal, InvalidOperation
 from pathlib import Path
 from string import Template
-from typing import Any, Self
+from typing import Any, NoReturn, Self
 
 HOST_ROOT: Path = Path.home()
 REPO_ROOT: Path = Path(__file__).parent.parent
@@ -16,6 +18,9 @@ CONFIG_ROOT: Path = REPO_ROOT / "config"
 OS_IS_TERMUX = "com.termux" in os.environ.get("PREFIX", "")
 
 ALL_FILES = "ALL"
+
+SCALE_EXPRESSION_PATTERN = re.compile(r"@scale\((-?\d+)\)")
+SCALE_COMMENT_PATTERN = re.compile(r"\bSCALE:\s*((?:-?\d+\s*,\s*)*-?\d+)")
 
 
 @dataclass
@@ -330,14 +335,16 @@ def main() -> None:
         sys.exit(1)
 
     files = select_config_files(file_selector)
-    variables = load_variables()
+    loaded_variables = load_variables()
+    ui_scale = load_ui_scale(loaded_variables)
+    variables = {name: str(value) for name, value in loaded_variables.items()}
 
     if action == "repo-to-home":
         if file_selector == ALL_FILES:
             ensure_directories()
-        render_files(files, variables)
+        render_files(files, variables, ui_scale)
     else:
-        de_render_files(files, variables)
+        de_render_files(files, variables, ui_scale)
 
 
 def select_config_files(file_selector: str) -> list[Config]:
@@ -370,17 +377,19 @@ def ensure_directories() -> None:
 def de_render_files(
     files: list[Config],
     variables: dict[str, str],
+    ui_scale: Decimal,
 ) -> None:
     for file in files:
-        de_render(file, variables)
+        de_render(file, variables, ui_scale)
 
 
 def render_files(
     files: list[Config],
     variables: dict[str, str],
+    ui_scale: Decimal,
 ) -> None:
     for file in files:
-        render(file, variables)
+        render(file, variables, ui_scale)
 
 
 def load_settings() -> dict[str, Any]:
@@ -392,7 +401,7 @@ def load_settings() -> dict[str, Any]:
     return settings
 
 
-def load_variables() -> dict[str, str]:
+def load_variables() -> dict[str, Any]:
     settings = load_settings()
     colors = settings.get("colors", {})
 
@@ -411,7 +420,25 @@ def load_variables() -> dict[str, str]:
     }
 
 
-def render(file: Config, variables: dict[str, str]) -> None:
+def load_ui_scale(variables: dict[str, Any]) -> Decimal:
+    raw_ui_scale = variables.pop("ui_scale", 1)
+
+    try:
+        ui_scale = Decimal(str(raw_ui_scale))
+    except InvalidOperation:
+        critical(f"ui_scale `{raw_ui_scale}` is not a number")
+
+    if not ui_scale.is_finite() or ui_scale <= 0:
+        critical(f"ui_scale `{raw_ui_scale}` should be greater than zero")
+
+    return ui_scale
+
+
+def render(
+    file: Config,
+    variables: dict[str, str],
+    ui_scale: Decimal,
+) -> None:
     sys.stderr.write(f"× INFO: render {file.repo_path} to {file.host_path}\n")
 
     file.host_path.parent.mkdir(parents=True, exist_ok=True)
@@ -427,6 +454,12 @@ def render(file: Config, variables: dict[str, str]) -> None:
     else:
         config_data = original_data
 
+    config_data = render_scaled_values(
+        config_data,
+        ui_scale,
+        file.repo_path,
+    )
+
     # Write final config
     with file.host_path.open("w") as host_file:
         host_file.write(config_data)
@@ -439,6 +472,7 @@ def render(file: Config, variables: dict[str, str]) -> None:
 def de_render(
     file: Config,
     variables: dict[str, str],
+    ui_scale: Decimal,
 ) -> None:
     """
     Copies file from host back to config directory
@@ -462,11 +496,160 @@ def de_render(
     with file.host_path.open("r") as host_file:
         config = host_file.read()
 
+    config = de_render_scaled_values(
+        config,
+        ui_scale,
+        file.host_path,
+    )
+
     if file.templated:
         config = un_template_config(config, variables)
 
     with file.repo_path.open("w") as repo_file:
         repo_file.write(config)
+
+
+def render_scaled_values(
+    config: str,
+    ui_scale: Decimal,
+    config_path: Path,
+) -> str:
+    rendered_lines = []
+
+    for line_number, line in enumerate(
+        config.splitlines(keepends=True),
+        start=1,
+    ):
+        base_values = SCALE_EXPRESSION_PATTERN.findall(line)
+        comment_match = SCALE_COMMENT_PATTERN.search(line)
+
+        if not base_values:
+            if comment_match is not None:
+                scale_error(
+                    config_path,
+                    line_number,
+                    "`SCALE:` comment has no `@scale(...)` expressions",
+                )
+
+            rendered_lines.append(line)
+            continue
+
+        if comment_match is None:
+            scale_error(
+                config_path,
+                line_number,
+                "scaled line has no `SCALE:` comment",
+            )
+
+        comment_values = parse_scale_comment(comment_match)
+        if base_values != comment_values:
+            scale_error(
+                config_path,
+                line_number,
+                f"scale expressions {base_values} do not match "
+                f"comment values {comment_values}",
+            )
+
+        rendered_lines.append(
+            SCALE_EXPRESSION_PATTERN.sub(
+                lambda match: scale_value(match.group(1), ui_scale),
+                line,
+            )
+        )
+
+    return "".join(rendered_lines)
+
+
+def de_render_scaled_values(
+    config: str,
+    ui_scale: Decimal,
+    config_path: Path,
+) -> str:
+    de_rendered_lines = []
+
+    for line_number, line in enumerate(
+        config.splitlines(keepends=True),
+        start=1,
+    ):
+        comment_match = SCALE_COMMENT_PATTERN.search(line)
+        if comment_match is None:
+            de_rendered_lines.append(line)
+            continue
+
+        base_values = parse_scale_comment(comment_match)
+        expression_values = SCALE_EXPRESSION_PATTERN.findall(line)
+        if expression_values:
+            if expression_values != base_values:
+                scale_error(
+                    config_path,
+                    line_number,
+                    f"scale expressions {expression_values} do not match "
+                    f"comment values {base_values}",
+                )
+
+            de_rendered_lines.append(line)
+            continue
+
+        before_comment = line[: comment_match.start()]
+        after_comment = line[comment_match.start() :]
+        restored_parts = []
+        cursor = 0
+
+        for base_value in base_values:
+            rendered_value = scale_value(base_value, ui_scale)
+            rendered_value_pattern = re.compile(
+                rf"(?<![\d.]){re.escape(rendered_value)}(?![\d.])"
+            )
+            rendered_value_match = rendered_value_pattern.search(
+                before_comment,
+                cursor,
+            )
+
+            if rendered_value_match is None:
+                scale_error(
+                    config_path,
+                    line_number,
+                    f"expected rendered value `{rendered_value}` for "
+                    f"base value `{base_value}`",
+                )
+
+            restored_parts.append(
+                before_comment[cursor : rendered_value_match.start()]
+            )
+            restored_parts.append(f"@scale({base_value})")
+            cursor = rendered_value_match.end()
+
+        restored_parts.append(before_comment[cursor:])
+        de_rendered_lines.append("".join(restored_parts) + after_comment)
+
+    return "".join(de_rendered_lines)
+
+
+def parse_scale_comment(comment_match: re.Match[str]) -> list[str]:
+    return [value.strip() for value in comment_match.group(1).split(",")]
+
+
+def scale_value(value: str, ui_scale: Decimal) -> str:
+    scaled_value = Decimal(value) * ui_scale
+    rounded_value = scaled_value.quantize(
+        Decimal(1),
+        rounding=ROUND_HALF_UP,
+    )
+
+    return str(rounded_value)
+
+
+def scale_error(
+    config_path: Path,
+    line_number: int,
+    message: str,
+) -> NoReturn:
+    critical(f"{config_path}:{line_number}: {message}")
+
+
+def critical(message: str) -> NoReturn:
+    sys.stderr.write(f"× CRIT: {message}\n")
+    raise SystemExit(1)
 
 
 def un_template_config(

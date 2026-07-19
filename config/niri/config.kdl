@@ -231,7 +231,7 @@ gestures {
 layout {
   background-color "#${bg_dim_more}"
 
-  gaps 16
+  gaps @scale(16) // SCALE: 16
 
   struts {
     left 16
