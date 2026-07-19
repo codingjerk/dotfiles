@@ -21,6 +21,8 @@
   output_name = "HDMI-A-1"
   output_mode = "2560x1440@99.946"
 
+  ui_scale = 2.0
+
 [hosts.zeta]
 
 [hosts.termux]

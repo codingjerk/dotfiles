@@ -16,14 +16,14 @@ environment {
 
 cursor {
   xcursor-theme "capitaine-cursors-light"
-  xcursor-size 48
+  xcursor-size @scale(24) // SCALE: 24
 
   hide-when-typing
   hide-after-inactive-ms 3000
 }
 
 overview {
-  zoom 0.5
+  zoom 0.45
   backdrop-color "#${bg_dim_more}"
 }
 
@@ -234,10 +234,10 @@ layout {
   gaps @scale(16) // SCALE: 16
 
   struts {
-    left 16
-    right 16
-    top 16
-    bottom 16
+    left @scale(16) // SCALE: 16
+    right @scale(16) // SCALE: 16
+    top 0
+    bottom 0
   }
 
   center-focused-column "never"
@@ -260,7 +260,7 @@ layout {
   }
 
   focus-ring {
-    width 3
+    width @scale(4) // SCALE: 4
     active-color "#${blue}"
     inactive-color "#${fg_half_dim}"
     urgent-color "#${red}"
@@ -269,8 +269,8 @@ layout {
   shadow {
     on
 
-    spread 10
-    softness 50
+    spread @scale(8) // SCALE: 8
+    softness 64
   }
 
   tab-indicator {
@@ -278,12 +278,12 @@ layout {
     hide-when-single-tab
     place-within-column
 
-    gap 12
-    width 12
-    length total-proportion=0.25
+    gap @scale(8) // SCALE: 8
+    width @scale(8) // SCALE: 8
+    length total-proportion=0.35
     position "left"
-    gaps-between-tabs 16
-    corner-radius 16
+    gaps-between-tabs @scale(12) // SCALE: 12
+    corner-radius @scale(8) // SCALE: 8
     active-color "#${purple}"
 
     inactive-color "#${fg_half_dim}90"
@@ -305,8 +305,8 @@ workspace "5" {}
 workspace "6" {}
 workspace "7" {}
 workspace "8" {}
-workspace "9" {}
 
+workspace "9" {}
 workspace "obs" {}
 workspace "msg" {}
 workspace "tab" {}
@@ -317,22 +317,25 @@ window-rule {
   open-focused true
   tiled-state true
 
-  geometry-corner-radius 24
+  geometry-corner-radius @scale(12) // SCALE: 12
   clip-to-geometry true
 }
 
-window-rule {
-  match app-id="^google-chrome-unstable$$"
-  focus-ring {
-    active-color "#d3e3fd" // color of chrome window theme
-  }
-}
-
+// Foot terminal
 window-rule {
   match app-id="^foot(client)?$$"
   default-column-width { proportion 0.5; }
 }
 
+// Foot popups
+window-rule {
+  match app-id="^footpopup$$"
+  open-floating true
+  default-column-width { proportion 0.5; }
+  default-window-height { proportion 0.5; }
+}
+
+// Instant messaging
 window-rule {
   match app-id="^org.telegram.desktop|Element|discord$$"
   exclude title="^Media viewer$"
@@ -341,27 +344,21 @@ window-rule {
   default-column-width { proportion 0.5; }
 }
 
+// OBS Studio
 window-rule {
   match app-id="^com.obsproject.Studio$$"
   open-on-workspace "obs"
 }
 
+// Steam
 window-rule {
   match app-id="^steam$$"
   open-on-workspace "tab"
 }
 
-// Smaller floating pavucontrol
+// Pavucontrol
 window-rule {
   match app-id=r#"^org\.pulseaudio\.pavucontrol$$"#
-  open-floating true
-  default-column-width { proportion 0.5; }
-  default-window-height { proportion 0.5; }
-}
-
-// Foot popups
-window-rule {
-  match app-id="^footpopup$$"
   open-floating true
   default-column-width { proportion 0.5; }
   default-window-height { proportion 0.5; }
@@ -389,13 +386,8 @@ layer-rule {
     xray false
   }
 
-  geometry-corner-radius 24
-}
-
-animations {
-  window-open {
-    off
-  }
+  // NOTE: workaround for square shadow
+  geometry-corner-radius @scale(12) // SCALE: 12
 }
 
 // Other options
@@ -414,8 +406,8 @@ recent-windows {
   highlight {
     active-color "#${blue}"
     urgent-color "#${red}"
-    padding 64
-    corner-radius 24
+    padding @scale(32) // SCALE: 32
+    corner-radius @scale(12) // SCALE: 12
   }
 
   previews {
