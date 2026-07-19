@@ -244,6 +244,9 @@ require("lazy").setup({
         -- Copilot
         {
             "zbirenbaum/copilot.lua",
+            -- BUG: copilot binary is broken on termux, so we need to pin specific version for it here
+            -- SEE: https://github.com/zbirenbaum/copilot.lua/issues/595
+            commit = normal_or_termux(nil, "92e08cd"),
             event = "VeryLazy",
             config = function()
                 local function is_buffer_share_safe(bufnr, bufname)
