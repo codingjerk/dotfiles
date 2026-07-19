@@ -157,7 +157,7 @@ binds {
   Super+Alt+B repeat=false { spawn "pkill" "-SIGUSR1" "waybar"; }
 
   // Monitor control
-  Super+L repeat=false { spawn-sh "hyprlock; makoctl reload"; }
+  Super+L repeat=false { spawn "loginctl" "lock-session"; }
   Super+Alt+K repeat=false { power-off-monitors; }
   Super+Alt+Shift+K repeat=false { power-on-monitors; }
 
