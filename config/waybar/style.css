@@ -2,7 +2,7 @@
   background: #${bg};
   color: #${fg};
   font-family: "Noto Sans Mono Light";
-  font-size: 14px;
+  font-size: @scale(12)px;  /* SCALE: 12 */
   font-feature-settings: "calt";
 }
 
@@ -15,25 +15,17 @@
 #language,
 #clock,
 #privacy {
-  padding: 6px 10px;
-}
-#workspaces {
-  padding-left: 16px;
+  padding: @scale(6)px @scale(10)px;  /* SCALE: 6, 10 */
 }
 
 #clock {
-  padding-right: 20px;
+  padding-left: @scale(8)px;  /* SCALE: 8 */
+  padding-right: @scale(18)px;  /* SCALE: 18 */
 }
 
-/* clock */
+/* hover */
 
-#clock:hover {
-  color: #${purple};
-}
-
-/* pulseaudio */
-
-#pulseaudio:hover {
+#clock:hover, #pulseaudio:hover, #language:hover {
   color: #${purple};
 }
 
@@ -57,30 +49,30 @@
   border: none;
   border-radius: 0;
 
-  font-size: 24px;
-  padding: 0 16px;
+  font-size: @scale(12)px;  /* SCALE: 12 */
+  padding: 0 @scale(8)px;  /* SCALE: 8 */
   margin-left: 2px;
   margin-right: 2px;
 }
 
 #workspaces button.active, #workspaces button.focused {
   color: #${blue};
-  border-bottom: 5px solid #${blue};
-  margin-bottom: -5px;
+  border-bottom: @scale(2)px solid #${blue};  /* SCALE: 2 */
+  margin-bottom: -@scale(2)px;  /* SCALE: 2 */
 
   padding: 0 16px;
-  font-size: 24px;
+  font-size: @scale(12)px;  /* SCALE: 12 */
   margin-left: 2px;
   margin-right: 2px;
 }
 
 #workspaces button.urgent {
   color: #${red};
-  border-bottom: 5px solid #${red};
-  margin-bottom: -5px;
+  border-bottom: @scale(2)px solid #${blue};  /* SCALE: 2 */
+  margin-bottom: -@scale(2)px;  /* SCALE: 2 */
 
   padding: 0 16px;
-  font-size: 24px;
+  font-size: @scale(12)px;  /* SCALE: 12 */
   margin-left: 2px;
   margin-right: 2px;
 }

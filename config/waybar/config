@@ -27,11 +27,12 @@
       "7": "7",
       "8": "8",
       "9": "",
-      "13": "", // no icon for default empty workspace
 
       "obs": "󰕧",
       "msg": "",
       "tab": "",
+
+      "default": "", // no icon for default anonymous workspace
     }
   },
 
@@ -63,7 +64,7 @@
 
     "tooltip": false,
     "on-click": "pavucontrol",
-    "on-click-right": "wpctl set-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "bash ${repo}/scripts/volume.sh mute",
   },
 
   "niri/language": {
@@ -89,8 +90,8 @@
   },
 
   "privacy": {
-    "icon-spacing": 16,
-    "icon-size": 16,
+    "icon-spacing": @scale(8),  // SCALE: 8
+    "icon-size": @scale(8),  // SCALE: 8
     "transition-duration": 250,
     "modules": [
       { "type": "screenshare" },
