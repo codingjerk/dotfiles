@@ -69,6 +69,9 @@ binds {
   Super+B repeat=false hotkey-overlay-title="Browser" { spawn "google-chrome-unstable"; }
   Super+R repeat=false hotkey-overlay-title="App Runner" { spawn "fuzzel"; }
 
+  // Special foot client blocked from screencast
+  Super+Shift+J repeat=false { spawn "footclient" "--app-id" "footprivate"; }
+
   // Window control
   Super+X repeat=false hotkey-overlay-title="Close Window" { close-window; }
   Super+V repeat=false hotkey-overlay-title="Toggle Floating" { toggle-window-floating; }
@@ -321,6 +324,19 @@ window-rule {
   clip-to-geometry true
 }
 
+// Fake focus ring for urgent windows
+// SEE: https://github.com/niri-wm/niri/discussions/2279
+window-rule {
+  match is-urgent=true
+
+  shadow {
+    softness 0
+    offset x=0 y=0
+    spread @scale(2) // SCALE: 2
+    color "#${red}"
+  }
+}
+
 // Foot terminal
 window-rule {
   match app-id="^foot(client)?$$"
@@ -362,6 +378,16 @@ window-rule {
   open-floating true
   default-column-width { proportion 0.5; }
   default-window-height { proportion 0.5; }
+}
+
+// Block out special terminal windows from screencast
+window-rule {
+  match app-id="^footprivate$"
+  block-out-from "screencast"
+
+  focus-ring {
+    active-color "#${purple}"
+  }
 }
 
 layer-rule {
