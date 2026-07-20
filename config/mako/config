@@ -1,123 +1,91 @@
-font=Noto Sans Mono Light 11
+# vi: ft=dosini
+
+# SCALE: 9
+font=Noto Sans Mono Light @scale(9)
 
 max-history=0
 ignore-timeout=1
 default-timeout=5000
-max-visible=20
+max-visible=10
 
-width=450
-height=200
+# SCALE: 350
+width=@scale(350)
+# SCALE: 100
+height=@scale(100)
 anchor=top-right
-outer-margin=0
-margin=12
-padding=24
+# SCALE: 16
+outer-margin=@scale(16)
+# SCALE: 12
+margin=@scale(12)
+# SCALE: 16
+padding=@scale(16)
 format=%s\n%b
 
 background-color=#${bg_dim_more}
 text-color=#${fg}
-progress-color=over #${pink}A0
+progress-color=over #${purple}90
 
-border-radius=16
+# SCALE: 16
+border-radius=@scale(16)
 border-size=0
 
 group-by=summary
 
 [urgency=critical]
-default-timeout=0
+  default-timeout=0
+  border-color=#${red}
+  # SCALE: 2
+  border-size=@scale(2)
 
 [category=volume]
-group-by=category
-default-timeout=1500
-height=50
-width=500
-padding=0,32
+  group-by=category
+  default-timeout=1500
+  # SCALE: 16
+  padding=0,@scale(16)
 
 [grouped category=volume]
-format=%s\n%b
+  format=%s\n%b
 
 [category=mic]
-group-by=category
-default-timeout=1500
-height=50
-width=500
-padding=0,32
+  group-by=category
+  default-timeout=1500
+  # SCALE: 16
+  padding=0,@scale(16)
 
 [grouped category=mic]
-format=%s\n%b
+  format=%s\n%b
 
 [category=brightness]
-group-by=category
-default-timeout=1500
-height=50
-width=500
-padding=0,32
+  group-by=category
+  default-timeout=1500
+  # SCALE: 16
+  padding=0,@scale(16)
 
 [grouped category=brightness]
-format=%s\n%b
+  format=%s\n%b
 
 [category=media]
-group-by=category
-default-timeout=1500
-height=50
-width=500
-padding=0,32
+  group-by=category
+  default-timeout=1500
+  width=500
+  # SCALE: 16
+  padding=0,@scale(16)
 
 [grouped category=media]
-format=%s\n%b
+  format=%s\n%b
 
 [category=battery]
-group-by=category
-width=700
-padding=32,32
-format=<span foreground="#${red}">%s</span>\n%b
-progress-color=over #${fg_dim}A0
-border-size=3
-border-color=#${red}
+  group-by=category
+  format=<span foreground="#${red}">%s</span>\n%b
+  progress-color=over #${fg_dim}A0
 
 [grouped category=battery]
-format=<span foreground="#${red}">%s</span>\n%b
+  format=<span foreground="#${red}">%s</span>\n%b
 
 [category=disk]
-group-by=category
-width=700
-padding=32,32
-format=<span foreground="#${red}">%s</span>\n%b
-progress-color=over #${fg_dim}A0
-border-size=3
-border-color=#${red}
+  group-by=category
+  format=<span foreground="#${red}">%s</span>\n%b
+  progress-color=over #${fg_dim}A0
 
 [grouped category=disk]
-format=<span foreground="#${red}">%s</span>\n%b
-
-[category=systemd]
-group-by=category
-width=700
-padding=32,32
-
-[grouped category=systemd]
-format=%s\n%b
-
-[category=network]
-group-by=category
-width=700
-padding=32,32
-
-[grouped category=network]
-format=%s\n%b
-
-[category=break]
-group-by=category
-anchor=center
-width=700
-padding=32,32
-
-[grouped category=break]
-format=%s\n%b
-
-[category=remind]
-group-by=category
-width=700
-padding=32,32
-
-[grouped category=remind]
-format=%s\n%b
+  format=<span foreground="#${red}">%s</span>\n%b

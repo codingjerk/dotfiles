@@ -21,6 +21,9 @@ ALL_FILES = "ALL"
 
 SCALE_EXPRESSION_PATTERN = re.compile(r"@scale\((-?\d+)\)")
 SCALE_COMMENT_PATTERN = re.compile(r"\bSCALE:\s*((?:-?\d+\s*,\s*)*-?\d+)")
+SCALE_DIRECTIVE_PATTERN = re.compile(
+    r"^\s*(?:#|//)\s*SCALE:\s*((?:-?\d+\s*,\s*)*-?\d+)\s*$"
+)
 
 
 @dataclass
@@ -515,6 +518,7 @@ def render_scaled_values(
     config_path: Path,
 ) -> str:
     rendered_lines = []
+    pending_scale: tuple[int, list[str]] | None = None
 
     for line_number, line in enumerate(
         config.splitlines(keepends=True),
@@ -522,6 +526,28 @@ def render_scaled_values(
     ):
         base_values = SCALE_EXPRESSION_PATTERN.findall(line)
         comment_match = SCALE_COMMENT_PATTERN.search(line)
+        directive_match = SCALE_DIRECTIVE_PATTERN.match(line)
+
+        if pending_scale is not None:
+            rendered_lines.append(
+                render_scale_directive_target(
+                    line,
+                    pending_scale,
+                    ui_scale,
+                    config_path,
+                    line_number,
+                )
+            )
+            pending_scale = None
+            continue
+
+        if directive_match is not None:
+            rendered_lines.append(line)
+            pending_scale = (
+                line_number,
+                parse_scale_comment(directive_match),
+            )
+            continue
 
         if not base_values:
             if comment_match is not None:
@@ -557,6 +583,14 @@ def render_scaled_values(
             )
         )
 
+    if pending_scale is not None:
+        directive_line_number, _ = pending_scale
+        scale_error(
+            config_path,
+            directive_line_number,
+            "standalone `SCALE:` directive is at end of file",
+        )
+
     return "".join(rendered_lines)
 
 
@@ -566,18 +600,42 @@ def de_render_scaled_values(
     config_path: Path,
 ) -> str:
     de_rendered_lines = []
+    pending_scale: tuple[int, list[str]] | None = None
 
     for line_number, line in enumerate(
         config.splitlines(keepends=True),
         start=1,
     ):
         comment_match = SCALE_COMMENT_PATTERN.search(line)
+        directive_match = SCALE_DIRECTIVE_PATTERN.match(line)
+        expression_values = SCALE_EXPRESSION_PATTERN.findall(line)
+
+        if pending_scale is not None:
+            de_rendered_lines.append(
+                de_render_scale_directive_target(
+                    line,
+                    pending_scale,
+                    ui_scale,
+                    config_path,
+                    line_number,
+                )
+            )
+            pending_scale = None
+            continue
+
+        if directive_match is not None:
+            de_rendered_lines.append(line)
+            pending_scale = (
+                line_number,
+                parse_scale_comment(directive_match),
+            )
+            continue
+
         if comment_match is None:
             de_rendered_lines.append(line)
             continue
 
         base_values = parse_scale_comment(comment_match)
-        expression_values = SCALE_EXPRESSION_PATTERN.findall(line)
         if expression_values:
             if expression_values != base_values:
                 scale_error(
@@ -592,37 +650,158 @@ def de_render_scaled_values(
 
         before_comment = line[: comment_match.start()]
         after_comment = line[comment_match.start() :]
-        restored_parts = []
-        cursor = 0
+        restored_before_comment = restore_scaled_values_in_text(
+            before_comment,
+            base_values,
+            config_path,
+            line_number,
+            ui_scale,
+        )
+        de_rendered_lines.append(restored_before_comment + after_comment)
 
-        for base_value in base_values:
-            rendered_value = scale_value(base_value, ui_scale)
-            rendered_value_pattern = re.compile(
-                rf"(?<![\d.]){re.escape(rendered_value)}(?![\d.])"
-            )
-            rendered_value_match = rendered_value_pattern.search(
-                before_comment,
-                cursor,
-            )
-
-            if rendered_value_match is None:
-                scale_error(
-                    config_path,
-                    line_number,
-                    f"expected rendered value `{rendered_value}` for "
-                    f"base value `{base_value}`",
-                )
-
-            restored_parts.append(
-                before_comment[cursor : rendered_value_match.start()]
-            )
-            restored_parts.append(f"@scale({base_value})")
-            cursor = rendered_value_match.end()
-
-        restored_parts.append(before_comment[cursor:])
-        de_rendered_lines.append("".join(restored_parts) + after_comment)
+    if pending_scale is not None:
+        directive_line_number, _ = pending_scale
+        scale_error(
+            config_path,
+            directive_line_number,
+            "standalone `SCALE:` directive is at end of file",
+        )
 
     return "".join(de_rendered_lines)
+
+
+def render_scale_directive_target(
+    line: str,
+    directive: tuple[int, list[str]],
+    ui_scale: Decimal,
+    config_path: Path,
+    line_number: int,
+) -> str:
+    directive_line_number, directive_values = directive
+    base_values = validate_scale_directive_target(
+        line,
+        config_path,
+        directive_line_number,
+        line_number,
+    )
+
+    if not base_values:
+        scale_error(
+            config_path,
+            line_number,
+            "line after standalone `SCALE:` directive has no "
+            "`@scale(...)` expressions",
+        )
+
+    if base_values != directive_values:
+        scale_error(
+            config_path,
+            line_number,
+            f"scale expressions {base_values} do not match "
+            f"standalone directive values {directive_values}",
+        )
+
+    return SCALE_EXPRESSION_PATTERN.sub(
+        lambda match: scale_value(match.group(1), ui_scale),
+        line,
+    )
+
+
+def de_render_scale_directive_target(
+    line: str,
+    directive: tuple[int, list[str]],
+    ui_scale: Decimal,
+    config_path: Path,
+    line_number: int,
+) -> str:
+    directive_line_number, directive_values = directive
+    expression_values = validate_scale_directive_target(
+        line,
+        config_path,
+        directive_line_number,
+        line_number,
+    )
+
+    if expression_values:
+        if expression_values != directive_values:
+            scale_error(
+                config_path,
+                line_number,
+                f"scale expressions {expression_values} do not match "
+                f"standalone directive values {directive_values}",
+            )
+
+        return line
+
+    return restore_scaled_values_in_text(
+        line,
+        directive_values,
+        config_path,
+        line_number,
+        ui_scale,
+    )
+
+
+def validate_scale_directive_target(
+    line: str,
+    config_path: Path,
+    directive_line_number: int,
+    line_number: int,
+) -> list[str]:
+    if (
+        SCALE_DIRECTIVE_PATTERN.match(line) is not None
+        or not line.strip()
+        or line.lstrip().startswith(("#", "//"))
+    ):
+        scale_error(
+            config_path,
+            directive_line_number,
+            "standalone `SCALE:` directive must be immediately "
+            "followed by a config line",
+        )
+
+    if SCALE_COMMENT_PATTERN.search(line) is not None:
+        scale_error(
+            config_path,
+            line_number,
+            "scaled line cannot have both standalone and inline "
+            "`SCALE:` annotations",
+        )
+
+    return SCALE_EXPRESSION_PATTERN.findall(line)
+
+
+def restore_scaled_values_in_text(
+    text: str,
+    base_values: list[str],
+    config_path: Path,
+    line_number: int,
+    ui_scale: Decimal,
+) -> str:
+    restored_parts = []
+    cursor = 0
+
+    for base_value in base_values:
+        rendered_value = scale_value(base_value, ui_scale)
+        rendered_value_pattern = re.compile(
+            rf"(?<![\d.]){re.escape(rendered_value)}(?![\d.])"
+        )
+        rendered_value_match = rendered_value_pattern.search(text, cursor)
+
+        if rendered_value_match is None:
+            scale_error(
+                config_path,
+                line_number,
+                f"expected rendered value `{rendered_value}` for "
+                f"base value `{base_value}`",
+            )
+
+        restored_parts.append(text[cursor : rendered_value_match.start()])
+        restored_parts.append(f"@scale({base_value})")
+        cursor = rendered_value_match.end()
+
+    restored_parts.append(text[cursor:])
+    return "".join(restored_parts)
 
 
 def parse_scale_comment(comment_match: re.Match[str]) -> list[str]:
