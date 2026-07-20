@@ -405,8 +405,6 @@ layer-rule {
     on
   }
 
-  opacity 0.8
-
   background-effect {
     blur true
     xray false

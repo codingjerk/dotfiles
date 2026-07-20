@@ -25,8 +25,8 @@ background-color=#${bg_dim_more}
 text-color=#${fg}
 progress-color=over #${purple}90
 
-# SCALE: 16
-border-radius=@scale(16)
+# SCALE: 12
+border-radius=@scale(12)
 border-size=0
 
 group-by=summary
