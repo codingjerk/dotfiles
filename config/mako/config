@@ -67,9 +67,8 @@ group-by=summary
 [category=media]
   group-by=category
   default-timeout=1500
-  width=500
-  # SCALE: 16
-  padding=0,@scale(16)
+  # SCALE: 16, 16
+  padding=@scale(16),@scale(16)
 
 [grouped category=media]
   format=%s\n%b
