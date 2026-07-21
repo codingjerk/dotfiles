@@ -208,6 +208,7 @@ call s:hl("NotifyTRACETitle", s:fg_dim, "NONE")
 
 " Diff
 call s:hl("DiffAdd", s:green, "NONE")
+call s:hl("diffAdded", s:green, "NONE")
 call s:hl("GitSignsAdd", s:green, "NONE")
 call s:hl("GitSignsStagedAdd", s:green, "NONE")
 call s:hl("GitSignsStagedAddNr", s:green, "NONE")
@@ -219,10 +220,14 @@ call s:hl("GitSignsStagedChange", s:purple, "NONE")
 call s:hl("GitSignsStagedChangeNr", s:purple, "NONE")
 
 call s:hl("DiffDelete", s:red, "NONE")
+call s:hl("diffRemoved", s:red, "NONE")
 call s:hl("Removed", s:red, "NONE")
 call s:hl("GitSignsDelete", s:red, "NONE")
 call s:hl("GitSignsStagedDelete", s:red, "NONE")
 call s:hl("GitSignsStagedDeleteNr", s:red, "NONE")
+
+call s:hl("diffFile", s:fg_half_dim, "NONE")
+call s:hl("diffLine", s:purple, "NONE")
 
 " Language:Markdown
 call s:hl("@markup.list.markdown", s:fg_dim, "NONE")
