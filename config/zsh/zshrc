@@ -106,7 +106,7 @@ alias wget='noglob wget'
 alias yt='noglob yt-dlp'
 alias mpv='noglob mpv'
 
-# Man
+# Man colors
 man() {
   GROFF_NO_SGR=1 \
   LESS_TERMCAP_mb=$'\e[31m' \
@@ -118,8 +118,6 @@ man() {
   LESS_TERMCAP_us=$'\e[35m' \
   command man "$@"
 }
-
-export MANWIDTH=100
 
 # Prompt
 PROMPT=$'%{\033[34m%} %2~ %{\033[37m%}❯ %{\033[0m%}'

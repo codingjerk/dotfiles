@@ -752,6 +752,9 @@ require("lazy").setup({
                 })
                 vim.lsp.enable("superhtml")
 
+                -- Bash
+                vim.lsp.enable("bashls")
+
                 -- Typst
                 vim.lsp.config("tinymist", {
                     settings = {
@@ -841,7 +844,10 @@ require("lazy").setup({
                 })
                 vim.lsp.enable("rust_analyzer")
 
-                -- JavaScript
+                -- Go
+                vim.lsp.enable("gopls")
+
+                -- JavaScript / TypeScript
                 vim.lsp.config("ts_ls", {
                     settings = {
                         ts_ls = {

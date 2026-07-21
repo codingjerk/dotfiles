@@ -24,5 +24,9 @@
   ui_scale = 2.0
 
 [hosts.zeta]
+  output_name = "eDP-1"
+  output_mode = "1920x1200@60.096"
+
+  ui_scale = 1.5
 
 [hosts.termux]
