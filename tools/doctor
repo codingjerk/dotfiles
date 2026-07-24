@@ -78,13 +78,13 @@ DEPENDENCIES = [
     # TODO: add to NEOVIM
     Binary(name="marksman", binary="marksman"),
 
-    # AUR:
-  paru
-  google-chrome-dev
-  emmet-language-server
-  prettierd
-  superhtml-bin
-  Arundinamono
+    # TODO: AUR:
+  # paru
+  # google-chrome-dev
+  # emmet-language-server
+  # prettierd
+  # superhtml-bin
+  # Arundinamono
 
     # Editor
     Binary(name="Neovim", binary="nvim"),

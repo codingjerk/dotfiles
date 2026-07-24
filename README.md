@@ -46,13 +46,14 @@ systemctl --user add-wants niri.service \
   swaybg.service \
   remind.service
 
-systemctl --user enable --now ssh-agent.socket
-systemctl --user enable --now battery.timer
-systemctl --user enable --now disk.timer
-systemctl --user enable --now break-reminder.timer
-systemctl --user enable --now systemd-status.timer
-systemctl --user enable --now network-status.timer
-systemctl --user enable --now random-thai-word.timer
+systemctl --user enable --now \
+  ssh-agent.socket \
+  battery.timer \
+  disk.timer \
+  break-reminder.timer \
+  systemd-status.timer \
+  network-status.timer \
+  random-thai-word.timer
 ```
 
 **WARNING:** This repository is tailored for my personal use.
@@ -95,6 +96,12 @@ git clone https://github.com/folke/lazy.nvim.git
 
 nvim
 :Lazy Install
+```
+
+6. (optional) Switch to ssh-based git remote:
+
+```sh
+git remote set-url origin cj:dotfiles
 ```
 
 ## Update (re-render configuration files)
