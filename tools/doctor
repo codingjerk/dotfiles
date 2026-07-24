@@ -39,19 +39,55 @@ DEPENDENCIES = [
     Binary(name="Remind", binary="remind"),
     Binary(name="termdown", binary="termdown"),
     Binary(name="rg", binary="rg"),
+    Binary(name="jq", binary="jq"),
     Binary(name="pinentry-tty", binary="pinentry-tty"),
     Binary(name="watchexec", binary="watchexec"),
+    Binary(name="Numbat", binary="numbat"),
+    Binary(name="Aria2", binary="aria2c"),
+    Binary(name="ledger", binary="ledger"),
 
     # Development
     Binary(name="Ruff", binary="ruff"),
+    Binary(name="IPython", binary="ipython"),
     Binary(name="Cargo", binary="cargo"),
     Binary(name="Poetry", binary="poetry"),
     Binary(name="UV", binary="uv"),
+    Binary(name="Docker", binary="docker"),
+    Binary(name="npm", binary="npm"),
+    Binary(name="node", binary="node"),
+    Binary(name="go", binary="go"),
+    Binary(name="zig", binary="zig"),
 
     # LSP Servers
     Binary(name="Taplo (TOML LSP)", binary="taplo"),
     Binary(name="Codebook (spell checking LSP)", binary="codebook-lsp"),
     Binary(name="prettierd", binary="prettierd"),
+    Binary(name="tinymist", binary="tinymist"),
+    Binary(name="gopls", binary="gopls"),
+    Binary(name="lua-language-server", binary="lua-language-server"),
+    Binary(name="pyright-langserver", binary="pyright-langserver"),
+    Binary(name="yaml-language-server", binary="yaml-language-server"),
+    Binary(name="emmet-language-server", binary="emmet-language-server"),
+    Binary(name="superhtml", binary="superhtml"),
+    Binary(name="bash-language-server", binary="bash-language-server"),
+    Binary(name="zls", binary="zls"),
+    Binary(name="rust-analyzer", binary="rust-analyzer"),
+    Binary(name="gopls", binary="gopls"),
+    Binary(name="typescript-language-server", binary="typescript-language-server"),
+
+    # TODO: add to NEOVIM
+    Binary(name="marksman", binary="marksman"),
+
+    # AUR:
+  paru
+  google-chrome-dev
+  emmet-language-server
+  prettierd
+  superhtml-bin
+  Arundinamono
+
+    # Editor
+    Binary(name="Neovim", binary="nvim"),
 
     # Arch linux
     Binary(name="paru", binary="paru"),
@@ -69,11 +105,13 @@ DEPENDENCIES = [
     Binary(name="Fuzzel", binary="fuzzel"),
     Binary(name="Hyprlock", binary="hyprlock"),
     Binary(name="Hypridle", binary="hypridle"),
+    Binary(name="Gammastep", binary="gammastep"),
 
     # GUI Apps
     Binary(name="Google Chrome (unstable)", binary="google-chrome-unstable"),
     Binary(name="Zathura", binary="zathura"),
     Binary(name="MPV", binary="mpv"),
+    Binary(name="yt-dlp", binary="yt-dlp"),
 
     # Gui Utils
     Binary(name="brightnessctl", binary="brightnessctl"),
