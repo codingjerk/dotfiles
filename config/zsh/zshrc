@@ -124,6 +124,15 @@ PROMPT=$'%{\033[34m%} %2~ %{\033[37m%}❯ %{\033[0m%}'
 PROMPT2=$'%{\033[33m%} ... %{\033[0m%}'
 RPROMPT=$'%(0?..%(130?..%{\033[31m%}%?%{\033[0m%}))'
 
+# Special prompts for nested / ssh shells
+if [[ -n "$SUDO_USER" ]]; then
+  PROMPT=$'%{\033[31m%} (sudo)'$PROMPT
+fi
+
+if [[ -n "$SSH_CLIENT" ]]; then
+  PROMPT=$'%{\033[31m%} (ssh)'$PROMPT
+fi
+
 # ZLE
 KEYTIMEOUT=1  # 10ms for grouping escape sequences
 WORDCHARS='-_:'

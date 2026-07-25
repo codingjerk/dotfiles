@@ -74,7 +74,7 @@ ssh-keygen -t ed25519
 ```sh
 gpg --import <key>.gpg
 gpg --edit-key <key-id>
-# trust, 5, save
+# trust, 5, y, save
 ```
 
 3. Initialize stores:

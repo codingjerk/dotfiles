@@ -84,7 +84,7 @@ DEPENDENCIES = [
   # emmet-language-server
   # prettierd
   # superhtml-bin
-  # Arundinamono
+  # ttf-arundina
 
     # Editor
     Binary(name="Neovim", binary="nvim"),
