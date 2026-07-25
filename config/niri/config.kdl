@@ -263,7 +263,7 @@ layout {
   }
 
   focus-ring {
-    width @scale(4) // SCALE: 4
+    width @scale(2) // SCALE: 2
     active-color "#${blue}"
     inactive-color "#${fg_half_dim}"
     urgent-color "#${red}"
