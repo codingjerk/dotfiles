@@ -34,8 +34,8 @@ group-by=summary
 [urgency=critical]
   default-timeout=0
   border-color=#${red}
-  # SCALE: 2
-  border-size=@scale(2)
+  # SCALE: 1.5
+  border-size=@scale(1.5)
 
 [category=volume]
   group-by=category

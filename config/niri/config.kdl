@@ -354,7 +354,7 @@ window-rule {
 // Instant messaging
 window-rule {
   match app-id="^org.telegram.desktop|Element|discord$$"
-  exclude title="^Media viewer$"
+  exclude title="^Media viewer$$"
   open-on-workspace "msg"
   open-focused false
   default-column-width { proportion 0.5; }
@@ -382,7 +382,7 @@ window-rule {
 
 // Block out special terminal windows from screencast
 window-rule {
-  match app-id="^footprivate$"
+  match app-id="^footprivate$$"
   block-out-from "screencast"
 
   focus-ring {

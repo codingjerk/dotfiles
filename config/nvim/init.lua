@@ -465,7 +465,7 @@ require("lazy").setup({
                 require("ibl").setup({
                     debounce = based_on_power(200, 1000),
                     viewport_buffer = {
-                        min = based_on_power(20, 10),
+                        min = based_on_power(100, 50),
                     },
                     indent = { char = "¦" },
                     scope = {
