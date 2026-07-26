@@ -37,8 +37,8 @@
   },
 
   "battery": {
-    "format": "{icon} {capacity}%",
-    "format-charging": "󰂄 {capacity}%",
+    "format": " {icon} {capacity}% ",
+    "format-charging": "  󰂄 {capacity}%  ",
 
     "tooltip-format": "{timeTo} | {power}w",
     "format-icons": [ "󰂃", "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹" ],
@@ -52,14 +52,14 @@
   },
 
   "pulseaudio": {
-    "format": "{format_source}{icon} {volume}%",
-    "format-muted": "{format_source}󰝟",
+    "format": "  {format_source}{icon} {volume}%  ",
+    "format-muted": "  {format_source}󰝟   ",
 
     "format-source": "<span color='#${red}'>󰍬 on</span>  ",  // red
     "format-source-muted": "",
 
     "format-icons": {
-      "default": [ "󰕿", "󰖀", "󰕾", "󱄠" ],
+      "default": [ "󰕿", "󰖀", "󰕾 ", "󱄠 " ],
     },
 
     "tooltip": false,
@@ -68,7 +68,7 @@
   },
 
   "niri/language": {
-    "format": "󰌌 {}",
+    "format": " 󰌌  {} ",
     "format-en": "us",
     "format-ru": "ru",
     "format-th": "th",
@@ -81,7 +81,7 @@
 
   "clock": {
     "timezone": "Asia/Bangkok",
-    "format": "󰅐 {:%H:%M}",
+    "format": "  󰅐  {:%H:%M}  ",
 
     "tooltip": true,
     "tooltip-format": "{:%e %B, %A}",  // 2 April, Saturday
