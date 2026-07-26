@@ -77,6 +77,7 @@ class Directory:
 
 DIRECTORIES = [
     Directory.home(".ssh/control", mode=0o700),
+    Directory.home("downloads"),
 ]
 
 
