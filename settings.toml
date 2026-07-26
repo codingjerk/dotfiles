@@ -4,6 +4,9 @@
   bg_dim_more = "171c29"
   bg_sel      = "293145"
 
+  bg_remove   = "332127"
+  bg_add      = "1E2B1E"
+
   fg          = "bfd3ff"
   fg_half_dim = "54678c"
   fg_dim      = "3d4a66"
