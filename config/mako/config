@@ -1,7 +1,7 @@
 # vi: ft=dosini
 
-# SCALE: 9
-font=Noto Sans Mono Light @scale(9)
+# SCALE: 14.5
+font=Noto Sans Mono Light @scale(14.5) px
 
 max-history=0
 ignore-timeout=1
