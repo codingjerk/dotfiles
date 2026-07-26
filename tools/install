@@ -19,10 +19,15 @@ OS_IS_TERMUX = "com.termux" in os.environ.get("PREFIX", "")
 
 ALL_FILES = "ALL"
 
-SCALE_EXPRESSION_PATTERN = re.compile(r"@scale\((-?\d+)\)")
-SCALE_COMMENT_PATTERN = re.compile(r"\bSCALE:\s*((?:-?\d+\s*,\s*)*-?\d+)")
+SCALE_NUMBER_PATTERN = r"-?(?:\d+(?:\.\d+)?|\.\d+)"
+SCALE_EXPRESSION_PATTERN = re.compile(rf"@scale\(({SCALE_NUMBER_PATTERN})\)")
+SCALE_COMMENT_PATTERN = re.compile(
+    rf"\bSCALE:\s*((?:{SCALE_NUMBER_PATTERN}\s*,\s*)*"
+    rf"{SCALE_NUMBER_PATTERN})"
+)
 SCALE_DIRECTIVE_PATTERN = re.compile(
-    r"^\s*(?:#|//)\s*SCALE:\s*((?:-?\d+\s*,\s*)*-?\d+)\s*$"
+    rf"^\s*(?:#|//)\s*SCALE:\s*"
+    rf"((?:{SCALE_NUMBER_PATTERN}\s*,\s*)*{SCALE_NUMBER_PATTERN})\s*$"
 )
 
 
