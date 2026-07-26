@@ -120,6 +120,12 @@
     tag = yellow
     remoteBranch = magenta
 
+[color "diff-highlight"]
+    oldNormal = red
+    oldHighlight = red 52
+    newNormal = green
+    newHighlight = green 22
+
 [interactive]
     diffFilter = diff-so-fancy --patch
     singlekey = true
