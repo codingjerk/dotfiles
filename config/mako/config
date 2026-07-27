@@ -49,7 +49,7 @@ group-by=summary
   # SCALE: 16
   border-radius=@scale(16)
   # SCALE: 333.3
-  width=500
+  width=@scale(333.3)
 
 [grouped category=volume]
   format=%s\n%b
@@ -62,7 +62,7 @@ group-by=summary
   # SCALE: 16
   border-radius=@scale(16)
   # SCALE: 333.3
-  width=500
+  width=@scale(333.3)
 
 [grouped category=mic]
   format=%s\n%b
@@ -75,7 +75,7 @@ group-by=summary
   # SCALE: 16
   border-radius=@scale(16)
   # SCALE: 333.3
-  width=500
+  width=@scale(333.3)
 
 [grouped category=brightness]
   format=%s\n%b
