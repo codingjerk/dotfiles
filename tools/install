@@ -280,6 +280,11 @@ CONFIG_FILES = [
     Config.home(".config/xkb/rules/evdev", "xkb/rules/evdev"),
     # Gammastep
     Config.home(".config/gammastep/config.ini", "gammastep/config.ini"),
+    # Desktop files
+    Config.home(
+        ".local/share/applications/io.element.Element.desktop",
+        "applications/io.element.Element.desktop",
+    ),
 ]
 
 
