@@ -5,4 +5,5 @@ Requisite=graphical-session.target
 
 [Service]
 Type=oneshot
+Environment="FG_HALF_DIM=#${fg_half_dim}"
 ExecStart=/usr/bin/sh "${repo}/scripts/break-reminder.sh"

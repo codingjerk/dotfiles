@@ -32,5 +32,9 @@ locked=$(loginctl \
 notify-send \
     -c break \
     -r 9987 \
-    "󰒲 Time for a break" \
-    "Stand up, move around, and rest your eyes"
+    "" \
+    '<b>󰒲  Break Time</b>
+
+Begin at once to live, and count each separate day as a separate life.
+
+<span foreground="'"${FG_HALF_DIM}"'">— Seneca</span>'
