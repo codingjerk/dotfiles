@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+gsettings set org.gnome.desktop.interface color-scheme "'prefer-dark'"
+
+gsettings set org.gnome.desktop.interface font-antialiasing "'rgba'"
+gsettings set org.gnome.desktop.interface font-rgba-order "'rgb'"
+gsettings set org.gnome.desktop.interface font-hinting "'full'"

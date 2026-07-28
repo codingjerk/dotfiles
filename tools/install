@@ -3,6 +3,7 @@
 import os
 import re
 import shutil
+import subprocess
 import sys
 import tomllib
 from dataclasses import dataclass
@@ -356,8 +357,18 @@ def main() -> None:
         if file_selector == ALL_FILES:
             ensure_directories()
         render_files(files, variables, ui_scale)
+        run_post_install_hook()
     else:
         de_render_files(files, variables, ui_scale)
+
+
+def run_post_install_hook() -> None:
+    post_install_path = REPO_ROOT / "hooks" / "post-install"
+    if not post_install_path.exists():
+        return
+
+    sys.stderr.write(f"× INFO: running post-install hook\n")
+    subprocess.run([str(post_install_path)], check=True)
 
 
 def select_config_files(file_selector: str) -> list[Config]:
