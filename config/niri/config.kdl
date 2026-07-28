@@ -10,8 +10,6 @@ environment {
   GDK_DPI_SCALE "1.5"
   QT_SCALE_FACTOR "1.5"
   STEAM_FORCE_DESKTOPUI_SCALING "1.5"
-
-  SSH_AUTH_SOCK "/run/user/$$UID/ssh-agent.socket"
 }
 
 cursor {

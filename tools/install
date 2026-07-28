@@ -270,6 +270,10 @@ CONFIG_FILES = [
         ".config/systemd/user/random-thai-word.timer",
         "systemd/user/random-thai-word.timer",
     ),
+    Config.home(
+        ".config/systemd/user/foot-server.service.d/override.conf",
+        "systemd/user/foot-server.service.override.conf",
+    ),
     # XKB
     Config.home(".config/xkb/symbols/group", "xkb/symbols/group"),
     Config.home(".config/xkb/rules/evdev", "xkb/rules/evdev"),
