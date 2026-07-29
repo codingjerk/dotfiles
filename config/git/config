@@ -12,7 +12,6 @@
     autocrlf = input  # keep newlines as in input
     compression = 9  # trade cpu for network
     fsync = none
-    preloadindex = true  # preload index for faster status
 
 [advice]  # disable advices
     addEmptyPathspec = false
