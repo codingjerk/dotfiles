@@ -14,7 +14,7 @@ environment {
 
 cursor {
   xcursor-theme "capitaine-cursors-light"
-  xcursor-size @scale(24) // SCALE: 24
+  xcursor-size @scale(32) // SCALE: 32
 
   hide-when-typing
   hide-after-inactive-ms 3000
@@ -403,11 +403,6 @@ layer-rule {
     on
   }
 
-  background-effect {
-    blur true
-    xray false
-  }
-
   // NOTE: workaround for square shadow
   geometry-corner-radius @scale(12) // SCALE: 12
 }
@@ -441,4 +436,9 @@ recent-windows {
     Super+BracketLeft  { previous-window; }
     Super+BracketRight { next-window; }
   }
+}
+
+debug {
+  // Allows google chrome to get focus opening new tab
+  honor-xdg-activation-with-invalid-serial
 }
