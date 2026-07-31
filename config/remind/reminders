@@ -1,9 +1,9 @@
 # vi: set ft=remind
 # Training
-REM Mon Tue Thu Fri AT 14:00 MSG Pre-workout
-REM Mon Tue Thu Fri AT 15:30 MSG Training
-REM Mon Tue Thu Fri AT 16:45 MSG Post-workout
+REM Mon Tue Thu Fri AT 14:00 MSG [%*3] Pre-workout
+REM Mon Tue Thu Fri AT 15:30 MSG [%*3] Workout
+REM Mon Tue Thu Fri AT 16:45 MSG [%*3] Post-workout
 
 # Sleep
-REM AT 22:45 MSG Night meds
-REM AT 23:30 MSG Bedtime
+REM AT 22:45 MSG [%*3] Night meds
+REM AT 23:30 MSG [%*3] Bedtime
