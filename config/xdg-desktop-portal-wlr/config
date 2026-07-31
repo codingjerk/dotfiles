@@ -1,4 +1,4 @@
-; vi: ft=ini
+; vi: ft=dosini
 
 [screencast]
 chooser_type=dmenu

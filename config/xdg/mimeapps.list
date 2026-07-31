@@ -11,3 +11,6 @@ application/x-extension-xhtml=google-chrome-unstable.desktop
 application/x-extension-xht=google-chrome-unstable.desktop
 
 application/pdf=org.pwmt.zathura.desktop
+
+image/png=swayimg.desktop
+image/jpeg=swayimg.desktop
