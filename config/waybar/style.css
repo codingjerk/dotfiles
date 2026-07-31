@@ -27,7 +27,8 @@
   border: none;
   border-radius: 0;
 
-  padding-top: 9px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 #workspaces button.active, #workspaces button.focused {
