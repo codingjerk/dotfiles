@@ -38,8 +38,6 @@ group-by=summary
   default-timeout=0
   border-color=#${red}
   background-color=#${bg_remove}
-  # SCALE: 1.5
-  border-size=@scale(1.5)
 
 [category=volume]
   group-by=category
@@ -100,7 +98,18 @@ group-by=summary
 [category=disk]
   group-by=category
   format=<span foreground="#${red}">%s</span>\n%b
-  progress-color=over #${red}70
+  progress-color=over #${fg_dim}A0
 
 [grouped category=disk]
   format=<span foreground="#${red}">%s</span>\n%b
+
+[category=remind]
+  anchor=center
+  border-color=#${blue}
+  default-timeout=0
+
+[category=break]
+  anchor=center
+  border-color=#${blue}
+  # If I don't notice it, then I'm probably AFK, so let's hide it eventually
+  default-timeout=50000
