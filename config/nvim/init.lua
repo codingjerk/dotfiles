@@ -40,72 +40,15 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- Markdown wrapping --
 -----------------------
 
-do
-  local group = vim.api.nvim_create_augroup(
-    "UserMarkdownUI",
-    { clear = true }
-  )
-
-  local function is_markdown()
-    return vim.bo.filetype == "markdown"
-  end
-
-  local function clamp_markdown_columns()
-    if not is_markdown() then
-      return
-    end
-
-    -- Get total width of the instance (not columns)
-    local width = vim.api.nvim_list_uis()[1].width
-
-    if width > 120 then
-      vim.o.columns = 100
-    elseif width > 80 then
-      vim.o.columns = 80
-    else
-      vim.o.columns = 70
-    end
-  end
-
-  local function set_markdown_wrap()
-    vim.opt_local.wrap = true
-    vim.opt_local.linebreak = true
-    vim.opt_local.breakindent = true
-
-    -- Soft wrap only; do not insert real newlines.
-    vim.opt_local.textwidth = 0
-    vim.opt_local.wrapmargin = 0
-  end
-
-  local function disable_scrollbar()
-    -- Call ScrollbarHide command (quiet) with delay
-    vim.defer_fn(function()
-      if vim.fn.exists(":ScrollbarHide") == 2 then
-        vim.cmd("silent! ScrollbarHide")
-      end
-    end, 100)
-  end
-
-  vim.api.nvim_create_autocmd("FileType", {
-    group = group,
-    pattern = "markdown",
-    callback = function()
-      set_markdown_wrap()
-      disable_scrollbar()
-
-      clamp_markdown_columns()
-    end,
-  })
-
-  vim.api.nvim_create_autocmd({
-    "BufEnter",
-    "WinEnter",
-    "WinResized",
-  }, {
-    group = group,
-    callback = clamp_markdown_columns,
-  })
-end
+vim.api.nvim_create_autocmd("FileType", {
+group = group,
+pattern = "markdown",
+callback = function()
+  vim.opt_local.wrap = true
+  vim.opt_local.linebreak = true
+  vim.opt_local.breakindent = true
+end,
+})
 
 -----------------------
 -- Highlight on Yank --
@@ -431,28 +374,9 @@ require("lazy").setup({
                     horizontal = " ",
                     vertical = " "
                 },
+                -- Hide diagnostics in Insert mode
+                toggle_event = { "InsertEnter", "InsertLeave" },
                 scope = "line",
-                format = function(diagnostic)
-                    -- No errors in insert mode
-                    if vim.api.nvim_get_mode().mode == "i" then
-                        return ""
-                    end
-
-                    local current_line = vim.fn.line(".")
-                    local top_line = vim.fn.line("w0")
-                    local relative_line = current_line - top_line
-
-                    -- No diagnostics then current line is too high in visible area
-                    if relative_line < 8 then
-                        return ""
-                    end
-
-                    -- NOTE: NBSP from pyright breaking the border
-                    -- NOTE: quotes from harper too
-                    return diagnostic.message:gsub(" ", ".")
-                        :gsub("“", "\"")
-                        :gsub("”", "\"")
-                end,
             }
         },
 
@@ -895,6 +819,7 @@ require("lazy").setup({
                     flags = common_lsp_flags,
                     init_options = {
                         diagnosticSeverity = "hint",
+                        checkWhileTyping = based_on_power(true, false),
                     },
                 })
                 vim.lsp.enable("codebook")
@@ -1014,7 +939,7 @@ require("lazy").setup({
                 },
                 handlers = {
                     cursor = false,
-                    diagnostic = true,
+                    diagnostic = false,
                     gitsigns = true,
                     handle = true,
                 },
@@ -1369,13 +1294,26 @@ vim.keymap.set({ "n", "v" }, "<leader>b", "<cmd> Telescope buffers <cr>", {})
 vim.keymap.set({ "n", "v" }, "<leader>/", "<cmd> Telescope live_grep <cr>", {})
 vim.keymap.set({ "n", "v" }, "<leader>j", "<cmd> Telescope jumplist <cr>", {})
 vim.keymap.set({ "n", "v" }, "<leader>h", "<cmd> Telescope help_tags <cr>", {})
-vim.keymap.set({ "n", "v" }, "<leader>d", "<cmd> Telescope diagnostics <cr>", {})
 vim.keymap.set({ "n", "v" }, "<leader>s", "<cmd> Telescope lsp_document_symbols <cr>", {})
 vim.keymap.set({ "n", "v" }, "<leader>S", "<cmd> Telescope lsp_workspace_symbols <cr>", {})
 vim.keymap.set({ "n", "v" }, "<leader><leader>", "<cmd> Telescope resume <cr>", {})
 
 vim.keymap.set({ "n", "v" }, "<leader>p", "<cmd> SessionSearch <cr>", {})
 vim.keymap.set({ "n", "v" }, "<leader>o", function() require("oil").toggle_float() end, {})
+
+-- Diagnostics
+local telescope = require("telescope.builtin")
+
+vim.keymap.set({ "n", "v" }, "<leader>d", function()
+    telescope.diagnostics({
+        -- By default, hide all minor diagnostics
+        severity_limit = "WARN",
+    })
+end, {})
+
+vim.keymap.set({ "n", "v" }, "<leader>D", function()
+    telescope.diagnostics({})
+end, {})
 
 -- WASD
 vim.keymap.set({ "n", "v" }, "w", "gk", {})
