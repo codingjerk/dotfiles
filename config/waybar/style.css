@@ -1,11 +1,15 @@
 #waybar {
   background: #${bg};
   color: #${fg};
-  font-family: "Noto Sans Mono Light";
-  font-size: @scale(14.5)px;  /* SCALE: 14.5 */
+  font-family: "NotoSansM NFM Light";
+  font-size: @scale(13.3)px;  /* SCALE: 13.3 */
 }
 
 /* workspaces */
+
+#workspaces {
+  font-size: @scale(14.5)px;  /* SCALE: 14.5 */
+}
 
 #workspaces button.empty:not(.active) {
   opacity: 0;
