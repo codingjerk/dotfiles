@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from decimal import ROUND_HALF_UP, Decimal, InvalidOperation
 from pathlib import Path
 from string import Template
-from typing import Any, NoReturn, Self
+from typing import Any, NoReturn, Self, Protocol
 
 HOST_ROOT: Path = Path.home()
 REPO_ROOT: Path = Path(__file__).parent.parent
@@ -19,17 +19,6 @@ CONFIG_ROOT: Path = REPO_ROOT / "config"
 OS_IS_TERMUX = "com.termux" in os.environ.get("PREFIX", "")
 
 ALL_FILES = "ALL"
-
-SCALE_NUMBER_PATTERN = r"-?(?:\d+(?:\.\d+)?|\.\d+)"
-SCALE_EXPRESSION_PATTERN = re.compile(rf"@scale\(({SCALE_NUMBER_PATTERN})\)")
-SCALE_COMMENT_PATTERN = re.compile(
-    rf"\bSCALE:\s*((?:{SCALE_NUMBER_PATTERN}\s*,\s*)*"
-    rf"{SCALE_NUMBER_PATTERN})"
-)
-SCALE_DIRECTIVE_PATTERN = re.compile(
-    rf"^\s*(?:#|//)\s*SCALE:\s*"
-    rf"((?:{SCALE_NUMBER_PATTERN}\s*,\s*)*{SCALE_NUMBER_PATTERN})\s*$"
-)
 
 
 @dataclass
@@ -369,7 +358,7 @@ def main() -> None:
         render_files(files, variables, ui_scale)
         run_post_install_hook()
     else:
-        de_render_files(files, variables, ui_scale)
+        derender_files(files, variables, ui_scale)
 
 
 def run_post_install_hook() -> None:
@@ -408,13 +397,13 @@ def ensure_directories() -> None:
         directory.ensure()
 
 
-def de_render_files(
+def derender_files(
     files: list[Config],
     variables: dict[str, str],
     ui_scale: Decimal,
 ) -> None:
     for file in files:
-        de_render(file, variables, ui_scale)
+        derender_one_file(file, variables, ui_scale)
 
 
 def render_files(
@@ -479,31 +468,299 @@ def render(
 
     # Load original file
     with file.repo_path.open("r") as repo_file:
-        original_data = repo_file.read()
+        original_text = repo_file.read()
 
     # Render template
     if file.templated:
-        template = Template(original_data)
-        config_data = template.safe_substitute(**variables)
+        rendered_text = render_template(original_text, variables, ui_scale)
     else:
-        config_data = original_data
-
-    config_data = render_scaled_values(
-        config_data,
-        ui_scale,
-        file.repo_path,
-    )
+        rendered_text = original_text
 
     # Write final config
     with file.host_path.open("w") as host_file:
-        host_file.write(config_data)
+        host_file.write(rendered_text)
 
     # Ensure file mode
     if file.mode is not None:
         file.host_path.chmod(file.mode)
 
 
-def de_render(
+class Replacer(Protocol):
+    @staticmethod
+    def match_template(
+        line: str,
+        variables: dict[str, str],
+        ui_scale: Decimal,
+    ) -> Replacer | None:
+        pass
+
+
+class VarReplacer:
+    # VAR: name
+    RENDER_PATTERN = re.compile(r"VAR: (\w+)")
+
+    # VAR: name -> value
+    DERENDER_PATTERN = re.compile(r"VAR: (\w+) -> (.+)")
+
+    def __init__(
+        self,
+        line: str,
+        name: str,
+        value: str,
+    ) -> None:
+        self.line = line
+        self.name = name
+        self.value = value
+
+    @staticmethod
+    def match_template(
+        line: str,
+        variables: dict[str, str],
+    ) -> VarReplacer | None:
+        match = VarReplacer.RENDER_PATTERN.search(line)
+        if not match:
+            return None
+
+        name = match.group(1)
+
+        return VarReplacer(
+            line=line,
+            name=name,
+            value=variables[name],
+        )
+
+    @staticmethod
+    def match_config(
+        line: str,
+        variables: dict[str, str],
+    ) -> VarReplacer | None:
+        match = VarReplacer.DERENDER_PATTERN.search(line)
+        if not match:
+            return None
+
+        name = match.group(1)
+        value = match.group(2)
+
+        return VarReplacer(
+            line=line,
+            name=name,
+            value=value,
+        )
+
+    def self_render(
+        self,
+    ) -> str:
+        return self.line.replace(
+            self.name,
+            f"{self.name} -> {self.value}",
+            count=1,
+        )
+
+    def line_render(
+        self,
+        line: str,
+    ) -> str:
+        assert f"{{{self.name}}}" in line, (
+            f"Variable {self.name} not found in line: {line}"
+        )
+        return line.replace(f"{{{self.name}}}", self.value, count=1)
+
+    def self_derender(
+        self,
+    ) -> str:
+        return self.line.replace(f" -> {self.value}", "", count=1)
+
+    def line_derender(
+        self,
+        line: str,
+    ) -> str:
+        assert self.value in line, (
+            f"Value {self.value} not found in line: {line}"
+        )
+        return line.replace(self.value, f"{{{self.name}}}", count=1)
+
+
+class ScaleReplacer:
+    # SCALE: base value [(decimal count)]
+    RENDER_PATTERN = re.compile(r"SCALE: ([\d.]+)\s*(\((\d+)\))?")
+
+    # SCALE: base value -> rendered value [(decimal count)]
+    DERENDER_PATTERN = re.compile(r"SCALE: ([\d.]+) -> ([\d.]+)\s*(\((\d+)\))?")
+
+    def __init__(
+        self,
+        line: str,
+        base_value: Decimal,
+        decimal_count: int | None,
+        scaled_value: Decimal,
+    ) -> None:
+        self.line = line
+        self.base_value = base_value
+        self.decimal_count = decimal_count
+        self.scaled_value = scaled_value
+
+    @staticmethod
+    def scale(
+        base_value: Decimal,
+        ui_scale: Decimal,
+        decimal_count: int | None = None,
+    ) -> Decimal:
+        scaled_value = base_value * ui_scale
+
+        if decimal_count is not None:
+            quantize_str = "1." + "0" * decimal_count
+            scaled_value = scaled_value.quantize(
+                Decimal(quantize_str), rounding=ROUND_HALF_UP
+            )
+
+        return scaled_value
+
+    @staticmethod
+    def match_template(
+        line: str,
+        ui_scale: Decimal,
+    ) -> ScaleReplacer | None:
+        match = ScaleReplacer.RENDER_PATTERN.search(line)
+        if not match:
+            return None
+
+        base_value = match.group(1)
+        decimal_count = match.group(3) or 0
+        scaled_value = ScaleReplacer.scale(
+            base_value=Decimal(base_value),
+            ui_scale=ui_scale,
+            decimal_count=int(decimal_count),
+        )
+
+        return ScaleReplacer(
+            line=line,
+            base_value=base_value,
+            decimal_count=int(decimal_count),
+            scaled_value=scaled_value,
+        )
+
+    @staticmethod
+    def match_config(
+        line: str,
+        ui_scale: Decimal,
+    ) -> ScaleReplacer | None:
+        _ = ui_scale
+
+        match = ScaleReplacer.DERENDER_PATTERN.search(line)
+        if not match:
+            return None
+
+        base_value = match.group(1)
+        scaled_value = match.group(2)
+        decimal_count = match.group(4) or 0
+
+        return ScaleReplacer(
+            line=line,
+            base_value=base_value,
+            decimal_count=int(decimal_count),
+            scaled_value=scaled_value,
+        )
+
+    def self_render(
+        self,
+    ) -> str:
+        return self.line.replace(
+            str(self.base_value),
+            f"{self.base_value} -> {self.scaled_value}",
+            count=1,
+        )
+
+    def line_render(
+        self,
+        line: str,
+    ) -> str:
+        assert f"{{{self.base_value}}}" in line, (
+            f"Base value {self.base_value} not found in line: {line}"
+        )
+
+        return line.replace(
+            f"{{{self.base_value}}}",
+            str(self.scaled_value),
+            count=1,
+        )
+
+    def self_derender(
+        self,
+    ) -> str:
+        return self.line.replace(
+            f" -> {self.scaled_value}",
+            "",
+            count=1,
+        )
+
+    def line_derender(
+        self,
+        line: str,
+    ) -> str:
+        assert str(self.scaled_value) in line, (
+            f"Scaled value {self.scaled_value} not found in line: {line}"
+        )
+
+        return line.replace(
+            str(self.scaled_value),
+            f"{{{self.base_value}}}",
+            count=1,
+        )
+
+
+def render_template(
+    text: str,
+    variables: dict[str, str],
+    ui_scale: Decimal,
+) -> str:
+    result_lines: list[str] = []
+    replacers: list[Replacer] = []
+
+    for line in text.splitlines(keepends=True):
+        if replacer := VarReplacer.match_template(line, variables):
+            replacers.append(replacer)
+            result_lines.append(replacer.self_render())
+        elif replacer := ScaleReplacer.match_template(line, ui_scale):
+            replacers.append(replacer)
+            result_lines.append(replacer.self_render())
+        else:
+            for replacer in replacers:
+                line = replacer.line_render(line)
+
+            result_lines.append(line)
+
+            replacers = []
+
+    return "".join(result_lines)
+
+
+def derender_template(
+    text: str,
+    variables: dict[str, str],
+    ui_scale: Decimal,
+) -> str:
+    result_lines: list[str] = []
+    replacers: list[Replacer] = []
+
+    for line in text.splitlines(keepends=True):
+        if replacer := VarReplacer.match_config(line, variables):
+            replacers.append(replacer)
+            result_lines.append(replacer.self_derender())
+        elif replacer := ScaleReplacer.match_config(line, ui_scale):
+            replacers.append(replacer)
+            result_lines.append(replacer.self_derender())
+        else:
+            for replacer in replacers:
+                line = replacer.line_derender(line)
+
+            result_lines.append(line)
+
+            replacers = []
+
+    return "".join(result_lines)
+
+
+def derender_one_file(
     file: Config,
     variables: dict[str, str],
     ui_scale: Decimal,
@@ -525,371 +782,19 @@ def de_render(
 
     file.repo_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # shutil.copy(file.host_path, file.repo_path)
-
     with file.host_path.open("r") as host_file:
-        config = host_file.read()
-
-    config = de_render_scaled_values(
-        config,
-        ui_scale,
-        file.host_path,
-    )
+        config_text = host_file.read()
 
     if file.templated:
-        config = un_template_config(config, variables)
+        config_text = derender_template(config_text, variables, ui_scale)
 
     with file.repo_path.open("w") as repo_file:
-        repo_file.write(config)
-
-
-def render_scaled_values(
-    config: str,
-    ui_scale: Decimal,
-    config_path: Path,
-) -> str:
-    rendered_lines = []
-    pending_scale: tuple[int, list[str]] | None = None
-
-    for line_number, line in enumerate(
-        config.splitlines(keepends=True),
-        start=1,
-    ):
-        base_values = SCALE_EXPRESSION_PATTERN.findall(line)
-        comment_match = SCALE_COMMENT_PATTERN.search(line)
-        directive_match = SCALE_DIRECTIVE_PATTERN.match(line)
-
-        if pending_scale is not None:
-            rendered_lines.append(
-                render_scale_directive_target(
-                    line,
-                    pending_scale,
-                    ui_scale,
-                    config_path,
-                    line_number,
-                )
-            )
-            pending_scale = None
-            continue
-
-        if directive_match is not None:
-            rendered_lines.append(line)
-            pending_scale = (
-                line_number,
-                parse_scale_comment(directive_match),
-            )
-            continue
-
-        if not base_values:
-            if comment_match is not None:
-                scale_error(
-                    config_path,
-                    line_number,
-                    "`SCALE:` comment has no `@scale(...)` expressions",
-                )
-
-            rendered_lines.append(line)
-            continue
-
-        if comment_match is None:
-            scale_error(
-                config_path,
-                line_number,
-                "scaled line has no `SCALE:` comment",
-            )
-
-        comment_values = parse_scale_comment(comment_match)
-        if base_values != comment_values:
-            scale_error(
-                config_path,
-                line_number,
-                f"scale expressions {base_values} do not match "
-                f"comment values {comment_values}",
-            )
-
-        rendered_lines.append(
-            SCALE_EXPRESSION_PATTERN.sub(
-                lambda match: scale_value(match.group(1), ui_scale),
-                line,
-            )
-        )
-
-    if pending_scale is not None:
-        directive_line_number, _ = pending_scale
-        scale_error(
-            config_path,
-            directive_line_number,
-            "standalone `SCALE:` directive is at end of file",
-        )
-
-    return "".join(rendered_lines)
-
-
-def de_render_scaled_values(
-    config: str,
-    ui_scale: Decimal,
-    config_path: Path,
-) -> str:
-    de_rendered_lines = []
-    pending_scale: tuple[int, list[str]] | None = None
-
-    for line_number, line in enumerate(
-        config.splitlines(keepends=True),
-        start=1,
-    ):
-        comment_match = SCALE_COMMENT_PATTERN.search(line)
-        directive_match = SCALE_DIRECTIVE_PATTERN.match(line)
-        expression_values = SCALE_EXPRESSION_PATTERN.findall(line)
-
-        if pending_scale is not None:
-            de_rendered_lines.append(
-                de_render_scale_directive_target(
-                    line,
-                    pending_scale,
-                    ui_scale,
-                    config_path,
-                    line_number,
-                )
-            )
-            pending_scale = None
-            continue
-
-        if directive_match is not None:
-            de_rendered_lines.append(line)
-            pending_scale = (
-                line_number,
-                parse_scale_comment(directive_match),
-            )
-            continue
-
-        if comment_match is None:
-            de_rendered_lines.append(line)
-            continue
-
-        base_values = parse_scale_comment(comment_match)
-        if expression_values:
-            if expression_values != base_values:
-                scale_error(
-                    config_path,
-                    line_number,
-                    f"scale expressions {expression_values} do not match "
-                    f"comment values {base_values}",
-                )
-
-            de_rendered_lines.append(line)
-            continue
-
-        before_comment = line[: comment_match.start()]
-        after_comment = line[comment_match.start() :]
-        restored_before_comment = restore_scaled_values_in_text(
-            before_comment,
-            base_values,
-            config_path,
-            line_number,
-            ui_scale,
-        )
-        de_rendered_lines.append(restored_before_comment + after_comment)
-
-    if pending_scale is not None:
-        directive_line_number, _ = pending_scale
-        scale_error(
-            config_path,
-            directive_line_number,
-            "standalone `SCALE:` directive is at end of file",
-        )
-
-    return "".join(de_rendered_lines)
-
-
-def render_scale_directive_target(
-    line: str,
-    directive: tuple[int, list[str]],
-    ui_scale: Decimal,
-    config_path: Path,
-    line_number: int,
-) -> str:
-    directive_line_number, directive_values = directive
-    base_values = validate_scale_directive_target(
-        line,
-        config_path,
-        directive_line_number,
-        line_number,
-    )
-
-    if not base_values:
-        scale_error(
-            config_path,
-            line_number,
-            "line after standalone `SCALE:` directive has no "
-            "`@scale(...)` expressions",
-        )
-
-    if base_values != directive_values:
-        scale_error(
-            config_path,
-            line_number,
-            f"scale expressions {base_values} do not match "
-            f"standalone directive values {directive_values}",
-        )
-
-    return SCALE_EXPRESSION_PATTERN.sub(
-        lambda match: scale_value(match.group(1), ui_scale),
-        line,
-    )
-
-
-def de_render_scale_directive_target(
-    line: str,
-    directive: tuple[int, list[str]],
-    ui_scale: Decimal,
-    config_path: Path,
-    line_number: int,
-) -> str:
-    directive_line_number, directive_values = directive
-    expression_values = validate_scale_directive_target(
-        line,
-        config_path,
-        directive_line_number,
-        line_number,
-    )
-
-    if expression_values:
-        if expression_values != directive_values:
-            scale_error(
-                config_path,
-                line_number,
-                f"scale expressions {expression_values} do not match "
-                f"standalone directive values {directive_values}",
-            )
-
-        return line
-
-    return restore_scaled_values_in_text(
-        line,
-        directive_values,
-        config_path,
-        line_number,
-        ui_scale,
-    )
-
-
-def validate_scale_directive_target(
-    line: str,
-    config_path: Path,
-    directive_line_number: int,
-    line_number: int,
-) -> list[str]:
-    if (
-        SCALE_DIRECTIVE_PATTERN.match(line) is not None
-        or not line.strip()
-        or line.lstrip().startswith(("#", "//"))
-    ):
-        scale_error(
-            config_path,
-            directive_line_number,
-            "standalone `SCALE:` directive must be immediately "
-            "followed by a config line",
-        )
-
-    if SCALE_COMMENT_PATTERN.search(line) is not None:
-        scale_error(
-            config_path,
-            line_number,
-            "scaled line cannot have both standalone and inline "
-            "`SCALE:` annotations",
-        )
-
-    return SCALE_EXPRESSION_PATTERN.findall(line)
-
-
-def restore_scaled_values_in_text(
-    text: str,
-    base_values: list[str],
-    config_path: Path,
-    line_number: int,
-    ui_scale: Decimal,
-) -> str:
-    restored_parts = []
-    cursor = 0
-
-    for base_value in base_values:
-        rendered_value = scale_value(base_value, ui_scale)
-        rendered_value_pattern = re.compile(
-            rf"(?<![\d.]){re.escape(rendered_value)}(?![\d.])"
-        )
-        rendered_value_match = rendered_value_pattern.search(text, cursor)
-
-        if rendered_value_match is None:
-            scale_error(
-                config_path,
-                line_number,
-                f"expected rendered value `{rendered_value}` for "
-                f"base value `{base_value}`",
-            )
-
-        restored_parts.append(text[cursor : rendered_value_match.start()])
-        restored_parts.append(f"@scale({base_value})")
-        cursor = rendered_value_match.end()
-
-    restored_parts.append(text[cursor:])
-    return "".join(restored_parts)
-
-
-def parse_scale_comment(comment_match: re.Match[str]) -> list[str]:
-    return [value.strip() for value in comment_match.group(1).split(",")]
-
-
-def scale_value(value: str, ui_scale: Decimal) -> str:
-    scaled_value = Decimal(value) * ui_scale
-    rounded_value = scaled_value.quantize(
-        Decimal(1),
-        rounding=ROUND_HALF_UP,
-    )
-
-    return str(rounded_value)
-
-
-def scale_error(
-    config_path: Path,
-    line_number: int,
-    message: str,
-) -> NoReturn:
-    critical(f"{config_path}:{line_number}: {message}")
+        repo_file.write(config_text)
 
 
 def critical(message: str) -> NoReturn:
     sys.stderr.write(f"× CRIT: {message}\n")
     raise SystemExit(1)
-
-
-def un_template_config(
-    config: str,
-    variables: dict[str, str],
-) -> str:
-    """
-    Replaces values in rendered config with template placeholders
-    """
-
-    # NOTE: we need to sort variables by length to avoid replacing
-    #       shorter values that are substrings of longer values first
-    sorted_variables = sorted(
-        variables.items(),
-        key=lambda item: len(item[1]),
-        reverse=True,
-    )
-
-    placeholders = {}
-    for name, value in sorted_variables:
-        if not value:
-            continue
-
-        placeholders[value] = f"${{{name}}}"
-
-    config = config.replace("$", "$$")
-    for value, placeholder in placeholders.items():
-        config = config.replace(value, placeholder)
-
-    return config
 
 
 if __name__ == "__main__":
