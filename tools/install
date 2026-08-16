@@ -285,6 +285,11 @@ CONFIG_FILES = [
         ".local/share/applications/io.element.Element.desktop",
         "applications/io.element.Element.desktop",
     ),
+    # Codebook dictionary
+    Config.home(
+        ".config/codebook/codebook.toml",
+        "codebook/codebook.toml",
+    ),
 ]
 
 
