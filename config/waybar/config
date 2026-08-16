@@ -55,7 +55,8 @@
     "format": "  {format_source}{icon} {volume}%  ",
     "format-muted": "  {format_source}󰝟  ",
 
-    "format-source": "<span color='#${red}'>󰍬 on</span>   ",  // red
+    // VAR: red
+    "format-source": "<span color='#{red}'>󰍬 on</span>   ",  // red
     "format-source-muted": "",
 
     "format-icons": {
@@ -64,7 +65,8 @@
 
     "tooltip": false,
     "on-click": "pavucontrol",
-    "on-click-right": "bash ${repo}/scripts/volume.sh mute",
+    // VAR: repo
+    "on-click-right": "bash {repo}/scripts/volume.sh mute",
   },
 
   "niri/language": {
@@ -90,8 +92,10 @@
   },
 
   "privacy": {
-    "icon-spacing": @scale(8),  // SCALE: 8
-    "icon-size": @scale(8),  // SCALE: 8
+    // SCALE: 8
+    "icon-spacing": {8},
+    // SCALE: 8
+    "icon-size": {8},
     "transition-duration": 250,
     "modules": [
       { "type": "screenshare" },

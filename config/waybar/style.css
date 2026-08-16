@@ -1,14 +1,18 @@
 #waybar {
-  background: #${bg};
-  color: #${fg};
+  /* VAR: bg
+  */ background: #{bg};
+  /* VAR: fg
+  */ color: #{fg};
   font-family: "NotoSansM NFM Light";
-  font-size: @scale(13.3)px;  /* SCALE: 13.3 */
+  /* SCALE: 13.3
+  */ font-size: {13.3}px;
 }
 
 /* workspaces */
 
 #workspaces {
-  font-size: @scale(14.5)px;  /* SCALE: 14.5 */
+  /* SCALE: 14.5
+  */ font-size: {14.5}px;
 }
 
 #workspaces button.empty:not(.active) {
@@ -22,7 +26,8 @@
 }
 
 #workspaces button {
-  color: #${fg_dim};
+  /* VAR: fg_dim
+  */ color: #{fg_dim};
 
   border: none;
   border-radius: 0;
@@ -32,55 +37,71 @@
 }
 
 #workspaces button.active, #workspaces button.focused {
-  color: #${blue};
-  border-bottom: @scale(2)px solid #${blue};  /* SCALE: 2 */
+  /* VAR: blue
+  */ color: #{blue};
+  /* SCALE: 2
+     VAR: blue
+  */ border-bottom: {2}px solid #{blue};
 }
 
 #workspaces button.urgent {
-  color: #${red};
-  border-bottom: @scale(2)px solid #${red};  /* SCALE: 2 */
+  /* VAR: red
+  */ color: #{red};
+  /* SCALE: 2
+     VAR: red
+  */ border-bottom: {2}px solid #{red};
 }
 
 /* battery */
 
 #battery.critical {
-  color: #${red};
+  /* VAR: red
+  */ color: #{red};
 }
 
 #battery.warning {
-  color: #${orange};
+  /* VAR: orange
+  */ color: #{orange};
 }
 
 #battery.low {
-  color: #${yellow};
+  /* VAR: yellow
+  */ color: #{yellow};
 }
 
 #battery.charging {
-  color: #${green};
+  /* VAR: green
+  */ color: #{green};
 }
 
 /* Privacy */
 #privacy-item {
-  color: #${red};
+  /* VAR: red
+  */ color: #{red};
 }
 
 /* Language */
 #language.ru {
-  color: #${red};
+  /* VAR: red
+  */ color: #{red};
 }
 
 #language.th {
-  color: #${purple};
+  /* VAR: purple
+  */ color: #{purple};
 }
 
 /* hover */
 
 #clock:hover, #pulseaudio:hover, #language:hover {
-  color: #${purple};
+  /* VAR: purple
+  */ color: #{purple};
 }
 
 #workspaces button:hover {
   background: none;
-  color: #${purple};
-  border-color: #${purple};
+  /* VAR: purple
+  */ color: #{purple};
+  /* VAR: purple
+  */ border-color: #{purple};
 }

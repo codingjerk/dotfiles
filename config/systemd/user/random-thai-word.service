@@ -5,4 +5,5 @@ Requisite=graphical-session.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/python3 "${repo}/scripts/random-thai-word.py"
+# VAR: repo
+ExecStart=/usr/bin/python3 "{repo}/scripts/random-thai-word.py"

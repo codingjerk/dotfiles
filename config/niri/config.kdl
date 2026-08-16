@@ -14,7 +14,8 @@ environment {
 
 cursor {
   xcursor-theme "capitaine-cursors-light"
-  xcursor-size @scale(32) // SCALE: 32
+  // SCALE: 32
+  xcursor-size {32}
 
   hide-when-typing
   hide-after-inactive-ms 3000
@@ -22,7 +23,8 @@ cursor {
 
 overview {
   zoom 0.45
-  backdrop-color "#${bg_dim_more}"
+  // VAR: bg_dim_more
+  backdrop-color "#{bg_dim_more}"
 }
 
 input {
@@ -54,8 +56,10 @@ input {
   // TODO: trackpoint
 }
 
-output "${output_name}" {
-  mode "${output_mode}"
+// VAR: output_name
+output "{output_name}" {
+  // VAR: output_mode
+  mode "{output_mode}"
   scale 1  // NOTE: this is intentional to keep everything sharp
            //       actual scaling is done via env vars and configuration
   variable-refresh-rate
@@ -167,24 +171,36 @@ binds {
   Super+Alt+N repeat=false { spawn "systemctl" "--user" "restart" "mako"; }
 
   // Sound
-  XF86AudioMute allow-when-locked=true repeat=false { spawn "bash" "${repo}/scripts/volume.sh" "mute"; }
-  XF86AudioLowerVolume allow-when-locked=true { spawn "bash" "${repo}/scripts/volume.sh" "down"; }
-  XF86AudioRaiseVolume allow-when-locked=true { spawn "bash" "${repo}/scripts/volume.sh" "up"; }
+  // VAR: repo
+  XF86AudioMute allow-when-locked=true repeat=false { spawn "bash" "{repo}/scripts/volume.sh" "mute"; }
+  // VAR: repo
+  XF86AudioLowerVolume allow-when-locked=true { spawn "bash" "{repo}/scripts/volume.sh" "down"; }
+  // VAR: repo
+  XF86AudioRaiseVolume allow-when-locked=true { spawn "bash" "{repo}/scripts/volume.sh" "up"; }
 
   // Microphone
-  XF86AudioMicMute allow-when-locked=true repeat=false { spawn "bash" "${repo}/scripts/volume.sh" "micmute"; }
-  F7 allow-when-locked=true repeat=false { spawn "bash" "${repo}/scripts/volume.sh" "micmute"; }
+  // VAR: repo
+  XF86AudioMicMute allow-when-locked=true repeat=false { spawn "bash" "{repo}/scripts/volume.sh" "micmute"; }
+  // VAR: repo
+  F7 allow-when-locked=true repeat=false { spawn "bash" "{repo}/scripts/volume.sh" "micmute"; }
 
   // Media
-  XF86AudioPlay allow-when-locked=true repeat=false { spawn "bash" "${repo}/scripts/media.sh" "toggle"; }
-  XF86AudioPause allow-when-locked=true repeat=false { spawn "bash" "${repo}/scripts/media.sh" "pause"; }
-  XF86AudioNext allow-when-locked=true repeat=false { spawn "bash" "${repo}/scripts/media.sh" "next"; }
-  XF86AudioPrev allow-when-locked=true repeat=false { spawn "bash" "${repo}/scripts/media.sh" "prev"; }
-  XF86AudioStop allow-when-locked=true repeat=false { spawn "bash" "${repo}/scripts/media.sh" "stop"; }
+  // VAR: repo
+  XF86AudioPlay allow-when-locked=true repeat=false { spawn "bash" "{repo}/scripts/media.sh" "toggle"; }
+  // VAR: repo
+  XF86AudioPause allow-when-locked=true repeat=false { spawn "bash" "{repo}/scripts/media.sh" "pause"; }
+  // VAR: repo
+  XF86AudioNext allow-when-locked=true repeat=false { spawn "bash" "{repo}/scripts/media.sh" "next"; }
+  // VAR: repo
+  XF86AudioPrev allow-when-locked=true repeat=false { spawn "bash" "{repo}/scripts/media.sh" "prev"; }
+  // VAR: repo
+  XF86AudioStop allow-when-locked=true repeat=false { spawn "bash" "{repo}/scripts/media.sh" "stop"; }
 
   // Brightness
-  XF86MonBrightnessUp allow-when-locked=true { spawn "bash" "${repo}/scripts/brightness.sh" "up"; }
-  XF86MonBrightnessDown allow-when-locked=true { spawn "bash" "${repo}/scripts/brightness.sh" "down"; }
+  // VAR: repo
+  XF86MonBrightnessUp allow-when-locked=true { spawn "bash" "{repo}/scripts/brightness.sh" "up"; }
+  // VAR: repo
+  XF86MonBrightnessDown allow-when-locked=true { spawn "bash" "{repo}/scripts/brightness.sh" "down"; }
 
   // Print screen
   Print repeat=false { spawn "flameshot" "gui"; }
@@ -196,8 +212,8 @@ binds {
   Super+Y repeat=false { spawn-sh "cliphist list | fuzzel --with-nth 2 --dmenu | cliphist decode | wl-copy"; }
 
   // Pass picker
-  Super+P { spawn "sh" "-c" "pass show -c \"$$(find ~/.password-store -name '*.gpg' | sed -e \"s|^$$HOME/.password-store/||\" -e 's|\\.gpg$$||' | fuzzel --dmenu)\""; }
-  Super+O { spawn "sh" "-c" "pass otp -c \"$$(find ~/.password-store -name '*.gpg' | sed -e \"s|^$$HOME/.password-store/||\" -e 's|\\.gpg$$||' | fuzzel --dmenu)\""; }
+  Super+P { spawn "sh" "-c" "pass show -c \"$(find ~/.password-store -name '*.gpg' | sed -e \"s|^$HOME/.password-store/||\" -e 's|\\.gpg$||' | fuzzel --dmenu)\""; }
+  Super+O { spawn "sh" "-c" "pass otp -c \"$(find ~/.password-store -name '*.gpg' | sed -e \"s|^$HOME/.password-store/||\" -e 's|\\.gpg$||' | fuzzel --dmenu)\""; }
 
   // Calculator
   Super+grave repeat=false cooldown-ms=1500 { spawn "footclient" "--app-id" "footpopup" "-e" "numbat"; }
@@ -230,13 +246,17 @@ gestures {
 }
 
 layout {
-  background-color "#${bg_dim_more}"
+  // VAR: bg_dim_more
+  background-color "#{bg_dim_more}"
 
-  gaps @scale(16) // SCALE: 16
+  // SCALE: 16
+  gaps {16}
 
   struts {
-    left @scale(16) // SCALE: 16
-    right @scale(16) // SCALE: 16
+    // SCALE: 16
+    left {16}
+    // SCALE: 16
+    right {16}
     top 0
     bottom 0
   }
@@ -261,16 +281,21 @@ layout {
   }
 
   focus-ring {
-    width @scale(2) // SCALE: 2
-    active-color "#${blue}"
-    inactive-color "#${fg_half_dim}"
-    urgent-color "#${red}"
+    // SCALE: 2
+    width {2}
+    // VAR: blue
+    active-color "#{blue}"
+    // VAR: fg_half_dim
+    inactive-color "#{fg_half_dim}"
+    // VAR: red
+    urgent-color "#{red}"
   }
 
   shadow {
     on
 
-    spread @scale(8) // SCALE: 8
+    // SCALE: 8
+    spread {8}
     softness 64
   }
 
@@ -279,21 +304,28 @@ layout {
     hide-when-single-tab
     place-within-column
 
-    gap @scale(8) // SCALE: 8
-    width @scale(8) // SCALE: 8
+    // SCALE: 8
+    gap {8}
+    // SCALE: 8
+    width {8}
     length total-proportion=0.35
     position "left"
-    gaps-between-tabs @scale(12) // SCALE: 12
-    corner-radius @scale(8) // SCALE: 8
-    active-color "#${purple}"
+    // SCALE: 12
+    gaps-between-tabs {12}
+    // SCALE: 8
+    corner-radius {8}
+    // VAR: purple
+    active-color "#{purple}"
 
-    inactive-color "#${fg_half_dim}90"
+    // VAR: fg_half_dim
+    inactive-color "#{fg_half_dim}90"
     urgent-color "#E0778D" // reder (brighter red)
   }
 
   insert-hint {
     on
-    color "#${blue}90"
+    // VAR: blue
+    color "#{blue}90"
   }
 }
 
@@ -318,7 +350,8 @@ window-rule {
   open-focused true
   tiled-state true
 
-  geometry-corner-radius @scale(12) // SCALE: 12
+  // SCALE: 12
+  geometry-corner-radius {12}
   clip-to-geometry true
 }
 
@@ -330,20 +363,22 @@ window-rule {
   shadow {
     softness 0
     offset x=0 y=0
-    spread @scale(2) // SCALE: 2
-    color "#${red}"
+    // SCALE: 2
+    spread {2}
+    // VAR: red
+    color "#{red}"
   }
 }
 
 // Foot terminal
 window-rule {
-  match app-id="^foot(client)?$$"
+  match app-id="^foot(client)?$"
   default-column-width { proportion 0.5; }
 }
 
 // Foot popups
 window-rule {
-  match app-id="^footpopup$$"
+  match app-id="^footpopup$"
   open-floating true
   default-column-width { proportion 0.5; }
   default-window-height { proportion 0.5; }
@@ -351,8 +386,8 @@ window-rule {
 
 // Instant messaging
 window-rule {
-  match app-id="^org.telegram.desktop|Element|discord$$"
-  exclude title="^Media viewer$$"
+  match app-id="^org.telegram.desktop|Element|discord$"
+  exclude title="^Media viewer$"
   open-on-workspace "msg"
   open-focused false
   default-column-width { proportion 0.5; }
@@ -360,19 +395,19 @@ window-rule {
 
 // OBS Studio
 window-rule {
-  match app-id="^com.obsproject.Studio$$"
+  match app-id="^com.obsproject.Studio$"
   open-on-workspace "obs"
 }
 
 // Steam
 window-rule {
-  match app-id="^steam$$"
+  match app-id="^steam$"
   open-on-workspace "tab"
 }
 
 // Pavucontrol
 window-rule {
-  match app-id=r#"^org\.pulseaudio\.pavucontrol$$"#
+  match app-id=r#"^org\.pulseaudio\.pavucontrol$"#
   open-floating true
   default-column-width { proportion 0.5; }
   default-window-height { proportion 0.5; }
@@ -380,23 +415,24 @@ window-rule {
 
 // Block out special terminal windows from screencast
 window-rule {
-  match app-id="^footprivate$$"
+  match app-id="^footprivate$"
   block-out-from "screencast"
 
   focus-ring {
-    active-color "#${purple}"
+    // VAR: purple
+    active-color "#{purple}"
   }
 }
 
 layer-rule {
-  match namespace="^notifications$$"
+  match namespace="^notifications$"
 
   block-out-from "screencast"
   baba-is-float true
 }
 
 layer-rule {
-  match namespace="^launcher$$"
+  match namespace="^launcher$"
 
   baba-is-float true
   shadow {
@@ -404,7 +440,8 @@ layer-rule {
   }
 
   // NOTE: workaround for square shadow
-  geometry-corner-radius @scale(12) // SCALE: 12
+  // SCALE: 12
+  geometry-corner-radius {12}
 }
 
 // Other options
@@ -421,10 +458,14 @@ recent-windows {
   open-delay-ms 0
 
   highlight {
-    active-color "#${blue}"
-    urgent-color "#${red}"
-    padding @scale(32) // SCALE: 32
-    corner-radius @scale(12) // SCALE: 12
+    // VAR: blue
+    active-color "#{blue}"
+    // VAR: red
+    urgent-color "#{red}"
+    // SCALE: 32
+    padding {32}
+    // SCALE: 12
+    corner-radius {12}
   }
 
   previews {

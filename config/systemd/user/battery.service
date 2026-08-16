@@ -5,4 +5,5 @@ Requisite=graphical-session.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/sh "${repo}/scripts/battery.sh"
+# VAR: repo
+ExecStart=/usr/bin/sh "{repo}/scripts/battery.sh"

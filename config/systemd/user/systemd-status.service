@@ -5,4 +5,5 @@ Requisite=graphical-session.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/sh "${repo}/scripts/systemd-status.sh"
+# VAR: repo
+ExecStart=/usr/bin/sh "{repo}/scripts/systemd-status.sh"

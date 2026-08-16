@@ -1,7 +1,7 @@
 # vi: ft=dosini
 
 # SCALE: 14.5
-font=NotoSansM NF Light @scale(14.5)px
+font=NotoSansM NF Light {14.5}px
 
 max-history=0
 ignore-timeout=1
@@ -9,45 +9,52 @@ default-timeout=5000
 max-visible=10
 
 # SCALE: 466.5
-width=@scale(466.5)
+width={466.5}
 # SCALE: 166.5
-height=@scale(166.5)
+height={166.5}
 anchor=top-right
 # SCALE: 16
-outer-margin=@scale(16)
+outer-margin={16}
 # SCALE: 12
-margin=@scale(12)
+margin={12}
 # SCALE: 16
-padding=@scale(16)
+padding={16}
 format=%s\n%b
 
-background-color=#${bg_dim_more}
-text-color=#${fg}
-progress-color=over #${purple}90
+# VAR: bg_dim_more
+background-color=#{bg_dim_more}
+# VAR: fg
+text-color=#{fg}
+# VAR: purple
+progress-color=over #{purple}90
 
 # SCALE: 12
-border-radius=@scale(12)
+border-radius={12}
 # NOTE: border with color closed to the background to imitate shadow
 # SCALE: 1.5
-border-size=@scale(1.5)
-border-color=#${bg_dim}
+border-size={1.5}
+# VAR: bg_dim
+border-color=#{bg_dim}
 
 group-by=summary
 
 [urgency=critical]
   default-timeout=0
-  border-color=#${red}
-  background-color=#${bg_remove}
+  # VAR: red
+  border-color=#{red}
+  # VAR: bg_remove
+  background-color=#{bg_remove}
 
 [category=volume]
   group-by=category
   default-timeout=1500
-  # SCALE: 8, 16
-  padding=@scale(8),@scale(16)
+  # SCALE: 8
   # SCALE: 16
-  border-radius=@scale(16)
+  padding={8},{16}
+  # SCALE: 16
+  border-radius={16}
   # SCALE: 333.3
-  width=@scale(333.3)
+  width={333.3}
 
 [grouped category=volume]
   format=%s\n%b
@@ -55,12 +62,13 @@ group-by=summary
 [category=mic]
   group-by=category
   default-timeout=1500
-  # SCALE: 8, 16
-  padding=@scale(8),@scale(16)
+  # SCALE: 8
   # SCALE: 16
-  border-radius=@scale(16)
+  padding={8},{16}
+  # SCALE: 16
+  border-radius={16}
   # SCALE: 333.3
-  width=@scale(333.3)
+  width={333.3}
 
 [grouped category=mic]
   format=%s\n%b
@@ -68,12 +76,13 @@ group-by=summary
 [category=brightness]
   group-by=category
   default-timeout=1500
-  # SCALE: 8, 16
-  padding=@scale(8),@scale(16)
+  # SCALE: 8
   # SCALE: 16
-  border-radius=@scale(16)
+  padding={8},{16}
+  # SCALE: 16
+  border-radius={16}
   # SCALE: 333.3
-  width=@scale(333.3)
+  width={333.3}
 
 [grouped category=brightness]
   format=%s\n%b
@@ -81,35 +90,44 @@ group-by=summary
 [category=media]
   group-by=category
   default-timeout=1500
-  # SCALE: 16, 16
-  padding=@scale(16),@scale(16)
+  # SCALE: 16
+  # SCALE: 16
+  padding={16},{16}
 
 [grouped category=media]
   format=%s\n%b
 
 [category=battery]
   group-by=category
-  format=<span foreground="#${red}">%s</span>\n%b
-  progress-color=over #${red}70
+  # VAR: red
+  format=<span foreground="#{red}">%s</span>\n%b
+  # VAR: red
+  progress-color=over #{red}70
 
 [grouped category=battery]
-  format=<span foreground="#${red}">%s</span>\n%b
+  # VAR: red
+  format=<span foreground="#{red}">%s</span>\n%b
 
 [category=disk]
   group-by=category
-  format=<span foreground="#${red}">%s</span>\n%b
-  progress-color=over #${fg_dim}A0
+  # VAR: red
+  format=<span foreground="#{red}">%s</span>\n%b
+  # VAR: fg_dim
+  progress-color=over #{fg_dim}A0
 
 [grouped category=disk]
-  format=<span foreground="#${red}">%s</span>\n%b
+  # VAR: red
+  format=<span foreground="#{red}">%s</span>\n%b
 
 [category=remind]
   anchor=center
-  border-color=#${blue}
+  # VAR: blue
+  border-color=#{blue}
   default-timeout=0
 
 [category=break]
   anchor=center
-  border-color=#${blue}
+  # VAR: blue
+  border-color=#{blue}
   # If I don't notice it, then I'm probably AFK, so let's hide it eventually
   default-timeout=50000
