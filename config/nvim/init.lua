@@ -1316,21 +1316,31 @@ vim.keymap.set({ "n", "v" }, "<leader>D", function()
 end, {})
 
 -- WASD
+local function based_on_wrap(normal, wrapped)
+    return function()
+        if vim.wo.wrap then
+            return wrapped
+        else
+            return normal
+        end
+    end
+end
+
 vim.keymap.set({ "n", "v" }, "w", "gk", {})
 vim.keymap.set({ "n", "v" }, "s", "gj", {})
 vim.keymap.set({ "n", "v" }, "a", "h", {})
 vim.keymap.set({ "n", "v" }, "d", "l", {})
 
-vim.keymap.set({ "n", "v", "o" }, "q", "g^", {})
-vim.keymap.set({ "n", "v", "o" }, "e", "g$", {})
+vim.keymap.set({ "n", "v", "o" }, "q", based_on_wrap("^", "g^"), { expr = true })
+vim.keymap.set({ "n", "v", "o" }, "e", based_on_wrap("$", "g$"), { expr = true })
 
 vim.keymap.set({ "n", "v" }, "W", "5gk", {})
 vim.keymap.set({ "n", "v" }, "S", "5gj", {})
 vim.keymap.set({ "n", "v", "o" }, "A", "b", {})
 vim.keymap.set({ "n", "v", "o" }, "D", "w", {})
 
-vim.keymap.set("n", "Q", "g^i", {})
-vim.keymap.set("n", "E", "g$a", {})
+vim.keymap.set({ "n", "v" }, "Q", based_on_wrap("^i", "g^i"), { expr = true })
+vim.keymap.set({ "n", "v" }, "E", based_on_wrap("$a", "g$a"), { expr = true })
 
 -- Movements
 vim.keymap.set({ "n", "v" }, "ge", "G", {})
