@@ -167,6 +167,12 @@ CONFIG_FILES = [
         "zathura/zathurarc",
         templated=True,
     ),
+    # Flameshot
+    Config.home(
+        ".config/flameshot/flameshot.ini",
+        "flameshot/flameshot.ini",
+        templated=True,
+    ),
     # Aria2
     Config.home(".config/aria2/aria2.conf", "aria2/aria2.conf"),
     # Mpv
