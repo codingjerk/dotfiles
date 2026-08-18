@@ -834,6 +834,8 @@ require("lazy").setup({
                 formatters_by_ft = {
                     html = { "prettierd" },
                     css = { "prettierd" },
+                    json = { "prettierd" },
+                    jsonc = { "prettierd" },
                 },
                 default_format_opts = {
                     lsp_format = "fallback",
@@ -1152,11 +1154,14 @@ require("lazy").setup({
                     window = {
                         margin = { vertical = 0, horizontal = 1 },
                     },
+                    hide = {
+                        cursorline = true,
+                    },
                     render = function(props)
                         local path = vim.api.nvim_buf_get_name(props.buf)
                         local filename = path == "" and "[no name]" or vim.fn.fnamemodify(path, ":t")
-                        local modified = vim.bo[props.buf].modified and " •" or ""
-                        return { filename .. modified }
+                        local modified = vim.bo[props.buf].modified and " " or ""
+                        return { modified .. filename }
                     end,
                 })
             end,

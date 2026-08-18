@@ -283,7 +283,7 @@ CONFIG_FILES = [
     # Keyd (app)
     Config.home(
         ".config/keyd/app.conf",
-        "config/keyd/app.conf",
+        "keyd/app.conf",
     ),
 ]
 
