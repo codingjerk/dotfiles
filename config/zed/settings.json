@@ -84,8 +84,10 @@
   "buffer_line_height": {
     "custom": 1.16 // Like I've used in terminal, but it's pretty dense
   },
-  "ui_font_size": 15,
-  "buffer_font_size": 15.0,
+  // VAR: ui_font_size
+  "ui_font_size": {ui_font_size},
+  // VAR: text_font_size
+  "buffer_font_size": {text_font_size},
   "buffer_font_family": "Noto Sans Mono",
   "buffer_font_weight": 300,
   "ui_font_weight": 400,

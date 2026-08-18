@@ -21,7 +21,8 @@ map z zoom out
 
 # === Options ===
 set guioptions ""
-set font "Noto Sans Mono Light 11"
+# VAR: ui_font_size
+set font "Noto Sans Mono Light {ui_font_size}"
 set adjust-open width
 set database plain
 set dbus-service false

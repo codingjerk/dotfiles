@@ -26,10 +26,21 @@
 
   ui_scale = 2.0
 
+  text_font_size = 29
+  ui_font_size = 27
+  osd_font_size = 40
+
 [hosts.zeta]
   output_name = "eDP-1"
   output_mode = "1920x1200@60.096"
 
   ui_scale = 1.5
 
+  text_font_size = 22
+  ui_font_size = 20
+  osd_font_size = 30
+
 [hosts.termux]
+  text_font_size = 15
+  ui_font_size = 13
+  osd_font_size = 20

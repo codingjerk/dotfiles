@@ -4,15 +4,15 @@
   /* VAR: fg
   */ color: #{fg};
   font-family: "NotoSansM NFM Light";
-  /* SCALE: 13.3
-  */ font-size: {13.3}px;
+  /* VAR: ui_font_size
+  */ font-size: {ui_font_size}px;
 }
 
 /* workspaces */
 
 #workspaces {
-  /* SCALE: 14.5
-  */ font-size: {14.5}px;
+  /* VAR: text_font_size
+  */ font-size: {text_font_size}px;
 }
 
 #workspaces button.empty:not(.active) {

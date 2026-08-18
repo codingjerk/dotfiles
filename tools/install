@@ -170,7 +170,9 @@ CONFIG_FILES = [
     # Aria2
     Config.home(".config/aria2/aria2.conf", "aria2/aria2.conf"),
     # Mpv
-    Config.home(".config/mpv/mpv.conf", "mpv/mpv.conf"),
+    Config.home(
+        ".config/mpv/mpv.conf", "mpv/mpv.conf", templated=True
+    ),
     Config.home(".config/mpv/input.conf", "mpv/input.conf"),
     # Cargo
     Config.home(".cargo/config.toml", "cargo/config.toml"),
@@ -181,7 +183,9 @@ CONFIG_FILES = [
     # Ledger
     Config.home(".ledgerrc", "ledger/ledgerrc"),
     # Zed
-    Config.home(".config/zed/settings.json", "zed/settings.json"),
+    Config.home(
+        ".config/zed/settings.json", "zed/settings.json", templated=True
+    ),
     Config.home(".config/zed/keymap.json", "zed/keymap.json"),
     Config.home(".config/zed/themes/Casablanca.json", "zed/theme.json"),
     # Neovim
