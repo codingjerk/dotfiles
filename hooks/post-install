@@ -5,3 +5,24 @@ gsettings set org.gnome.desktop.interface color-scheme "'prefer-dark'"
 gsettings set org.gnome.desktop.interface font-antialiasing "'rgba'"
 gsettings set org.gnome.desktop.interface font-rgba-order "'rgb'"
 gsettings set org.gnome.desktop.interface font-hinting "'full'"
+
+systemctl --user daemon-reload
+
+systemctl --user add-wants niri.service \
+  gammastep.service \
+  hypridle.service \
+  waybar.service \
+  mako.service \
+  foot-server.service \
+  cliphist.service \
+  swaybg.service \
+  remind.service
+
+systemctl --user enable --now \
+  ssh-agent.socket \
+  battery.timer \
+  disk.timer \
+  break-reminder.timer \
+  systemd-status.timer \
+  network-status.timer \
+  random-thai-word.timer

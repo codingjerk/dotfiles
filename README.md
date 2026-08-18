@@ -32,29 +32,8 @@ python ~/dotfiles/tools/install repo-to-home ALL
 python ~/dotfiles/tools/doctor
 ```
 
-5. Enable systemd services and timers:
-
-```sh
-systemctl --user daemon-reload
-systemctl --user add-wants niri.service \
-  gammastep.service \
-  hypridle.service \
-  waybar.service \
-  mako.service \
-  foot-server.service \
-  cliphist.service \
-  swaybg.service \
-  remind.service
-
-systemctl --user enable --now \
-  ssh-agent.socket \
-  battery.timer \
-  disk.timer \
-  break-reminder.timer \
-  systemd-status.timer \
-  network-status.timer \
-  random-thai-word.timer
-```
+The installer runs the post-install hook, which reloads the systemd user
+manager and enables the configured services, sockets, and timers.
 
 **WARNING:** This repository is tailored for my personal use.
 I don't recommend installing it on your machine.
