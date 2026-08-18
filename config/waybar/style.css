@@ -3,7 +3,8 @@
   */ background: #{bg};
   /* VAR: fg
   */ color: #{fg};
-  font-family: "NotoSansM NFM Light";
+  /* VAR: font_name
+  */ font-family: "{font_name}";
   /* VAR: ui_font_size
   */ font-size: {ui_font_size}px;
 }

@@ -441,6 +441,10 @@ def load_settings() -> dict[str, Any]:
 
 def load_variables() -> dict[str, Any]:
     settings = load_settings()
+    fonts = {
+        "font_name": settings["font_name"],
+        "extra_font_name": settings["extra_font_name"],
+    }
     colors = settings.get("colors", {})
 
     builtins = {
@@ -452,6 +456,7 @@ def load_variables() -> dict[str, Any]:
     host_overrides = settings.get("hosts", {}).get(hostname, {})
 
     return {
+        **fonts,
         **colors,
         **builtins,
         **host_overrides,

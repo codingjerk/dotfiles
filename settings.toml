@@ -1,3 +1,6 @@
+font_name = "NotoSansM NFM Light"
+extra_font_name = "Arundina Sans Mono"
+
 [colors]
   bg          = "1d2433"
   bg_dim      = "1a202e"

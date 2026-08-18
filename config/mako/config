@@ -1,7 +1,8 @@
 # vi: ft=dosini
 
+# VAR: font_name
 # VAR: text_font_size
-font=NotoSansM NF Light {text_font_size}px
+font={font_name} {text_font_size}px
 
 max-history=0
 ignore-timeout=1
