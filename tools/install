@@ -285,6 +285,11 @@ CONFIG_FILES = [
         ".config/keyd/app.conf",
         "keyd/app.conf",
     ),
+    # GTK
+    Config.home(
+        ".config/gtk-3.0/settings.ini",
+        "gtk-3.0/settings.ini",
+    ),
 ]
 
 
