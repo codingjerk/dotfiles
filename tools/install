@@ -95,6 +95,7 @@ CONFIG_FILES = [
     # Gnupg
     Config.home(".gnupg/gpg.conf", "gnupg/gpg.conf", mode=0o600),
     Config.home(".gnupg/gpg-agent.conf", "gnupg/gpg-agent.conf", mode=0o600),
+    Config.home(".gnupg/dirmngr.conf", "gnupg/dirmngr.conf", mode=0o600),
     # Tmux
     Config.home(".tmux.conf", "tmux/tmux.conf"),
     # Ruff
