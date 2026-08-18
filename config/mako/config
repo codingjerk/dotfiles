@@ -131,3 +131,7 @@ group-by=summary
   border-color=#{blue}
   # If I don't notice it, then I'm probably AFK, so let's hide it eventually
   default-timeout=50000
+
+[category=lock-notification]
+  anchor=center
+  default-timeout=50000

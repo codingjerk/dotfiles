@@ -279,6 +279,11 @@ CONFIG_FILES = [
         ".config/codebook/codebook.toml",
         "codebook/codebook.toml",
     ),
+    # Keyd (app)
+    Config.home(
+        ".config/keyd/app.conf",
+        "config/keyd/app.conf",
+    ),
 ]
 
 

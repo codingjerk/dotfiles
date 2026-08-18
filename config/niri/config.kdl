@@ -62,7 +62,8 @@ output "{output_name}" {
   mode "{output_mode}"
   scale 1  // NOTE: this is intentional to keep everything sharp
            //       actual scaling is done via env vars and configuration
-  variable-refresh-rate
+  // Keep panel self refresh available on the desktop; window rules opt in to VRR.
+  variable-refresh-rate on-demand=true
 }
 
 binds {
@@ -345,6 +346,12 @@ workspace "msg" {}
 workspace "tab" {}
 
 // Window rules
+// Video playback benefits from VRR without keeping it enabled for the whole desktop.
+window-rule {
+  match app-id="^mpv$"
+  variable-refresh-rate true
+}
+
 window-rule {
   default-column-width { proportion 1.0; }
   open-focused true
