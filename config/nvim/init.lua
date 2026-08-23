@@ -1025,7 +1025,7 @@ require("lazy").setup({
                         },
                         find_files = {
                             hidden = true,
-                            find_command = { "fd", "--type", "f", "--hidden" },
+                            find_command = { "fd", "--type=file", "--type=symlink", "--hidden" },
                             prompt_title = "",
                             preview_title = "",
                         },
