@@ -1,10 +1,6 @@
 ---@diagnostic disable: lowercase-global
 ---@diagnostic disable: need-check-nil
 
-----------
--- TODO --
-----------
-
 ----------------
 -- File types --
 ----------------
