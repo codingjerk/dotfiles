@@ -6,5 +6,5 @@ Requisite=graphical-session.target
 
 [Service]
 Environment=TZ=Asia/Bangkok
-ExecStart=/usr/bin/remind -z "-k/usr/bin/notify-send -a remind -c remind %%s" %h/.reminders
+ExecStart=/usr/bin/remind -v -r -z5 "-k:/usr/bin/bash %h/dotfiles/scripts/notify-remind.sh %%s" %h/.reminders
 Restart=on-failure

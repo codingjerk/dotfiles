@@ -1,4 +1,5 @@
 .git/
+.git-crypt/
 
 # Python
 __pycache__/

@@ -28,7 +28,9 @@ alias gp='git push'
 alias gr='git reset'
 alias gs='git status --short'
 alias gu='git pull'
+alias gy='git sync'
 alias gw='git switch'
+alias gwc='git switch --create'
 
 gcm() { git commit --message "$*" }
 
@@ -56,6 +58,7 @@ alias pg='openssl rand -base64 33'
 alias sd='sudo systemctl'
 alias sdu='systemctl --user'
 alias jd='journalctl --no-pager'
+alias jdu='journalctl --no-pager --user'
 
 # Aliases: human-readable
 alias cal='TZ=Asia/Bangkok cal --monday'

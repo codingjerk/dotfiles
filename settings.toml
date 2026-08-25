@@ -29,9 +29,9 @@ extra_font_name = "Arundina Sans Mono"
 
   ui_scale = 2.0
 
-  text_font_size = 29
-  ui_font_size = 27
-  osd_font_size = 40
+  text_font_size = 24
+  ui_font_size = 22
+  osd_font_size = 36
 
 [hosts.zeta]
   output_name = "eDP-1"

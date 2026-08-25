@@ -1,9 +1,12 @@
 # vi: set ft=remind
-# Training
-REM Mon Tue Thu Fri AT 14:00 MSG [%*3] Pre-workout
-REM Mon Tue Thu Fri AT 15:30 MSG [%*3] Workout
-REM Mon Tue Thu Fri AT 16:45 MSG [%*3] Post-workout
+# Work
+REM Mon Thu AT 14:00 +10 TZ Europe/Moscow MSG Work: Meeting
 
 # Sleep
-REM AT 22:45 MSG [%*3] Night meds
-REM AT 23:30 MSG [%*3] Bedtime
+REM AT 20:00 MSG ⏾ Sleep (2h): no new tasks, no new tabs, no new windows
+REM AT 21:00 MSG ⏾ Sleep (1h): single task mode (max one real + one chill)
+REM AT 21:50 MSG ⏾ Sleep (10m): save and move everything to tomorrow
+# Wake up at 7:00
+
+REM AT 22:50 MSG ⏾ Plan B Sleep (10m): save and move everything to tomorrow
+REM AT 23:50 MSG ⏾ Plan C Sleep (10m): save and move everything to tomorrow

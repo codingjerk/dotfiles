@@ -136,6 +136,10 @@
 [diff-so-fancy]
     markEmptyLines = false
 
+# Aliases
+[alias]
+    sync = !git pull && git push
+
 # URL shortcuts
 [url "git@github.com:"]
     insteadOf = "gh:"

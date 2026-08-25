@@ -234,6 +234,9 @@ binds {
 
   Super+TouchpadScrollRight                     { focus-column-right; }
   Super+TouchpadScrollLeft                      { focus-column-left; }
+
+  // Voxtype
+  F1 repeat=false { spawn "voxtype" "record" "toggle"; }
 }
 
 switch-events {
