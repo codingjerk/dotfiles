@@ -5,6 +5,7 @@ current_ip=$(curl \
     --silent \
     --show-error \
     --max-time 10 \
+    --retry 3 \
     https://api64.ipify.org \
     2>/dev/null)
 curl_status=$?

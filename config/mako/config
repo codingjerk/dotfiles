@@ -141,10 +141,12 @@ group-by=summary
   format=<span foreground="#{red}">%s</span>\n%b
   # VAR: fg_dim
   progress-color=over #{fg_dim}A0
+  default-timeout=0
 
 [grouped category=disk]
   # VAR: red
   format=<span foreground="#{red}">%s</span>\n%b
+  default-timeout=0
 
 [category=remind]
   anchor=center

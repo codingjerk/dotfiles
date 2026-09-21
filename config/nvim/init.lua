@@ -728,7 +728,17 @@ require("lazy").setup({
                 -- TOML
                 vim.lsp.config("taplo", {
                     settings = {
-                        taplo = {
+                        evenBetterToml = {
+                            formatter = {
+                                alignEntries       = true,
+                                allowedBlankLines = 1,
+                                arrayAutoCollapse = false,
+                                compactArrays      = false,
+                                indentEntries      = true,
+                                indentTables       = true,
+                                reorderArrays      = true,
+                                reorderKeys        = true,
+                            }
                         },
                     },
                 })
