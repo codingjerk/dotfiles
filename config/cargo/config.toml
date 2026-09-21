@@ -8,4 +8,4 @@ progress.when = "never"
 
 [build]
 # WARN: be careful deploying stuff built locally
-rustflags = ["-Ctarget-cpu=native"]
+rustflags = ["-Ctarget-cpu=native", "-Awarnings"]

@@ -109,6 +109,32 @@ group-by=summary
   # VAR: red
   format=<span foreground="#{red}">%s</span>\n%b
 
+[category=battery-charging]
+  group-by=category
+  # VAR: green
+  format=<span foreground="#{green}">%s</span>\n%b
+  # VAR: green
+  progress-color=over #{green}70
+  # VAR: bg_add
+  background-color=#{bg_add}
+
+[grouped category=battery-charging]
+  # VAR: green
+  format=<span foreground="#{green}">%s</span>\n%b
+
+[category=battery-warning]
+  group-by=category
+  # VAR: orange
+  format=<span foreground="#{orange}">%s</span>\n%b
+  # VAR: orange
+  progress-color=over #{orange}70
+  # TODO: orange_bg
+  background-color=#332e21
+
+[grouped category=battery-warning]
+  # VAR: green
+  format=<span foreground="#{green}">%s</span>\n%b
+
 [category=disk]
   group-by=category
   # VAR: red

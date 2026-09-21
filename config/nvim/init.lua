@@ -15,12 +15,54 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 })
 
--- Tree Sitter
+-- Tree Sitter: start, identation and folding
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "lua", "python", "rust", "sql", "kdl", "bash", "zig", "dockerfile", "html" },
+    pattern = {
+        "lua",
+        "python",
+        "rust",
+        "sql",
+        "kdl",
+        "bash",
+        "zig",
+        "dockerfile",
+        "html",
+        "typescript",
+        "c",
+        "cpp",
+        "yaml",
+        "markdown",
+        "gitcommit",
+    },
     callback = function()
+        vim.treesitter.query.set("python", "folds", [[
+            [
+                (decorator)
+                (function_definition)
+                (class_definition)
+            ] @fold
+        ]])
+
+        vim.treesitter.query.set("rust", "folds", [[
+            [
+                (function_item)
+                (struct_item)
+                (impl_item)
+                (trait_item)
+            ] @fold
+        ]])
+
         vim.treesitter.start()
         vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+        -- Folding
+        vim.opt.foldmethod = "expr"
+        vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        vim.opt.foldenable = true
+        vim.opt.foldlevel = 99
+        vim.opt.foldlevelstart = 99
+
+        vim.opt.foldtext = ""
     end,
 })
 
@@ -37,13 +79,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -----------------------
 
 vim.api.nvim_create_autocmd("FileType", {
-group = group,
-pattern = "markdown",
-callback = function()
-  vim.opt_local.wrap = true
-  vim.opt_local.linebreak = true
-  vim.opt_local.breakindent = true
-end,
+    pattern = "markdown",
+    callback = function()
+        vim.opt_local.wrap = true
+        vim.opt_local.linebreak = true
+        vim.opt_local.breakindent = true
+    end,
 })
 
 -----------------------
@@ -51,12 +92,12 @@ end,
 -----------------------
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank({
-      higroup = "LocalHighlight",
-      timeout = 200,
-    })
-  end,
+    callback = function()
+        vim.highlight.on_yank({
+            higroup = "LocalHighlight",
+            timeout = 200,
+        })
+    end,
 })
 
 ----------------------------
@@ -64,7 +105,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 ----------------------------
 
 local is_termux = vim.fn.has("termux") == 1
-  or vim.env.TERMUX_VERSION ~= nil
+    or vim.env.TERMUX_VERSION ~= nil
 
 local function normal_or_termux(value, termux_value)
     if is_termux then
@@ -383,13 +424,20 @@ require("lazy").setup({
             opts = {},
             config = function()
                 require("ibl").setup({
-                    debounce = based_on_power(200, 1000),
+                    debounce = based_on_power(50, 200),
                     viewport_buffer = {
                         min = based_on_power(100, 50),
                     },
-                    indent = { char = "¦" },
+                    indent = {
+                        char = "¦",
+                        highlight = {
+                            "IndentDim",
+                        },
+                    },
                     scope = {
                         enabled = true,
+                        highlight = "IndentScope",
+                        char = "│",
                         show_start = false,
                         show_end = false,
                     },
@@ -459,9 +507,25 @@ require("lazy").setup({
                         -- ["<tab>"] = cmp.mapping.select_next_item(),
                         ["<s-tab>"] = cmp.mapping.select_prev_item(),
                     },
+                    matching = {
+                        -- Keep only prefix matched items
+                        disallow_partial_fuzzy_matching = true,
+                        disallow_partial_matching = true,
+                    },
                     sources = {
-                        { name = "nvim_lsp" },
-                        { name = "buffer" },
+                        {
+                            name = "nvim_lsp",
+                            -- Filter out dunder methods
+                            entry_filter = function(entry)
+                                local word = entry:get_word()
+                                return not word:match("^__")
+                            end,
+                        },
+                        {
+                            name = "buffer",
+                            keyword_length = 3,
+                            max_item_count = 5,
+                        },
                         { name = "path" },
                     },
                     formatting = {
@@ -494,7 +558,8 @@ require("lazy").setup({
                 local mc = require("multicursor-nvim")
 
                 mc.setup({
-                    signs = { "┆", "▍", "┃", "↑", "↓", "⇡", "⇣" },
+                    -- TODO: why and how is this working?
+                    signs = { "┆", "┃", "▍", "↑", "↓", "⇡", "⇣" },
                 })
 
                 vim.keymap.set({ "n", "v" }, "C", function() mc.lineAddCursor(1) end)
@@ -515,11 +580,14 @@ require("lazy").setup({
                     else
                         vim.cmd("nohlsearch")
 
-                        -- Close all floating windows except zen-mode
+                        -- Close all floating windows except zen-mode and incline
                         -- vim.cmd("fclose")
                         for _, win in ipairs(vim.api.nvim_list_wins()) do
                             local conf = vim.api.nvim_win_get_config(win)
-                            if conf.relative ~= "" and conf.zindex > 40 then
+                            local buf = vim.api.nvim_win_get_buf(win)
+                            local is_incline = vim.bo[buf].filetype == "incline"
+
+                            if conf.relative ~= "" and conf.zindex > 40 and not is_incline then
                                 vim.api.nvim_win_close(win, true)
                             end
                         end
@@ -533,10 +601,6 @@ require("lazy").setup({
             "neovim/nvim-lspconfig",
             version = "*",
             config = function()
-                local common_lsp_flags = {
-                    debounce_text_changes = based_on_power(50, 500),
-                }
-
                 local border = {
                     { "┌", "FloatBorder" },
                     { "─", "FloatBorder" },
@@ -555,9 +619,16 @@ require("lazy").setup({
                     return orig_util_open_floating_preview(contents, syntax, opts, ...)
                 end
 
+                -- Common config
+                vim.lsp.config("*", {
+                    flags = {
+                        debounce_text_changes = based_on_power(50, 500),
+                    },
+                    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+                })
+
                 -- LUA
                 vim.lsp.config("lua_ls", {
-                    flags = common_lsp_flags,
                     settings = {
                         Lua = {
                             diagnostics = {
@@ -573,12 +644,17 @@ require("lazy").setup({
                 })
                 vim.lsp.enable("lua_ls")
 
+                local function find_venv_python()
+                    -- TODO: improve venv discovery
+                    return ".venv/bin/python"
+                end
+
                 -- Python
                 -- Autocomplete, Imports, Type checking
                 vim.lsp.config("pyright", {
-                    flags = common_lsp_flags,
                     settings = {
                         python = {
+                            pythonPath = find_venv_python(),
                             analysis = {
                                 typeCheckingMode = "strict",
 
@@ -601,7 +677,7 @@ require("lazy").setup({
                                     reportUninitializedInstanceVariable = "warning",
 
                                     -- Gradual typing in new projects
-                                    reportMissingImports = false,
+                                    reportMissingImports = "warning",
                                     reportMissingTypeStubs = false,
                                     reportUnknownVariableType = false,
 
@@ -616,13 +692,17 @@ require("lazy").setup({
 
                 -- Linting / formatting
                 vim.lsp.config("ruff", {
-                    flags = common_lsp_flags,
-                    settings = {
-                        ruff = {
-                            -- Enable all rules, since we can filter them with `# noqa` comments
-                            enabled = true,
-                            -- Don't show warnings about missing type hints, since it's not critical and usually requires manual work to fix
-                            ignore = { "ANN" },
+                    init_options = {
+                        settings = {
+                            lint = {
+                                -- Enable all rules, since we can filter them with `# noqa` comments
+                                enabled = true,
+                                -- Don't show warnings about missing type hints, since it's not critical and usually requires manual work to fix
+                                ignore = { "ANN" },
+                            },
+
+                            -- Let pyright handle syntax
+                            showSyntaxErrors = false,
                         },
                     },
                 })
@@ -636,8 +716,9 @@ require("lazy").setup({
                                 ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
                                 ["https://json.schemastore.org/prettierrc.json"] = "/.prettierrc*",
                                 ["https://json.schemastore.org/stylelintrc.json"] = "/.stylelintrc*",
-                                ["https://gitlab.com/gitlab-org/gitlab-foss/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "/.gitlab-ci.yml",
-                                ["https://raw.githubusercontent.com/compose-spec/compose-go/master/schema/compose-spec.json"] = {"docker-compose*.yml", "docker-compose*.yaml", "compose*.yml", "compose*.yaml"},
+                                ["https://gitlab.com/gitlab-org/gitlab-foss/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] =
+                                "/.gitlab-ci.yml",
+                                ["https://raw.githubusercontent.com/compose-spec/compose-go/master/schema/compose-spec.json"] = { "docker-compose*.yml", "docker-compose*.yaml", "compose*.yml", "compose*.yaml" },
                             },
                         },
                     },
@@ -671,6 +752,14 @@ require("lazy").setup({
                     },
                 })
                 vim.lsp.enable("superhtml")
+
+                -- Markdown
+                vim.lsp.config("marksman", {
+                    settings = {
+                        marksman = {},
+                    },
+                })
+                vim.lsp.enable("marksman")
 
                 -- Bash
                 vim.lsp.enable("bashls")
@@ -794,7 +883,7 @@ require("lazy").setup({
                             local reason = ok and "no namespace was returned" or tostring(codebook_ns)
                             vim.notify(
                                 ("Unable to configure Codebook diagnostics for client %d: %s")
-                                    :format(client_id, reason),
+                                :format(client_id, reason),
                                 vim.log.levels.WARN
                             )
                             return
@@ -812,7 +901,10 @@ require("lazy").setup({
                 })
 
                 vim.lsp.config("codebook", {
-                    flags = common_lsp_flags,
+                    filetypes = {
+                        -- TODO: full list of filetypes
+                        "dockerfile",
+                    },
                     init_options = {
                         diagnosticSeverity = "hint",
                         checkWhileTyping = based_on_power(true, false),
@@ -853,6 +945,9 @@ require("lazy").setup({
                     "zig",
                     "javascript",
                     "typescript",
+
+                    "c",
+                    "cpp",
 
                     -- Markup
                     "html",
@@ -1077,16 +1172,16 @@ require("lazy").setup({
                 local todos = require("todo-comments")
                 todos.setup({
                     keywords = {
-                        SEE  = { icon = "󰈙 ", color = "hint", alt = { "DOC", "SOURCE", "URL", "REF" } },
-                        NOTE = { icon = "󰀧 ", color = "hint", alt = { "INFO" } },
-                        TODO = { icon = " ", color = "info", alt = { "Todo", "ToDo" } },
-                        PERF = { icon = " ", color = "info", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-                        TEST = { icon = "󰙨 ", color = "warning", alt = { "TESTING", "PASSED", "FAILED" } },
-                        HACK = { icon = "󰈸 ", color = "warning" },
-                        WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-                        FIX  = { icon = " ", color = "error", alt = { "FIXME", "BUG", "FIXIT", "ISSUE", "ERR", "ERROR" } },
+                        SEE   = { icon = "󰈙 ", color = "hint", alt = { "DOC", "SOURCE", "URL", "REF" } },
+                        NOTE  = { icon = "󰀧 ", color = "hint", alt = { "INFO" } },
+                        TODO  = { icon = " ", color = "info", alt = { "Todo", "ToDo" } },
+                        PERF  = { icon = " ", color = "info", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+                        TEST  = { icon = "󰙨 ", color = "warning", alt = { "TESTING", "PASSED", "FAILED" } },
+                        HACK  = { icon = "󰈸 ", color = "warning" },
+                        WARN  = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+                        FIX   = { icon = " ", color = "error", alt = { "FIXME", "BUG", "FIXIT", "ISSUE", "ERR", "ERROR" } },
                         -- FIX: create additional level for these
-                        INOTE = { icon = "󰀧 ", color = "error" },
+                        INOTE = { icon = "󰀧 ", color = "error", alt = { "SECURITY NOTE" } },
                     },
                     highlight = {
                         multiline = false,
@@ -1121,6 +1216,10 @@ require("lazy").setup({
         {
             "rmagatti/auto-session",
             lazy = false, -- We need to restore session ASAP
+            -- enabled = false,
+            init = function()
+                vim.opt.sessionoptions:remove("folds")
+            end,
             opts = {
                 suppressed_dirs = { '~/', '/', '~/downloads' },
                 session_lens = {
@@ -1142,7 +1241,112 @@ require("lazy").setup({
             "b0o/incline.nvim",
             event = "VeryLazy",
             config = function()
-                require("incline").setup({
+                local FILE_ICON = "󰈙"
+
+                local function project_path(buf)
+                    local path = vim.api.nvim_buf_get_name(buf)
+
+                    if path == "" then
+                        return "[No Name]"
+                    end
+
+                    -- Prefer git root. Fall back to common project markers.
+                    local root = vim.fs.root(buf, {
+                        ".git",
+                        {
+                            "pyproject.toml",
+                            "Cargo.toml",
+                            "go.mod",
+                            "package.json",
+                        },
+                    })
+
+                    if root then
+                        return vim.fs.relpath(root, path) or vim.fs.basename(path)
+                    end
+
+                    return vim.fn.fnamemodify(path, ":~:.")
+                end
+
+                local function git_branch(buf)
+                    -- Provided by gitsigns.nvim.
+                    -- No git subprocess from inside Incline's render().
+                    local branch = vim.b[buf].gitsigns_head
+
+                    if not branch or branch == "" then
+                        return nil
+                    end
+
+                    if branch == "main" or branch == "master" then
+                        return nil
+                    end
+
+                    return branch
+                end
+
+                local function diagnostics(buf)
+                    local errors = #vim.diagnostic.get(buf, {
+                        severity = vim.diagnostic.severity.ERROR,
+                    })
+
+                    local warnings = #vim.diagnostic.get(buf, {
+                        severity = vim.diagnostic.severity.WARN,
+                    })
+
+                    local result = {}
+
+                    if errors > 0 then
+                        table.insert(result, {
+                            "  " .. errors,
+                            group = "DiagnosticError",
+                        })
+                    end
+
+                    if warnings > 0 then
+                        table.insert(result, {
+                            " 󰈸 " .. warnings,
+                            group = "DiagnosticWarn",
+                        })
+                    end
+
+                    return result
+                end
+
+                local function encoding(buf)
+                    local enc = vim.bo[buf].fileencoding
+
+                    -- Empty fileencoding means UTF-8 in Neovim.
+                    if enc == "" or enc == "utf-8" then
+                        return nil
+                    end
+
+                    return enc
+                end
+
+                local function file_icon(buf)
+                    if vim.bo[buf].readonly then
+                        return {
+                            FILE_ICON,
+                            group = "DiagnosticError",
+                        }
+                    end
+
+                    if vim.bo[buf].modified then
+                        return {
+                            FILE_ICON,
+                            group = "DiagnosticWarn",
+                        }
+                    end
+
+                    return {
+                        FILE_ICON,
+                        group = "Normal",
+                    }
+                end
+
+                local incline = require("incline")
+
+                incline.setup({
                     debounce_threshold = {
                         falling = based_on_power(50, 250),
                         rising = based_on_power(10, 100),
@@ -1154,13 +1358,57 @@ require("lazy").setup({
                         cursorline = true,
                     },
                     render = function(props)
-                        local path = vim.api.nvim_buf_get_name(props.buf)
-                        local filename = path == "" and "[no name]" or vim.fn.fnamemodify(path, ":t")
-                        local modified = vim.bo[props.buf].modified and " " or ""
-                        return { modified .. filename }
+                        local buf = props.buf
+
+                        local branch = git_branch(buf)
+                        local enc = encoding(buf)
+
+                        return {
+                            file_icon(buf),
+
+                            {
+                                " " .. project_path(buf),
+                            },
+
+                            branch and {
+                                "  " .. branch,
+                                group = "Keyword",
+                            } or "",
+
+                            diagnostics(buf),
+
+                            enc and {
+                                " " .. enc,
+                                group = "Comment",
+                            } or "",
+                        }
+                    end,
+                })
+
+                -- Refresh branch/status data when gitsigns updates a buffer.
+                vim.api.nvim_create_autocmd("User", {
+                    pattern = "GitSignsUpdate",
+                    callback = function()
+                        incline.refresh()
                     end,
                 })
             end,
+        },
+
+        -- End of block hints
+        {
+            "andersevenrud/nvim_context_vt",
+            event = "BufReadPost",
+            opts = {
+                prefix = "󰁂",
+                min_rows = 10,
+                disable_targets_ft = {
+                    python = {
+                        -- Do not add extra @staticmethod-like hints
+                        "decorated_definition",
+                    },
+                },
+            },
         },
 
         -- Wakatime
@@ -1181,8 +1429,8 @@ vim.opt.conceallevel = 0
 -- Disable swap files
 vim.opt.swapfile = false
 
--- Increase gutter spacing
-vim.opt.statuscolumn = "%s%=%l  "
+-- Increase gutter spacing, add folded sign
+vim.opt.statuscolumn = "%{% foldclosed(v:lnum) >= 0 ? '%#FoldColumn# %*' : '%s' %}%=%l  "
 
 -- Enable some mouse (for selections)
 vim.opt.mouse = "nv"
@@ -1212,7 +1460,7 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 
 -- Always keep sign column on
-vim.opt.signcolumn = normal_or_termux("yes", "no")
+vim.opt.signcolumn = normal_or_termux("yes:1", "no")
 
 -- Copy to system's clipboard
 vim.schedule(function()
@@ -1227,10 +1475,12 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- Decrease update time. Used for swapfile and by gitsigns and local-highlight
-vim.opt.updatetime = based_on_power(10000, 25)
+vim.opt.updatetime = based_on_power(25, 10000)
 
 -- Decrease mapped sequence wait time
 vim.opt.timeoutlen = 300
+vim.opt.ttimeout = true
+vim.opt.ttimeoutlen = 0
 
 -- White space characters
 vim.opt.list = true
@@ -1238,12 +1488,13 @@ vim.opt.listchars = { tab = '» ', trail = '•', nbsp = '␣' }
 
 -- Show which line your cursor is on
 vim.opt.cursorline = based_on_power(true, false)
+vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 6
+vim.opt.scrolloff = 8
 
 -- Minimal number of screen columns to keep to the left and right of the cursor
-vim.opt.sidescrolloff = 20
+vim.opt.sidescrolloff = 16
 
 -- Scroll by screen line instead of jumping over wrapped lines
 vim.opt.smoothscroll = based_on_power(true, false)
@@ -1268,17 +1519,17 @@ vim.opt.shortmess:append("c") -- Unsuccessful search without prompt
 
 -- Diagnostics
 vim.diagnostic.config({
-  update_in_insert = based_on_power(true, false),
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = "",
-      [vim.diagnostic.severity.WARN]  = "󰈸",
-      [vim.diagnostic.severity.INFO]  = "󰋽",
-      [vim.diagnostic.severity.HINT]  = "",
+    update_in_insert = based_on_power(true, false),
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "",
+            [vim.diagnostic.severity.WARN]  = "󰈸",
+            [vim.diagnostic.severity.INFO]  = "󰋽",
+            [vim.diagnostic.severity.HINT]  = "",
+        },
     },
-  },
-  underline = false,
-  severity_sort = true,
+    underline = false,
+    severity_sort = true,
 })
 
 -----------------
@@ -1299,7 +1550,7 @@ vim.keymap.set({ "n", "v" }, "<leader>s", "<cmd> Telescope lsp_document_symbols 
 vim.keymap.set({ "n", "v" }, "<leader>S", "<cmd> Telescope lsp_workspace_symbols <cr>", {})
 vim.keymap.set({ "n", "v" }, "<leader><leader>", "<cmd> Telescope resume <cr>", {})
 
-vim.keymap.set({ "n", "v" }, "<leader>p", "<cmd> SessionSearch <cr>", {})
+vim.keymap.set({ "n", "v" }, "<leader>p", "<cmd> AutoSession search <cr>", {})
 vim.keymap.set({ "n", "v" }, "<leader>o", function() require("oil").toggle_float() end, {})
 
 -- Diagnostics
@@ -1319,18 +1570,14 @@ end, {})
 -- WASD
 local function based_on_wrap(normal, wrapped)
     return function()
-        if vim.wo.wrap then
-            return wrapped
-        else
-            return normal
-        end
+        return vim.wo.wrap and wrapped or normal
     end
 end
 
 vim.keymap.set({ "n", "v" }, "w", "gk", {})
 vim.keymap.set({ "n", "v" }, "s", "gj", {})
-vim.keymap.set({ "n", "v" }, "a", "h", {})
-vim.keymap.set({ "n", "v" }, "d", "l", {})
+vim.keymap.set({ "n", "v", "o" }, "a", "h", {})
+vim.keymap.set({ "n", "v", "o" }, "d", "l", {})
 
 vim.keymap.set({ "n", "v", "o" }, "q", based_on_wrap("^", "g^"), { expr = true })
 vim.keymap.set({ "n", "v", "o" }, "e", based_on_wrap("$", "g$"), { expr = true })
@@ -1340,8 +1587,8 @@ vim.keymap.set({ "n", "v" }, "S", "5gj", {})
 vim.keymap.set({ "n", "v", "o" }, "A", "b", {})
 vim.keymap.set({ "n", "v", "o" }, "D", "w", {})
 
-vim.keymap.set({ "n", "v" }, "Q", based_on_wrap("^i", "g^i"), { expr = true })
-vim.keymap.set({ "n", "v" }, "E", based_on_wrap("$a", "g$a"), { expr = true })
+vim.keymap.set({ "n", "v" }, "Q", based_on_wrap("I", "g^i"), { expr = true })
+vim.keymap.set({ "n", "v" }, "E", based_on_wrap("A", "g$a"), { expr = true })
 
 -- Movements
 vim.keymap.set({ "n", "v" }, "ge", "G", {})
@@ -1376,15 +1623,11 @@ vim.keymap.set({ "n", "v" }, "gl", "<cmd> Telescope git_bcommits <cr>", {})
 vim.keymap.set({ "n", "v", "i" }, "<c-s>", "<cmd> w <cr>", {})
 
 -- Selections
-vim.keymap.set({ "n", "v" }, "mw", "viw", {})
-vim.keymap.set({ "n", "v" }, "mb", "vib", {})
-vim.keymap.set({ "n", "v" }, "m(", "vib", {})
-vim.keymap.set({ "n", "v" }, "mp", "vip", {})
-vim.keymap.set({ "n", "v" }, "mq", "vi\"", {})
-vim.keymap.set({ "n", "v" }, "m\"", "vi\"", {})
+vim.keymap.set({ "n", "v" }, "mp", "vip", {}) -- TODO: better hotkey
 
 vim.keymap.set({ "n" }, "(", "vib", {})
 vim.keymap.set({ "n" }, "\"", "vi\"", {})
+vim.keymap.set({ "n" }, "'", "vi'", {})
 vim.keymap.set({ "n" }, "{", "vi{", {})
 vim.keymap.set({ "n" }, "[", "vi[", {})
 vim.keymap.set({ "n" }, "<", "vi<", {})
@@ -1400,16 +1643,20 @@ vim.keymap.set({ "v" }, "}", "<Plug>(nvim-surround-visual)}", { remap = true, si
 vim.keymap.set({ "v" }, "\"", "<Plug>(nvim-surround-visual)\"", { remap = true, silent = true })
 vim.keymap.set({ "v" }, "\'", "<Plug>(nvim-surround-visual)\'", { remap = true, silent = true })
 vim.keymap.set({ "v" }, "`", "<Plug>(nvim-surround-visual)`", { remap = true, silent = true })
-vim.keymap.set({ "n" }, "t", "<Plug>(nvim-surround-change)t", { remap = true, silent = true })
-vim.keymap.set({ "v" }, "t", "<Plug>(nvim-surround-visual)t", { remap = true, silent = true })
 
 -- Select all
 vim.keymap.set({ "n", "v" }, "%", "ggVG", {})
 
 -- LSP
+local function toggle_inlay_hints()
+    local enabled = vim.lsp.inlay_hint.is_enabled()
+    vim.lsp.inlay_hint.enable(not enabled)
+end
+
 vim.keymap.set({ "n", "v" }, "gd", vim.lsp.buf.definition, {})
 vim.keymap.set({ "n", "v" }, "gr", "<cmd> Telescope lsp_references <cr>", {})
 vim.keymap.set({ "n", "v" }, "h", vim.lsp.buf.hover, {})
+vim.keymap.set({ "n", "v" }, "<c-h>", toggle_inlay_hints, {})
 vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, {})
 vim.keymap.set({ "n", "v" }, "<leader>r", vim.lsp.buf.rename, {})
 vim.keymap.set({ "n", "v" }, "<c-f>", function() require("conform").format() end, {})
@@ -1506,11 +1753,11 @@ local function esc_complete()
     local cmp = require("cmp")
     local copilot = require("copilot.suggestion")
 
-    if cmp.visible() and copilot.is_visible() then
+    if copilot.is_visible() and cmp.visible() then
         return cmp.close()
     end
 
-    vim.fn.feedkeys("\027")
+    vim.cmd.stopinsert()
 end
 
 vim.keymap.set({ "i" }, "<tab>", tab_complete, {})
@@ -1526,6 +1773,20 @@ vim.keymap.set({ "n" }, "V", '"_V', {})
 
 -- Semicolon to colon
 vim.keymap.set({ "n", "v" }, ";", ":", {})
+
+-- Toggle diagnostics
+vim.keymap.set({ "n", "v" }, "@", "<cmd> DiagflowToggle <cr>", {})
+
+-- Folding: toggle cursor or open/close all
+vim.keymap.set({ "n" }, "z", "za", {})
+vim.keymap.set({ "n" }, "Z", function()
+    local foldlevel = vim.api.nvim_win_get_option(0, "foldlevel")
+    if foldlevel == 0 then
+        vim.cmd("normal! zR")
+    else
+        vim.cmd("normal! zM")
+    end
+end, {})
 
 -- Enable reading local .nvimrc files
 vim.opt.exrc = true

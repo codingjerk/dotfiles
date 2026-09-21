@@ -34,7 +34,6 @@ call s:hl("CursorLine", "NONE", s:bg_dim)
 call s:hl("CursorLineNr", s:blue, s:bg_dim)
 call s:hl("Visual", "NONE", s:bg_sel)
 call s:hl("SignColumn", "NONE", s:bg)
-call s:hl("FoldColumn", "NONE", s:bg)
 
 call s:hl("TabLine", "NONE", s:bg_dim)
 call s:hl("TabLineFill", "NONE", s:bg_dim)
@@ -54,14 +53,13 @@ call s:hl("NonText", s:fg_dim, "NONE")
 call s:hl("WinSeparator", s:fg_dim, "NONE")
 call s:hl("CursorColumn", "NONE", s:fg_dim)
 
-" Ident guide
-call s:hl("IblScope", s:accent_dim, "NONE")
-
 " Cursor
 call s:hl("MatchParen", s:purple, s:bg_sel)
 call s:hl("Cursor", s:bg, s:fg_half_dim)
 call s:hl("MultiCursorSign", s:blue, "NONE")
 " exec "hi MatchParen gui=underline guisp=" . s:purple
+
+call s:hl("MultiCursorCursor", s:bg, s:fg_half_dim)
 
 " Search
 call s:hl("Search",    s:yellow, "NONE")
@@ -160,6 +158,10 @@ call s:hl("@constructor.lua", s:fg_half_dim, "NONE")
 call s:hl("@tag.delimiter.html", s:fg_half_dim, "NONE")
 call s:hl("dosiniSection", s:fg_half_dim, "NONE")
 call s:hl("Conceal", s:red, s:green)
+
+" Folding
+call s:hl("FoldColumn", s:fg_half_dim, s:bg)
+call s:hl("Folded", s:fg_dim, "NONE")
 
 " Diagnostic
 call s:hl("DiagnosticError", s:red, "NONE")
@@ -276,3 +278,9 @@ call s:hl("LocalHighlight", "NONE", s:bg_sel_hi)
 
 " Plugin:Oil
 call s:hl("OilFile", s:blue, "NONE")
+
+" Plugin:ibl
+ call s:hl("IndentDim", s:fg_dim, "NONE")
+
+call s:hl("IblScope", s:accent_dim, "NONE")
+call s:hl("IndentScope", s:accent_dim, "NONE")
